@@ -15,3 +15,4 @@ License: MIT + file LICENSE
 URL: https://github.com/eblondel/ows4R
 BugReports: https://github.com/eblondel/ows4R/issues
 LazyLoad: yes
+RoxygenNote: 6.0.1

@@ -16,7 +16,7 @@
 #'    Version
 #'    : \tab 0.1\cr
 #'    Date: \tab 2018-02-14\cr
-#'    License: \tab GPL(>=2.0)\cr
+#'    License: \tab MIT\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
 #'  
