@@ -15,7 +15,7 @@ R client for OGC Web-Services
 
 Standard  |Description|Supported versions|Support
 ----------|-----------|------------------|------
-OGC Common|[Common OGC Web-Service](http://www.opengeospatial.org/standards/common)|``1.1.0``|ongoing
+OGC Common|[Web Service Common](http://www.opengeospatial.org/standards/common)|``1.1.0``|ongoing
 OGC WFS   |[Web Feature Service](http://www.opengeospatial.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``|ongoing
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
