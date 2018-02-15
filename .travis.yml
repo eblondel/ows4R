@@ -1,0 +1,41 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: R
+sudo: required
+cache: packages
+
+services:
+  - docker
+
+before_install:
+  - docker pull kartoza/postgis
+  - docker run -d --name="postgis" kartoza/postgis
+  - docker pull oscarfonts/geoserver
+  - docker run --link postgis:postgis -d -p 8080:8080 oscarfonts/geoserver
+
+r:
+  - oldrel
+  - release
+  - devel
+
+r_binary_packages:
+  - rgdal
+
+r_packages:
+  - R6
+  - httr
+  - XML
+  - testthat
+  - covr
+
+r_check_args: --as-cran
+
+after_script:
+ - ./travis-tool.sh dump_logs
+ 
+after_success:
+ - Rscript -e 'library(covr); codecov()'
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change

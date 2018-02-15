@@ -3,7 +3,7 @@ Version: 0.1
 Date: 2018-02-14
 Title: interface to OGC Web-Services (OWS)
 Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
-             person("Norbert", "Billet", role = c("ctb"), email = "norbert.billet@ird.fr"))
+             person("Norbert", "Billet", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: R6, httr, XML (>= 3.96-1.1), sp, rgdal
