@@ -1,10 +1,18 @@
+#' OWSUtils
+#'
 #' @export
-OWSUtilsInternal <- R6Class("OWSUtilsInternal",
-  public = list(
-    
-    initialize = function(){
-    },
-    
+#' @keywords OGC OWS Utils
+#' @return set of OWS Utilities
+#' @format \code{\link{R6Class}} object.
+#'
+#' @section Static methods:
+#' \describe{
+#' }
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#'
+OWSUtils <- list(
+  
     #getNamespaces
     #---------------------------------------------------------------
     getNamespaces = function(xmlObj) {
@@ -137,16 +145,4 @@ OWSUtilsInternal <- R6Class("OWSUtilsInternal",
       ratio <- (bbox[1,2]-bbox[1,1]) / (bbox[2,2]-bbox[2,1])
       return(ratio)
     }
-    
-  )
 )
-
-#'@export
-OWSUtils <- list(
-  getNamespaces = OWSUtilsInternal$new()$getNamespaces,
-  findNamespace = OWSUtilsInternal$new()$findNamespace,
-  toBBOX = OWSUtilsInternal$new()$toBBOX,
-  toCRS = OWSUtilsInternal$new()$toCRS,
-  toEPSG = OWSUtilsInternal$new()$toEPSG,
-  getAspectRatio = OWSUtilsInternal$new()$getAspectRatio
-)  
