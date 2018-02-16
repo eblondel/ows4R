@@ -3,7 +3,7 @@
 \docType{class}
 \name{WFSCapabilities}
 \alias{WFSCapabilities}
-\title{WFSGetCapabilities}
+\title{WFSCapabilities}
 \format{\code{\link{R6Class}} object.}
 \usage{
 WFSCapabilities
@@ -13,16 +13,13 @@ Object of \code{\link{R6Class}} with methods for interfacing an OGC
 Web Feature Service Get Capabilities document.
 }
 \description{
-WFSGetCapabilities
+WFSCapabilities
 }
 \section{Methods}{
 
 \describe{
  \item{\code{new(url, version)}}{
    This method is used to instantiate a WFSGetCapabilities object
- }
- \item{\code{getServiceIdentification()}}{
-   Get the service identification
  }
  \item{\code{getFeatureTypes()}}{
    Retrieves the list of feature types
@@ -35,7 +32,7 @@ WFSGetCapabilities
 
 \examples{
 \dontrun{
-   WFSGetCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+   WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
 }
 
 }

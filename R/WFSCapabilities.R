@@ -1,4 +1,4 @@
-#' WFSGetCapabilities
+#' WFSCapabilities
 #'
 #' @docType class
 #' @export
@@ -9,16 +9,13 @@
 #' 
 #' @examples
 #' \dontrun{
-#'    WFSGetCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+#'    WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
 #' }
 #'
 #' @section Methods:
 #' \describe{
 #'  \item{\code{new(url, version)}}{
 #'    This method is used to instantiate a WFSGetCapabilities object
-#'  }
-#'  \item{\code{getServiceIdentification()}}{
-#'    Get the service identification
 #'  }
 #'  \item{\code{getFeatureTypes()}}{
 #'    Retrieves the list of feature types
@@ -31,22 +28,11 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSCapabilities <- R6Class("WFSCapabilities",
-   
+   inherit = OWSCapabilities,
    private = list(
      
-     url = NA,
-     version = NA,
-     request = NA,
-     serviceIdentification = NA,
      featureTypes = NA,
-     
-     #buildRequest
-     buildRequest = function(url, version){
-       namedParams <- list(request = "GetCapabilities", version = version)
-       request <- OWSRequest$new(url, namedParams, "text/xml")
-       return(request)
-     },
-     
+
      #fetchFeatureTypes
      fetchFeatureTypes = function(xmlObj, url, version){
        
@@ -57,7 +43,6 @@ WFSCapabilities <- R6Class("WFSCapabilities",
        }
        
        featureTypesXML <- getNodeSet(xmlObj, "//ns:FeatureType", wfsNs)
-       
        featureTypesList <- lapply(featureTypesXML,
                                   function(x){
                                     WFSFeatureType$new(x, url, version)
@@ -73,15 +58,9 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      
      #initialize
      initialize = function(url, version) {
-       private$request <- private$buildRequest(url, version)
-       xmlObj <- private$request$response
-       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, version, "WFS")
+       super$initialize(url, service = "WFS", version)
+       xmlObj <- self$getRequest()$response
        private$featureTypes = private$fetchFeatureTypes(xmlObj, url, version)
-     },
-     
-     #getServiceIdentification
-     getServiceIdentification = function(){
-       return(private$serviceIdentification)
      },
      
      #getFeatureTypes

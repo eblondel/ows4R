@@ -2,7 +2,10 @@
 
 export(CSWCapabilities)
 export(CSWClient)
+export(OWSCapabilities)
 export(OWSClient)
+export(OWSOperation)
+export(OWSOperationsMetadata)
 export(OWSRequest)
 export(OWSServiceIdentification)
 export(OWSUtils)

@@ -49,28 +49,27 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      accessConstraints = NA,
      
      #fetchServiceIdentification
-     fetchServiceIdentification = function(xmlObj, version, service){
+     fetchServiceIdentification = function(xmlObj, service, version){
        
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       
        namespace <- tolower(service)
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
           ns <- OWSUtils$findNamespace(namespaces, namespace)
-          if(!is.null(ns)){
+          if(length(ns)>0){
             serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
             if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
-            if(length(serviceXML)==0){
-              ns <- OWSUtils$findNamespace(namespaces, "ows")
-              if(!is.null(ns)){
-                serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
-                if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
-              }
+          }
+          if(length(serviceXML)==0){
+            ns <- OWSUtils$findNamespace(namespaces, "ows")
+            if(length(ns)>0){
+              serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
+              if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
             }
           }
        }else{
@@ -104,7 +103,7 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
          }
          if(!is.null(children$Keywords)){
            
-           if(version == "1.0.0"){
+           if(is.character(children$Keywords)){
              serviceKeywords <- strsplit(gsub(" ", "", xmlValue(children$Keywords)), ",")[[1]]
            }else{
              serviceKeywordListXML <- xmlChildren(children$Keywords)
@@ -146,8 +145,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      }
    ),
    public = list(
-     initialize = function(xmlObj, version, namespace){
-       serviceIdentification <- private$fetchServiceIdentification(xmlObj, version, namespace)
+     initialize = function(xmlObj, service, version){
+       serviceIdentification <- private$fetchServiceIdentification(xmlObj, service, version)
        private$name <- serviceIdentification$name
        private$title <- serviceIdentification$title
        private$abstract <- serviceIdentification$abstract
@@ -192,12 +191,12 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      #getServiceTypeVersion
      getServiceTypeVersion = function(){
        return(private$serviceTypeVersion)
-     }
+     },
      
      #getFees
      getFees = function(){
        return(private$fees)
-     }
+     },
      
      #getAccessConstraints
      getAccessConstraints = function(){

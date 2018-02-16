@@ -25,6 +25,9 @@ CSWClient
    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
  }
+ \item{\code{getCapabilities()}}{
+   Get service capabilities. Inherited from OWS Client
+ }
 }
 }
 

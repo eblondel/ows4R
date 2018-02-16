@@ -1,6 +1,6 @@
 Package: ows4R
 Version: 0.1
-Date: 2018-02-14
+Date: 2018-02-16
 Title: interface to OGC Web-Services (OWS)
 Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
              person("Norbert", "Billet", role = c("ctb")))
