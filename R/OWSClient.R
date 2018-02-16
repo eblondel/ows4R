@@ -4,7 +4,7 @@
 #' @importFrom R6 R6Class
 #' @import httr
 #' @import XML
-#' @import sp
+#' @import sf
 #' @import rgdal
 #' @export
 #' @keywords OGC Common OWS

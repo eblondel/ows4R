@@ -119,7 +119,7 @@ OWSUtilsInternal <- R6Class("OWSUtilsInternal",
           srsDef <- NA
         }
       }
-      return(CRS(srsDef))
+      return(st_crs(srsDef))
     },
     
     #toEPSG

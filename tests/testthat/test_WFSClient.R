@@ -15,7 +15,8 @@ test_that("WFS 1.0.0",{
   ft <- caps$findFeatureTypeByName("topp:tasmania_water_bodies", exact = TRUE)
   expect_is(ft, "WFSFeatureType")
   ft.sp <- ft$getFeatures()
-  expect_is(ft.sp, "SpatialPolygonsDataFrame")
+  expect_is(ft.sp, "sf")
+  expect_is(ft.sp, "data.frame")
 })
 
 test_that("WFS 1.1.0",{
@@ -26,7 +27,8 @@ test_that("WFS 1.1.0",{
   ft <- caps$findFeatureTypeByName("topp:tasmania_water_bodies", exact = TRUE)
   expect_is(ft, "WFSFeatureType")
   ft.sp <- ft$getFeatures()
-  expect_is(ft.sp, "SpatialPolygonsDataFrame")
+  expect_is(ft.sp, "sf")
+  expect_is(ft.sp, "data.frame")
 })
 
 test_that("WFS 2.0.0",{
@@ -37,5 +39,6 @@ test_that("WFS 2.0.0",{
   ft <- caps$findFeatureTypeByName("topp:tasmania_water_bodies", exact = TRUE)
   expect_is(ft, "WFSFeatureType")
   ft.sp <- ft$getFeatures()
-  expect_is(ft.sp, "SpatialPolygonsDataFrame")
+  expect_is(ft.sp, "sf")
+  expect_is(ft.sp, "data.frame")
 })

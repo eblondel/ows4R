@@ -54,14 +54,17 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        #type
        elementType <- NULL
        type <- xmlGetAttr(xmlObj, "type")
-       if(attr(regexpr("gml", type),
-               "match.length") > 0) elementType <- "Spatial"
-       if(type == "xsd:string") elementType <- "character"
-       if(type == "xsd:int") elementType <- "integer"
-       if(type == "xsd:decimal") elementType <- "double"
-       if(type == "xsd:boolean") elementType <- "logical"
-       if(type == "xsd:date") elementType <- "character" #TODO
-       if(type == "xsd:dateTime") elementType <- "character" #TODO
+       elementType <- switch(type,
+                             "xsd:string" = "character",
+                             "xsd:long" = "numeric",
+                             "xsd:int" = "integer",
+                             "xsd:decimal" = "double",
+                             "xsd:boolean" = "logical",
+                             "xsd:date" = "character", #TODO
+                             "xsd:datetime" = "character", #TODO
+                             NULL
+       )
+       if(attr(regexpr("gml", type), "match.length") > 0) elementType <- "geometry"
        
        element <- list(
          minOccurs = elementMinOccurs,

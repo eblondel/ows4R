@@ -146,8 +146,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       return(ftDescription);
     },
     
-    #fetchFeatures-
+    #fetchFeatures
     fetchFeatures = function(){
+      
       description <- self$getDescription()
       ftFeatures <- WFSGetFeature$new(private$url, private$version, private$name)
       xmlObj <- ftFeatures$getRequest()$response
@@ -157,16 +158,10 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       destfile = paste(tempf,".gml",sep='')
       saveXML(xmlObj, destfile)
       
-      #download.file(wfsRequest, destfile, mode="wb")
-      layername <- ogrListLayers(destfile)
-      if (length(layername) != 1) {
-        stop("Error with layers in the input dataset")
-      }
-      
       #hasGeometry?
       hasGeometry = FALSE
       for(element in description$getContent()){
-        if(element$getType() == "Spatial"){
+        if(element$getType() == "geometry"){
           hasGeometry = TRUE
           break
         }
@@ -174,10 +169,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       #ftFeatures
       if(hasGeometry){
-        srs <- CRSargs(self$getDefaultCRS())
-        ftFeatures = readOGR(destfile, layername, p4s = srs, disambiguateFIDs = TRUE)
-        ftFeatures <- spChFIDs(ftFeatures, as.character(ftFeatures@data[,private$gmlIdAttributeName])) 
-        
+        ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+        st_crs(ftFeatures) <- self$getDefaultCRS()
       }else{
         if(private$version == "1.0.0"){
           membersContent <- sapply(getNodeSet(xmlObj, "//gml:featureMember"), function(x) xmlChildren(x))
@@ -202,24 +195,17 @@ WFSFeatureType <- R6Class("WFSFeatureType",
             nodes = getNodeSet(xmlObj, "//wfs:member/*[@*]"),
             stringsAsFactors = FALSE
           )
-          
         }
         
         ftFeatures <- cbind(fid, membersAttributes, stringsAsFactors = FALSE)
       }
       
-      #validating attributes
+      #validating attributes vs. schema
       for(element in description$getContent()){
         attrType <- element$getType()
-        if(!is.null(attrType) && attrType != "Spatial"){
+        if(!is.null(attrType) && attrType != "geometry"){
           attrName = element$getName()
-          if(hasGeometry){
-            ftFeatures@data[,attrName] <- as(ftFeatures@data[,attrName],
-                                             element$getType())
-          }else{
-            ftFeatures[,attrName] <- as(ftFeatures[,attrName],
-                                        element$getType())
-          }
+          ftFeatures[[attrName]] <- as(ftFeatures[[attrName]],attrType)
         }
       }
       return(ftFeatures);
