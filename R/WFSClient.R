@@ -21,6 +21,9 @@
 #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
 #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
 #'  }
+#'  \item{\code{getCapabilities()}}{
+#'    Get service capabilities. Inherited from OWS Client
+#'  }
 #'  \item{\code{describeFeatureType(typeName)}}{
 #'    Get the description of a given featureType
 #'  }
@@ -33,15 +36,19 @@
 #'
 WFSClient <- R6Class("WFSClient",
    inherit = OWSClient,
+   private = list(
+     serviceName = "WFS"
+   ),
    public = list(
      #initialize
      initialize = function(url, version = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       super$initialize(url, version, user, pwd, logger)
-       if(any(attr(regexpr("wfs", self$url),"match.length") == -1,
-              attr(regexpr("WFS", self$url), "match.length") == -1)){
-         self$url <- paste(self$url, "service=WFS", sep = "")
-       }
+       super$initialize(url, service = private$serviceName, version, user, pwd, logger)
        self$capabilities = WFSCapabilities$new(self$url, self$version)
+     },
+     
+     #getCapabilities
+     getCapabilities = function(){
+       return(self$capabilities)
      },
      
      #describeFeatureType

@@ -24,7 +24,7 @@ before_install:
 r:
   - oldrel
   - release
-  - devel
+  #- devel
 
 r_github_packages:
   - hadley/devtools

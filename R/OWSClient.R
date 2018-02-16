@@ -25,7 +25,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, user, pwd, logger)}}{
+#'  \item{\code{new(url, service, version, user, pwd, logger)}}{
 #'    This method is used to instantiate a OWSClient with the \code{url} of the
 #'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
 #'    be added with the support of service transactional modes. By default, the \code{logger}
@@ -91,7 +91,9 @@ OWSClient <- R6Class("OWSClient",
     capabilities = NA,
     
     #initialize
-    initialize = function(url, version, user = NULL, pwd = NULL, logger = NULL) {
+    initialize = function(url, service = NULL, version,
+                          user = NULL, pwd = NULL,
+                          logger = NULL) {
       
       #logger
       if(!missing(logger)){
@@ -113,6 +115,12 @@ OWSClient <- R6Class("OWSClient",
       if (!missing(url)) self$url <- url
       if (substring(self$url, nchar(self$url)) != "?"){
         self$url <- paste(self$url, "?", sep = "")
+      }
+      if(!is.null(service)){
+        if(any(attr(regexpr(tolower(service), self$url),"match.length") == -1,
+               attr(regexpr(service, self$url), "match.length") == -1)){
+          self$url <- paste(self$url, "service=", service, sep = "")
+        }
       }
       if (!missing(version)) self$version <- version
     },

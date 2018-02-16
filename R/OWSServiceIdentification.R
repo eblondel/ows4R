@@ -59,30 +59,21 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
-         
-         ns <- NULL
-         if(service == "WFS"){
-           if(version == "1.0.0"){
-             ns <- OWSUtils$findNamespace(namespaces, namespace)
-             if(!is.null(ns)) serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
-           }else{
-             ns <- OWSUtils$findNamespace(namespaces, "ows")
-             if(!is.null(ns)) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
-           }  
-         }else if(service == "WMS"){
-           ns <- OWSUtils$findNamespace(namespaces, namespace)
-           if(!is.null(ns)) serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
-         }
+          ns <- OWSUtils$findNamespace(namespaces, namespace)
+          if(!is.null(ns)){
+            serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
+            if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
+            if(length(serviceXML)==0){
+              ns <- OWSUtils$findNamespace(namespaces, "ows")
+              if(!is.null(ns)){
+                serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
+                if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
+              }
+            }
+          }
        }else{
-         if(service == "WFS"){
-           if(version == "1.0.0"){
-             serviceXML <- getNodeSet(xmlObj, "//Service")
-           }else{
-             serviceXML <- getNodeSet(xmlObj, "//ServiceIdentification")
-           }
-         }else if(service == "WMS"){
-           serviceXML <- getNodeSet(xmlObj, "//Service")
-         }
+         serviceXML <- getNodeSet(xmlObj, "//Service")
+         if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ServiceIdentification")
        }
        
        serviceName <- NULL
@@ -126,6 +117,9 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
          if(!is.null(children$ServiceTypeVersion)){
            serviceTypeVersion <- xmlValue(children$ServiceTypeVersion)
          }
+         
+         #TODO fees
+         #TODO accessConstraints
          
        }
        

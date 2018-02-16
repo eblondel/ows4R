@@ -32,7 +32,7 @@ OWSClient
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version, user, pwd, logger)}}{
+ \item{\code{new(url, service, version, user, pwd, logger)}}{
    This method is used to instantiate a OWSClient with the \code{url} of the
    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
    be added with the support of service transactional modes. By default, the \code{logger}
