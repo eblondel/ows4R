@@ -45,6 +45,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      onlineResource = NA,
      serviceType = NA,
      serviceTypeVersion = NA,
+     fees = NA,
+     accessConstraints = NA,
      
      #fetchServiceIdentification
      fetchServiceIdentification = function(xmlObj, version, service){
@@ -83,6 +85,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        serviceOnlineResource <- NULL
        serviceType <- NULL
        serviceTypeVersion <- NULL
+       serviceFees <- NULL
+       serviceAccessConstraints <- NULL
        if(length(serviceXML) > 0){
          
          serviceXML <- serviceXML[[1]]
@@ -117,9 +121,12 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
          if(!is.null(children$ServiceTypeVersion)){
            serviceTypeVersion <- xmlValue(children$ServiceTypeVersion)
          }
-         
-         #TODO fees
-         #TODO accessConstraints
+         if(!is.null(children$Fees)){
+           serviceFees <- xmlValue(children$Fees)
+         }
+         if(!is.null(children$AccessConstraints)){
+           serviceAccessConstraints <- xmlValue(children$AccessConstraints)
+         }
          
        }
        
@@ -130,7 +137,9 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
          keywords = serviceKeywords,
          onlineResource = serviceOnlineResource,
          serviceType = serviceType,
-         serviceTypeVersion = serviceTypeVersion
+         serviceTypeVersion = serviceTypeVersion,
+         fees = serviceFees,
+         accessConstraints = serviceAccessConstraints
        )
        
        return(serviceIdentification)
@@ -146,6 +155,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        private$onlineResource <- serviceIdentification$onlineResource
        private$serviceType <- serviceIdentification$serviceType
        private$serviceTypeVersion <- serviceIdentification$serviceTypeVersion
+       private$fees <- serviceIdentification$fees
+       private$accessConstraints <- serviceIdentification$accessConstraints
      },
      
      #getName
