@@ -8,14 +8,16 @@
 R client for OGC Web-Services
 
 ``ows4R`` is a new project that aims to set-up a pure R interface to OGC Web-Services. In a first time (ongoing work), ``ows4R`` will target:
-* the Common OGC Web-Services specifications
-* the Web Feature Service (WFS), with support for all versions (_i.e._ ``1.0.0``, ``1.1.0``, and ``2.0.0``).
+* the Common OGC Web-Services specifications, version ``1.1.0``
+* the Catalogue Service (CSW), version ``2.0.2``
+* the Web Feature Service (WFS), versions ``1.0.0``, ``1.1.0``, and ``2.0.0`
 
 ## OGC standards coverage status
 
 Standard  |Description|Supported versions|Support
 ----------|-----------|------------------|------
 OGC Common|[Web Service Common](http://www.opengeospatial.org/standards/common)|``1.1.0``|ongoing
+OGC CSW   |[Catalogue Service](http://www.opengeospatial.org/standards/cat)|``2.0.2``|ongoing
 OGC WFS   |[Web Feature Service](http://www.opengeospatial.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``|ongoing
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
