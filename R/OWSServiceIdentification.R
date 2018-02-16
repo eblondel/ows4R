@@ -193,5 +193,15 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      getServiceTypeVersion = function(){
        return(private$serviceTypeVersion)
      }
+     
+     #getFees
+     getFees = function(){
+       return(private$fees)
+     }
+     
+     #getAccessConstraints
+     getAccessConstraints = function(){
+       return(private$accessConstraints)
+     }
    )
 )
