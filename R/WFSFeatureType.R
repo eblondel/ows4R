@@ -233,7 +233,10 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       #hasGeometry?
       hasGeometry = FALSE
-      for(element in description$getContent()){
+      if(is.null(self$description)){
+        self$description = self$getDescription()
+      }
+      for(element in self$description){
         if(element$getType() == "geometry"){
           hasGeometry = TRUE
           break
@@ -274,7 +277,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       #validating attributes vs. schema
-      for(element in description$getContent()){
+      for(element in self$description){
         attrType <- element$getType()
         if(!is.null(attrType) && attrType != "geometry"){
           attrName = element$getName()
