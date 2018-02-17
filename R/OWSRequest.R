@@ -20,14 +20,20 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSRequest <- R6Class("OWSRequest",
+  inherit = OWSLogger,                    
   #private methods
   private = list(
     #buildRequest
     buildRequest = function(url, namedParams, mimeType){
       params <- paste(names(namedParams), namedParams, sep = "=", collapse = "&")
       request <- paste(url, "&", params, sep = "")
-      message("Fetching ", request)
-      r <- GET(request)
+      self$INFO(sprintf("Fetching %s", request))
+      r <- NULL
+      if(self$verbose.debug){
+        r <- with_verbose(GET(request))
+      }else{
+        r <- GET(request)
+      }
       responseContent <- NULL
       if(is.null(mimeType)){
         responseContent <- content(r, encoding = "UTF-8")
@@ -48,19 +54,24 @@ OWSRequest <- R6Class("OWSRequest",
     status = NA,
     response = NA,
     #initialize
-    initialize = function(op, url, namedParams, mimeType = "text/xml", ...) {
+    initialize = function(op, url, namedParams, mimeType = "text/xml", logger = NULL, ...) {
+      super$initialize(logger = logger)
       vendorParams <- list(...)
       if(!is.null(op)){
         for(param in names(vendorParams)){
           if(!(param %in% names(op$getParameters()))){
-            stop(sprintf("Parameter '%s' is not among allowed parameters [%s]",
-                         param, paste(paste0("'",names(op$getParameters()),"'"), collapse=",")))
+            errorMsg <- sprintf("Parameter '%s' is not among allowed parameters [%s]",
+                                param, paste(paste0("'",names(op$getParameters()),"'"), collapse=","))
+            self$ERROR(errorMsg)
+            stop(errorMsg)
           }
           value <- vendorParams[[param]]
           paramAllowedValues <- op$getParameter(param)
           if(!(value %in% paramAllowedValues)){
-            stop(sprintf("'%s' parameter value '%s' is not among allowed values [%s]",
-                         param, value, paste(paste0("'",paramAllowedValues,"'"), collapse=",")))
+            errorMsg <- sprintf("'%s' parameter value '%s' is not among allowed values [%s]",
+                                param, value, paste(paste0("'",paramAllowedValues,"'"), collapse=","))
+            self$ERROR(errorMsg)
+            stop(errorMsg)
           }
         }
       }
@@ -71,5 +82,4 @@ OWSRequest <- R6Class("OWSRequest",
       self$response <- req$response
     }
   )
-  
 )

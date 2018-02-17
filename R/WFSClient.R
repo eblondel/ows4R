@@ -9,7 +9,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#'    OWSClient$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+#'    WFSClient$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
 #' }
 #'
 #' @section Methods:
@@ -43,7 +43,7 @@ WFSClient <- R6Class("WFSClient",
      #initialize
      initialize = function(url, version = NULL, user = NULL, pwd = NULL, logger = NULL) {
        super$initialize(url, service = private$serviceName, version, user, pwd, logger)
-       self$capabilities = WFSCapabilities$new(self$url, self$version)
+       self$capabilities = WFSCapabilities$new(self$url, self$version, logger = logger)
      },
      
      #getCapabilities
@@ -53,6 +53,7 @@ WFSClient <- R6Class("WFSClient",
      
      #describeFeatureType
      describeFeatureType = function(typeName){
+       self$INFO(sprintf("Fetching featureType description for '%s' ...", typeName))
        describeFeatureType <- NULL
        ft <- self$capabilities$findFeatureTypeByName(typeName, exact = TRUE)
        if(is(ft, "WFSFeatureType")){
@@ -63,6 +64,7 @@ WFSClient <- R6Class("WFSClient",
      
      #getFeatures
      getFeatures = function(typeName){
+       self$INFO(sprintf("Fetching features for '%s' ...", typeName))
        features <- NULL
        ft <- self$capabilities$findFeatureTypeByName(typeName, exact = TRUE)
        if(is(ft,"WFSFeatureType")){

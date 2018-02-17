@@ -39,7 +39,7 @@ WFSClient
 
 \examples{
 \dontrun{
-   OWSClient$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+   WFSClient$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
 }
 
 }

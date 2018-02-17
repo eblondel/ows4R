@@ -14,7 +14,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, service, version)}}{
+#'  \item{\code{new(url, service, version, logger)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
 #'  \item{\code{getUrl()}}{
@@ -37,28 +37,22 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSCapabilities <- R6Class("OWSCapabilities",
-   
+   inherit = OWSLogger,
    private = list(
-     
      url = NA,
      version = NA,
      request = NA,
      serviceIdentification = NULL,
-     operationsMetadata = NULL,
-     
-     #buildRequest
-     buildRequest = function(url, service, version){
-       namedParams <- list(request = "GetCapabilities", service, version = version)
-       request <- OWSRequest$new(op = NULL, url, namedParams, "text/xml")
-       return(request)
-     }
+     operationsMetadata = NULL
    ),
    
    public = list(
      
      #initialize
-     initialize = function(url, service, version) {
-       private$request <- private$buildRequest(url, service, version)
+     initialize = function(url, service, version, logger = NULL) {
+       super$initialize(logger = logger)
+       namedParams <- list(request = "GetCapabilities", service, version = version)
+       private$request <- OWSRequest$new(op = NULL, url, namedParams, "text/xml", logger = logger)
        xmlObj <- private$request$response
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, service, version)
        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, service, version)

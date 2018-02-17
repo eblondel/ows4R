@@ -14,7 +14,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version)}}{
+#'  \item{\code{new(url, version, logger)}}{
 #'    This method is used to instantiate a WFSGetCapabilities object
 #'  }
 #' }
@@ -30,8 +30,8 @@ CSWCapabilities <- R6Class("CSWCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, version) {
-       super$initialize(url, service = "CSW", version)
+     initialize = function(url, version, logger = NULL) {
+       super$initialize(url, service = "CSW", version, logger = logger)
        xmlObj <- self$getRequest()$response
      }
    )

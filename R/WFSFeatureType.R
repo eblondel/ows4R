@@ -42,7 +42,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSFeatureType <- R6Class("WFSFeatureType",
-                          
+  inherit = OWSLogger,                       
   private = list(
     gmlIdAttributeName = "gml_id",
     
@@ -142,8 +142,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
   public = list(
     description = NULL,
     features = NULL,
-    initialize = function(xmlObj, capabilities, url, version){
-    
+    initialize = function(xmlObj, capabilities, url, version, logger = NULL){
+      super$initialize(logger = logger)
+      
       private$capabilities = capabilities
       private$url = url
       private$version = version
@@ -190,7 +191,6 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     
     #getDescription
     getDescription = function(){
-      message("Fetching FeatureType description...")
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -201,19 +201,18 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'DescribeFeatureType' not supported by this service")
         }
       }
-      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name)
+      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name, logger = self$loggerType)
       xmlObj <- ftDescription$response
       namespaces <- OWSUtils$getNamespaces(xmlObj)
       xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
       elementXML <- getNodeSet(xmlObj, "//ns:sequence/ns:element", xsdNs)
-      element <- lapply(elementXML, WFSFeatureTypeElement$new)
+      elements <- lapply(elementXML, WFSFeatureTypeElement$new)
       self$description <- elements
       return(self$description)
     },
     
     #getFeatures
     getFeatures = function(){
-      message("Fetching FeatureType data...")
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -224,7 +223,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'GetFeature' not supported by this service")
         }
       }
-      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name)
+      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType)
       xmlObj <- ftFeatures$response
       
       #write the file to disk

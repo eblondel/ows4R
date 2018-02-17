@@ -18,12 +18,6 @@ OWSClient
 \section{Fields}{
 
 \describe{
-\item{\code{loggerType}}{the type of logger}
-
-\item{\code{verbose.info}}{if basic logs have to be printed}
-
-\item{\code{verbose.debug}}{if verbose logs have to be printed}
-
 \item{\code{url}}{the Base url of OWS service}
 
 \item{\code{version}}{the version of OWS service}
@@ -39,18 +33,6 @@ OWSClient
    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
  }
- \item{\code{logger(type, text)}}{
-   Basic logger to report logs. Used internally
- }
- \item{\code{INFO(text)}}{
-   Logger to report information. Used internally
- }
- \item{\code{WARN(text)}}{
-   Logger to report warnings. Used internally
- }
- \item{\code{ERROR(text)}}{
-   Logger to report errors. Used internally
- }
  \item{\code{getUrl()}}{
    Get the service URL
  }
@@ -59,9 +41,6 @@ OWSClient
  }
  \item{\code{getCapabilities()}}{
    Get the service capabilities
- }
- \item{\code{getClassName()}}{
-   Retrieves the name of the class instance
  }
 }
 }

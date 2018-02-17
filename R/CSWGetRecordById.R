@@ -25,14 +25,14 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
       defaultOutputSchema = "http://www.opengis.net/cat/csw/2.0.2"
     ),
     public = list(
-      initialize = function(op, url, version, id, ...) {
+      initialize = function(op, url, version, id, logger = NULL, ...) {
         namedParams <- list(request = private$name, version = version, id = id)
         outputSchema <- list(...)$outputSchema
         if(is.null(outputSchema)){
           outputSchema <- private$defaultOutputSchema
           namedParams <- c(namedParams, outputSchema = outputSchema)
         }
-        super$initialize(op, url, namedParams, mimeType = "text/xml", ...)
+        super$initialize(op, url, namedParams, mimeType = "text/xml", logger = logger, ...)
         
         #check response in case of ISO
         isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")

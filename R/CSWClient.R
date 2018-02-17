@@ -40,7 +40,7 @@ CSWClient <- R6Class("CSWClient",
      #initialize
      initialize = function(url, version = NULL, user = NULL, pwd = NULL, logger = NULL) {
        super$initialize(url, service = private$serviceName, version, user, pwd, logger)
-       self$capabilities = CSWCapabilities$new(self$url, self$version)
+       self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
      },
      
      #describeRecord
@@ -50,15 +50,17 @@ CSWClient <- R6Class("CSWClient",
      
      #getRecordById
      getRecordById = function(id, ...){
-       message(sprintf("Fetching record '%s' ...", id))
+       self$INFO(sprintf("Fetching record '%s' ...", id))
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="GetRecordById"})]
        if(length(op)>0){
          op <- op[[1]]
        }else{
-         stop("Operation 'GetRecordById' not supported by this service")
+         errorMsg <- "Operation 'GetRecordById' not supported by this service"
+         self$ERROR(errorMsg)
+         stop(errorMsg)
        }
-       request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(), id = id, ...)
+       request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(), id = id, logger = self$loggerType, ...)
        return(request$response)
      },
      
