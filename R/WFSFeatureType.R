@@ -10,7 +10,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, url, version)}}{
+#'  \item{\code{new(xmlObj, op, url, version)}}{
 #'    This method is used to instantiate a \code{WFSFeatureType} object
 #'  }
 #'  \item{\code{getName()}}{
@@ -46,6 +46,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
   private = list(
     gmlIdAttributeName = "gml_id",
     
+    capabilities = NULL,
     url = NA,
     version = NA,
     
@@ -55,9 +56,6 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     keywords = NA,
     defaultCRS = NA,
     WGS84BoundingBox = NA,
-    
-    description = NA,
-    features = NULL,
     
     #fetchFeatureType
     fetchFeatureType = function(xmlObj, version){
@@ -138,20 +136,96 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       return(featureType)
       
-    },
+    }
     
-    #fetchDescription
-    fetchDescription = function(){
-      ftDescription <- WFSDescribeFeatureType$new(private$url, private$version, private$name)
-      return(ftDescription);
-    },
+  ),
+  public = list(
+    description = NULL,
+    features = NULL,
+    initialize = function(xmlObj, capabilities, url, version){
     
-    #fetchFeatures
-    fetchFeatures = function(){
+      private$capabilities = capabilities
+      private$url = url
+      private$version = version
       
-      description <- self$getDescription()
-      ftFeatures <- WFSGetFeature$new(private$url, private$version, private$name)
-      xmlObj <- ftFeatures$getRequest()$response
+      featureType = private$fetchFeatureType(xmlObj, version)
+      private$name = featureType$name
+      private$title = featureType$title
+      private$abstract = featureType$abstract
+      private$keywords = featureType$keywords
+      private$defaultCRS = featureType$defaultCRS
+      private$WGS84BoundingBox = featureType$WGS84BoundingBox
+      
+    },
+    
+    #getName
+    getName = function(){
+      return(private$name)
+    },
+    
+    #getTitle
+    getTitle = function(){
+      return(private$title)
+    },
+    
+    #getAbstract
+    getAbstract = function(){
+      return(private$abstract)
+    },
+    
+    #getKeywords
+    getKeywords = function(){
+      return(private$keywords)
+    },
+    
+    #getDefaultCRS
+    getDefaultCRS = function(){
+      return(private$defaultCRS)
+    },
+    
+    #getBoundingBox
+    getBoundingBox = function(){
+      return(private$WGS84BoundingBox)
+    },
+    
+    #getDescription
+    getDescription = function(){
+      message("Fetching FeatureType description...")
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="DescribeFeatureType"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'DescribeFeatureType' not supported by this service")
+        }
+      }
+      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name)
+      xmlObj <- ftDescription$response
+      namespaces <- OWSUtils$getNamespaces(xmlObj)
+      xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
+      elementXML <- getNodeSet(xmlObj, "//ns:sequence/ns:element", xsdNs)
+      element <- lapply(elementXML, WFSFeatureTypeElement$new)
+      self$description <- elements
+      return(self$description)
+    },
+    
+    #getFeatures
+    getFeatures = function(){
+      message("Fetching FeatureType data...")
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="GetFeature"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'GetFeature' not supported by this service")
+        }
+      }
+      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name)
+      xmlObj <- ftFeatures$response
       
       #write the file to disk
       tempf = tempfile() 
@@ -208,74 +282,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           ftFeatures[[attrName]] <- as(ftFeatures[[attrName]],attrType)
         }
       }
-      return(ftFeatures);
+      self$features <- ftFeatures;
+      return(self$features)
     }
-    
-  ),
-  public = list(
-    
-    initialize = function(xmlObj, url, version){
-      
-      private$url = url
-      private$version = version
-      
-      featureType = private$fetchFeatureType(xmlObj, version)
-      private$name = featureType$name
-      private$title = featureType$title
-      private$abstract = featureType$abstract
-      private$keywords = featureType$keywords
-      private$defaultCRS = featureType$defaultCRS
-      private$WGS84BoundingBox = featureType$WGS84BoundingBox
-      
-    },
-    
-    #getName
-    getName = function(){
-      return(private$name)
-    },
-    
-    #getTitle
-    getTitle = function(){
-      return(private$title)
-    },
-    
-    #getAbstract
-    getAbstract = function(){
-      return(private$abstract)
-    },
-    
-    #getKeywords
-    getKeywords = function(){
-      return(private$keywords)
-    },
-    
-    #getDefaultCRS
-    getDefaultCRS = function(){
-      return(private$defaultCRS)
-    },
-    
-    #getBoundingBox
-    getBoundingBox = function(){
-      return(private$WGS84BoundingBox)
-    },
-    
-    #getDescription
-    getDescription = function(){
-      if(typeof(private$description) != "environment"){
-        message("Fetching FeatureType description...")
-        private$description <- private$fetchDescription()
-      }
-      return(private$description)
-    },
-    
-    #getFeatures
-    getFeatures = function(){
-      if(is.null(private$features)){
-        message("Fetching FeatureType data...")
-        private$features <- private$fetchFeatures()
-      }
-      return(private$features)
-    }
-    
   )
 )

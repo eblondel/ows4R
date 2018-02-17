@@ -24,6 +24,9 @@
 #'  \item{\code{getCapabilities()}}{
 #'    Get service capabilities. Inherited from OWS Client
 #'  }
+#'  \item{\code{getRecordById(id, ...)}}{
+#'    Get a record by Id.
+#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -46,8 +49,17 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #getRecordById
-     getRecordById = function(id, outputSchema){
-       stop("Not yet implemented")
+     getRecordById = function(id, ...){
+       message(sprintf("Fetching record '%s' ...", id))
+       operations <- self$capabilities$getOperationsMetadata()$getOperations()
+       op <- operations[sapply(operations,function(x){x$getName()=="GetRecordById"})]
+       if(length(op)>0){
+         op <- op[[1]]
+       }else{
+         stop("Operation 'GetRecordById' not supported by this service")
+       }
+       request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(), id = id, ...)
+       return(request$response)
      },
      
      #getRecords

@@ -11,6 +11,15 @@
 #'  \item{\code{new(xmlObj, service, version)}}{
 #'    This method is used to instantiate an OWSOperation object
 #'  }
+#'  \item{\code{getName()}}{
+#'    Get name
+#'  }
+#'  \item{\code{getParameters()}}{
+#'    Get the list of parameters
+#'  }
+#'  \item{\code{getParameter(name)}}{
+#'    Get a given parameter
+#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -41,6 +50,11 @@ OWSOperation <-  R6Class("OWSOperation",
     #getParameters
     getParameters = function(){
       return(private$parameters)
+    },
+    
+    #getParameter
+    getParameter = function(name){
+      return(private$parameters[[name]])
     }
   )
 )

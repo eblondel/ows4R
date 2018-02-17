@@ -6,7 +6,7 @@ Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emma
              person("Norbert", "Billet", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
-Imports: R6, httr, XML (>= 3.96-1.1), sf, rgdal
+Imports: R6, httr, XML (>= 3.96-1.1), sf, rgdal, geometa
 Suggests: testthat
 Description: Provides an interface to OGC Web-Services (OWS). In a first step, the package supports the Common
  OGC Web-Services specifications the Web Feature Service (WFS). ows4R will progressively support other OGC web

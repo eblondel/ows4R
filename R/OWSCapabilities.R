@@ -49,7 +49,7 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      #buildRequest
      buildRequest = function(url, service, version){
        namedParams <- list(request = "GetCapabilities", service, version = version)
-       request <- OWSRequest$new(url, namedParams, "text/xml")
+       request <- OWSRequest$new(op = NULL, url, namedParams, "text/xml")
        return(request)
      }
    ),

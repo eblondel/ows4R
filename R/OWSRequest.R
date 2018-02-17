@@ -30,12 +30,12 @@ OWSRequest <- R6Class("OWSRequest",
       r <- GET(request)
       responseContent <- NULL
       if(is.null(mimeType)){
-        responseContent <- content(r)
+        responseContent <- content(r, encoding = "UTF-8")
       }else{
         if(regexpr("xml",mimeType)>0){
-          responseContent <- xmlParse(content(r, type = "text"))
+          responseContent <- xmlParse(content(r, type = "text", encoding = "UTF-8"))
         }else{
-          responseContent <- content(r, type = mimeType)
+          responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
       }
       response <- list(request = request, status = status_code(r), response = responseContent)
@@ -48,12 +48,28 @@ OWSRequest <- R6Class("OWSRequest",
     status = NA,
     response = NA,
     #initialize
-    initialize = function(url, namedParams, mimeType = "text/xml") {
+    initialize = function(op, url, namedParams, mimeType = "text/xml", ...) {
+      vendorParams <- list(...)
+      if(!is.null(op)){
+        for(param in names(vendorParams)){
+          if(!(param %in% names(op$getParameters()))){
+            stop(sprintf("Parameter '%s' is not among allowed parameters [%s]",
+                         param, paste(paste0("'",names(op$getParameters()),"'"), collapse=",")))
+          }
+          value <- vendorParams[[param]]
+          paramAllowedValues <- op$getParameter(param)
+          if(!(value %in% paramAllowedValues)){
+            stop(sprintf("'%s' parameter value '%s' is not among allowed values [%s]",
+                         param, value, paste(paste0("'",paramAllowedValues,"'"), collapse=",")))
+          }
+        }
+      }
+      namedParams <- c(namedParams, vendorParams)
       req <- private$buildRequest(url, namedParams, mimeType)
       self$request <- req$request
       self$status <- req$status
       self$response <- req$response
     }
-  ),
+  )
   
 )

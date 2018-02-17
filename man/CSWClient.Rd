@@ -28,6 +28,9 @@ CSWClient
  \item{\code{getCapabilities()}}{
    Get service capabilities. Inherited from OWS Client
  }
+ \item{\code{getRecordById(id, ...)}}{
+   Get a record by Id.
+ }
 }
 }
 

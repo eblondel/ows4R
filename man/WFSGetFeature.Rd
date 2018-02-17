@@ -17,11 +17,8 @@ WFSGetFeature
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version, typeName)}}{
+ \item{\code{new(op, url, version, typeName, ...)}}{
    This method is used to instantiate a WFSGetFeature object
- }
- \item{\code{getRequest()}}{
-   Get GetFeature request
  }
 }
 }

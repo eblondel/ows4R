@@ -45,7 +45,7 @@ WFSCapabilities <- R6Class("WFSCapabilities",
        featureTypesXML <- getNodeSet(xmlObj, "//ns:FeatureType", wfsNs)
        featureTypesList <- lapply(featureTypesXML,
                                   function(x){
-                                    WFSFeatureType$new(x, url, version)
+                                    WFSFeatureType$new(x, self, url, version)
                                   })
        
        return(featureTypesList)

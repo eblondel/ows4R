@@ -32,7 +32,7 @@ WFSClient
    Get the description of a given featureType
  }
  \item{\code{getFeatures(typeName)}}{
-   Retrieves the features for a given feature type
+   Retrieves the features for a given feature type.
  }
 }
 }

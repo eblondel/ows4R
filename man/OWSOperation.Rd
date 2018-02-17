@@ -20,6 +20,15 @@ OWSOperation
  \item{\code{new(xmlObj, service, version)}}{
    This method is used to instantiate an OWSOperation object
  }
+ \item{\code{getName()}}{
+   Get name
+ }
+ \item{\code{getParameters()}}{
+   Get the list of parameters
+ }
+ \item{\code{getParameter(name)}}{
+   Get a given parameter
+ }
 }
 }
 

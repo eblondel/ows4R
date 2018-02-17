@@ -8,36 +8,22 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, typeName)}}{
+#'  \item{\code{new(op, url, version, typeName, ...)}}{
 #'    This method is used to instantiate a WFSGetFeature object
-#'  }
-#'  \item{\code{getRequest()}}{
-#'    Get GetFeature request
 #'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSGetFeature <- R6Class("WFSGetFeature",
+  inherit = OWSRequest,
   private = list(
-     request = NA,
-     
-     #buildRequest
-     buildRequest = function(url, version, typeName){
-       namedParams <- list(request = "GetFeature", version = version, typeName = typeName)
-       request <- OWSRequest$new(url, namedParams, "text/xml")
-       return(request)
-     }
-     
+     name = "GetFeature"
   ), 
   public = list(
-     initialize = function(url, version, typeName) {
-       private$request <- private$buildRequest(url, version, typeName)
-     },
-     
-     #getRequest
-     getRequest = function(){
-       return(private$request)
+     initialize = function(op, url, version, typeName, ...) {
+       namedParams <- list(request = private$name, version = version, typeName = typeName)
+       super$initialize(op, url, namedParams, mimeType = "text/xml", ...)
      }
    )
 )
