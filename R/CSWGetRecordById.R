@@ -11,9 +11,6 @@
 #'  \item{\code{new(url, version, id)}}{
 #'    This method is used to instantiate a CSWGetRecordById object
 #'  }
-#'  \item{\code{getRequest()}}{
-#'    Get GetRecordById request
-#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -27,11 +24,14 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
     public = list(
       initialize = function(op, url, version, id, logger = NULL, ...) {
         namedParams <- list(request = private$name, version = version, id = id)
+        
+        #default output schema
         outputSchema <- list(...)$outputSchema
         if(is.null(outputSchema)){
           outputSchema <- private$defaultOutputSchema
           namedParams <- c(namedParams, outputSchema = outputSchema)
         }
+        
         super$initialize(op, url, namedParams, mimeType = "text/xml", logger = logger, ...)
         
         #check response in case of ISO

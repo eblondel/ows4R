@@ -2,7 +2,9 @@
 
 export(CSWCapabilities)
 export(CSWClient)
+export(CSWDescribeRecord)
 export(CSWGetRecordById)
+export(CSWGetRecords)
 export(OWSCapabilities)
 export(OWSClient)
 export(OWSOperation)

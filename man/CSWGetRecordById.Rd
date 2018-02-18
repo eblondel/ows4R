@@ -20,9 +20,6 @@ CSWGetRecordById
  \item{\code{new(url, version, id)}}{
    This method is used to instantiate a CSWGetRecordById object
  }
- \item{\code{getRequest()}}{
-   Get GetRecordById request
- }
 }
 }
 

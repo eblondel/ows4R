@@ -28,8 +28,15 @@ CSWClient
  \item{\code{getCapabilities()}}{
    Get service capabilities. Inherited from OWS Client
  }
+ \item{\code{describeRecord(namespace, ...)}}{
+   Describe records. Retrieves the XML schema for CSW records. By default, returns the XML schema 
+   for the CSW records (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
+   \code{outputSchema} required, e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 schema
+ }
  \item{\code{getRecordById(id, ...)}}{
-   Get a record by Id.
+   Get a record by Id. By default, the record will be returned following the CSW schema 
+   (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
+   \code{outputSchema} required,  e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 records.
  }
 }
 }

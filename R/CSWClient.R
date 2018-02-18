@@ -24,8 +24,15 @@
 #'  \item{\code{getCapabilities()}}{
 #'    Get service capabilities. Inherited from OWS Client
 #'  }
+#'  \item{\code{describeRecord(namespace, ...)}}{
+#'    Describe records. Retrieves the XML schema for CSW records. By default, returns the XML schema 
+#'    for the CSW records (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
+#'    \code{outputSchema} required, e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 schema
+#'  }
 #'  \item{\code{getRecordById(id, ...)}}{
-#'    Get a record by Id.
+#'    Get a record by Id. By default, the record will be returned following the CSW schema 
+#'    (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
+#'    \code{outputSchema} required,  e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 records.
 #'  }
 #' }
 #' 
@@ -44,8 +51,19 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #describeRecord
-     describeRecord = function(){
-       stop("Not yet implemented")
+     describeRecord = function(namespace, ...){
+       self$INFO("Fetching schema...")
+       operations <- self$capabilities$getOperationsMetadata()$getOperations()
+       op <- operations[sapply(operations,function(x){x$getName()=="DescribeRecord"})]
+       if(length(op)>0){
+         op <- op[[1]]
+       }else{
+         errorMsg <- "Operation 'DescribeRecord' not supported by this service"
+         self$ERROR(errorMsg)
+         stop(errorMsg)
+       }
+       request <- CSWDescribeRecord$new(op, self$getUrl(), self$getVersion(), namespace = namespace, logger = self$loggerType, ...)
+       return(request$response)
      },
      
      #getRecordById
@@ -65,8 +83,20 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #getRecords
-     getRecords = function(outputSchema){
-       stop("Not yet implemented")
+     getRecords = function(constraint = NULL, ...){
+       self$INFO("Fetching records ...")
+       operations <- self$capabilities$getOperationsMetadata()$getOperations()
+       op <- operations[sapply(operations,function(x){x$getName()=="GetRecords"})]
+       if(length(op)>0){
+         op <- op[[1]]
+       }else{
+         errorMsg <- "Operation 'GetRecords' not supported by this service"
+         self$ERROR(errorMsg)
+         stop(errorMsg)
+       }
+       request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
+                                    constraint = constraint, logger = self$loggerType, ...)
+       return(request$response)
      }
    )
 )

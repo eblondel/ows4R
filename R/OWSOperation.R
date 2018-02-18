@@ -36,7 +36,7 @@ OWSOperation <-  R6Class("OWSOperation",
       private$name <- xmlGetAttr(xmlObj, "name")
       paramXML <- getNodeSet(xmlDoc(xmlObj), "//ns:Parameter", ns)
       private$parameters <- lapply(paramXML, function(x){
-        param <- xpathSApply(xmlDoc(x), "//ns:Value", fun = xmlValue, namespaces = ns)
+        param <- unique(xpathSApply(xmlDoc(x), "//ns:Value", fun = xmlValue, namespaces = ns))
         return(param)
       })
       names(private$parameters) <- sapply(paramXML, xmlGetAttr, "name")

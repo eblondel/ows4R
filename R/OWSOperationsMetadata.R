@@ -35,7 +35,9 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
        if(nrow(namespaces) > 0){
          ns <- OWSUtils$findNamespace(namespaces, namespace)
          if(length(ns)>0){
-           opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
+           if(namespace %in% names(ns)){
+             opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
+           }
          }
          if(length(opXML)==0){
            ns <- OWSUtils$findNamespace(namespaces, "ows")

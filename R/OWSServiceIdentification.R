@@ -62,8 +62,10 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        if(nrow(namespaces) > 0){
           ns <- OWSUtils$findNamespace(namespaces, namespace)
           if(length(ns)>0){
-            serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
-            if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
+            if(namespace %in% names(ns)){
+              serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
+              if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
+            }
           }
           if(length(serviceXML)==0){
             ns <- OWSUtils$findNamespace(namespaces, "ows")

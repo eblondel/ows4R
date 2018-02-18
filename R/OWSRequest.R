@@ -39,7 +39,9 @@ OWSRequest <- R6Class("OWSRequest",
         responseContent <- content(r, encoding = "UTF-8")
       }else{
         if(regexpr("xml",mimeType)>0){
-          responseContent <- xmlParse(content(r, type = "text", encoding = "UTF-8"))
+          text <- content(r, type = "text", encoding = "UTF-8")
+          text <- gsub("<!--.*?-->", "", text)
+          responseContent <- xmlParse(text)
         }else{
           responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
