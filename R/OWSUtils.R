@@ -41,7 +41,14 @@ OWSUtils <- list(
     #findNamespace
     #---------------------------------------------------------------
     findNamespace = function(namespaces, identifier){
-      ns <- c(ns = namespaces$uri[grep(identifier, namespaces$uri)])
+      namespace <- namespaces[namespaces$id==identifier,]
+      if(nrow(namespace)==0){
+        namespace <- namespaces[grepl(identifier, namespaces$uri),]
+      }
+      ns <- NULL
+      if(nrow(namespace)>0){
+        ns <- c(ns = namespace[1L,"uri"])
+      }
       return(ns)
     },
     

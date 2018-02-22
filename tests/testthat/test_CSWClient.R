@@ -8,8 +8,15 @@ require(geometa)
 require(testthat)
 context("CSW")
 
-test_that("CSW 2.0.2 - GetCapabilities",{
+test_that("CSW 2.0.2 - GetCapabilities | GeoNetwork",{
   csw <- CSWClient$new("http://localhost:8282/geonetwork/srv/eng/csw", "2.0.2", logger = "INFO")
+  expect_is(csw, "CSWClient")
+  caps <- csw$getCapabilities()
+  expect_is(caps, "CSWCapabilities")
+})
+
+test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
+  csw <- CSWClient$new("http://demo.pycsw.org/cite/csw", "2.0.2", logger="INFO")
   expect_is(csw, "CSWClient")
   caps <- csw$getCapabilities()
   expect_is(caps, "CSWCapabilities")
@@ -32,3 +39,4 @@ test_that("CSW 2.0.2 - GetRecordById",{
 #  expect_is(mdlist, "list")
 #  expect_equal(unique(sapply(mdlist, function(x) {class(x)[1]})), "ISOMetadata")
 #})
+

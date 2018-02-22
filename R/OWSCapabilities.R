@@ -51,7 +51,7 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      #initialize
      initialize = function(url, service, version, logger = NULL) {
        super$initialize(logger = logger)
-       namedParams <- list(request = "GetCapabilities", service, version = version)
+       namedParams <- list(request = "GetCapabilities", version = version)
        private$request <- OWSRequest$new(op = NULL, url, namedParams, "text/xml", logger = logger)
        xmlObj <- private$request$response
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, service, version)
