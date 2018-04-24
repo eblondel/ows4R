@@ -27,7 +27,7 @@
 #'  \item{\code{describeFeatureType(typeName)}}{
 #'    Get the description of a given featureType
 #'  }
-#'  \item{\code{getFeatures(typeName)}}{
+#'  \item{\code{getFeatures(typeName, ...)}}{
 #'    Retrieves the features for a given feature type.
 #'  }
 #' }
@@ -63,12 +63,12 @@ WFSClient <- R6Class("WFSClient",
      },
      
      #getFeatures
-     getFeatures = function(typeName){
+     getFeatures = function(typeName, ...){
        self$INFO(sprintf("Fetching features for '%s' ...", typeName))
        features <- NULL
        ft <- self$capabilities$findFeatureTypeByName(typeName, exact = TRUE)
        if(is(ft,"WFSFeatureType")){
-         features <- ft$getFeatures()
+         features <- ft$getFeatures(...)
        }
        return(features)
      }

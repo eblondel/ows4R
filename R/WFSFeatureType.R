@@ -212,7 +212,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     },
     
     #getFeatures
-    getFeatures = function(){
+    getFeatures = function(...){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -223,7 +223,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'GetFeature' not supported by this service")
         }
       }
-      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType)
+      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType, ...)
       xmlObj <- ftFeatures$response
       
       #write the file to disk

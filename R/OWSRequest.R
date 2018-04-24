@@ -59,24 +59,24 @@ OWSRequest <- R6Class("OWSRequest",
     initialize = function(op, url, namedParams, mimeType = "text/xml", logger = NULL, ...) {
       super$initialize(logger = logger)
       vendorParams <- list(...)
-      if(!is.null(op)){
-        for(param in names(vendorParams)){
-          if(!(param %in% names(op$getParameters()))){
-            errorMsg <- sprintf("Parameter '%s' is not among allowed parameters [%s]",
-                                param, paste(paste0("'",names(op$getParameters()),"'"), collapse=","))
-            self$ERROR(errorMsg)
-            stop(errorMsg)
-          }
-          value <- vendorParams[[param]]
-          paramAllowedValues <- op$getParameter(param)
-          if(!(value %in% paramAllowedValues)){
-            errorMsg <- sprintf("'%s' parameter value '%s' is not among allowed values [%s]",
-                                param, value, paste(paste0("'",paramAllowedValues,"'"), collapse=","))
-            self$ERROR(errorMsg)
-            stop(errorMsg)
-          }
-        }
-      }
+      #if(!is.null(op)){
+      #  for(param in names(vendorParams)){
+      #    if(!(param %in% names(op$getParameters()))){
+      #      errorMsg <- sprintf("Parameter '%s' is not among allowed parameters [%s]",
+      #                          param, paste(paste0("'",names(op$getParameters()),"'"), collapse=","))
+      #      self$ERROR(errorMsg)
+      #      stop(errorMsg)
+      #    }
+      #    value <- vendorParams[[param]]
+      #    paramAllowedValues <- op$getParameter(param)
+      #    if(!(value %in% paramAllowedValues)){
+      #      errorMsg <- sprintf("'%s' parameter value '%s' is not among allowed values [%s]",
+      #                          param, value, paste(paste0("'",paramAllowedValues,"'"), collapse=","))
+      #      self$ERROR(errorMsg)
+      #      stop(errorMsg)
+      #    }
+      #  }
+      #}
       namedParams <- c(namedParams, vendorParams)
       req <- private$buildRequest(url, namedParams, mimeType)
       self$request <- req$request
