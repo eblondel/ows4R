@@ -77,6 +77,7 @@ OWSRequest <- R6Class("OWSRequest",
       #    }
       #  }
       #}
+      vendorParams <- vendorParams[!sapply(vendorParams, is.null)]
       vendorParams <- lapply(vendorParams, curl::curl_escape)
       namedParams <- c(namedParams, vendorParams)
       req <- private$buildRequest(url, namedParams, mimeType)
