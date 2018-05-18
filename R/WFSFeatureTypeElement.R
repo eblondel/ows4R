@@ -59,6 +59,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
                              "xsd:long" = "numeric",
                              "xsd:int" = "integer",
                              "xsd:decimal" = "double",
+                             "xsd:double" = "double",
                              "xsd:boolean" = "logical",
                              "xsd:date" = "character", #TODO
                              "xsd:datetime" = "character", #TODO
