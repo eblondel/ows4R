@@ -16,8 +16,8 @@ service specifications such as Web Map Service (WMS), Web Coverage Service, or C
    Package: \tab ows4R\cr
    Type: \tab Package\cr
    Version
-   : \tab 0.1\cr
-   Date: \tab 2018-04-24\cr
+   : \tab 0.1-1\cr
+   Date: \tab 2018-05-18\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }
