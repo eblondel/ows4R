@@ -281,7 +281,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         attrType <- element$getType()
         if(!is.null(attrType) && attrType != "geometry"){
           attrName = element$getName()
-          ftFeatures[[attrName]] <- as(ftFeatures[[attrName]],attrType)
+          if(!is.null(ftFeatures[[attrName]])){
+            ftFeatures[[attrName]] <- as(ftFeatures[[attrName]],attrType)
+          }
         }
       }
       self$features <- ftFeatures;
