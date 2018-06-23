@@ -33,6 +33,9 @@ OWSGetCapabilities
  \item{\code{getServiceIdentification()}}{
    Get the service identification
  }
+ \item{\code{getServiceProvider()}}{
+   Get the service provider
+ }
  \item{\code{getOperationsMetadata()}}{
    Get the service operations metadata
  }

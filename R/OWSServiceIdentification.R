@@ -109,7 +109,10 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
              serviceKeywords <- strsplit(gsub(" ", "", xmlValue(children$Keywords)), ",")[[1]]
            }else{
              serviceKeywordListXML <- xmlChildren(children$Keywords)
-             serviceKeywords <- as.vector(sapply(serviceKeywordListXML, xmlValue))
+             serviceKeywords <- sapply(serviceKeywordListXML, function(x){
+               if(xmlName(x)=="Keyword") return(xmlValue(x))})
+             serviceKeywords <- serviceKeywords[!sapply(serviceKeywords, is.null)]
+             serviceKeywords <- as.vector(unlist(serviceKeywords))
            }
            
          }

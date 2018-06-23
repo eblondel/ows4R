@@ -29,6 +29,9 @@
 #'  \item{\code{getServiceIdentification()}}{
 #'    Get the service identification
 #'  }
+#'  \item{\code{getServiceProvider()}}{
+#'    Get the service provider
+#'  }
 #'  \item{\code{getOperationsMetadata()}}{
 #'    Get the service operations metadata
 #'  }
@@ -43,6 +46,7 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      version = NA,
      request = NA,
      serviceIdentification = NULL,
+     serviceProvider = NULL,
      operationsMetadata = NULL
    ),
    
@@ -55,6 +59,7 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        private$request <- OWSRequest$new(op = NULL, url, namedParams, "text/xml", logger = logger)
        xmlObj <- private$request$response
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, service, version)
+       private$serviceProvider <- OWSServiceProvider$new(xmlObj, service, version)
        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, service, version)
      },
      
@@ -76,6 +81,11 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      #getServiceIdentification
      getServiceIdentification = function(){
        return(private$serviceIdentification)
+     },
+     
+     #getServiceProvider
+     getServiceProvider = function(){
+       return(private$serviceProvider)
      },
      
      #getOperationsMetadata

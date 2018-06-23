@@ -16,6 +16,10 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
   - Rscript -e 'update.packages(ask = FALSE)'
   # docker images for integration tests
+  # --> pycsw
+  - docker pull geopython/pycsw:2.2.0
+  - docker run --name pycsw --publish 8000:8000 --detach geopython/pycsw
+  # --> GeoNetwork
   - docker pull kartoza/postgis
   - docker run -d --name="postgis" kartoza/postgis
   - docker pull oscarfonts/geoserver
