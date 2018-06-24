@@ -16,15 +16,16 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
   - Rscript -e 'update.packages(ask = FALSE)'
   # docker images for integration tests
+  # --> GeoNetwork
+  - docker pull kartoza/postgis
+  - docker run -d --name="postgis" kartoza/postgis
+  - docker pull oscarfonts/geoserver
+  - docker run --link postgis:postgis --name geoserver -d -p 8080:8080 oscarfonts/geoserver
+  - docker run --name geonetwork -d -p 8282:8080 pobsteta/docker-geonetwork:3.0.5
   # --> pycsw
   - docker pull geopython/pycsw:2.2.0
-  - docker run --name pycsw -v $TRAVIS_BUILD_DIR/inst/extdata/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg --publish 8000:8000 geopython/pycsw
-  # --> GeoNetwork
-  #- docker pull kartoza/postgis
-  #- docker run -d --name="postgis" kartoza/postgis
-  #- docker pull oscarfonts/geoserver
-  #- docker run --link postgis:postgis --name geoserver -d -p 8080:8080 oscarfonts/geoserver
-  #- docker run --name geonetwork -d -p 8282:8080 pobsteta/docker-geonetwork:3.0.5
+  - docker run --name pycsw -v $TRAVIS_BUILD_DIR/inst/extdata/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg --publish 8484:8000 geopython/pycsw:2.2.0
+
 
 r:
   - oldrel

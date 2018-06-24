@@ -14,7 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2
 #--------------------------------------------------------------------------
-csw <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
+csw <- CSWClient$new("http://localhost:8484/csw", "2.0.2", logger="DEBUG")
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
