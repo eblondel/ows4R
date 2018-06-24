@@ -18,7 +18,7 @@ before_install:
   # docker images for integration tests
   # --> pycsw
   - docker pull geopython/pycsw:2.2.0
-  - docker run --name pycsw -v /inst/extdata/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg --publish 8000:8000 geopython/pycsw
+  - docker run --name pycsw -v $TRAVIS_BUILD_DIR/inst/extdata/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg --publish 8000:8000 geopython/pycsw
   # --> GeoNetwork
   - docker pull kartoza/postgis
   - docker run -d --name="postgis" kartoza/postgis
