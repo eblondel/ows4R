@@ -32,7 +32,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
           namedParams <- c(namedParams, outputSchema = outputSchema)
         }
         
-        super$initialize(op, url, namedParams, mimeType = "text/xml", logger = logger, ...)
+        super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
         
         #check response in case of ISO
         isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")

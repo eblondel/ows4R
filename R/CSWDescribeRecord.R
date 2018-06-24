@@ -40,12 +40,36 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
        )
        namedParams <- c(namedParams, namespace = namespace, typeName = typeName)
        
-       super$initialize(op, url, namedParams, mimeType = "text/xml", logger = logger, ...)
+       super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
        
        #binding to XML schema
        xsdObjs <- getNodeSet(self$response, "//ns:schema", c(ns = "http://www.w3.org/2001/XMLSchema"))
        if(length(xsdObjs)>0){
          xsdObj <- xsdObjs[[1]]
+         xmlNamespaces(xsdObj) <- c(as.vector(xmlNamespace(xsdObj)), gco = "http://www.isotc211.org/2005/gco")
+         xmlNamespaces(xsdObj) <- xmlNamespaces(xmlObj)
+         
+         #post-process xs imports
+         mainNamespace <- NULL
+         getRemoteSchemaLocation <- function(import, useMainNamespace = FALSE){
+           ns <- ifelse(useMainNamespace, mainNamespace, xmlGetAttr(import, "namespace"))
+           if(is.null(mainNamespace)) mainNamespace <<- ns
+           schemaLocation <- xmlGetAttr(import, "schemaLocation")
+           schemaLocation.split <- unlist(strsplit(schemaLocation, "../", fixed = TRUE))
+           n.dir <- length(unlist(regmatches(schemaLocation, gregexpr("\\.\\./", schemaLocation))))
+           ns.split <- unlist(strsplit(ns, "/"))
+           schemaLocation.new <- paste(
+            paste(ns.split[1:(length(ns.split)-n.dir)], collapse="/"),
+            schemaLocation.split[length(schemaLocation.split)],
+            sep="/"
+           )
+           attrs <-c(schemaLocation = schemaLocation.new)
+           #if(!useMainNamespace) attrs <- c(namespace = ns, attrs)
+           xmlAttrs(import) <- attrs
+         }
+         invisible(sapply(xpathApply(xsdObj, "//xs:import"), getRemoteSchemaLocation))
+         invisible(sapply(xpathApply(xsdObj, "//xs:include"), getRemoteSchemaLocation, TRUE))
+         
          tempf = tempfile() 
          destfile = paste(tempf,".xsd",sep='')
          saveXML(xsdObj, destfile)

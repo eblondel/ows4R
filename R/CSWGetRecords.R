@@ -44,7 +44,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       namedParams[["resultType"]] <- "results"
       namedParams[["CONSTRAINTLANGUAGE"]] <- "CQL_TEXT"
       
-      super$initialize(op, url, namedParams, mimeType = "text/xml", logger = logger, ...)
+      super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
       
       #bindings
       self$response <- switch(outputSchema,

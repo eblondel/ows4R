@@ -97,6 +97,64 @@ CSWClient <- R6Class("CSWClient",
        request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                     constraint = constraint, logger = self$loggerType, ...)
        return(request$response)
+     },
+     
+     #transaction
+     transaction = function(type, record, constraint = NULL, ...){
+       self$INFO(sprintf("Transaction (%s) ...", type))
+       operations <- self$capabilities$getOperationsMetadata()$getOperations()
+       op <- operations[sapply(operations,function(x){x$getName()=="Transaction"})]
+       if(length(op)>0){
+         op <- op[[1]]
+       }else{
+         errorMsg <- "Operation 'Transaction' not supported by this service"
+         self$ERROR(errorMsg)
+         stop(errorMsg)
+       }
+      
+       transaction <- CSWTransaction$new(op, self$getUrl(), self$getVersion(),
+                                         type = type, record = record, constraint = constraint, 
+                                         logger = self$loggerType, ...)
+       
+       exception <- getNodeSet(transaction$response, "//ows:ExceptionText", c(ows = xmlNamespaces(transaction$response)$ows$uri))
+       if(length(exception)>0){
+         exception <- exception[[1]]
+         transaction$exception <- xmlValue(exception)
+         self$ERROR(transaction$exception)
+       }
+       
+       summaryKey <- switch(type,
+         "Insert" = "Inserted",
+         "Update" = "Updated",
+         "Delete" = "Deleted"
+       )
+       transaction[[tolower(summaryKey)]] <- FALSE
+       result <- getNodeSet(transaction$response,paste0("//csw:total",summaryKey),
+                              c(csw = xmlNamespaces(transaction$response)$csw$uri))
+       if(length(result)>0){
+         result <- result[[1]]
+         if(xmlValue(result)>0) transaction[[tolower(summaryKey)]] <- TRUE
+       }
+       if(transaction[[tolower(summaryKey)]]){
+         self$INFO(sprintf("Successful transaction (%s)!", type))
+       }
+
+       return(transaction)
+     },
+     
+     #insertRecord
+     insertRecord = function(record, ...){
+       return(self$transaction("Insert", record, constraint = NULL, ...))
+     },
+     
+     #updateRecord
+     updateRecord = function(record = NULL, constraint = NULL, ...){
+       return(self$transaction("Update", record, constraint, ...))
+     },
+     
+     #deleteRecord
+     deleteRecord = function(record = NULL, constraint = NULL, ...){
+       return(self$transaction("Delete", record, constraint, ...))
      }
    )
 )

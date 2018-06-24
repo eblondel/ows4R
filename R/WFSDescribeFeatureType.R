@@ -23,7 +23,7 @@ WFSDescribeFeatureType <- R6Class("WFSDescribeFeatureType",
   public = list(
     initialize = function(op, url, version, typeName, ...) {
       namedParams <- list(request = private$name, version = version, typeName = typeName)
-      super$initialize(op, url, namedParams, mimeType = "text/xml", ...)
+      super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", ...)
     }
   )
 )

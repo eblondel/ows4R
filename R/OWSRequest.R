@@ -23,8 +23,8 @@ OWSRequest <- R6Class("OWSRequest",
   inherit = OWSLogger,                    
   #private methods
   private = list(
-    #buildRequest
-    buildRequest = function(url, namedParams, mimeType){
+    #GET
+    GET = function(url, namedParams, mimeType){
       params <- paste(names(namedParams), namedParams, sep = "=", collapse = "&")
       request <- paste(url, "&", params, sep = "")
       self$INFO(sprintf("Fetching %s", request))
@@ -48,6 +48,77 @@ OWSRequest <- R6Class("OWSRequest",
       }
       response <- list(request = request, status = status_code(r), response = responseContent)
       return(response)
+    },
+    
+    #POST
+    POST = function(url, namedParams, namedAttrs, namespace,
+                    contentType = "text/xml", mimeType = "text/xml"){
+      
+      #Prepare request
+      requestName <- namedParams$request
+      namedParams <- namedParams[names(namedParams) != "request"]
+      rootXML <- xmlOutputDOM(
+        tag = requestName,
+        nameSpace = names(namespace),
+        nsURI = namespace,
+        attrs = namedAttrs
+      )
+      for(param in names(namedParams)){
+        wrapperNode <- xmlOutputDOM(tag = param, nameSpace = names(namespace))
+        content <- namedParams[[param]]
+        if(is(content, "XMLInternalDocument")){
+          content <- as(content, "character")
+          content <- gsub("<\\?xml.*?\\?>", "", content)
+          content <- gsub("<!--.*?-->", "", content)
+          content <- xmlRoot(xmlParse(content, encoding = "UTF-8"))
+        }else{
+          content <- xmlTextNode(as(content,"character"))
+        }
+        wrapperNode$addNode(content)
+        rootXML$addNode(wrapperNode$value())
+      }
+      outXML <- rootXML$value()
+      outXML <- as(outXML, "XMLInternalNode")
+      if(length(namedAttrs)>0){
+        suppressWarnings(xmlAttrs(outXML) <- namedAttrs)
+      }
+      outbuf <- xmlOutputBuffer("")
+      outbuf$add(as(outXML, "character"))
+      outXML <- xmlParse(outbuf$value(), encoding = "UTF-8")
+      
+      #send request
+      if(self$verbose.debug){
+        r <- with_verbose(httr::POST(
+          url = url,
+          add_headers(
+            "Content-type" = contentType
+          ),    
+          body = as(outXML, "character")
+        ))
+      }else{
+        r <- httr::POST(
+          url = url,
+          add_headers(
+            "Content-type" = contentType
+          ),    
+          body = as(outXML, "character")
+        )
+      }
+      
+      responseContent <- NULL
+      if(is.null(mimeType)){
+        responseContent <- content(r, encoding = "UTF-8")
+      }else{
+        if(regexpr("xml",mimeType)>0){
+          text <- content(r, type = "text", encoding = "UTF-8")
+          text <- gsub("<!--.*?-->", "", text)
+          responseContent <- xmlParse(text)
+        }else{
+          responseContent <- content(r, type = mimeType, encoding = "UTF-8")
+        }
+      }
+      response <- list(request = outXML, status = status_code(r), response = responseContent)
+      return(response)
     }
   ),
   #public methods
@@ -56,7 +127,9 @@ OWSRequest <- R6Class("OWSRequest",
     status = NA,
     response = NA,
     #initialize
-    initialize = function(op, url, namedParams, mimeType = "text/xml", logger = NULL, ...) {
+    initialize = function(op, type, url, namedParams, namedAttrs = NULL, namespace = NULL,
+                          contentType = "text/xml", mimeType = "text/xml",
+                          logger = NULL, ...) {
       super$initialize(logger = logger)
       vendorParams <- list(...)
       #if(!is.null(op)){
@@ -80,7 +153,11 @@ OWSRequest <- R6Class("OWSRequest",
       vendorParams <- vendorParams[!sapply(vendorParams, is.null)]
       vendorParams <- lapply(vendorParams, curl::curl_escape)
       namedParams <- c(namedParams, vendorParams)
-      req <- private$buildRequest(url, namedParams, mimeType)
+      
+      req <- switch(type,
+        "GET" = private$GET(url, namedParams, mimeType),
+        "POST" = private$POST(url, namedParams, namedAttrs, namespace, contentType, mimeType)
+      )
       self$request <- req$request
       self$status <- req$status
       self$response <- req$response
