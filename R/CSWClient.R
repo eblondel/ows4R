@@ -63,7 +63,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWDescribeRecord$new(op, self$getUrl(), self$getVersion(), namespace = namespace, logger = self$loggerType, ...)
-       return(request$response)
+       return(request$getResponse())
      },
      
      #getRecordById
@@ -79,7 +79,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(), id = id, logger = self$loggerType, ...)
-       return(request$response)
+       return(request$getResponse())
      },
      
      #getRecords
@@ -96,11 +96,11 @@ CSWClient <- R6Class("CSWClient",
        }
        request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                     constraint = constraint, logger = self$loggerType, ...)
-       return(request$response)
+       return(request$getResponse())
      },
      
      #transaction
-     transaction = function(type, record, constraint = NULL, ...){
+     transaction = function(type, record = NULL, recordProperty = NULL, constraint = NULL, ...){
        self$INFO(sprintf("Transaction (%s) ...", type))
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="Transaction"})]
@@ -112,30 +112,23 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
       
-       transaction <- CSWTransaction$new(op, self$getUrl(), self$getVersion(),
-                                         type = type, record = record, constraint = constraint, 
+       transaction <- CSWTransaction$new(op, self$getUrl(), self$getVersion(), type = type,
+                                         record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
-       
-       exception <- getNodeSet(transaction$response, "//ows:ExceptionText", c(ows = xmlNamespaces(transaction$response)$ows$uri))
-       if(length(exception)>0){
-         exception <- exception[[1]]
-         transaction$exception <- xmlValue(exception)
-         self$ERROR(transaction$exception)
-       }
        
        summaryKey <- switch(type,
          "Insert" = "Inserted",
          "Update" = "Updated",
          "Delete" = "Deleted"
        )
-       transaction[[tolower(summaryKey)]] <- FALSE
-       result <- getNodeSet(transaction$response,paste0("//csw:total",summaryKey),
-                              c(csw = xmlNamespaces(transaction$response)$csw$uri))
+       transaction$setResult(FALSE)
+       result <- getNodeSet(transaction$getResponse(),paste0("//csw:total",summaryKey),
+                              c(csw = xmlNamespaces(transaction$getResponse())$csw$uri))
        if(length(result)>0){
          result <- result[[1]]
-         if(xmlValue(result)>0) transaction[[tolower(summaryKey)]] <- TRUE
+         if(xmlValue(result)>0) transaction$setResult(TRUE)
        }
-       if(transaction[[tolower(summaryKey)]]){
+       if(transaction$getResult()){
          self$INFO(sprintf("Successful transaction (%s)!", type))
        }
 
@@ -148,13 +141,26 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #updateRecord
-     updateRecord = function(record = NULL, constraint = NULL, ...){
-       return(self$transaction("Update", record, constraint, ...))
+     updateRecord = function(record = NULL, recordProperty = NULL, constraint = NULL, ...){
+       if(!is.null(recordProperty)) if(!is(recordProperty, "CSWRecordProperty")){
+         stop("The argument recordProperty should be an object of class 'CSWRecordProperty'")
+       }
+       if(!is.null(constraint)) if(!is(constraint, "CSWConstraint")){
+         stop("The argument constraint should be an object of class 'CSWConstraint'")
+       }
+       return(self$transaction("Update", record, recordProperty, constraint, ...))
      },
      
      #deleteRecord
      deleteRecord = function(record = NULL, constraint = NULL, ...){
        return(self$transaction("Delete", record, constraint, ...))
+     },
+     
+     #deleteRecordById
+     deleteRecordById = function(id){
+       ogcFilter = OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", id) )
+       cswConstraint = CSWConstraint$new(ogcFilter)
+       return(self$deleteRecord(constraint = cswConstraint))
      }
    )
 )

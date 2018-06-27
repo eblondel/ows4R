@@ -44,7 +44,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #' 
 OWSClient <- R6Class("OWSClient",
-  inherit = OWSLogger,               
+  inherit = OGCAbstractObject,               
   lock_objects = FALSE,
              
   #TODO for support of transactional operations
@@ -71,15 +71,6 @@ OWSClient <- R6Class("OWSClient",
        
       #fields
       if (!missing(url)) self$url <- url
-      if (substring(self$url, nchar(self$url)) != "?"){
-        self$url <- paste(self$url, "?", sep = "")
-      }
-      if(!is.null(service)){
-        if(any(attr(regexpr(tolower(service), self$url),"match.length") == -1,
-               attr(regexpr(service, self$url), "match.length") == -1)){
-          self$url <- paste(self$url, "service=", service, sep = "")
-        }
-      }
       if (!missing(version)) self$version <- version
     },
      

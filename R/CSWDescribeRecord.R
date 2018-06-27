@@ -23,7 +23,7 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
    ),
    public = list(
      initialize = function(op, url, version, namespace = NULL, logger = NULL, ...) {
-       namedParams <- list(request = private$name, version = version)
+       namedParams <- list(service = "CSW", version = version)
        
        #default output schema
        if(is.null(namespace)){
@@ -40,10 +40,12 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
        )
        namedParams <- c(namedParams, namespace = namespace, typeName = typeName)
        
-       super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
+       super$initialize(op, "GET", url, request = private$name,
+                        namedParams = namedParams,
+                        mimeType = "text/xml", logger = logger, ...)
        
        #binding to XML schema
-       xsdObjs <- getNodeSet(self$response, "//ns:schema", c(ns = "http://www.w3.org/2001/XMLSchema"))
+       xsdObjs <- getNodeSet(private$response, "//ns:schema", c(ns = "http://www.w3.org/2001/XMLSchema"))
        if(length(xsdObjs)>0){
          xsdObj <- xsdObjs[[1]]
          xmlNamespaces(xsdObj) <- c(as.vector(xmlNamespace(xsdObj)), gco = "http://www.isotc211.org/2005/gco")
@@ -73,9 +75,9 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
          tempf = tempfile() 
          destfile = paste(tempf,".xsd",sep='')
          saveXML(xsdObj, destfile)
-         self$response <- xmlSchemaParse(destfile)
+         private$response <- xmlSchemaParse(destfile)
        }else{
-         self$response <- NULL
+         private$response <- NULL
        }
      }
    )

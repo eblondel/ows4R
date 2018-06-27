@@ -23,7 +23,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
   ),
   public = list(
     initialize = function(op, url, version, constraint = NULL, logger = NULL, ...) {
-      namedParams <- list(request = private$name, version = version)
+      namedParams <- list(service = "CSW", version = version)
       if(!is.null(constraint)) namedParams <- c(namedParams, constraint = constraint)
       
       #default output schema
@@ -44,13 +44,15 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       namedParams[["resultType"]] <- "results"
       namedParams[["CONSTRAINTLANGUAGE"]] <- "CQL_TEXT"
       
-      super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
+      super$initialize(op, "GET", url, request = private$name,
+                       namedParams = namedParams,
+                       mimeType = "text/xml", logger = logger, ...)
       
       #bindings
-      self$response <- switch(outputSchema,
+      private$response <- switch(outputSchema,
         "http://www.isotc211.org/2005/gmd" = {
           out <- NULL
-          xmlObjs <- getNodeSet(self$response, "//ns:MD_Metadata", c(ns = outputSchema))
+          xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
           if(length(xmlObjs)>0){
             out <- lapply(xmlObjs,function(xmlObj){
               out.obj <- geometa::ISOMetadata$new()
@@ -62,7 +64,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
         },
         "http://www.isotc211.org/2005/gfc" = {
           out <- NULL
-          xmlObjs <- getNodeSet(self$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
+          xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
           if(length(xmlObjs)>0){
             out <- lapply(xmlObjs,function(xmlObj){
               out.obj <- geometa::ISOFeatureCatalogue$new()
@@ -74,11 +76,11 @@ CSWGetRecords <- R6Class("CSWGetRecords",
         },
         "http://www.opengis.net/cat/csw/2.0.2" = {
           warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-          self$response
+          private$response
         },
         "http://www.w3.org/ns/dcat#" = {
           warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-          self$response
+          private$response
         }
       )
     }

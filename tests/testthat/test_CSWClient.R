@@ -6,7 +6,7 @@
 require(ows4R, quietly = TRUE)
 require(geometa)
 require(testthat)
-context("CSW")
+context("CSWClient")
 
 #data
 mdfile <- system.file("extdata/data", "metadata.xml", package = "ows4R")
@@ -14,7 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2
 #--------------------------------------------------------------------------
-csw <- CSWClient$new("http://localhost:8484/csw", "2.0.2", logger="DEBUG")
+csw <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
@@ -80,46 +80,46 @@ test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
 
 #Insert
 test_that("CSW 2.0.2 - Transaction - Insert",{
-  insert <- csw$insertRecord(record = md$encode())
-  expect_true(insert$inserted)
+  insert <- csw$insertRecord(record = md)
+  expect_true(insert$getResult())
 })
 
 #Update (Full)
 test_that("CSW 2.0.2 - Transaction - Update (Full)",{
   md$identificationInfo[[1]]$citation$setTitle("a new title")
-  update <- csw$updateRecord(record = md$encode())
-  expect_true(update$updated)
+  update <- csw$updateRecord(record = md)
+  expect_true(update$getResult())
 })
 
 test_that("CSW 2.0.2 - Transaction - Update (Partial)",{
-  #TBD requires OGC Filter implementation
+  recordProperty <- CSWRecordProperty$new("apiso:Title", "NEW_TITLE")
+  filter = OGCFilter$new(PropertyIsEqualTo$new("apiso:Identifier", md$fileIdentifier))
+  constraint <- CSWConstraint$new(filter)
+  update <- csw$updateRecord(recordProperty = recordProperty, constraint = constraint)
+  expect_true(update$getResult())
 })
 
 #Delete
 test_that("CSW 2.0.2 - Transaction - Delete",{
-  #TBD requires OGC Filter implementation
+  delete <- csw$deleteRecordById(md$fileIdentifier)
+  expect_true(delete$getResult())
 })
 
 #CSW 2.0.2 – GetRecordById
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecordById",{
-  
-  md <- csw$getRecordById("my-metadata-identifier", outputSchema = "http://www.isotc211.org/2005/gmd")
-  expect_is(md, "ISOMetadata")
-})
-
-
-test_that("CSW 2.0.2 - GetRecordById",{
-  csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger = "INFO")
-  md <- csw$getRecordById("fao-species-map-tth", outputSchema = "http://www.isotc211.org/2005/gmd")
-  expect_is(md, "ISOMetadata")
+  insert <- csw$insertRecord(record = md)
+  if(insert$getResult()){
+    md <- csw$getRecordById("my-metadata-identifier", outputSchema = "http://www.isotc211.org/2005/gmd")
+    expect_is(md, "ISOMetadata")
+  }
 })
 
 #CSW 2.0.2 – GetRecords
-
-test_that("CSW 2.0.2 - GetRecords",{
-  csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger = "INFO")
-  mdlist <- csw$getRecords(constraint = "AnyText+like+%cwp-grid%", outputSchema = "http://www.isotc211.org/2005/gmd")
-  expect_equal(unique(sapply(mdlist, is)), "ISOMetadata")
-})
+#--------------------------------------------------------------------------
+#test_that("CSW 2.0.2 - GetRecords",{
+#  csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger = "INFO")
+#  mdlist <- csw$getRecords(constraint = "AnyText+like+%cwp-grid%", outputSchema = "http://www.isotc211.org/2005/gmd")
+#  expect_equal(unique(sapply(mdlist, is)), "ISOMetadata")
+#})
 

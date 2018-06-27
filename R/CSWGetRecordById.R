@@ -23,7 +23,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
     ),
     public = list(
       initialize = function(op, url, version, id, logger = NULL, ...) {
-        namedParams <- list(request = private$name, version = version, id = id)
+        namedParams <- list(service = "CSW", version = version, id = id)
         
         #default output schema
         outputSchema <- list(...)$outputSchema
@@ -32,12 +32,14 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
           namedParams <- c(namedParams, outputSchema = outputSchema)
         }
         
-        super$initialize(op, "GET", url, namedParams = namedParams, mimeType = "text/xml", logger = logger, ...)
+        super$initialize(op, "GET", url, request = private$name,
+                         namedParams = namedParams,
+                         mimeType = "text/xml", logger = logger, ...)
         
         #check response in case of ISO
         isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")
         if(outputSchema %in% isoSchemas){
-          xmltxt <- as(self$response, "character")
+          xmltxt <- as(private$response, "character")
           isMetadata <- regexpr("MD_Metadata", xmltxt)>0
           isFeatureCatalogue <- regexpr("FC_FeatureCatalogue", xmltxt)>0
           if(isMetadata && outputSchema == isoSchemas[2]){
@@ -51,10 +53,10 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
         }
         
         #bindings
-        self$response <- switch(outputSchema,
+        private$response <- switch(outputSchema,
           "http://www.isotc211.org/2005/gmd" = {
             out <- NULL
-            xmlObjs <- getNodeSet(self$response, "//ns:MD_Metadata", c(ns = outputSchema))
+            xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
             if(length(xmlObjs)>0){
               xmlObj <- xmlObjs[[1]]
               out <- geometa::ISOMetadata$new()
@@ -64,7 +66,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
           },
           "http://www.isotc211.org/2005/gfc" = {
             out <- NULL
-            xmlObjs <- getNodeSet(self$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
+            xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
             if(length(xmlObjs)>0){
               xmlObj <- xmlObjs[[1]]
               out <- geometa::ISOFeatureCatalogue$new()
@@ -74,11 +76,11 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
           },
           "http://www.opengis.net/cat/csw/2.0.2" = {
             warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-            self$response
+            private$response
           },
           "http://www.w3.org/ns/dcat#" = {
             warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-            self$response
+            private$response
           }
         )
       }

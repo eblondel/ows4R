@@ -19,24 +19,27 @@ CSWTransaction <- R6Class("CSWTransaction",
   lock_objects = FALSE,
   inherit = OWSRequest, 
   private = list(
-    name = "Transaction",
-    defaultNamespace = "http://www.opengis.net/cat/csw"
+    xmlElement = "Transaction",
+    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    initialize = function(op, url, version, type, record, constraint = NULL, logger = NULL, ...) {
-      namespace = c(csw = paste(private$defaultNamespace, version, sep="/"))
+    initialize = function(op, url, version, type,
+                          record = NULL, recordProperty = NULL, constraint = NULL,
+                          logger = NULL, ...) {
+      nsName <- names(private$xmlNamespace)
+      private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
+      names(private$xmlNamespace) <- nsName
       
-      namedParams <- list(request = private$name, transaction = record)
-      names(namedParams)[2] <- type
-      if(!is.null(namedParams)) namedParams <- c(namedParams, constraint = constraint)
-      
-      namedAttrs <- list(service = "CSW", version = version)
-
-      super$initialize(op, "POST", url, namedParams = namedParams, namedAttrs = namedAttrs,
-                       namespace = namespace, contentType = "text/xml", mimeType = "text/xml",
+      self[[type]] = list(
+        record = record,
+        recordProperty = recordProperty,
+        constraint = constraint
+      )
+      super$initialize(op, "POST", url,
+                       request = private$xmlElement,
+                       attrs = list(service = "CSW", version = version),
+                       contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
-      
-      
     }
     
   )

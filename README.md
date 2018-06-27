@@ -16,6 +16,7 @@ R client for OGC Web-Services
 
 Standard  |Description|Supported versions|Supported R bindings|Support
 ----------|-----------|------------------|--------------------|------|
+OGC Filter|[Filter Encoding](http://www.opengeospatial.org/standards/filter)|``1.1.0``||ongoing
 OGC Common|[Web Service Common](http://www.opengeospatial.org/standards/common)|``1.1.0``||ongoing
 OGC CSW   |[Catalogue Service](http://www.opengeospatial.org/standards/cat)|``2.0.2``,``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110)|ongoing / seeking fundings
 OGC WFS   |[Web Feature Service](http://www.opengeospatial.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``|[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing

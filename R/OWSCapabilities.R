@@ -40,7 +40,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSCapabilities <- R6Class("OWSCapabilities",
-   inherit = OWSLogger,
+   inherit = OGCAbstractObject,
    private = list(
      url = NA,
      version = NA,
@@ -55,9 +55,11 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      #initialize
      initialize = function(url, service, version, logger = NULL) {
        super$initialize(logger = logger)
-       namedParams <- list(request = "GetCapabilities", version = version)
-       private$request <- OWSRequest$new(op = NULL, "GET", url, namedParams, "text/xml", logger = logger)
-       xmlObj <- private$request$response
+       namedParams <- list(service = service, version = version)
+       private$request <- OWSRequest$new(op = NULL, type = "GET", url,
+                                         request = "GetCapabilities", namedParams,
+                                         mimeType = "text/xml", logger = logger)
+       xmlObj <- private$request$getResponse()
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, service, version)
        private$serviceProvider <- OWSServiceProvider$new(xmlObj, service, version)
        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, service, version)

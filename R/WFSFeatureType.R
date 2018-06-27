@@ -42,7 +42,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSFeatureType <- R6Class("WFSFeatureType",
-  inherit = OWSLogger,                       
+  inherit = OGCAbstractObject,                       
   private = list(
     gmlIdAttributeName = "gml_id",
     
@@ -202,7 +202,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         }
       }
       ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name, logger = self$loggerType)
-      xmlObj <- ftDescription$response
+      xmlObj <- ftDescription$getResponse()
       namespaces <- OWSUtils$getNamespaces(xmlObj)
       xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
       elementXML <- getNodeSet(xmlObj, "//ns:sequence/ns:element", xsdNs)
@@ -224,7 +224,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         }
       }
       ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType, ...)
-      xmlObj <- ftFeatures$response
+      xmlObj <- ftFeatures$getResponse()
       
       #write the file to disk
       tempf = tempfile() 

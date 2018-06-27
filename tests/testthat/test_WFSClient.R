@@ -8,7 +8,7 @@ require(testthat)
 context("WFS")
 
 test_that("WFS 1.0.0",{
-  wfs <- WFSClient$new("http://localhost:8080/geoserver/ows?", "1.0.0", logger = "INFO")
+  wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", "1.0.0", logger = "INFO")
   expect_is(wfs, "WFSClient")
   caps <- wfs$getCapabilities()
   expect_is(caps, "WFSCapabilities")
@@ -22,7 +22,7 @@ test_that("WFS 1.0.0",{
 })
 
 test_that("WFS 1.1.0",{
-  wfs <- WFSClient$new("http://localhost:8080/geoserver/ows?", "1.1.0", logger = "INFO")
+  wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", "1.1.0", logger = "INFO")
   expect_is(wfs, "WFSClient")
   caps <- wfs$getCapabilities()
   expect_is(caps, "WFSCapabilities")
@@ -36,7 +36,7 @@ test_that("WFS 1.1.0",{
 })
 
 test_that("WFS 2.0.0",{
-  wfs <- WFSClient$new("http://localhost:8080/geoserver/ows?", "2.0.0", logger = "INFO")
+  wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", "2.0.0", logger = "INFO")
   expect_is(wfs, "WFSClient")
   caps <- wfs$getCapabilities()
   expect_is(caps, "WFSCapabilities")

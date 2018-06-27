@@ -32,7 +32,7 @@ CSWCapabilities <- R6Class("CSWCapabilities",
      #initialize
      initialize = function(url, version, logger = NULL) {
        super$initialize(url, service = "CSW", version, logger = logger)
-       xmlObj <- self$getRequest()$response
+       xmlObj <- self$getRequest()$getResponse()
      }
    )
 )
