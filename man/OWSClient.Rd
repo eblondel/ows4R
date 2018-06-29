@@ -26,7 +26,7 @@ OWSClient
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, service, version, user, pwd, logger)}}{
+ \item{\code{new(url, service, serviceVersion, user, pwd, logger)}}{
    This method is used to instantiate a OWSClient with the \code{url} of the
    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
    be added with the support of service transactional modes. By default, the \code{logger}
@@ -47,7 +47,7 @@ OWSClient
 
 \examples{
 \dontrun{
-   OWSClient$new("http://localhost:8080/geoserver/ows", version = "1.1.0")
+   OWSClient$new("http://localhost:8080/geoserver/ows", serviceVersion = "1.1.0")
 }
 
 }

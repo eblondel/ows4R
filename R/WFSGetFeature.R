@@ -25,6 +25,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        namedParams <- list(service = "WFS", version = version, typeName = typeName)
        super$initialize(op, "GET", url, request = private$name, 
                         namedParams = namedParams, mimeType = "text/xml", ...)
+       self$execute()
      }
    )
 )

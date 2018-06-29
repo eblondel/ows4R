@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, service, version)}}{
+#'  \item{\code{new(xmlObj, serviceVersion)}}{
 #'    This method is used to instantiate an OWSOperation object
 #'  }
 #'  \item{\code{getName()}}{
@@ -30,13 +30,20 @@ OWSOperation <-  R6Class("OWSOperation",
     parameters = list()
   ),
   public = list(
-    initialize = function(xmlObj, service, version){
+    initialize = function(xmlObj, serviceVersion){
       namespaces <- OWSUtils$getNamespaces(xmlDoc(xmlObj))
-      ns <- OWSUtils$findNamespace(namespaces, "ows")
+      namespaces <- as.data.frame(namespaces)
+      namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
+      ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
+      if(is.null(ns)) ns <- OWSUtils$findNamespace(namespaces, id = "ows")
       private$name <- xmlGetAttr(xmlObj, "name")
       paramXML <- getNodeSet(xmlDoc(xmlObj), "//ns:Parameter", ns)
       private$parameters <- lapply(paramXML, function(x){
-        param <- unique(xpathSApply(xmlDoc(x), "//ns:Value", fun = xmlValue, namespaces = ns))
+        valuesXpath <- switch(serviceVersion,
+          "1.1" = "//ns:Value",
+          "2.0" = "//ns:AllowedValues/ns:Value"
+        )
+        param <- unique(xpathSApply(xmlDoc(x), valuesXpath, fun = xmlValue, namespaces = ns))
         return(param)
       })
       names(private$parameters) <- sapply(paramXML, xmlGetAttr, "name")

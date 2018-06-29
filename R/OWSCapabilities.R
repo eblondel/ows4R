@@ -14,7 +14,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, service, version, logger)}}{
+#'  \item{\code{new(url, service, serviceVersion, owsVersion, logger)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
 #'  \item{\code{getUrl()}}{
@@ -43,7 +43,9 @@ OWSCapabilities <- R6Class("OWSCapabilities",
    inherit = OGCAbstractObject,
    private = list(
      url = NA,
-     version = NA,
+     service = NA,
+     serviceVersion = NA,
+     owsVersion = NA,
      request = NA,
      serviceIdentification = NULL,
      serviceProvider = NULL,
@@ -53,16 +55,18 @@ OWSCapabilities <- R6Class("OWSCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, service, version, logger = NULL) {
+     initialize = function(url, service, serviceVersion, owsVersion, logger = NULL) {
        super$initialize(logger = logger)
-       namedParams <- list(service = service, version = version)
-       private$request <- OWSRequest$new(op = NULL, type = "GET", url,
-                                         request = "GetCapabilities", namedParams,
-                                         mimeType = "text/xml", logger = logger)
+       private$url <- url
+       private$service <- service
+       private$serviceVersion <- serviceVersion
+       private$owsVersion <- owsVersion
+       namedParams <- list(service = service, version = serviceVersion)
+       private$request <- OWSGetCapabilities$new(op = NULL, url, service, serviceVersion, logger = logger)
        xmlObj <- private$request$getResponse()
-       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, service, version)
-       private$serviceProvider <- OWSServiceProvider$new(xmlObj, service, version)
-       private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, service, version)
+       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion)
+       private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion)
+       private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion)
      },
      
      #getUrl
@@ -70,9 +74,19 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        return(private$url)
      },
      
-     #getVersion
-     getVersion = function(){
-       return(private$version)
+     #getService
+     getService = function(){
+       return(private$service)
+     },
+     
+     #getServiceVersion
+     getServiceVersion = function(){
+       return(private$serviceVersion)
+     },
+     
+     #getOWSVersion
+     getOWSVersion = function(){
+       return(private$owsVersion)
      },
      
      #getRequest

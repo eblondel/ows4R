@@ -17,7 +17,7 @@ OWSServiceProvider
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, url, service)}}{
+ \item{\code{new(xmlObj, version)}}{
    This method is used to instantiate a OWSServiceProvider object
  }
  \item{\code{getProviderName()}}{

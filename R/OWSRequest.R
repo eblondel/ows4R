@@ -25,7 +25,12 @@ OWSRequest <- R6Class("OWSRequest",
   private = list(
     xmlElement = NULL,
     xmlNamespace = c(ows = "http://www.opengis.net/ows"),
+    url = NA,
+    type = NA,
     request = NA,
+    namedParams = list(),
+    contentType = "text/xml",
+    mimeType = "text/xml",
     status = NA,
     response = NA,
     exception = NA,
@@ -112,6 +117,13 @@ OWSRequest <- R6Class("OWSRequest",
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
       super$initialize(logger = logger)
+      private$type = type
+      private$url = url
+      private$request = request
+      private$namedParams = namedParams
+      private$contentType = contentType
+      private$mimeType = mimeType
+      
       vendorParams <- list(...)
       #if(!is.null(op)){
       #  for(param in names(vendorParams)){
@@ -134,24 +146,26 @@ OWSRequest <- R6Class("OWSRequest",
       vendorParams <- vendorParams[!sapply(vendorParams, is.null)]
       vendorParams <- lapply(vendorParams, curl::curl_escape)
       namedParams <- c(namedParams, vendorParams)
+    },
+    
+    #execute
+    execute = function(){
       
-      self$attrs = attrs
-      
-      req <- switch(type,
-        "GET" = private$GET(url, request, namedParams, mimeType),
-        "POST" = private$POST(url, contentType, mimeType)
+      req <- switch(private$type,
+                    "GET" = private$GET(private$url, private$request, private$namedParams, private$mimeType),
+                    "POST" = private$POST(private$url, private$contentType, private$mimeType)
       )
-
+      
       private$request <- req$request
       private$status <- req$status
       private$response <- req$response
       
-      if(type == "GET"){
+      if(private$type == "GET"){
         if(private$status != 200){
           private$exception <- sprintf("Error while executing request '%s'", req$request)
         }
       }
-      if(type == "POST"){
+      if(private$type == "POST"){
         exception <- getNodeSet(req$response, "//ows:ExceptionText", c(ows = xmlNamespaces(req$response)$ows$uri))
         if(length(exception)>0){
           exception <- exception[[1]]
@@ -161,26 +175,32 @@ OWSRequest <- R6Class("OWSRequest",
       }
     },
     
+    #getRequest
     getRequest = function(){
       return(private$request)
     },
     
+    #getStatus
     getStatus = function(){
       return(private$status)
     },
     
+    #getResponse
     getResponse = function(){
       return(private$response)
     },
     
+    #getException
     getException = function(){
       return(private$exception)
     },
     
+    #getResult
     getResult = function(){
       return(private$result)
     },
     
+    #setResult
     setResult = function(result){
       private$result = result
     }

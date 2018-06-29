@@ -14,7 +14,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, user, pwd, logger)}}{
+#'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
 #'    This method is used to instantiate a WFSClient with the \code{url} of the
 #'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
 #'    be added with the support of service transactional modes. By default, the \code{logger}
@@ -41,8 +41,8 @@ WFSClient <- R6Class("WFSClient",
    ),
    public = list(
      #initialize
-     initialize = function(url, version = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       super$initialize(url, service = private$serviceName, version, user, pwd, logger)
+     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
+       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
        self$capabilities = WFSCapabilities$new(self$url, self$version, logger = logger)
      },
      

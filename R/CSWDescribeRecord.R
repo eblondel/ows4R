@@ -43,6 +43,7 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
        super$initialize(op, "GET", url, request = private$name,
                         namedParams = namedParams,
                         mimeType = "text/xml", logger = logger, ...)
+       self$execute()
        
        #binding to XML schema
        xsdObjs <- getNodeSet(private$response, "//ns:schema", c(ns = "http://www.w3.org/2001/XMLSchema"))

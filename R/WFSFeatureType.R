@@ -10,7 +10,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, op, url, version)}}{
+#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
 #'    This method is used to instantiate a \code{WFSFeatureType} object
 #'  }
 #'  \item{\code{getName()}}{
@@ -142,11 +142,11 @@ WFSFeatureType <- R6Class("WFSFeatureType",
   public = list(
     description = NULL,
     features = NULL,
-    initialize = function(xmlObj, capabilities, url, version, logger = NULL){
+    initialize = function(xmlObj, capabilities, version, logger = NULL){
       super$initialize(logger = logger)
       
       private$capabilities = capabilities
-      private$url = url
+      private$url = capabilities$getUrl()
       private$version = version
       
       featureType = private$fetchFeatureType(xmlObj, version)

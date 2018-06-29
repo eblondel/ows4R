@@ -18,7 +18,7 @@ CSWClient
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version, user, pwd, logger)}}{
+ \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
    This method is used to instantiate a CSWClient with the \code{url} of the
    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
    be added with the support of service transactional modes. By default, the \code{logger}
@@ -43,7 +43,7 @@ CSWClient
 
 \examples{
 \dontrun{
-   CSWClient$new("http://localhost:8080/geonetwork/srv/eng/csw", version = "2.0.2")
+   CSWClient$new("http://localhost:8080/geonetwork/srv/eng/csw", serviceVersion = "2.0.2")
 }
 
 }

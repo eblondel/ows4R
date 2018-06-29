@@ -17,7 +17,7 @@ OWSOperationsMetadata
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, service, version)}}{
+ \item{\code{new(xmlObj, serviceVersion)}}{
    This method is used to instantiate a OWSOperationsMetadata object
  }
  \item{\code{getOperations()}}{

@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, service, version)}}{
+#'  \item{\code{new(xmlObj, serviceVersion)}}{
 #'    This method is used to instantiate a OWSOperationsMetadata object
 #'  }
 #'  \item{\code{getOperations()}}{
@@ -23,24 +23,22 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
      operations = list(),
      
      #fetchOperations
-     fetchOperations = function(xmlObj, service, version){
+     fetchOperations = function(xmlObj, serviceVersion){
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespace <- tolower(service)
+       namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
        
        opXML <- NULL
        if(nrow(namespaces) > 0){
-         ns <- OWSUtils$findNamespace(namespaces, namespace)
+         ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
          if(length(ns)>0){
-           if(namespace %in% names(ns)){
-             opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
-           }
+           opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
          }
          if(length(opXML)==0){
-           ns <- OWSUtils$findNamespace(namespaces, "ows")
+           ns <- OWSUtils$findNamespace(namespaces, id = "ows")
            if(length(ns)>0){
              opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
            }
@@ -51,15 +49,15 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
        
        operations <- list()
        if(length(opXML)>0){
-          operations <- lapply(opXML, function(x){return(OWSOperation$new(x, service, version))})
+          operations <- lapply(opXML, function(x){return(OWSOperation$new(x, serviceVersion))})
        }
        return(operations)
        
      }
    ),
    public = list(
-     initialize = function(xmlObj, service, version){
-       private$operations <- private$fetchOperations(xmlObj, service, version)
+     initialize = function(xmlObj, serviceVersion){
+       private$operations <- private$fetchOperations(xmlObj, serviceVersion)
      },
      
      #getOperations

@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, url, service)}}{
+#'  \item{\code{new(xmlObj, serviceVersion)}}{
 #'    This method is used to instantiate a OWSServiceIdentification object
 #'  }
 #'  \item{\code{getName()}}{
@@ -49,26 +49,24 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      accessConstraints = NA,
      
      #fetchServiceIdentification
-     fetchServiceIdentification = function(xmlObj, service, version){
+     fetchServiceIdentification = function(xmlObj, serviceVersion){
        
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespace <- tolower(service)
+       namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
-          ns <- OWSUtils$findNamespace(namespaces, namespace)
+          ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
           if(length(ns)>0){
-            if(namespace %in% names(ns)){
               serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
               if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
-            }
           }
           if(length(serviceXML)==0){
-            ns <- OWSUtils$findNamespace(namespaces, "ows")
+            ns <- OWSUtils$findNamespace(namespaces, id = "ows")
             if(length(ns)>0){
               serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
               if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
@@ -123,7 +121,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
            serviceType <- xmlValue(children$ServiceType)
          }
          if(!is.null(children$ServiceTypeVersion)){
-           serviceTypeVersion <- xmlValue(children$ServiceTypeVersion)
+           serviceTypeVersions <- getNodeSet(serviceXML, "//ns:ServiceTypeVersion", ns)
+           serviceTypeVersion <- sapply(serviceTypeVersions, xmlValue)
          }
          if(!is.null(children$Fees)){
            serviceFees <- xmlValue(children$Fees)
@@ -150,8 +149,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      }
    ),
    public = list(
-     initialize = function(xmlObj, service, version){
-       serviceIdentification <- private$fetchServiceIdentification(xmlObj, service, version)
+     initialize = function(xmlObj, serviceVersion){
+       serviceIdentification <- private$fetchServiceIdentification(xmlObj, serviceVersion)
        private$name <- serviceIdentification$name
        private$title <- serviceIdentification$title
        private$abstract <- serviceIdentification$abstract

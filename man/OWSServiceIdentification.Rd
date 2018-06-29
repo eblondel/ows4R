@@ -17,7 +17,7 @@ OWSServiceIdentification
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, url, service)}}{
+ \item{\code{new(xmlObj, serviceVersion)}}{
    This method is used to instantiate a OWSServiceIdentification object
  }
  \item{\code{getName()}}{

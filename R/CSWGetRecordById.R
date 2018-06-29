@@ -35,6 +35,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
         super$initialize(op, "GET", url, request = private$name,
                          namedParams = namedParams,
                          mimeType = "text/xml", logger = logger, ...)
+        self$execute()
         
         #check response in case of ISO
         isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")
@@ -75,8 +76,32 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             out
           },
           "http://www.opengis.net/cat/csw/2.0.2" = {
-            warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-            private$response
+            warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
+            warnings(warnMsg)
+            self$WARN(warnMsg)
+            self$WARN("Dublin Core returned as R list...")
+            recordsXML <- getNodeSet(private$response, "//csw:Record", private$xmlNamespace[1])
+            if(length(recordsXML)>0){
+              recordXML <- recordsXML[[1]]
+              children <- xmlChildren(recordXML)
+              out <- lapply(children, xmlValue)
+              names(out) <- names(children)
+            }
+            out
+          },
+          "http://www.opengis.net/cat/csw/3.0" = {
+            warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
+            warnings(warnMsg)
+            self$WARN(warnMsg)
+            self$WARN("Dublin Core returned as R list...")
+            recordsXML <- getNodeSet(private$response, "//csw:Record", private$xmlNamespace[1])
+            if(length(recordsXML)>0){
+              recordXML <- recordsXML[[1]]
+              children <- xmlChildren(recordXML)
+              out <- lapply(children, xmlValue)
+              names(out) <- names(children)
+            }
+            out
           },
           "http://www.w3.org/ns/dcat#" = {
             warnings(sprintf("R binding not yet supported for '%s'", outputSchema))

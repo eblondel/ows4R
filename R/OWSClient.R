@@ -15,7 +15,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#'    OWSClient$new("http://localhost:8080/geoserver/ows", version = "1.1.0")
+#'    OWSClient$new("http://localhost:8080/geoserver/ows", serviceVersion = "1.1.0")
 #' }
 #'
 #' @field url the Base url of OWS service
@@ -23,7 +23,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, service, version, user, pwd, logger)}}{
+#'  \item{\code{new(url, service, serviceVersion, user, pwd, logger)}}{
 #'    This method is used to instantiate a OWSClient with the \code{url} of the
 #'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
 #'    be added with the support of service transactional modes. By default, the \code{logger}
@@ -62,7 +62,7 @@ OWSClient <- R6Class("OWSClient",
     capabilities = NA,
     
     #initialize
-    initialize = function(url, service = NULL, version,
+    initialize = function(url, service, serviceVersion,
                           user = NULL, pwd = NULL,
                           logger = NULL) {
       
@@ -71,7 +71,7 @@ OWSClient <- R6Class("OWSClient",
        
       #fields
       if (!missing(url)) self$url <- url
-      if (!missing(version)) self$version <- version
+      if (!missing(serviceVersion)) self$version <- serviceVersion
     },
      
     #getUrl

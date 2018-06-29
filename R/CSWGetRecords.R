@@ -18,38 +18,91 @@
 CSWGetRecords <- R6Class("CSWGetRecords",
   inherit = OWSRequest,
   private = list(
-    name = "GetRecords",
-    defaultOutputSchema = "http://www.opengis.net/cat/csw/2.0.2"
+    xmlElement = "GetRecords",
+    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),
+    defaultAttrs = list(
+      service = "CSW",
+      version = "2.0.2",
+      resultType = "results",
+      startPosition = "1",
+      maxRecords = "5",
+      outputFormat="application/xml",
+      outputSchema= "http://www.opengis.net/cat/csw"
+    )
   ),
   public = list(
-    initialize = function(op, url, version, constraint = NULL, logger = NULL, ...) {
-      namedParams <- list(service = "CSW", version = version)
-      if(!is.null(constraint)) namedParams <- c(namedParams, constraint = constraint)
+    Query = NULL,
+    initialize = function(op, url, version = "2.0.2", query = NULL, logger = NULL, ...) {
+      super$initialize(op, "POST", url, request = private$xmlElement,
+                       contentType = "text/xml", mimeType = "text/xml",
+                       logger = logger, ...)
       
-      #default output schema
-      outputSchema <- list(...)$outputSchema
-      if(is.null(outputSchema)){
-        outputSchema <- private$defaultOutputSchema
-        namedParams <- c(namedParams, outputSchema = outputSchema)
+      nsName <- names(private$xmlNamespace)
+      private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
+      names(private$xmlNamespace) <- nsName
+      
+      self$attrs <- private$defaultAttrs
+      
+      #version
+      self$attrs$version = version
+      
+      #resultsType
+      resultType <- list(...)$resultType
+      if(!is.null(resultType)){
+        self$attrs$resultType = resultType
       }
       
-      #other default params
-      typeNames <- switch(outputSchema,
+      #startPosition
+      startPosition <- list(...)$startPosition
+      if(!is.null(startPosition)){
+        self$attrs$startPosition = startPosition
+      }
+      
+      #maxRecords
+      maxRecords <- list(...)$maxRecords
+      if(!is.null(maxRecords)){
+        self$attrs$maxRecords <- maxRecords
+      }
+      
+      #outputFormat
+      outputFormat <- list(...)$outputFormat
+      if(!is.null(outputFormat)){
+        self$attrs$outputFormat = outputFormat
+      }
+      
+      #output schema
+      self$attrs$outputSchema = paste(self$attrs$outputSchema, version, sep="/")
+      outputSchema <- list(...)$outputSchema
+      if(!is.null(outputSchema)){
+        self$attrs$outputSchema = outputSchema
+      }
+      
+      #typeNames value to pass to CSWQuery
+      typeNames <- switch(self$attrs$outputSchema,
         "http://www.isotc211.org/2005/gmd" = "gmd:MD_Metadata",
         "http://www.isotc211.org/2005/gfc" = "gfc:FC_FeatureCatalogue",
         "http://www.opengis.net/cat/csw/2.0.2" = "csw:Record",
+        "http://www.opengis.net/cat/csw/3.0" = "csw:Record",
         "http://www.w3.org/ns/dcat#" = "dcat"
       )
-      namedParams <- c(namedParams, typeNames = typeNames)
-      namedParams[["resultType"]] <- "results"
-      namedParams[["CONSTRAINTLANGUAGE"]] <- "CQL_TEXT"
+      if(typeNames != "csw:Record"){
+        private$xmlNamespace = c(private$xmlNamespace, ns = self$attrs$outputSchema)
+        names(private$xmlNamespace)[2] <- unlist(strsplit(typeNames,":"))[1]
+      }
       
-      super$initialize(op, "GET", url, request = private$name,
-                       namedParams = namedParams,
-                       mimeType = "text/xml", logger = logger, ...)
+      if(!is.null(query)){
+        if(!is(query, "CSWQuery")){
+          stop("The argument 'query' should be an object of class 'CSWQuery'")
+        }
+        query$attrs$typeNames = typeNames
+        self$Query = query
+      }
+      
+      #execute
+      self$execute()
       
       #bindings
-      private$response <- switch(outputSchema,
+      private$response <- switch(self$attrs$outputSchema,
         "http://www.isotc211.org/2005/gmd" = {
           out <- NULL
           xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
@@ -75,8 +128,43 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           out
         },
         "http://www.opengis.net/cat/csw/2.0.2" = {
-          warnings(sprintf("R binding not yet supported for '%s'", outputSchema))
-          private$response
+          warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
+          warnings(warnMsg)
+          self$WARN(warnMsg)
+          self$WARN("Dublin Core returned as R lists...")
+          out <- private$response
+          if(query$ElementSetName == "full"){
+            out <- list()
+            recordsXML <- getNodeSet(private$response, "//csw:GetRecordsResponse/csw:SearchResults/csw:Record", private$xmlNamespace[1])
+            if(length(recordsXML)>0){
+              out <- lapply(recordsXML, function(recordXML){
+                children <- xmlChildren(recordXML)
+                out.obj <- lapply(children, xmlValue)
+                names(out.obj) <- names(children)
+                return(out.obj)
+              })
+            }
+          }
+          out
+        },
+        "http://www.opengis.net/cat/csw/3.0" = {
+          warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
+          self$WARN(warnMsg); warnings(warnMsg)
+          self$WARN("Dublin Core records returned as R lists...")
+          out <- private$response
+          if(query$ElementSetName == "full"){
+            out <- list()
+            recordsXML <- getNodeSet(private$response, "//csw:GetRecordsResponse/csw:SearchResults/csw:Record", private$xmlNamespace[1])
+            if(length(recordsXML)>0){
+              out <- lapply(recordsXML, function(recordXML){
+                children <- xmlChildren(recordXML)
+                out.obj <- lapply(children, xmlValue)
+                names(out.obj) <- names(children)
+                return(out.obj)
+              })
+            }
+          }
+          out
         },
         "http://www.w3.org/ns/dcat#" = {
           warnings(sprintf("R binding not yet supported for '%s'", outputSchema))

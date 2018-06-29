@@ -23,15 +23,17 @@
 #'
 CSWCapabilities <- R6Class("CSWCapabilities",
    inherit = OWSCapabilities,
-   private = list(
-    
-   ),
-   
+   private = list(),
    public = list(
      
      #initialize
      initialize = function(url, version, logger = NULL) {
-       super$initialize(url, service = "CSW", version, logger = logger)
+       owsVersion <- switch(version,
+         "2.0.2" = "1.1",
+         "3.0" = "2.0"
+       )
+       super$initialize(url, service = "CSW", serviceVersion = version,
+                        owsVersion = owsVersion, logger = logger)
        xmlObj <- self$getRequest()$getResponse()
      }
    )

@@ -17,7 +17,7 @@ OWSOperation
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, service, version)}}{
+ \item{\code{new(xmlObj, serviceVersion)}}{
    This method is used to instantiate an OWSOperation object
  }
  \item{\code{getName()}}{

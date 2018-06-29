@@ -9,12 +9,12 @@
 #' 
 #' @examples
 #' \dontrun{
-#'    CSWClient$new("http://localhost:8080/geonetwork/srv/eng/csw", version = "2.0.2")
+#'    CSWClient$new("http://localhost:8080/geonetwork/srv/eng/csw", serviceVersion = "2.0.2")
 #' }
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, user, pwd, logger)}}{
+#'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
 #'    This method is used to instantiate a CSWClient with the \code{url} of the
 #'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
 #'    be added with the support of service transactional modes. By default, the \code{logger}
@@ -45,8 +45,8 @@ CSWClient <- R6Class("CSWClient",
    ),
    public = list(
      #initialize
-     initialize = function(url, version = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       super$initialize(url, service = private$serviceName, version, user, pwd, logger)
+     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
+       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
      },
      
@@ -83,7 +83,7 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #getRecords
-     getRecords = function(constraint = NULL, ...){
+     getRecords = function(query = NULL, ...){
        self$INFO("Fetching records ...")
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="GetRecords"})]
@@ -95,7 +95,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
-                                    constraint = constraint, logger = self$loggerType, ...)
+                                    query = query, logger = self$loggerType, ...)
        return(request$getResponse())
      },
      
@@ -159,7 +159,7 @@ CSWClient <- R6Class("CSWClient",
      #deleteRecordById
      deleteRecordById = function(id){
        ogcFilter = OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", id) )
-       cswConstraint = CSWConstraint$new(ogcFilter)
+       cswConstraint = CSWConstraint$new(filter = ogcFilter)
        return(self$deleteRecord(constraint = cswConstraint))
      }
    )

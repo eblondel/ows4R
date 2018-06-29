@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, url, service)}}{
+#'  \item{\code{new(xmlObj, version)}}{
 #'    This method is used to instantiate a OWSServiceProvider object
 #'  }
 #'  \item{\code{getProviderName()}}{
@@ -32,25 +32,23 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      serviceContact = NA,
      
      #fetchServiceProvider
-     fetchServiceProvider = function(xmlObj, service, version){
+     fetchServiceProvider = function(xmlObj, version){
        
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespace <- tolower(service)
+       namespaceURI <- paste("http://www.opengis.net/ows", version, sep ="/")
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
-         ns <- OWSUtils$findNamespace(namespaces, namespace)
+         ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
          if(length(ns)>0){
-           if(namespace %in% names(ns)){
-             serviceXML <- getNodeSet(xmlObj, "//ns:ServiceProvider", ns)
-           }
+           serviceXML <- getNodeSet(xmlObj, "//ns:ServiceProvider", ns)
          }
          if(length(serviceXML)==0){
-           ns <- OWSUtils$findNamespace(namespaces, "ows")
+           ns <- OWSUtils$findNamespace(namespaces, id = "ows")
            if(length(ns)>0){
              serviceXML <- getNodeSet(xmlObj, "//ns:ServiceProvider", ns)
            }
@@ -128,8 +126,8 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      }
    ),
    public = list(
-     initialize = function(xmlObj, service, version){
-       serviceProvider <- private$fetchServiceProvider(xmlObj, service, version)
+     initialize = function(xmlObj, version){
+       serviceProvider <- private$fetchServiceProvider(xmlObj, version)
        private$providerName <- serviceProvider$providerName
        private$providerSite <- serviceProvider$providerSite
        private$serviceContact <- serviceProvider$serviceContact

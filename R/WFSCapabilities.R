@@ -34,17 +34,17 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      featureTypes = NA,
 
      #fetchFeatureTypes
-     fetchFeatureTypes = function(xmlObj, url, version){
+     fetchFeatureTypes = function(xmlObj, version){
        
        wfsNs <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
-         wfsNs <- OWSUtils$findNamespace(namespaces, "wfs")
+         wfsNs <- OWSUtils$findNamespace(namespaces, id = "wfs")
        }
        
        featureTypesXML <- getNodeSet(xmlObj, "//ns:FeatureType", wfsNs)
        featureTypesList <- lapply(featureTypesXML, function(x){
-        WFSFeatureType$new(x, self, url, version, logger = self$loggerType)
+        WFSFeatureType$new(x, self, version, logger = self$loggerType)
        })
        
        return(featureTypesList)
@@ -56,9 +56,10 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      
      #initialize
      initialize = function(url, version, logger = NULL) {
-       super$initialize(url, service = "WFS", version, logger = logger)
+       super$initialize(url, service = "WFS", serviceVersion,
+                        owsVersion = "1.1", logger = logger)
        xmlObj <- self$getRequest()$getResponse()
-       private$featureTypes = private$fetchFeatureTypes(xmlObj, url, version)
+       private$featureTypes = private$fetchFeatureTypes(xmlObj, version)
      },
      
      #getFeatureTypes

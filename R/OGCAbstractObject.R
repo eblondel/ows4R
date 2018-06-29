@@ -98,14 +98,14 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
       if(addNS){
         rootXML <- xmlOutputDOM(
           tag = private$xmlElement,
-          nameSpace = names(private$xmlNamespace),
-          nsURI = private$xmlNamespace,
+          nameSpace = names(private$xmlNamespace)[1],
+          nsURI = as.list(private$xmlNamespace),
           attrs = self$attrs
         )
       }else{
         rootXML <- xmlOutputDOM(
           tag = private$xmlElement,
-          nameSpace = names(private$xmlNamespace),
+          nameSpace = names(private$xmlNamespace)[1],
           attrs = self$attrs
         )
       }
@@ -127,7 +127,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             if(fieldObj$wrap){ 
               wrapperNode <- xmlOutputDOM(
                 tag = field,
-                nameSpace = names(private$xmlNamespace),
+                nameSpace = names(private$xmlNamespace)[1],
                 attrs = field$attrs
               )
               if(!fieldObj$isNull) wrapperNode$addNode(fieldObjXml)
@@ -144,7 +144,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             if(fieldObj$wrap){ 
               wrapperNode <- xmlOutputDOM(
                 tag = field,
-                nameSpace = names(private$xmlNamespace),
+                nameSpace = names(private$xmlNamespace)[1],
                 attrs = fieldObj$attrs
               )
               if(!fieldObj$isNull) wrapperNode$addNode(fieldObjXml)
@@ -155,7 +155,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
           }else if(is(fieldObj, "list")){
             wrapperNode <- xmlOutputDOM(
               tag = field,
-              nameSpace = names(private$xmlNamespace)
+              nameSpace = names(private$xmlNamespace)[1]
             )
             for(item in fieldObj){
               if(!is.null(item)){
@@ -165,7 +165,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             }
             rootXML$addNode(wrapperNode$value())
           }else{
-            wrapperNode <- xmlOutputDOM(tag = field, nameSpace = names(private$xmlNamespace))
+            wrapperNode <- xmlOutputDOM(tag = field, nameSpace = names(private$xmlNamespace)[1])
             wrapperNode$addNode(xmlTextNode(fieldObj))
             rootXML$addNode(wrapperNode$value())
           }

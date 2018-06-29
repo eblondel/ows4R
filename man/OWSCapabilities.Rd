@@ -18,7 +18,7 @@ OWSGetCapabilities
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, service, version, logger)}}{
+ \item{\code{new(url, service, serviceVersion, owsVersion, logger)}}{
    This method is used to instantiate a OWSGetCapabilities object
  }
  \item{\code{getUrl()}}{

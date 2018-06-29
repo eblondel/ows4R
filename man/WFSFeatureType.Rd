@@ -20,7 +20,7 @@ Class used internally by ows4R.
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, op, url, version)}}{
+ \item{\code{new(xmlObj, capabilities, version, logger)}}{
    This method is used to instantiate a \code{WFSFeatureType} object
  }
  \item{\code{getName()}}{

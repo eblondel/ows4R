@@ -40,10 +40,18 @@ OWSUtils <- list(
     
     #findNamespace
     #---------------------------------------------------------------
-    findNamespace = function(namespaces, identifier){
-      namespace <- namespaces[namespaces$id==identifier,]
-      if(nrow(namespace)==0){
-        namespace <- namespaces[grepl(identifier, namespaces$uri),]
+    findNamespace = function(namespaces, id = NULL, uri = NULL){
+      if(!is.null(id)){
+        namespace <- namespaces[namespaces$id==id,]
+        if(nrow(namespace)==0){
+          namespace <- namespaces[grepl(id, namespaces$uri),]
+        }
+      }
+      if(!is.null(uri)){
+        namespace <- namespaces[namespaces$uri==uri,]
+        if(nrow(namespace)==0){
+          namespace <- namespaces[grepl(uri, namespaces$uri),]
+        }
       }
       ns <- NULL
       if(nrow(namespace)>0){
