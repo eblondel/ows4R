@@ -167,6 +167,37 @@ test_that("CSW 2.0.2 - GetRecords - Filter / AnyText Equal"{
   expect_equal(length(records), 0L)
 })
 
+test_that("CSW 2.0.2 - GetRecords - Filter / AnyText And Not"{
+  filter <- OGCFilter$new(And$new(
+    PropertyIsLike$new("csw:AnyText", "%lorem%"),
+    PropertyIsLike$new("csw:AnyText", "%ipsum%"),
+    Not$new(
+      PropertyIsLike$new("csw:AnyText", "%dolor%")
+    )
+  ))
+  cons <- CSWConstraint$new(filter = filter)
+  query <- CSWQuery$new(constraint = cons)
+  records <- csw2$getRecords(query = query)
+  expect_equal(length(records), 1L)
+})
+
+test_that("CSW 2.0.2 - GetRecords - Filter / AnyText And nested Or"{
+  filter <- OGCFilter$new(And$new(
+    PropertyIsEqualTo$new("dc:title", "Aliquam fermentum purus quis arcu"),
+    PropertyIsEqualTo$new("dc:format", "application/pdf"),
+    Or$new(
+      PropertyIsEqualTo$new("dc:type", "http://purl.org/dc/dcmitype/Dataset"),
+      PropertyIsEqualTo$new("dc:type", "http://purl.org/dc/dcmitype/Service"),
+      PropertyIsEqualTo$new("dc:type", "http://purl.org/dc/dcmitype/Image"),
+      PropertyIsEqualTo$new("dc:type", "http://purl.org/dc/dcmitype/Text")
+    )
+  ))
+  cons <- CSWConstraint$new(filter = filter)
+  query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
+  records <- csw2$getRecords(query = query)
+  expect_equal(length(records), 1L)
+})
+
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 
@@ -175,6 +206,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier"{
   query <- CSWQuery$new(constraint = cons)
   records <- csw2$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
   expect_equal(length(records), 1L)
+  expect_is(records[[1]], "ISOMetadata")
 })
 
 #CSW 3.0

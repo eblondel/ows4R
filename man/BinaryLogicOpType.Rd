@@ -20,7 +20,7 @@ abstract super class of all the binary logical operation classes
 \section{Methods}{
 
 \describe{
- \item{\code{new(binaryOperator, operations)}}{
+ \item{\code{new(...)}}{
    This method is used to instantiate an BinaryLogicOpType
  }
 }

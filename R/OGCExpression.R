@@ -306,7 +306,7 @@ BBox <-  R6Class("BBox",
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(binaryOperator, operations)}}{
+#'  \item{\code{new(...)}}{
 #'    This method is used to instantiate an BinaryLogicOpType
 #'  }
 #' }
@@ -314,10 +314,9 @@ BBox <-  R6Class("BBox",
 BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
    inherit = OGCExpression,
    public = list(
-     binaryOperator = NULL,
      operations = list(),
-     initialize = function(binaryOperator, operations){
-       self$binaryOperator = binaryOperator
+     initialize = function(...){
+       operations <- list(...)
        if(length(operations)<2){
          stop("Binary operations (And / Or) require a minimum of two operations")
        }
@@ -334,7 +333,7 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(operations)}}{
+#'  \item{\code{new(...)}}{
 #'    This method is used to instantiate an And operator
 #'  }
 #' }
@@ -342,8 +341,8 @@ And <-  R6Class("And",
   inherit = BinaryLogicOpType,
   private = list(xmlElement = "And"),
   public = list(
-    initialize = function(operations){
-      super$initialize(private$xmlElement, operations)
+    initialize = function(...){
+      super$initialize(...)
     }
   )
 )
@@ -356,7 +355,7 @@ And <-  R6Class("And",
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(operations)}}{
+#'  \item{\code{new(...)}}{
 #'    This method is used to instantiate an Or operator
 #'  }
 #' }
@@ -364,8 +363,8 @@ Or <-  R6Class("Or",
   inherit = BinaryLogicOpType,
   private = list(xmlElement = "Or"),
   public = list(
-    initialize = function(operations){
-      super$initialize(private$xmlElement, operations)
+    initialize = function(...){
+      super$initialize(...)
     }
   )
 )
@@ -380,7 +379,7 @@ Or <-  R6Class("Or",
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(binaryOperator, operations)}}{
+#'  \item{\code{new(...)}}{
 #'    This method is used to instantiate an UnaryLogicOpType
 #'  }
 #' }
@@ -388,11 +387,9 @@ Or <-  R6Class("Or",
 UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
   inherit = OGCExpression,
   public = list(
-    unaryOperator = NULL,
     operations = list(),
-    initialize = function(unaryOperator, operations){
-      self$unaryOperator = unaryOperator
-      self$operations = operations
+    initialize = function(...){
+      self$operations = list(...)
     }
   )
 )
@@ -405,7 +402,7 @@ UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(binaryOperator, operations)}}{
+#'  \item{\code{new(...)}}{
 #'    This method is used to instantiate an Not operator
 #'  }
 #' }
@@ -413,8 +410,8 @@ Not <-  R6Class("Not",
    inherit = UnaryLogicOpType,
    private = list(xmlElement = "Not"),
    public = list(
-     initialize = function(operations){
-       super$initialize(private$xmlElement, operations)
+     initialize = function(...){
+       super$initialize(...)
      }
    )
 )

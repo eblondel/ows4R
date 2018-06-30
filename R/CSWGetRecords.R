@@ -133,17 +133,20 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           self$WARN(warnMsg)
           self$WARN("Dublin Core returned as R lists...")
           out <- private$response
-          if(query$ElementSetName == "full"){
-            out <- list()
-            recordsXML <- getNodeSet(private$response, "//csw:GetRecordsResponse/csw:SearchResults/csw:Record", private$xmlNamespace[1])
-            if(length(recordsXML)>0){
-              out <- lapply(recordsXML, function(recordXML){
-                children <- xmlChildren(recordXML)
-                out.obj <- lapply(children, xmlValue)
-                names(out.obj) <- names(children)
-                return(out.obj)
-              })
-            }
+          resultElement <- switch(query$ElementSetName,
+            "full" = "csw:Record",
+            "brief" = "csw:BriefRecord",
+            "summary" = "csw:SummaryRecord"
+          )
+          out <- list()
+          recordsXML <- getNodeSet(private$response,paste0("//csw:GetRecordsResponse/csw:SearchResults/",resultElement), private$xmlNamespace[1])
+          if(length(recordsXML)>0){
+            out <- lapply(recordsXML, function(recordXML){
+              children <- xmlChildren(recordXML)
+              out.obj <- lapply(children, xmlValue)
+              names(out.obj) <- names(children)
+              return(out.obj)
+            })
           }
           out
         },
@@ -152,17 +155,20 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           self$WARN(warnMsg); warnings(warnMsg)
           self$WARN("Dublin Core records returned as R lists...")
           out <- private$response
-          if(query$ElementSetName == "full"){
-            out <- list()
-            recordsXML <- getNodeSet(private$response, "//csw:GetRecordsResponse/csw:SearchResults/csw:Record", private$xmlNamespace[1])
-            if(length(recordsXML)>0){
-              out <- lapply(recordsXML, function(recordXML){
-                children <- xmlChildren(recordXML)
-                out.obj <- lapply(children, xmlValue)
-                names(out.obj) <- names(children)
-                return(out.obj)
-              })
-            }
+          resultElement <- switch(query$ElementSetName,
+            "full" = "csw:Record",
+            "brief" = "csw:BriefRecord",
+            "summary" = "csw:SummaryRecord"
+          )
+          out <- list()
+          recordsXML <- getNodeSet(private$response,paste0("//csw:GetRecordsResponse/csw:SearchResults/",resultElement), private$xmlNamespace[1])
+          if(length(recordsXML)>0){
+            out <- lapply(recordsXML, function(recordXML){
+              children <- xmlChildren(recordXML)
+              out.obj <- lapply(children, xmlValue)
+              names(out.obj) <- names(children)
+              return(out.obj)
+            })
           }
           out
         },

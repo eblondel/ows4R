@@ -17,7 +17,7 @@ Or
 \section{Methods}{
 
 \describe{
- \item{\code{new(operations)}}{
+ \item{\code{new(...)}}{
    This method is used to instantiate an Or operator
  }
 }

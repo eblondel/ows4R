@@ -153,17 +153,26 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               rootXML$addNode(fieldObjXml)
             }
           }else if(is(fieldObj, "list")){
-            wrapperNode <- xmlOutputDOM(
-              tag = field,
-              nameSpace = names(private$xmlNamespace)[1]
-            )
-            for(item in fieldObj){
-              if(!is.null(item)){
-                nodeValueXml <- item$encode()
-                wrapperNode$addNode(as(nodeValueXml, "XMLInternalNode"))
+            if(self$wrap){
+              wrapperNode <- xmlOutputDOM(
+                tag = field,
+                nameSpace = names(private$xmlNamespace)[1]
+              )
+              for(item in fieldObj){
+                if(!is.null(item)){
+                  nodeValueXml <- item$encode()
+                  wrapperNode$addNode(as(nodeValueXml, "XMLInternalNode"))
+                }
+              }
+              rootXML$addNode(wrapperNode$value())
+            }else{
+              for(item in fieldObj){
+                if(!is.null(item)){
+                  nodeValueXml <- item$encode()
+                  rootXML$addNode(as(nodeValueXml, "XMLInternalNode"))
+                }
               }
             }
-            rootXML$addNode(wrapperNode$value())
           }else{
             wrapperNode <- xmlOutputDOM(tag = field, nameSpace = names(private$xmlNamespace)[1])
             wrapperNode$addNode(xmlTextNode(fieldObj))
