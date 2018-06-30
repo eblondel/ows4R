@@ -14,7 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2
 #==========================================================================
-csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
+csw2 <- CSWClient$new("http://localhost:8484/csw", "2.0.2", logger="DEBUG")
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
@@ -209,9 +209,10 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier"{
   expect_is(records[[1]], "ISOMetadata")
 })
 
+
 #CSW 3.0
 #==========================================================================
-csw3 <- CSWClient$new("http://localhost:8000/csw", "3.0", logger="DEBUG")
+csw3 <- CSWClient$new("http://localhost:8484/csw", "3.0", logger="DEBUG")
 
 #CSW 3.0 – GetCapabilities
 #--------------------------------------------------------------------------
