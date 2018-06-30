@@ -56,7 +56,7 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      
      #initialize
      initialize = function(url, version, logger = NULL) {
-       super$initialize(url, service = "WFS", serviceVersion,
+       super$initialize(url, service = "WFS", serviceVersion = version,
                         owsVersion = "1.1", logger = logger)
        xmlObj <- self$getRequest()$getResponse()
        private$featureTypes = private$fetchFeatureTypes(xmlObj, version)
