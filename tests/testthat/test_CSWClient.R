@@ -12,7 +12,7 @@ context("CSWClient")
 mdfile <- system.file("extdata/data", "metadata.xml", package = "ows4R")
 md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
-#CSW 2.0.2
+#CSW 2.0.2 - pycsw
 #==========================================================================
 csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
 
@@ -217,6 +217,20 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
   records <- csw2$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
   expect_equal(length(records), 1L)
   expect_is(records[[1]], "ISOMetadata")
+})
+
+#CSW 2.0.2 - FAO Geonetwork
+#==========================================================================
+fao_csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="DEBUG")
+
+#CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
+#--------------------------------------------------------------------------
+test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
+  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
+  query <- CSWQuery$new(constraint = cons)
+  records <- csw2$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
+  expect_equal(length(records), 2L)
+  expect_true(unique(sapply(records, is, "ISOMetadata")))
 })
 
 

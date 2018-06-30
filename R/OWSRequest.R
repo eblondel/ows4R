@@ -160,17 +160,21 @@ OWSRequest <- R6Class("OWSRequest",
       private$status <- req$status
       private$response <- req$response
       
+      self$INFO(as(private$response, "character"))
+      
       if(private$type == "GET"){
         if(private$status != 200){
           private$exception <- sprintf("Error while executing request '%s'", req$request)
         }
       }
       if(private$type == "POST"){
-        exception <- getNodeSet(req$response, "//ows:ExceptionText", c(ows = xmlNamespaces(req$response)$ows$uri))
-        if(length(exception)>0){
-          exception <- exception[[1]]
-          private$exception <- xmlValue(exception)
-          self$ERROR(private$exception)
+        if(!is.null(xmlNamespaces(req$response)$ows)){
+          exception <- getNodeSet(req$response, "//ows:ExceptionText", c(ows = xmlNamespaces(req$response)$ows$uri))
+          if(length(exception)>0){
+            exception <- exception[[1]]
+            private$exception <- xmlValue(exception)
+            self$ERROR(private$exception)
+          }
         }
       }
     },
