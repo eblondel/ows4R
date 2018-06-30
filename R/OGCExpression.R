@@ -271,27 +271,30 @@ PropertyIsBetween <-  R6Class("PropertyIsBetween",
    )
 )
 
-#' BBox
+#' BBOX
 #' @docType class
 #' @export
-#' @keywords OGC Expression BBox
-#' @return Object of \code{\link{R6Class}} for modelling an BBox
+#' @keywords OGC Expression BBOX
+#' @return Object of \code{\link{R6Class}} for modelling an BBOX
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(bbox, crs)}}{
-#'    This method is used to instantiate an BBox
+#'  \item{\code{new(bbox, srsName)}}{
+#'    This method is used to instantiate an BBOX
 #'  }
 #' }
-BBox <-  R6Class("BBox",
+BBOX <-  R6Class("BBOX",
   inherit = OGCExpression,
-  private = list(xmlElement = "BBox"),
+  private = list(xmlElement = "BBOX"),
   public = list(
-    bbox = NULL,
-    crs = NA,
-    initialize = function(bbox, crs = NA){
-      self$bbox = bbox
-      self$crs = crs
+    PropertyName = "ows:BoundingBox",
+    Envelope = NULL,
+    initialize = function(bbox, srsName = NULL){
+      envelope <- GMLEnvelope$new(bbox = bbox, srsName = srsName)
+      gmlNS <- envelope$getNamespaceDefinition()
+      private$xmlNamespace = c(private$xmlNamespace, ns = gmlNS$gml)
+      names(private$xmlNamespace)[length(private$xmlNamespace)] <- names(gmlNS)
+      self$Envelope = envelope
     }
   )
 )

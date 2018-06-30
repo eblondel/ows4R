@@ -136,7 +136,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               rootXML$addNode(fieldObjXml)
             }
           }else if(is(fieldObj, "ISOAbstractObject")){
-            fieldObjXml <- fieldObj$encode()
+            fieldObjXml <- fieldObj$encode(validate = FALSE)
             fieldObjXml <- as(fieldObjXml, "character")
             fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
             fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)

@@ -14,7 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2
 #==========================================================================
-csw2 <- CSWClient$new("http://localhost:8484/csw", "2.0.2", logger="DEBUG")
+csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
@@ -198,6 +198,16 @@ test_that("CSW 2.0.2 - GetRecords - Filter / AnyText And nested Or"{
   expect_equal(length(records), 1L)
 })
 
+test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
+  bbox <- matrix(c(-180,180,-90,90), nrow = 2, ncol = 2, byrow = TRUE,
+          dimnames = list(c("x", "y"), c("min","max")))
+  filter <- OGCFilter$new( BBOX$new(bbox = bbox) )
+  cons <- CSWConstraint$new(filter = filter)
+  query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
+  records <- csw2$getRecords(query = query)
+  expect_equal(length(records), 3L)
+})
+
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 
@@ -212,7 +222,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier"{
 
 #CSW 3.0
 #==========================================================================
-csw3 <- CSWClient$new("http://localhost:8484/csw", "3.0", logger="DEBUG")
+csw3 <- CSWClient$new("http://localhost:8000/csw", "3.0", logger="DEBUG")
 
 #CSW 3.0 – GetCapabilities
 #--------------------------------------------------------------------------
