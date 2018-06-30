@@ -7,6 +7,27 @@
 #'
 #' @section Static methods:
 #' \describe{
+#'  \item{\code{getNamespaces()}}{
+#'    Get the namespaces associated to a given XML object
+#'  }
+#'  \item{\code{findNamespace(namespaces, id, uri)}}{
+#'    Finds a namespace by id or by URI
+#'  }
+#'  \item{\code{toBBOX(xmin, xmax, ymin, ymax)}}{
+#'    Creates a bbox matrix from min/max x/y coordinates
+#'  }
+#'  \item{\code{findP4s(srsName, morphToESRI)}}{
+#'    Finds the PROJ4 string definition for a given srsName
+#'  }
+#'  \item{\code{toCRS(srsName)}}{
+#'   Converts a srsName into a CRS object
+#'  }
+#'  \item{\code{toEPSG(crs)}}{
+#'   Get the EPSG code from a CRS object
+#'  }
+#'  \item{\code{getAspectRatio(bbox)}}{
+#'   Get the aspect ratio for a given bbox
+#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -61,6 +82,7 @@ OWSUtils <- list(
     },
     
     #toBBOX
+    #---------------------------------------------------------------
     toBBOX = function(xmin, xmax, ymin, ymax) {
       df <- data.frame(min = c(xmin, ymin), max= c(xmax, ymax))
       row.names(df)<- c("x","y")
@@ -69,6 +91,7 @@ OWSUtils <- list(
     },
     
     #findP4s
+    #---------------------------------------------------------------
     findP4s = function(srsName, morphToESRI=FALSE) {
       
       if (missing(srsName)) {
