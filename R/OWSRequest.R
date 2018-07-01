@@ -45,11 +45,15 @@ OWSRequest <- R6Class("OWSRequest",
       if(!endsWith(url,"?")) req <- paste0(req, "?")
       req <- paste0(req, params)
       self$INFO(sprintf("Fetching %s", req))
+
+      h <- new_handle()
+      handle_setopt(h, tcp_keepalive = 1,tcp_keepidle = 2)
+      
       r <- NULL
       if(self$verbose.debug){
-        r <- with_verbose(GET(req, add_headers("Expect" = "")))
+        r <- with_verbose(GET(req, handle = h))
       }else{
-        r <- GET(req, add_headers("Expect" = ""))
+        r <- GET(req, handle = h)
       }
       responseContent <- NULL
       if(is.null(mimeType)){
