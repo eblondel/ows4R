@@ -34,6 +34,7 @@ r:
 
 r_github_packages:
   - hadley/devtools
+  - eblondel/geometa
 
 r_packages:
   - R6
