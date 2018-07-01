@@ -14,13 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2 - pycsw
 #==========================================================================
-
-req <- curl::curl_fetch_memory("http://localhost:8000/csw?service=CSW&version=2.0.2&request=GetCapabilities")
-str(req)
-parse_headers(req$headers)
-
-
-csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
+csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="INFO")
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
@@ -227,7 +221,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
 
 #CSW 2.0.2 - FAO Geonetwork
 #==========================================================================
-fao_csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="DEBUG")
+fao_csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
 
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
@@ -242,7 +236,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
 
 #CSW 3.0
 #==========================================================================
-csw3 <- CSWClient$new("http://localhost:8000/csw", "3.0", logger="DEBUG")
+csw3 <- CSWClient$new("http://localhost:8000/csw", "3.0", logger="INFO")
 
 #CSW 3.0 – GetCapabilities
 #--------------------------------------------------------------------------

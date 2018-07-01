@@ -11,4 +11,5 @@ context("OGCFilter")
 test_that("Filter - PropertyIsEqualTo",{
   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
   filter <- OGCFilter$new(expr)
+  expect_is(filter, "OGCFilter")
 })
