@@ -160,8 +160,6 @@ OWSRequest <- R6Class("OWSRequest",
       private$status <- req$status
       private$response <- req$response
       
-      self$INFO(as(private$response, "character"))
-      
       if(private$type == "GET"){
         if(private$status != 200){
           private$exception <- sprintf("Error while executing request '%s'", req$request)
