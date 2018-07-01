@@ -23,18 +23,21 @@ test_that("CSWQuery - elementSetName",{
 test_that("CSWQuery - cqlText with title",{
   cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%'")
   query <- CSWQuery$new(constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 
 test_that("CSW 2.0.2 - Query - Filter / AnyText",{
   filter <- OGCFilter$new( PropertyIsLike$new("csw:AnyText", "%Physio%"))
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 
 test_that("CSW 2.0.2 - Query - Filter / AnyText Equal",{
   filter <- OGCFilter$new( PropertyIsEqualTo$new("csw:AnyText", "species"))
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 
 test_that("CSW 2.0.2 - Query - Filter / AnyText And Not",{
@@ -47,6 +50,7 @@ test_that("CSW 2.0.2 - Query - Filter / AnyText And Not",{
   ))
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 
 test_that("CSW 2.0.2 - Query - Filter / AnyText And nested Or",{
@@ -62,6 +66,7 @@ test_that("CSW 2.0.2 - Query - Filter / AnyText And nested Or",{
   ))
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 
 test_that("CSW 2.0.2 - Query - Filter / BBOX",{
@@ -70,5 +75,6 @@ test_that("CSW 2.0.2 - Query - Filter / BBOX",{
   filter <- OGCFilter$new( BBOX$new(bbox = bbox) )
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
+  expect_is(query, "CSWQuery")
 })
 

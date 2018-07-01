@@ -14,6 +14,7 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2 - pycsw
 #==========================================================================
+options(curl_interrupt = FALSE)
 csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
 
 #CSW 2.0.2 – GetCapabilities
