@@ -47,9 +47,9 @@ OWSRequest <- R6Class("OWSRequest",
       self$INFO(sprintf("Fetching %s", req))
       r <- NULL
       if(self$verbose.debug){
-        r <- with_verbose(GET(req, add_headers = list("Expect" = "")))
+        r <- with_verbose(GET(req, add_headers("Expect" = "")))
       }else{
-        r <- GET(req, add_headers = list("Expect" = ""))
+        r <- GET(req, add_headers("Expect" = ""))
       }
       responseContent <- NULL
       if(is.null(mimeType)){
