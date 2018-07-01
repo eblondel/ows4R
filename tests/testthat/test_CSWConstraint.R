@@ -10,7 +10,7 @@ context("CSWConstraint")
 
 test_that("CSWConstraint",{
   filter <- OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", "12345") )
-  cons <- CSWConstraint$new(filter)
+  cons <- CSWConstraint$new(filter = filter)
   cons_xml <- cons$encode()
   children1 <- xmlChildren(cons_xml)
   expect_equal(length(children1), 1L)

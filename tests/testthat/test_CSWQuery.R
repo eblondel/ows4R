@@ -20,7 +20,7 @@ test_that("CSWQuery - elementSetName",{
   expect_equal(query_summary$ElementSetName, "summary")
 })
 
-test_that("CSWQuery - cqlText with title"{
+test_that("CSWQuery - cqlText with title",{
   cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%'")
   query <- CSWQuery$new(constraint = cons)
 })
