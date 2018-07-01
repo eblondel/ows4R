@@ -46,7 +46,7 @@ OWSRequest <- R6Class("OWSRequest",
       req <- paste0(req, params)
       self$INFO(sprintf("Fetching %s", req))
 
-      h <- new_handle()
+      h <- curl::new_handle()
       handle_setopt(h, tcp_keepalive = 1,tcp_keepidle = 2)
       
       r <- NULL
