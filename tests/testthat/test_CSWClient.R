@@ -14,16 +14,13 @@ md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
 
 #CSW 2.0.2 - pycsw
 #==========================================================================
-req <- GET("http://localhost:8000/csw?service=CSW&request=GetCapabilities&version=2.0.2", verbose())
-content(req)
-req <- GET("http://google.com/", verbose())
-content(req)
-csw2 <- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="INFO")
+csw2 <- NULL
 
 #CSW 2.0.2 – GetCapabilities
 #--------------------------------------------------------------------------
 #--> pycsw
 test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
+  csw2 <<- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
   expect_is(csw2, "CSWClient")
   expect_equal(csw2$getVersion(), "2.0.2")
   caps <- csw2$getCapabilities()
@@ -225,14 +222,24 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
 
 #CSW 2.0.2 - FAO Geonetwork
 #==========================================================================
-fao_csw <- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
+fao_csw <- NULL
 
-#CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
+#CSW 2.0.2 – FAO - GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
+#--------------------------------------------------------------------------
+test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
+  fao_csw <<- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
+  expect_is(fao_csw, "CSWClient")
+  expect_equal(fao_csw$getVersion(), "2.0.2")
+  caps <- fao_csw$getCapabilities()
+  expect_is(caps, "CSWCapabilities")
+})
+
+#CSW 2.0.2 – FAO - GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
   cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
   query <- CSWQuery$new(constraint = cons)
-  records <- csw2$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
+  records <- fao_csw$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
   expect_equal(length(records), 2L)
   expect_true(unique(sapply(records, is, "ISOMetadata")))
 })
@@ -240,12 +247,13 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
 
 #CSW 3.0
 #==========================================================================
-csw3 <- CSWClient$new("http://localhost:8000/csw", "3.0", logger="INFO")
+csw3 <- NULL
 
 #CSW 3.0 – GetCapabilities
 #--------------------------------------------------------------------------
 #--> pycsw
 test_that("CSW 3.0 - GetCapabilities | pycsw",{
+  csw3 <<- CSWClient$new("http://localhost:8000/csw", "3.0", logger="DEBUG")
   expect_is(csw3, "CSWClient")
   expect_equal(csw3$getVersion(), "3.0")
   caps <- csw3$getCapabilities()
