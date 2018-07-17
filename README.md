@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/eblondel/ows4R.svg?branch=master)](https://travis-ci.org/eblondel/ows4R)
 [![codecov.io](http://codecov.io/github/eblondel/ows4R/coverage.svg?branch=master)](http://codecov.io/github/eblondel/ows4R?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ows4R)](https://cran.r-project.org/package=ows4R)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.1--1-blue.svg)](https://github.com/eblondel/ows4R)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.1--0-blue.svg)](https://github.com/eblondel/ows4R)
 
 R client for OGC Web-Services
 

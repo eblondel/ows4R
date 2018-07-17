@@ -23,7 +23,8 @@ OWSRequest
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, namedParams, mimeType)}}{
+ \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
+                 contentType, mimeType, logger)}}{
    This method is used to instantiate a object for doing an OWS request
  }
 }

@@ -23,7 +23,7 @@ CSWTransaction <- R6Class("CSWTransaction",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    initialize = function(op, url, version, type,
+    initialize = function(op, url, version, type, user = NULL, pwd = NULL,
                           record = NULL, recordProperty = NULL, constraint = NULL,
                           logger = NULL, ...) {
       nsName <- names(private$xmlNamespace)
@@ -36,8 +36,10 @@ CSWTransaction <- R6Class("CSWTransaction",
         constraint = constraint
       )
       super$initialize(op, "POST", url, request = private$xmlElement,
+                       user = user, pwd = pwd,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
+      self$wrap <- TRUE
       self$attrs <- list(service = "CSW", version = version)
       self$execute()
     }

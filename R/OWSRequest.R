@@ -12,7 +12,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, namedParams, mimeType)}}{
+#'  \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
+#'                  contentType, mimeType, logger)}}{
 #'    This method is used to instantiate a object for doing an OWS request
 #'  }
 #' }
@@ -36,6 +37,10 @@ OWSRequest <- R6Class("OWSRequest",
     exception = NA,
     result = NA,
     
+    user = NULL,
+    pwd = NULL,
+    token = NULL,
+
     #GET
     #---------------------------------------------------------------
     GET = function(url, request, namedParams, mimeType){
@@ -45,11 +50,18 @@ OWSRequest <- R6Class("OWSRequest",
       if(!endsWith(url,"?")) req <- paste0(req, "?")
       req <- paste0(req, params)
       self$INFO(sprintf("Fetching %s", req))
+      
+      #headers
+      headers <- c()
+      if(!is.null(private$token)){
+        headers <- c(headers, "Authorization" = paste("Basic", private$token))
+      }
+      
       r <- NULL
       if(self$verbose.debug){
-        r <- with_verbose(GET(req))
+        r <- with_verbose(GET(req, add_headers(headers)))
       }else{
-        r <- GET(req)
+        r <- GET(req, add_headers(headers))
       }
       responseContent <- NULL
       if(is.null(mimeType)){
@@ -74,21 +86,23 @@ OWSRequest <- R6Class("OWSRequest",
       #XML encoding
       outXML <- self$encode()
       
+      #headers
+      headers <- c("Content-type" = contentType)
+      if(!is.null(private$token)){
+        headers <- c(headers, "Authorization" = paste("Basic", private$token))
+      }
+      
       #send request
       if(self$verbose.debug){
         r <- with_verbose(httr::POST(
           url = url,
-          add_headers(
-            "Content-type" = contentType
-          ),    
+          add_headers(headers),    
           body = as(outXML, "character")
         ))
       }else{
         r <- httr::POST(
           url = url,
-          add_headers(
-            "Content-type" = contentType
-          ),    
+          add_headers(headers),    
           body = as(outXML, "character")
         )
       }
@@ -113,6 +127,7 @@ OWSRequest <- R6Class("OWSRequest",
   public = list(
     #initialize
     initialize = function(op, type, url, request,
+                          user = NULL, pwd = NULL,
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
@@ -123,6 +138,12 @@ OWSRequest <- R6Class("OWSRequest",
       private$namedParams = namedParams
       private$contentType = contentType
       private$mimeType = mimeType
+      
+      if(!is.null(user) && !is.null(pwd)){
+        private$user = user
+        private$pwd = pwd
+        private$token = openssl::base64_encode(charToRaw(paste(user, pwd, sep=":")))
+      }
       
       vendorParams <- list(...)
       #if(!is.null(op)){

@@ -141,6 +141,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
             fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
             fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
+            print(field)
             if(fieldObj$wrap){ 
               wrapperNode <- xmlOutputDOM(
                 tag = field,
@@ -160,16 +161,34 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               )
               for(item in fieldObj){
                 if(!is.null(item)){
-                  nodeValueXml <- item$encode()
-                  wrapperNode$addNode(as(nodeValueXml, "XMLInternalNode"))
+                  fieldObjXml <- NULL
+                  if(is(item,"ISOAbstractObject")){
+                    fieldObjXml <- item$encode(validate = FALSE)
+                    fieldObjXml <- as(fieldObjXml, "character")
+                    fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
+                    fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
+                    fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
+                  }else{
+                    fieldObjXml <- item$encode()
+                  }
+                  wrapperNode$addNode(as(fieldObjXml, "XMLInternalNode"))
                 }
               }
               rootXML$addNode(wrapperNode$value())
             }else{
               for(item in fieldObj){
                 if(!is.null(item)){
-                  nodeValueXml <- item$encode()
-                  rootXML$addNode(as(nodeValueXml, "XMLInternalNode"))
+                  fieldObjXml <- NULL
+                  if(is(item,"ISOAbstractObject")){
+                    fieldObjXml <- item$encode(validate = FALSE)
+                    fieldObjXml <- as(fieldObjXml, "character")
+                    fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
+                    fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
+                    fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
+                  }else{
+                    fieldObjXml <- item$encode()
+                  }
+                  rootXML$addNode(as(fieldObjXml, "XMLInternalNode"))
                 }
               }
             }

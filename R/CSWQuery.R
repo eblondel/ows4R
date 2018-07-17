@@ -17,7 +17,6 @@ CSWQuery <-  R6Class("CSWQuery",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    wrap = TRUE,
     ElementSetName = "full",
     constraint = NULL,
     initialize = function(elementSetName = "full", constraint = NULL,

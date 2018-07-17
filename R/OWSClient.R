@@ -3,6 +3,7 @@
 #' @docType class
 #' @importFrom R6 R6Class
 #' @import httr
+#' @import openssl
 #' @import XML
 #' @import sf
 #' @import rgdal
@@ -50,8 +51,8 @@ OWSClient <- R6Class("OWSClient",
   #TODO for support of transactional operations
   #TODO provider specific formatter to prevent these fields to be printable
   private = list(
-    user = NA,
-    pwd = NA
+    user = NULL,
+    pwd = NULL
   ),
 
   public = list(
@@ -72,6 +73,10 @@ OWSClient <- R6Class("OWSClient",
       #fields
       if (!missing(url)) self$url <- url
       if (!missing(serviceVersion)) self$version <- serviceVersion
+      
+      #authentication
+      private$user <- user
+      private$pwd <- pwd
     },
      
     #getUrl
@@ -87,7 +92,18 @@ OWSClient <- R6Class("OWSClient",
     #getCapabilities     
     getCapabilities = function() {
       return(self$capabilities)
+    },
+    
+    #getUser
+    getUser = function(){
+      return(private$user)
+    },
+    
+    #getPwd
+    getPwd = function(){
+      return(private$pwd)
     }
+    
   )
 )
 

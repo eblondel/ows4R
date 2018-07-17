@@ -111,8 +111,16 @@ CSWClient <- R6Class("CSWClient",
          self$ERROR(errorMsg)
          stop(errorMsg)
        }
-      
-       transaction <- CSWTransaction$new(op, self$getUrl(), self$getVersion(), type = type,
+       cswt_url <- self$getUrl()
+       #special check for Geonetwork url
+       if(regexpr("geonetwork",cswt_url) > 0){
+         cswt_url <- paste0(cswt_url, "-publication")
+         if(is.null(self$getUser()) || is.null(self$getPwd())){
+           stop("Geonetwork CSW Transaction service requires user authentication")
+         }
+       }
+       #transation
+       transaction <- CSWTransaction$new(op, cswt_url, self$getVersion(), type = type, user = self$getUser(), pwd = self$getPwd(),
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        
@@ -137,7 +145,7 @@ CSWClient <- R6Class("CSWClient",
      
      #insertRecord
      insertRecord = function(record, ...){
-       return(self$transaction("Insert", record, constraint = NULL, ...))
+       return(self$transaction("Insert", record = record, constraint = NULL, ...))
      },
      
      #updateRecord
@@ -148,12 +156,12 @@ CSWClient <- R6Class("CSWClient",
        if(!is.null(constraint)) if(!is(constraint, "CSWConstraint")){
          stop("The argument constraint should be an object of class 'CSWConstraint'")
        }
-       return(self$transaction("Update", record, recordProperty, constraint, ...))
+       return(self$transaction("Update", record = record, recordProperty = recordProperty, constraint = constraint, ...))
      },
      
      #deleteRecord
      deleteRecord = function(record = NULL, constraint = NULL, ...){
-       return(self$transaction("Delete", record, constraint, ...))
+       return(self$transaction("Delete", record = record, constraint = constraint, ...))
      },
      
      #deleteRecordById
