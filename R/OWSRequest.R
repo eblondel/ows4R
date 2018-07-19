@@ -6,15 +6,29 @@
 #' @return Object of \code{\link{R6Class}} for modelling a generic OWS request
 #' @format \code{\link{R6Class}} object.
 #'
-#' @field request
-#' @field status
-#' @field response
-#'
 #' @section Methods:
 #' \describe{
 #'  \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
 #'                  contentType, mimeType, logger)}}{
 #'    This method is used to instantiate a object for doing an OWS request
+#'  }
+#'  \item{\code{getRequest()}}{
+#'    Get the request payload
+#'  }
+#'  \item{\code{getRequestHeaders()}}{
+#'    Get the request headers
+#'  }
+#'  \item{\code{getStatus()}}{
+#'    Get the request status code
+#'  }
+#'  \item{\code{getResponse()}}{
+#'    Get the request response
+#'  }
+#'  \item{\code{getException()}}{
+#'    Get the exception (in case of request failure)
+#'  }
+#'  \item{\code{getResult()}}{
+#'    Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
 #'  }
 #' }
 #' 
@@ -29,6 +43,7 @@ OWSRequest <- R6Class("OWSRequest",
     url = NA,
     type = NA,
     request = NA,
+    requestHeaders = NA,
     namedParams = list(),
     contentType = "text/xml",
     mimeType = "text/xml",
@@ -75,7 +90,8 @@ OWSRequest <- R6Class("OWSRequest",
           responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
       }
-      response <- list(request = request, status = status_code(r), response = responseContent)
+      response <- list(request = request, requestHeaders = headers(r),
+                       status = status_code(r), response = responseContent)
       return(response)
     },
     
@@ -119,7 +135,8 @@ OWSRequest <- R6Class("OWSRequest",
           responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
       }
-      response <- list(request = outXML, status = status_code(r), response = responseContent)
+      response <- list(request = outXML, requestHeaders = headers(r),
+                       status = status_code(r), response = responseContent)
       return(response)
     }
   ),
@@ -178,12 +195,14 @@ OWSRequest <- R6Class("OWSRequest",
       )
       
       private$request <- req$request
+      private$requestHeaders <- req$requestHeaders
       private$status <- req$status
       private$response <- req$response
       
       if(private$type == "GET"){
         if(private$status != 200){
           private$exception <- sprintf("Error while executing request '%s'", req$request)
+          self$ERROR(private$exception)
         }
       }
       if(private$type == "POST"){
@@ -201,6 +220,11 @@ OWSRequest <- R6Class("OWSRequest",
     #getRequest
     getRequest = function(){
       return(private$request)
+    },
+    
+    #getRequestHeaders
+    getRequestHeaders = function(){
+      return(private$requestHeaders)
     },
     
     #getStatus

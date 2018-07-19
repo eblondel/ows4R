@@ -14,18 +14,30 @@ Object of \code{\link{R6Class}} for modelling a generic OWS request
 \description{
 OWSRequest
 }
-\section{Fields}{
-
-\describe{
-\item{\code{response}}{}
-}}
-
 \section{Methods}{
 
 \describe{
  \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
                  contentType, mimeType, logger)}}{
    This method is used to instantiate a object for doing an OWS request
+ }
+ \item{\code{getRequest()}}{
+   Get the request payload
+ }
+ \item{\code{getRequestHeaders()}}{
+   Get the request headers
+ }
+ \item{\code{getStatus()}}{
+   Get the request status code
+ }
+ \item{\code{getResponse()}}{
+   Get the request response
+ }
+ \item{\code{getException()}}{
+   Get the exception (in case of request failure)
+ }
+ \item{\code{getResult()}}{
+   Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
  }
 }
 }
