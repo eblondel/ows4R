@@ -10,7 +10,7 @@ context("CSWClient")
 
 #data
 mdfile <- system.file("extdata/data", "metadata.xml", package = "ows4R")
-md <- geometa::ISOMetadata$new(xml = xmlParse(mdfile))
+md <- geometa::ISOMetadata$new(xml = XML::xmlParse(mdfile))
 
 #CSW 2.0.2 - pycsw
 #==========================================================================

@@ -130,16 +130,20 @@ CSWClient <- R6Class("CSWClient",
          "Delete" = "Deleted"
        )
        transaction$setResult(FALSE)
-       result <- getNodeSet(transaction$getResponse(),paste0("//csw:total",summaryKey),
-                              c(csw = xmlNamespaces(transaction$getResponse())$csw$uri))
-       if(length(result)>0){
-         result <- result[[1]]
-         if(xmlValue(result)>0) transaction$setResult(TRUE)
-       }
-       if(transaction$getResult()){
-         self$INFO(sprintf("Successful transaction (%s)!", type))
-       }
 
+       if(is.null(xmlNamespaces(transaction$getResponse())$csw)){
+         return(transaction)
+       }else{
+         result <- getNodeSet(transaction$getResponse(),paste0("//csw:total",summaryKey),
+                                c(csw = xmlNamespaces(transaction$getResponse())$csw$uri))
+         if(length(result)>0){
+           result <- result[[1]]
+           if(xmlValue(result)>0) transaction$setResult(TRUE)
+         }
+         if(transaction$getResult()){
+           self$INFO(sprintf("Successful transaction (%s)!", type))
+         }
+       }
        return(transaction)
      },
      
