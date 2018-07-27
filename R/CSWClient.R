@@ -49,6 +49,7 @@ CSWClient <- R6Class("CSWClient",
    public = list(
      #initialize
      initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
+       if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0"
        super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
      },
