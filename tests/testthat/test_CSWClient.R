@@ -96,7 +96,7 @@ test_that("CSW 2.0.2 - Transaction - Update (Full)",{
 test_that("CSW 2.0.2 - Transaction - Update (Partial)",{
   recordProperty <- CSWRecordProperty$new("apiso:Title", "NEW_TITLE")
   filter = OGCFilter$new(PropertyIsEqualTo$new("apiso:Identifier", md$fileIdentifier))
-  constraint <- CSWConstraint$new(filter)
+  constraint <- CSWConstraint$new(filter = filter)
   update <- csw2$updateRecord(recordProperty = recordProperty, constraint = constraint)
   expect_true(update$getResult())
 })
@@ -122,6 +122,9 @@ test_that("CSW 2.0.2 - GetRecordById",{
 test_that("CSW 2.0.2 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new())
+  expect_equal(length(records), 5L)
+  #ignoring query param (default is CSWQuery$new())
+  records <- csw2$getRecords()
   expect_equal(length(records), 5L)
 })
 

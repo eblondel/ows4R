@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, id)}}{
+#'  \item{\code{new(op, url, version, user, pwd, id, elementSetName, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecordById object
 #'  }
 #' }
@@ -18,26 +18,53 @@
 CSWGetRecordById <- R6Class("CSWGetRecordById",
     inherit = OWSRequest,
     private = list(
-      name = "GetRecordById",
-      defaultOutputSchema = "http://www.opengis.net/cat/csw/2.0.2"
+      xmlElement = "GetRecordById",
+      xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),
+      defaultAttrs = list(
+        service = "CSW",
+        version = "2.0.2",
+        outputSchema= "http://www.opengis.net/cat/csw"
+      )
     ),
     public = list(
-      initialize = function(op, url, version, id, logger = NULL, ...) {
-        namedParams <- list(service = "CSW", version = version, id = id)
+      Id = NA,
+      ElementSetName = "full",
+      initialize = function(op, url, version,
+                            user = NULL, pwd = NULL,
+                            id, elementSetName = "full", logger = NULL, ...) {
+        self$Id = id
+        allowedElementSetNames <- c("full", "brief", "summary")
+        if(!(elementSetName %in% allowedElementSetNames)){
+          stop(sprintf("elementSetName value should be among following values: [%s]",
+                       paste(allowedElementSetNames, collapse=",")))
+        }
+        self$ElementSetName = elementSetName
+        super$initialize(op, "POST", url, request = private$xmlElement,
+                         user = user, pwd = pwd,
+                         contentType = "text/xml", mimeType = "text/xml",
+                         logger = logger, ...)
         
-        #default output schema
+        nsName <- names(private$xmlNamespace)
+        private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
+        names(private$xmlNamespace) <- nsName
+        
+        self$attrs <- private$defaultAttrs
+        
+        #version
+        self$attrs$version = version
+        
+        #output schema
+        self$attrs$outputSchema = paste(self$attrs$outputSchema, version, sep="/")
         outputSchema <- list(...)$outputSchema
-        if(is.null(outputSchema)){
-          outputSchema <- private$defaultOutputSchema
-          namedParams <- c(namedParams, outputSchema = outputSchema)
+        if(!is.null(outputSchema)){
+          self$attrs$outputSchema = outputSchema
         }
         
-        super$initialize(op, "GET", url, request = private$name,
-                         namedParams = namedParams,
-                         mimeType = "text/xml", logger = logger, ...)
+        #execute
         self$execute()
         
         #check response in case of ISO
+        outputSchema <- self$attrs$outputSchema
         isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")
         if(outputSchema %in% isoSchemas){
           xmltxt <- as(private$response, "character")
@@ -76,6 +103,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             out
           },
           "http://www.opengis.net/cat/csw/2.0.2" = {
+            out <- NULL
             warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
             warnings(warnMsg)
             self$WARN(warnMsg)
@@ -90,6 +118,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             out
           },
           "http://www.opengis.net/cat/csw/3.0" = {
+            out <- NULL
             warnMsg <- sprintf("R Dublin Core binding not yet supported for '%s'", outputSchema)
             warnings(warnMsg)
             self$WARN(warnMsg)

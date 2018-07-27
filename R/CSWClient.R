@@ -29,10 +29,13 @@
 #'    for the CSW records (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
 #'    \code{outputSchema} required, e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 schema
 #'  }
-#'  \item{\code{getRecordById(id, ...)}}{
+#'  \item{\code{getRecordById(id, elementSetName, ...)}}{
 #'    Get a record by Id. By default, the record will be returned following the CSW schema 
-#'    (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
-#'    \code{outputSchema} required,  e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 records.
+#'    (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the \code{outputSchema} 
+#'    required,  e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 records.
+#'    The parameter \code{elementSetName} should among values "full", "brief", "summary". The default
+#'    "full" corresponds to the full metadata sheet returned. "brief" and "summary" will contain only
+#'    a subset of the metadata content.
 #'  }
 #' }
 #' 
@@ -67,7 +70,7 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #getRecordById
-     getRecordById = function(id, ...){
+     getRecordById = function(id, elementSetName = "full", ...){
        self$INFO(sprintf("Fetching record '%s' ...", id))
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="GetRecordById"})]
@@ -78,12 +81,15 @@ CSWClient <- R6Class("CSWClient",
          self$ERROR(errorMsg)
          stop(errorMsg)
        }
-       request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(), id = id, logger = self$loggerType, ...)
+       request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(),
+                                       user = self$getUser(), pwd = self$getPwd(),
+                                       id = id, elementSetName = elementSetName,
+                                       logger = self$loggerType, ...)
        return(request$getResponse())
      },
      
      #getRecords
-     getRecords = function(query = NULL, ...){
+     getRecords = function(query = CSWQuery$new(), ...){
        self$INFO("Fetching records ...")
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="GetRecords"})]
@@ -95,6 +101,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
+                                    user = self$getUser(), pwd = self$getPwd(),
                                     query = query, logger = self$loggerType, ...)
        return(request$getResponse())
      },
@@ -120,7 +127,8 @@ CSWClient <- R6Class("CSWClient",
          }
        }
        #transation
-       transaction <- CSWTransaction$new(op, cswt_url, self$getVersion(), type = type, user = self$getUser(), pwd = self$getPwd(),
+       transaction <- CSWTransaction$new(op, cswt_url, self$getVersion(), type = type,
+                                         user = self$getUser(), pwd = self$getPwd(),
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        

@@ -17,7 +17,7 @@ CSWGetRecords
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version, constraints, ...)}}{
+ \item{\code{new(op, url, version, user, pwd, query, logger, ...)}}{
    This method is used to instantiate a CSWGetRecords object
  }
 }

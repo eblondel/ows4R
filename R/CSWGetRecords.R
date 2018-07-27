@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, constraints, ...)}}{
+#'  \item{\code{new(op, url, version, user, pwd, query, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecords object
 #'  }
 #' }
@@ -32,8 +32,11 @@ CSWGetRecords <- R6Class("CSWGetRecords",
   ),
   public = list(
     Query = NULL,
-    initialize = function(op, url, version = "2.0.2", query = NULL, logger = NULL, ...) {
+    initialize = function(op, url, version = "2.0.2", 
+                          user = NULL, pwd = NULL,
+                          query = NULL, logger = NULL, ...) {
       super$initialize(op, "POST", url, request = private$xmlElement,
+                       user = user, pwd = pwd,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
       
