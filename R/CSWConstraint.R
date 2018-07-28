@@ -31,7 +31,7 @@ CSWConstraint <-  R6Class("CSWConstraint",
         stop("The argument 'filter' should be an object of class 'OGCFilter'")
       }
       self$CqlText = cqlText
-      if(!is.null(filter)) filter$setFilterVersion("2.0")
+      if(!is.null(filter) && serviceVersion=="3.0.0") filter$setFilterVersion("2.0")
       self$filter = filter
     },
     
@@ -40,6 +40,13 @@ CSWConstraint <-  R6Class("CSWConstraint",
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
       private$xmlNamespace = paste(private$xmlNamespaceBase, nsVersion, sep="/")
       names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
+      if(!is.null(self$filter)){
+        if(serviceVersion=="3.0.0"){
+          self$filter$setFilterVersion("2.0")
+        }else{
+          self$filter$setFilterVersion("1.1.0")
+        }
+      }
     }
     
   )
