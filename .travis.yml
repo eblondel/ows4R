@@ -24,8 +24,9 @@ before_install:
   - docker run --name geonetwork -d -p 8282:8080 pobsteta/docker-geonetwork:3.0.5
   # --> pycsw
   - docker pull axiom/docker-pycsw
+  - chmod 777 $TRAVIS_BUILD_DIR/tests/pycsw/database
   - docker run --name pycsw -v $TRAVIS_BUILD_DIR/tests/pycsw/pycsw.cfg:/opt/pycsw/default.cfg -v $TRAVIS_BUILD_DIR/tests/pycsw/database:/database -d -p 8000:8000 axiom/docker-pycsw
-
+  
 
 r:
   - oldrel
