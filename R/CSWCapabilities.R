@@ -30,7 +30,7 @@ CSWCapabilities <- R6Class("CSWCapabilities",
      initialize = function(url, version, logger = NULL) {
        owsVersion <- switch(version,
          "2.0.2" = "1.1",
-         "3.0" = "2.0"
+         "3.0.0" = "2.0"
        )
        super$initialize(url, service = "CSW", serviceVersion = version,
                         owsVersion = owsVersion, logger = logger)

@@ -103,7 +103,7 @@ OWSRequest <- R6Class("OWSRequest",
       outXML <- self$encode()
       
       #headers
-      headers <- c("Content-type" = contentType)
+      headers <- c("Accept" = "application/xml", "Content-Type" = contentType)
       if(!is.null(private$token)){
         headers <- c(headers, "Authorization" = paste("Basic", private$token))
       }

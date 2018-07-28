@@ -49,7 +49,7 @@ CSWClient <- R6Class("CSWClient",
    public = list(
      #initialize
      initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0"
+       if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0.0"
        super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
      },
@@ -101,6 +101,7 @@ CSWClient <- R6Class("CSWClient",
          self$ERROR(errorMsg)
          stop(errorMsg)
        }
+       query$setServiceVersion(self$getVersion())
        request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                     user = self$getUser(), pwd = self$getPwd(),
                                     query = query, logger = self$loggerType, ...)

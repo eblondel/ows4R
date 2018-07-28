@@ -97,11 +97,23 @@ test_that("CSW 3.0 - Transaction - Delete",{
 #CSW 3.0 – GetRecordById
 #--------------------------------------------------------------------------
 test_that("CSW 3.0 - GetRecordById",{
-  #TBD
+  record <- csw3$getRecordById(id = "urn:uuid:19887a8a-f6b0-4a63-ae56-7fba0e17801f")
+  expect_is(record, "list")
 })
 
-#CSW 3.0 – GetRecords
+#CSW 3.0 – GetRecords / csw30:Record (Dublin Core)
 #--------------------------------------------------------------------------
-test_that("CSW 3.0 - GetRecords",{
-  #TBD
+test_that("CSW 3.0 - GetRecords - full",{
+  #as Dublin core records (R lists)
+  records <- csw3$getRecords(query = CSWQuery$new())
+  expect_equal(length(records), 5L)
+  #ignoring query param (default is CSWQuery$new())
+  records <- csw3$getRecords()
+  expect_equal(length(records), 5L)
+})
+
+test_that("CSW 3.0 - GetRecords - full / maxRecords",{
+  #as Dublin core records (R lists)
+  records <- csw3$getRecords(query = CSWQuery$new(), maxRecords = 10L)
+  expect_equal(length(records), 10L)
 })

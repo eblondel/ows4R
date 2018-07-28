@@ -17,7 +17,7 @@ CSWGetRecordById
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, version, user, pwd, id, elementSetName, logger, ...)}}{
+ \item{\code{new(op, url, serviceVersion, user, pwd, id, elementSetName, logger, ...)}}{
    This method is used to instantiate a CSWGetRecordById object
  }
 }

@@ -20,7 +20,7 @@ csw2 <- NULL
 #--------------------------------------------------------------------------
 #--> pycsw
 test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
-  csw2 <<- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
+  csw2 <<- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="INFO")
   expect_is(csw2, "CSWClient")
   expect_equal(csw2$getVersion(), "2.0.2")
   caps <- csw2$getCapabilities()

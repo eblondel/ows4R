@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, user, pwd, query, logger, ...)}}{
+#'  \item{\code{new(op, url, serviceVersion, user, pwd, query, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecords object
 #'  }
 #' }
@@ -32,28 +32,28 @@ CSWGetRecords <- R6Class("CSWGetRecords",
   ),
   public = list(
     Query = NULL,
-    initialize = function(op, url, version = "2.0.2", 
+    initialize = function(op, url, serviceVersion = "2.0.2", 
                           user = NULL, pwd = NULL,
                           query = NULL, logger = NULL, ...) {
       super$initialize(op, "POST", url, request = private$xmlElement,
                        user = user, pwd = pwd,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
-      
-      nsName <- names(private$xmlNamespace)
-      private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
-      names(private$xmlNamespace) <- nsName
+      nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
+      private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
+      names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
       
       self$attrs <- private$defaultAttrs
       
       #version
-      self$attrs$version = version
+      self$attrs$version = serviceVersion
       
       #resultsType
       resultType <- list(...)$resultType
       if(!is.null(resultType)){
         self$attrs$resultType = resultType
       }
+      if(serviceVersion=="3.0.0") self$attrs$resultType = NULL
       
       #startPosition
       startPosition <- list(...)$startPosition
@@ -74,7 +74,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       }
       
       #output schema
-      self$attrs$outputSchema = paste(self$attrs$outputSchema, version, sep="/")
+      self$attrs$outputSchema = paste(self$attrs$outputSchema, nsVersion, sep="/")
       outputSchema <- list(...)$outputSchema
       if(!is.null(outputSchema)){
         self$attrs$outputSchema = outputSchema
@@ -85,10 +85,10 @@ CSWGetRecords <- R6Class("CSWGetRecords",
         "http://www.isotc211.org/2005/gmd" = "gmd:MD_Metadata",
         "http://www.isotc211.org/2005/gfc" = "gfc:FC_FeatureCatalogue",
         "http://www.opengis.net/cat/csw/2.0.2" = "csw:Record",
-        "http://www.opengis.net/cat/csw/3.0" = "csw:Record",
+        "http://www.opengis.net/cat/csw/3.0" = "csw30:Record",
         "http://www.w3.org/ns/dcat#" = "dcat"
       )
-      if(typeNames != "csw:Record"){
+      if(!(typeNames %in% c("csw:Record","csw30:Record"))){
         private$xmlNamespace = c(private$xmlNamespace, ns = self$attrs$outputSchema)
         names(private$xmlNamespace)[2] <- unlist(strsplit(typeNames,":"))[1]
       }
@@ -159,12 +159,12 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           self$WARN("Dublin Core records returned as R lists...")
           out <- private$response
           resultElement <- switch(query$ElementSetName,
-            "full" = "csw:Record",
-            "brief" = "csw:BriefRecord",
-            "summary" = "csw:SummaryRecord"
+            "full" = "csw30:Record",
+            "brief" = "csw30:BriefRecord",
+            "summary" = "csw30:SummaryRecord"
           )
           out <- list()
-          recordsXML <- getNodeSet(private$response,paste0("//csw:GetRecordsResponse/csw:SearchResults/",resultElement), private$xmlNamespace[1])
+          recordsXML <- getNodeSet(private$response,paste0("//csw30:GetRecordsResponse/csw30:SearchResults/",resultElement), private$xmlNamespace[1])
           if(length(recordsXML)>0){
             out <- lapply(recordsXML, function(recordXML){
               children <- xmlChildren(recordXML)

@@ -17,7 +17,7 @@ CSWQuery
 \section{Methods}{
 
 \describe{
- \item{\code{new(filter, cswVersion)}}{
+ \item{\code{new(filter, serviceVersion)}}{
    This method is used to instantiate an CSWQUery object.
  }
 }

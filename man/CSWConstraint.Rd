@@ -17,7 +17,7 @@ CSWConstraint
 \section{Methods}{
 
 \describe{
- \item{\code{new(cqlText, filter, cswVersion)}}{
+ \item{\code{new(cqlText, filter, serviceVersion)}}{
    This method is used to instantiate an CSWConstraint object.
  }
 }

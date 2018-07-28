@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, user, pwd, id, elementSetName, logger, ...)}}{
+#'  \item{\code{new(op, url, serviceVersion, user, pwd, id, elementSetName, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecordById object
 #'  }
 #' }
@@ -29,7 +29,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
     public = list(
       Id = NA,
       ElementSetName = "full",
-      initialize = function(op, url, version,
+      initialize = function(op, url, serviceVersion = "2.0.2",
                             user = NULL, pwd = NULL,
                             id, elementSetName = "full", logger = NULL, ...) {
         self$Id = id
@@ -44,17 +44,17 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
                          contentType = "text/xml", mimeType = "text/xml",
                          logger = logger, ...)
         
-        nsName <- names(private$xmlNamespace)
-        private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
-        names(private$xmlNamespace) <- nsName
+        nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
+        private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
+        names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
         
         self$attrs <- private$defaultAttrs
         
-        #version
-        self$attrs$version = version
+        #serviceVersion
+        self$attrs$version = serviceVersion
         
         #output schema
-        self$attrs$outputSchema = paste(self$attrs$outputSchema, version, sep="/")
+        self$attrs$outputSchema = paste(self$attrs$outputSchema, nsVersion, sep="/")
         outputSchema <- list(...)$outputSchema
         if(!is.null(outputSchema)){
           self$attrs$outputSchema = outputSchema
@@ -123,7 +123,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             warnings(warnMsg)
             self$WARN(warnMsg)
             self$WARN("Dublin Core returned as R list...")
-            recordsXML <- getNodeSet(private$response, "//csw:Record", private$xmlNamespace[1])
+            recordsXML <- getNodeSet(private$response, "//csw30:Record", private$xmlNamespace[1])
             if(length(recordsXML)>0){
               recordXML <- recordsXML[[1]]
               children <- xmlChildren(recordXML)
