@@ -31,6 +31,7 @@ CSWConstraint <-  R6Class("CSWConstraint",
         stop("The argument 'filter' should be an object of class 'OGCFilter'")
       }
       self$CqlText = cqlText
+      if(!is.null(filter)) filter$setFilterVersion("2.0")
       self$filter = filter
     },
     

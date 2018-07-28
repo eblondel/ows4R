@@ -140,12 +140,13 @@ CSWClient <- R6Class("CSWClient",
          "Delete" = "Deleted"
        )
        transaction$setResult(FALSE)
-
        if(is.null(xmlNamespaces(transaction$getResponse())$csw)){
          return(transaction)
        }else{
-         result <- getNodeSet(transaction$getResponse(),paste0("//csw:total",summaryKey),
-                                c(csw = xmlNamespaces(transaction$getResponse())$csw$uri))
+         ns <- ifelse(self$getVersion()=="3.0.0", "csw30", "csw")
+         nsUri <- xmlNamespaces(transaction$getResponse())[[ns]]$uri
+         names(nsUri) <- ifelse(self$getVersion()=="3.0.0", "csw30", "csw")
+         result <- getNodeSet(transaction$getResponse(),paste0("//",ns,":total",summaryKey), nsUri)
          if(length(result)>0){
            result <- result[[1]]
            if(xmlValue(result)>0) transaction$setResult(TRUE)
@@ -170,11 +171,13 @@ CSWClient <- R6Class("CSWClient",
        if(!is.null(constraint)) if(!is(constraint, "CSWConstraint")){
          stop("The argument constraint should be an object of class 'CSWConstraint'")
        }
+       if(!is.null(constraint)) constraint$setServiceVersion(self$getVersion())
        return(self$transaction("Update", record = record, recordProperty = recordProperty, constraint = constraint, ...))
      },
      
      #deleteRecord
      deleteRecord = function(record = NULL, constraint = NULL, ...){
+       if(!is.null(constraint)) constraint$setServiceVersion(self$getVersion())
        return(self$transaction("Delete", record = record, constraint = constraint, ...))
      },
      
@@ -182,6 +185,7 @@ CSWClient <- R6Class("CSWClient",
      deleteRecordById = function(id){
        ogcFilter = OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", id) )
        cswConstraint = CSWConstraint$new(filter = ogcFilter)
+       cswConstraint$setServiceVersion(self$getVersion())
        return(self$deleteRecord(constraint = cswConstraint))
      }
    )

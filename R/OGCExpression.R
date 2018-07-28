@@ -14,11 +14,31 @@
 OGCExpression <-  R6Class("OGCExpression",
    inherit = OGCAbstractObject,
    private = list(
+     exprVersion = "1.1.0",
+     xmlNamespaceBase = "http://www.opengis.net/ogc",
      xmlNamespace = c(ogc = "http://www.opengis.net/ogc")
    ),
    public = list(
-     initialize = function(attrs = NULL, defaults = NULL){
+     initialize = function(attrs = NULL, defaults = NULL, exprVersion = "1.1.0"){
+       self$setExprVersion(exprVersion)
        super$initialize(attrs,defaults)
+     },
+     
+     #setExprVersion
+     setExprVersion = function(exprVersion) {
+       private$exprVersion = exprVersion
+       if(exprVersion=="2.0"){
+         private$xmlNamespace = "http://www.opengis.net/fes/2.0"
+         names(private$xmlNamespace) <- "fes"
+       }else{
+         private$xmlNamespace = private$xmlNamepaceBase
+         names(private$xmlNamespace) = "ogc"
+       }
+     },
+     
+     #getExprVersion
+     getExprVersion = function(){
+       return(private$exprVersion)
      }
    )
 )
@@ -324,6 +344,14 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
          stop("Binary operations (And / Or) require a minimum of two operations")
        }
        self$operations = operations
+     },
+     
+     #setExprVersion
+     setExprVersion = function(exprVersion){
+       private$exprVersion <- exprVersion
+       for(i in 1:length(self$operations)){
+         self$operations[[i]]$setExprVersion(exprVersion)
+       }
      }
    )
 )
@@ -393,6 +421,14 @@ UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
     operations = list(),
     initialize = function(...){
       self$operations = list(...)
+    },
+    
+    #setExprVersion
+    setExprVersion = function(exprVersion){
+      private$exprVersion <- exprVersion
+      for(i in 1:length(self$operations)){
+        self$operations[[i]]$setExprVersion(exprVersion)
+      }
     }
   )
 )

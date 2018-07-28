@@ -23,12 +23,12 @@ CSWTransaction <- R6Class("CSWTransaction",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    initialize = function(op, url, version, type, user = NULL, pwd = NULL,
+    initialize = function(op, url, serviceVersion, type, user = NULL, pwd = NULL,
                           record = NULL, recordProperty = NULL, constraint = NULL,
                           logger = NULL, ...) {
-      nsName <- names(private$xmlNamespace)
-      private$xmlNamespace = paste(private$xmlNamespace, version, sep="/")
-      names(private$xmlNamespace) <- nsName
+      nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
+      private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
+      names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
       
       self[[type]] = list(
         record = record,
@@ -40,7 +40,7 @@ CSWTransaction <- R6Class("CSWTransaction",
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
       self$wrap <- TRUE
-      self$attrs <- list(service = "CSW", version = version)
+      self$attrs <- list(service = "CSW", version = serviceVersion)
       self$execute()
     }
     

@@ -77,22 +77,31 @@ test_that("CSW 3.0 - GetCapabilities | pycsw",{
 
 #Insert
 test_that("CSW 3.0 - Transaction - Insert",{
-  #TBD
+  insert <- csw3$insertRecord(record = md)
+  expect_true(insert$getResult())
 })
 
 #Update (Full)
 test_that("CSW 3.0 - Transaction - Update (Full)",{
-  #TBD
+  md$identificationInfo[[1]]$citation$setTitle("a new title")
+  update <- csw3$updateRecord(record = md)
+  expect_true(update$getResult())
 })
 
-test_that("CSW 3.0 - Transaction - Update (Partial)",{
-  #TBD
-})
+#Update (Partial) - DOES NOT WORK, REQUIRES FES 2.0 implementation
+#test_that("CSW 3.0 - Transaction - Update (Partial)",{
+#  recordProperty <- CSWRecordProperty$new("apiso:Title", "NEW_TITLE")
+#  filter = OGCFilter$new(PropertyIsEqualTo$new("apiso:Identifier", md$fileIdentifier))
+#  constraint <- CSWConstraint$new(filter = filter)
+#  update <- csw3$updateRecord(recordProperty = recordProperty, constraint = constraint)
+#  expect_true(update$getResult())
+#})
 
-#Delete
-test_that("CSW 3.0 - Transaction - Delete",{
-  #TBD
-})
+#Delete - DOES NOT WORK, REQUIRES FES 2.0 implementation
+#test_that("CSW 3.0 - Transaction - Delete",{
+#  delete <- csw3$deleteRecordById(md$fileIdentifier)
+#  expect_true(delete$getResult())
+#})
 
 #CSW 3.0 – GetRecordById
 #--------------------------------------------------------------------------
