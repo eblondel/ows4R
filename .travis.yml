@@ -16,15 +16,17 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev libcurl4-openssl-dev
   - Rscript -e 'update.packages(ask = FALSE)'
   # docker images for integration tests
-  # --> GeoNetwork
+  # --> PostGIS/GeoServer
   - docker pull kartoza/postgis
   - docker run -d --name="postgis" kartoza/postgis
   - docker pull oscarfonts/geoserver
   - docker run --link postgis:postgis --name geoserver -d -p 8080:8080 oscarfonts/geoserver
+  # --> GeoNetwork
   - docker run --name geonetwork -d -p 8282:8080 pobsteta/docker-geonetwork:3.0.5
   # --> pycsw
   - docker pull axiom/docker-pycsw
   - chmod 777 $TRAVIS_BUILD_DIR/tests/pycsw/database
+  - chmod 777 $TRAVIS_BUILD_DIR/tests/pycsw/database/cite.db
   - docker run --name pycsw -v $TRAVIS_BUILD_DIR/tests/pycsw/pycsw.cfg:/opt/pycsw/default.cfg -v $TRAVIS_BUILD_DIR/tests/pycsw/database:/database -d -p 8000:8000 axiom/docker-pycsw
   
 
