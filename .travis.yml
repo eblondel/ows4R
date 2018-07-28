@@ -26,12 +26,7 @@ before_install:
   # --> pycsw
   - docker pull geopython/pycsw:latest
   - docker run --name pycsw -v $TRAVIS_BUILD_DIR/tests/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg -d -p 8000:8000 geopython/pycsw:latest
-  #- chmod 777 $TRAVIS_BUILD_DIR/tests/pycsw/database
-  #- chmod 777 $TRAVIS_BUILD_DIR/tests/pycsw/database/cite.db
-  #- docker pull axiom/docker-pycsw
-  #- docker run --name pycsw -v $TRAVIS_BUILD_DIR/tests/pycsw/pycsw.cfg:/opt/pycsw/default.cfg -v $TRAVIS_BUILD_DIR/tests/pycsw/database:/database -d -p 8000:8000 axiom/docker-pycsw
   
-
 r:
   - oldrel
   - release
