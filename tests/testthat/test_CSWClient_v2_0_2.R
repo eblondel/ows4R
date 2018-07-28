@@ -199,6 +199,13 @@ test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
   expect_equal(length(records), 10L)
 })
 
+test_that("CSW 2.0.2 - Delete - in Batch",{
+  #end of pycsw tests on CSW 2.0.2 we delete everything for other test suites
+  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%my-metadata-identifier%'")
+  deleted <- csw2$deleteRecord(constraint = cons)
+  expect_true(deleted$getResult())
+})
+
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 
