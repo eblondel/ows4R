@@ -200,7 +200,10 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
         }
       }
       out <- rootXML$value()
-      out <- as(out, "XMLInternalNode")
+      out <- paste0(capture.output(out), collapse="") #to character
+      out <- iconv(out, to = "UTF-8")
+      out <- xmlParse(out, encoding = Encoding(out), error = function (msg, ...) {})
+      out <- as(out, "XMLInternalNode") #to XMLInternalNode
       if(length(rootXMLAttrs)>0){
         suppressWarnings(xmlAttrs(out) <- rootXMLAttrs)
       }
