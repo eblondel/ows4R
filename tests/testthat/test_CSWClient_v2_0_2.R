@@ -218,6 +218,16 @@ test_that("CSW 2.0.2 - Delete - in Batch",{
   expect_true(deleted$getResult())
 })
 
+#CSW 2.0.2 – Harvest
+#--------------------------------------------------------------------------
+#on pycsw: see issue https://github.com/geopython/pycsw/issues/561
+#on geonetwork: see thread http://osgeo-org.1560.x6.nabble.com/No-bean-named-CswService-Harvest-is-defined-td5312221.html apparently not implemented (!)
+#test_that("CSW 2.0.2 - Harvest",{
+#  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
+#  query <- CSWQuery$new(constraint = cons)
+#  harvested <- csw2$HarvestNode(url = "http://www.fao.org/geonetwork/srv/en/csw", query = query)
+#})
+
 #CSW 2.0.2 - FAO Geonetwork
 #==========================================================================
 fao_csw <- NULL

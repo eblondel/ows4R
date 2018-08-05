@@ -187,7 +187,37 @@ CSWClient <- R6Class("CSWClient",
        cswConstraint = CSWConstraint$new(filter = ogcFilter)
        cswConstraint$setServiceVersion(self$getVersion())
        return(self$deleteRecord(constraint = cswConstraint))
+     },
+     
+     #harvestRecord
+     harvestRecord = function(sourceUrl, resourceType = "http://www.isotc211.org/2005/gmd"){
+       operations <- self$capabilities$getOperationsMetadata()$getOperations()
+       op <- operations[sapply(operations,function(x){x$getName()=="Harvest"})]
+       if(length(op)>0){
+         op <- op[[1]]
+       }else{
+         errorMsg <- "Operation 'Harvest' not supported by this service"
+         self$ERROR(errorMsg)
+         stop(errorMsg)
+       }
+       self$INFO(sprintf("Harvesting '%s' ...", sourceUrl))
+       request <- CSWHarvest$new(op, self$getUrl(), self$getVersion(), 
+                                 source = sourceUrl, resourceType = resourceType, resourceFormat = "application/xml",
+                                 logger = self$loggerType)
+       return(request$getResponse())
+     },
+     
+     #harvestNode
+     harvestNode = function(url, query = CSWQuery$new(), resourceType = "http://www.isotc211.org/2005/gmd"){
+       csw <- CSWClient$new(url = url, serviceVersion = self$getVersion(), logger = self$loggerType)
+       if(!is.null(csw)){
+         records <- csw$getRecords(query = query)
+         for(record in records){
+           sourceUrl <- sprintf("%s?service=CSW&version=%s&request=GetRecordById&id=%s&outputSchema=%s",
+                                url, self$getVersion(), record$identifier, URLencode(resourceType, reserved=T))
+           self$harvestRecord(sourceUrl, resourceType = resourceType)
+         }
+       }
      }
    )
 )
-
