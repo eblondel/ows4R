@@ -32,11 +32,8 @@ r:
   - release
   #- devel
 
-r_github_packages:
-  - hadley/devtools
-  - eblondel/geometa
-
 r_packages:
+  - devtools
   - R6
   - httr
   - XML
@@ -44,6 +41,9 @@ r_packages:
   - sf
   - testthat
   - covr
+  
+r_github_packages:
+  - eblondel/geometa
 
 r_check_args: --as-cran
 
