@@ -4,6 +4,7 @@
 [![codecov.io](http://codecov.io/github/eblondel/ows4R/coverage.svg?branch=master)](http://codecov.io/github/eblondel/ows4R?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ows4R)](https://cran.r-project.org/package=ows4R)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.1--0-blue.svg)](https://github.com/eblondel/ows4R)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345112.svg)](https://doi.org/10.5281/zenodo.1345112)
 
 R client for OGC Web-Services
 
@@ -11,6 +12,10 @@ R client for OGC Web-Services
 * the Common OGC Web-Services specifications, versions ``1.1`` and ``2.0``
 * the Catalogue Service for the Web (CSW), versions ``2.0.2`` and ``3.0``
 * the Web Feature Service (WFS), versions ``1.0.0``, ``1.1.0``, and ``2.0.0``
+
+### Citation
+
+We thank in advance people that use ``ows4R`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345112.svg)](https://doi.org/10.5281/zenodo.1345112)
 
 ## OGC standards coverage status
 
