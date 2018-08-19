@@ -4,9 +4,10 @@
 #' @docType package
 #' 
 #' @title Interface to OGC Web-Services
-#' @description Provides an interface to OGC Web-Services (OWS). In a first step, the package supports the Common
-#' OGC Web-Services specifications the Web Feature Service (WFS). ows4R will progressively support other OGC web
-#' service specifications such as Web Map Service (WMS), Web Coverage Service, or Catalogue Service for the web (CSW).
+#' @description Provides an Interface to Web-Services defined as standards by the Open Geospatial Consortium (OGC), including Web Feature Service (WFS) 
+#' for vector data, Catalogue Service (CSW) for ISO/OGC metadata and associated standards such as the common web-service specification (OWS) and
+#' OGC Filter Encoding. The long-term purpose is to add support for additional OGC service standards such as Web Coverage Service (WCS) and 
+#' Web Processing Service (WPS).
 #'
 #' 
 #' @details
@@ -15,7 +16,7 @@
 #'    Type: \tab Package\cr
 #'    Version
 #'    : \tab 0.1-0\cr
-#'    Date: \tab 2018-08-05\cr
+#'    Date: \tab 2018-08-19\cr
 #'    License: \tab MIT\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
