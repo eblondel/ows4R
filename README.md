@@ -15,7 +15,7 @@ R client for OGC Web-Services
 
 ### Citation
 
-We thank in advance people that use ``ows4R`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345112.svg)](https://doi.org/10.5281/zenodo.1345112)
+We thank in advance people that use ``ows4R`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111)
 
 ## OGC standards coverage status
 
