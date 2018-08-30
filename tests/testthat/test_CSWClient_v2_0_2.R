@@ -127,16 +127,16 @@ test_that("CSW 2.0.2 - GetRecordById",{
 test_that("CSW 2.0.2 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new())
-  expect_equal(length(records), 5L)
+  expect_equal(length(records), 12L)
   #ignoring query param (default is CSWQuery$new())
   records <- csw2$getRecords()
-  expect_equal(length(records), 5L)
+  expect_equal(length(records), 12L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - full / maxRecords",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new(), maxRecords = 10L)
-  expect_equal(length(records), 10L)
+  expect_equal(length(records), 12L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:title",{
@@ -185,7 +185,7 @@ test_that("CSW 2.0.2 - GetRecords - Filter / AnyText And Not",{
   ))
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(constraint = cons)
-  records <- csw2$getRecords(query = query, maxRecords = 10)
+  records <- csw2$getRecords(query = query)
   expect_equal(length(records), 8L)
 })
 
@@ -195,7 +195,7 @@ test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
   filter <- OGCFilter$new( BBOX$new(bbox = bbox) )
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
-  records <- csw2$getRecords(query = query, maxRecords = 10)
+  records <- csw2$getRecords(query = query)
   expect_equal(length(records), 10L)
 })
 
@@ -222,11 +222,21 @@ test_that("CSW 2.0.2 - Delete - in Batch",{
 #--------------------------------------------------------------------------
 #on pycsw: see issue https://github.com/geopython/pycsw/issues/561
 #on geonetwork: see thread http://osgeo-org.1560.x6.nabble.com/No-bean-named-CswService-Harvest-is-defined-td5312221.html apparently not implemented (!)
-#test_that("CSW 2.0.2 - Harvest",{
-#  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
-#  query <- CSWQuery$new(constraint = cons)
-#  harvested <- csw2$HarvestNode(url = "http://www.fao.org/geonetwork/srv/en/csw", query = query)
-#})
+test_that("CSW 2.0.2 - Harvest",{
+  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
+  query <- CSWQuery$new(constraint = cons)
+  harvested <- csw2$harvestNode(
+    url = "http://www.fao.org/geonetwork/srv/en/csw", query = query,
+    sourceBaseUrl = "http://www.fao.org/geonetwork/srv/en/xml.metadata.get?uuid="
+  )
+  expect_is(harvested, "list")
+  expect_equal(harvested$found, 2)
+  expect_equal(harvested$harvested, 2)
+  
+  #remove records for next tests
+  csw2$deleteRecordById("firms-mv-map-fishery")
+  csw2$deleteRecordById("firms-mv-map-resource")
+})
 
 #CSW 2.0.2 - FAO Geonetwork
 #==========================================================================

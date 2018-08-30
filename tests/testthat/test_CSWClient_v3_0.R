@@ -115,10 +115,10 @@ test_that("CSW 3.0 - GetRecordById",{
 test_that("CSW 3.0 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw3$getRecords(query = CSWQuery$new())
-  expect_equal(length(records), 5L)
+  expect_equal(length(records), 12L)
   #ignoring query param (default is CSWQuery$new())
   records <- csw3$getRecords()
-  expect_equal(length(records), 5L)
+  expect_equal(length(records), 12L)
 })
 
 test_that("CSW 3.0 - GetRecords - full / maxRecords",{

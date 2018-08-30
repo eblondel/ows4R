@@ -102,10 +102,21 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        query$setServiceVersion(self$getVersion())
-       request <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
+       firstRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                     user = self$getUser(), pwd = self$getPwd(),
                                     query = query, logger = self$loggerType, ...)
-       return(request$getResponse())
+       records <- firstRequest$getResponse()
+       nextRecord <- attr(records, "nextRecord")
+       while(nextRecord != 0L){
+         nextRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
+                                          user = self$getUser(), pwd = self$getPwd(),
+                                          query = query, logger = self$loggerType, 
+                                          startPosition = nextRecord)
+         nextRecords <- nextRequest$getResponse()
+         records <- c(records, nextRecords)
+         nextRecord <- attr(nextRecords, "nextRecord")
+       }
+       return(records)
      },
      
      #transaction
@@ -201,23 +212,47 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        self$INFO(sprintf("Harvesting '%s' ...", sourceUrl))
-       request <- CSWHarvest$new(op, self$getUrl(), self$getVersion(), 
+       harvest <- CSWHarvest$new(op, self$getUrl(), self$getVersion(), 
                                  source = sourceUrl, resourceType = resourceType, resourceFormat = "application/xml",
                                  logger = self$loggerType)
-       return(request$getResponse())
+       
+       harvest$setResult(FALSE)
+       if(is.null(xmlNamespaces(harvest$getResponse())$csw)){
+         return(harvest)
+       }else{
+         ns <- ifelse(self$getVersion()=="3.0.0", "csw30", "csw")
+         nsUri <- xmlNamespaces(harvest$getResponse())[[ns]]$uri
+         names(nsUri) <- ifelse(self$getVersion()=="3.0.0", "csw30", "csw")
+         inserted <- getNodeSet(harvest$getResponse(),paste0("//",ns,":totalInserted"), nsUri)[[1]]
+         updated <- getNodeSet(harvest$getResponse(),paste0("//",ns,":totalUpdated"), nsUri)[[1]]
+         deleted <- getNodeSet(harvest$getResponse(),paste0("//",ns,":totalDeleted"), nsUri)[[1]]
+         if(xmlValue(inserted)>0 || xmlValue(updated)>0 || xmlValue(deleted)>0){
+           harvest$setResult(TRUE)
+         }
+         if(harvest$getResult()){
+           self$INFO("Successful record harvesting (%s)!")
+         }
+       }
+       return(harvest)
      },
      
      #harvestNode
-     harvestNode = function(url, query = CSWQuery$new(), resourceType = "http://www.isotc211.org/2005/gmd"){
+     harvestNode = function(url,
+                            query = CSWQuery$new(), resourceType = "http://www.isotc211.org/2005/gmd",
+                            sourceBaseUrl){
+       nodeHarvest <- NULL
        csw <- CSWClient$new(url = url, serviceVersion = self$getVersion(), logger = self$loggerType)
        if(!is.null(csw)){
          records <- csw$getRecords(query = query)
+         nodeHarvest$found <- length(records)
+         nodeHarvest$harvested <- 0
          for(record in records){
-           sourceUrl <- sprintf("%s?service=CSW&version=%s&request=GetRecordById&id=%s&outputSchema=%s",
-                                url, self$getVersion(), record$identifier, URLencode(resourceType, reserved=T))
-           self$harvestRecord(sourceUrl, resourceType = resourceType)
+           sourceUrl <- paste0(sourceBaseUrl, record$identifier)
+           recHarvest <- self$harvestRecord(sourceUrl, resourceType = resourceType)
+           if(recHarvest$getResult()) nodeHarvest$harvested <- nodeHarvest$harvested+1
          }
        }
+       return(nodeHarvest)
      }
    )
 )
