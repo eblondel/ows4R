@@ -127,16 +127,16 @@ test_that("CSW 2.0.2 - GetRecordById",{
 test_that("CSW 2.0.2 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new())
-  expect_equal(length(records), 12L)
+  expect_equal(length(records), 22L)
   #ignoring query param (default is CSWQuery$new())
   records <- csw2$getRecords()
-  expect_equal(length(records), 12L)
+  expect_equal(length(records), 22L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - full / maxRecords",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new(), maxRecords = 10L)
-  expect_equal(length(records), 12L)
+  expect_equal(length(records), 22L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:title",{
@@ -196,7 +196,7 @@ test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
   records <- csw2$getRecords(query = query)
-  expect_equal(length(records), 10L)
+  expect_equal(length(records), 13L)
 })
 
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
@@ -236,6 +236,10 @@ test_that("CSW 2.0.2 - Harvest",{
   #remove records for next tests
   csw2$deleteRecordById("firms-mv-map-fishery")
   csw2$deleteRecordById("firms-mv-map-resource")
+  for(i in 1:10){
+    id <- paste0("my-metadata-identifier",i)
+    csw2$deleteRecordById(id)
+  }
 })
 
 #CSW 2.0.2 - FAO Geonetwork
