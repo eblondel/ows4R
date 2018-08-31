@@ -13,6 +13,8 @@
 #'  }
 #' }
 #' 
+#' @note Class used internally by \pkg{ows4R} to trigger a CSW Transaction request
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWTransaction <- R6Class("CSWTransaction",

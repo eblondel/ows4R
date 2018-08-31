@@ -23,6 +23,15 @@ BBOX
 }
 }
 
+\examples{
+  bbox <- OWSUtils$toBBOX(-180,-90,180,90)
+  expr <- BBOX$new(bbox)
+  expr_xml <- expr$encode() #see how it looks like in XML
+  
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{BBOX}
 \keyword{Expression}
 \keyword{OGC}

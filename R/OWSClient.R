@@ -13,11 +13,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing
 #' a Common OGC web-service.
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @examples
-#' \dontrun{
-#'    OWSClient$new("http://localhost:8080/geoserver/ows", serviceVersion = "1.1.0")
-#' }
 #'
 #' @field url the Base url of OWS service
 #' @field version the version of OWS service
@@ -41,6 +36,8 @@
 #'    Get the service capabilities
 #'  }
 #' }
+#' 
+#' @note Abstract class used internally by \pkg{ows4R}
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #' 

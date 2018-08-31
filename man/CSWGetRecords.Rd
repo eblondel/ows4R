@@ -14,6 +14,9 @@ Object of \code{\link{R6Class}} for modelling a CSW GetRecords request
 \description{
 CSWGetRecords
 }
+\note{
+Class used internally by \pkg{ows4R} to trigger a CSW GetRecords request
+}
 \section{Methods}{
 
 \describe{

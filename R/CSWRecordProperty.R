@@ -10,6 +10,13 @@
 #'    This method is used to instantiate an CSWRecordProperty object.
 #'  }
 #' }
+#' 
+#' @examples 
+#'    rp <- CSWRecordProperty$new(name = "NAME", value = "VALUE")
+#'    rp_xml <- rp$encode() #see how it looks in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 CSWRecordProperty <-  R6Class("CSWRecordProperty",
   inherit = OGCAbstractObject,
   private = list(

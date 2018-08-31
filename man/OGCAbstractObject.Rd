@@ -15,7 +15,7 @@ Object of \code{\link{R6Class}} for modelling an OGCAbstractObject
 OGCAbstractObject
 }
 \note{
-abstract class
+abstract class used by \pkg{ows4R}
 }
 \section{Methods}{
 
@@ -26,6 +26,9 @@ abstract class
 }
 }
 
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{Abstract}
 \keyword{OGC}
 \keyword{Object}

@@ -14,6 +14,9 @@ Object of \code{\link{R6Class}} for modelling a CSW GetRecordById request
 \description{
 CSWGetRecordById
 }
+\note{
+Class used internally by \pkg{ows4R} to trigger a CSW GetRecordById request
+}
 \section{Methods}{
 
 \describe{

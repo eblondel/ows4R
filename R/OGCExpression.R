@@ -10,7 +10,11 @@
 #'    This method is used to instantiate an OGCExpression object
 #'  }
 #' }
+#' 
 #' @note abstract class
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 OGCExpression <-  R6Class("OGCExpression",
    inherit = OGCAbstractObject,
    private = list(
@@ -56,6 +60,9 @@ OGCExpression <-  R6Class("OGCExpression",
 #'  }
 #' }
 #' @note abstract super class of all the property operation classes
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 BinaryComparisonOpType <-  R6Class("BinaryComparisonOpType",
   inherit = OGCExpression,
   public = list(
@@ -82,6 +89,13 @@ BinaryComparisonOpType <-  R6Class("BinaryComparisonOpType",
 #'    This method is used to instantiate an PropertyIsEqualTo
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsEqualTo <-R6Class("PropertyIsEqualTo",
   inherit = BinaryComparisonOpType,
   private = list(xmlElement = "PropertyIsEqualTo"),
@@ -104,6 +118,13 @@ PropertyIsEqualTo <-R6Class("PropertyIsEqualTo",
 #'    This method is used to instantiate an PropertyIsNotEqualTo
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsNotEqualTo$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#'
 PropertyIsNotEqualTo <-R6Class("PropertyIsNotEqualTo",
   inherit = BinaryComparisonOpType,
   private = list(xmlElement = "PropertyIsNotEqualTo"),
@@ -126,6 +147,13 @@ PropertyIsNotEqualTo <-R6Class("PropertyIsNotEqualTo",
 #'    This method is used to instantiate an PropertyIsLessThan
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsLessThan$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsLessThan <-R6Class("PropertyIsLessThan",
    inherit = BinaryComparisonOpType,
    private = list(xmlElement = "PropertyIsLessThan"),
@@ -148,6 +176,13 @@ PropertyIsLessThan <-R6Class("PropertyIsLessThan",
 #'    This method is used to instantiate an PropertyIsGreaterThan
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsGreaterThan$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsGreaterThan <-R6Class("PropertyIsGreaterThan",
    inherit = BinaryComparisonOpType,
    private = list(xmlElement = "PropertyIsGreaterThan"),
@@ -170,6 +205,13 @@ PropertyIsGreaterThan <-R6Class("PropertyIsGreaterThan",
 #'    This method is used to instantiate an PropertyIsLesserThanOrEqualTo
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsLessThanOrEqualTo$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsLessThanOrEqualTo <-R6Class("PropertyIsLessThanOrEqualTo",
  inherit = BinaryComparisonOpType,
  private = list(xmlElement = "PropertyIsLessThanOrEqualTo"),
@@ -192,6 +234,13 @@ PropertyIsLessThanOrEqualTo <-R6Class("PropertyIsLessThanOrEqualTo",
 #'    This method is used to instantiate an PropertyIsGreaterThanOrEqualTo
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsGreaterThanOrEqualTo$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsGreaterThanOrEqualTo <-R6Class("PropertyIsGreaterThanOrEqualTo",
   inherit = BinaryComparisonOpType,
   private = list(xmlElement = "PropertyIsGreaterThanOrEqualTo"),
@@ -215,6 +264,13 @@ PropertyIsGreaterThanOrEqualTo <-R6Class("PropertyIsGreaterThanOrEqualTo",
 #'    This method is used to instantiate an PropertyIsLike
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsLike$new(PropertyName = "property", Literal = "value")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsLike <-  R6Class("PropertyIsLike",
    inherit = OGCExpression,
    private = list(xmlElement = "PropertyIsLike"),
@@ -253,6 +309,13 @@ PropertyIsLike <-  R6Class("PropertyIsLike",
 #'    This method is used to instantiate an PropertyIsNull
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsNull$new(PropertyName = "property")
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 PropertyIsNull <-  R6Class("PropertyIsNull",
    inherit = OGCExpression,
    private = list(xmlElement = "PropertyIsNull"),
@@ -276,6 +339,13 @@ PropertyIsNull <-  R6Class("PropertyIsNull",
 #'    This method is used to instantiate an PropertyIsBetween
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsBetween$new(PropertyName = "property", lower = 1, upper = 10)
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#'
 PropertyIsBetween <-  R6Class("PropertyIsBetween",
    inherit = OGCExpression,
    private = list(xmlElement = "PropertyIsBetween"),
@@ -303,6 +373,14 @@ PropertyIsBetween <-  R6Class("PropertyIsBetween",
 #'    This method is used to instantiate an BBOX
 #'  }
 #' }
+#' 
+#' @examples
+#'   bbox <- OWSUtils$toBBOX(-180,-90,180,90)
+#'   expr <- BBOX$new(bbox)
+#'   expr_xml <- expr$encode() #see how it looks like in XML
+#'   
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#'
 BBOX <-  R6Class("BBOX",
   inherit = OGCExpression,
   private = list(xmlElement = "BBOX"),
@@ -368,6 +446,15 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
 #'    This method is used to instantiate an And operator
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
+#'   expr2 <- PropertyIsEqualTo$new(PropertyName = "property2", Literal = "value2")
+#'   and <- And$new(expr1,expr2)
+#'   and_xml <- and$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 And <-  R6Class("And",
   inherit = BinaryLogicOpType,
   private = list(xmlElement = "And"),
@@ -390,6 +477,15 @@ And <-  R6Class("And",
 #'    This method is used to instantiate an Or operator
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
+#'   expr2 <- PropertyIsEqualTo$new(PropertyName = "property2", Literal = "value2")
+#'   or <- Or$new(expr1,expr2)
+#'   or_xml <- or$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 Or <-  R6Class("Or",
   inherit = BinaryLogicOpType,
   private = list(xmlElement = "Or"),
@@ -445,6 +541,14 @@ UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
 #'    This method is used to instantiate an Not operator
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
+#'   not <- Not$new(expr)
+#'   not_xml <- not$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 Not <-  R6Class("Not",
    inherit = UnaryLogicOpType,
    private = list(xmlElement = "Not"),

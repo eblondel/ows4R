@@ -13,6 +13,8 @@
 #'  }
 #' }
 #' 
+#' @note Class used internally by \pkg{ows4R} to trigger a CSW GetRecordById request
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWGetRecordById <- R6Class("CSWGetRecordById",

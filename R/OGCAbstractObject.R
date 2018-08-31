@@ -10,7 +10,10 @@
 #'    This method is used to instantiate an OGCAbstractObject
 #'  }
 #' }
-#' @note abstract class
+#' @note abstract class used by \pkg{ows4R}
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 OGCAbstractObject <-  R6Class("OGCAbstractObject",
   private = list(
     xmlElement = NULL,

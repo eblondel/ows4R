@@ -23,6 +23,14 @@ PropertyIsEqualTo
 }
 }
 
+\examples{
+  expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
+  expr_xml <- expr$encode() #see how it looks like in XML
+
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{BinaryComparisonOpType}
 \keyword{Expression}
 \keyword{OGC}

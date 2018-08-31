@@ -13,6 +13,8 @@
 #'  }
 #' }
 #' 
+#' @note Abstract class used by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSDescribeFeatureType <- R6Class("WFSDescribeFeatureType",

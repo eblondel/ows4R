@@ -15,6 +15,10 @@ Web Feature Service Get Capabilities document.
 \description{
 WFSCapabilities
 }
+\note{
+Class used to read a \code{WFSCapabilities} document. The use of \code{WFSClient} is
+recommended instead to benefit from the full set of capabilities associated to a WFS server.
+}
 \section{Methods}{
 
 \describe{
@@ -31,8 +35,9 @@ WFSCapabilities
 }
 
 \examples{
-\dontrun{
-   WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+\donttest{
+   #example based on CSW endpoint responding at http://localhost:8000/geoserver/wfs
+   caps <- WFSCapabilities$new("http://localhost:8000/geoserver/wfs", version = "1.1.1")
 }
 
 }

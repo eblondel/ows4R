@@ -32,6 +32,8 @@
 #'  }
 #' }
 #' 
+#' @note Abstract class used internally by \pkg{ows4R}
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSRequest <- R6Class("OWSRequest",

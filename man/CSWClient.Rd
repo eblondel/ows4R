@@ -45,9 +45,21 @@ CSWClient
 }
 
 \examples{
-\dontrun{
-   CSWClient$new("http://localhost:8080/geonetwork/srv/eng/csw", serviceVersion = "2.0.2")
-}
+\donttest{
+   #example based on CSW endpoint responding at http://localhost:8000/csw
+   csw <- CSWClient$new("http://localhost:8000/csw", serviceVersion = "2.0.2")
+   
+   #get capabilities
+   caps <- csw$getCapabilities()
+   
+   #get records
+   records <- csw$getRecords()
+   
+   #get record by id
+   record <- csw$getRecordById("my-metadata-id")
+   
+   #Advanced examples at https://github.com/eblondel/ows4R/wiki#csw
+ }
 
 }
 \author{

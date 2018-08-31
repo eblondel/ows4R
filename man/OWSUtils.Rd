@@ -41,6 +41,14 @@ OWSUtils
 }
 }
 
+\examples{
+  #toBBOX
+  bbox <- OWSUtils$toBBOX(-180,-90,180,90)
+  
+  #toCRS
+  crs <- OWSUtils$toCRS("EPSG:4326")
+
+}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

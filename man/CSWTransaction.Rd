@@ -14,6 +14,9 @@ Object of \code{\link{R6Class}} for modelling a CSW Transaction request
 \description{
 CSWTransaction
 }
+\note{
+Class used internally by \pkg{ows4R} to trigger a CSW Transaction request
+}
 \section{Methods}{
 
 \describe{

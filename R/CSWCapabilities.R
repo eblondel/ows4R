@@ -8,8 +8,9 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
-#' \dontrun{
-#'    CSWCapabilities$new("http://localhost:8080/geonetwork/csw", version = "2.0.2")
+#' \donttest{
+#'    #example based on CSW endpoint responding at http://localhost:8000/csw
+#'    caps <- CSWCapabilities$new("http://localhost:8000/geonetwork/csw", version = "2.0.2")
 #' }
 #'
 #' @section Methods:
@@ -18,6 +19,9 @@
 #'    This method is used to instantiate a WFSGetCapabilities object
 #'  }
 #' }
+#' 
+#' @note Class used to read a \code{CSWCapabilities} document. The use of \code{CSWClient} is
+#' recommended instead to benefit from the full set of capabilities associated to a CSW server.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

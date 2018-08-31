@@ -8,8 +8,9 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
-#' \dontrun{
-#'    WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+#' \donttest{
+#'    #example based on CSW endpoint responding at http://localhost:8000/geoserver/wfs
+#'    caps <- WFSCapabilities$new("http://localhost:8000/geoserver/wfs", version = "1.1.1")
 #' }
 #'
 #' @section Methods:
@@ -24,6 +25,9 @@
 #'    Find feature type(s) by name.
 #'  }
 #' }
+#' 
+#' @note Class used to read a \code{WFSCapabilities} document. The use of \code{WFSClient} is
+#' recommended instead to benefit from the full set of capabilities associated to a WFS server.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

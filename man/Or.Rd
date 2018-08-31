@@ -23,6 +23,16 @@ Or
 }
 }
 
+\examples{
+  expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
+  expr2 <- PropertyIsEqualTo$new(PropertyName = "property2", Literal = "value2")
+  or <- Or$new(expr1,expr2)
+  or_xml <- or$encode() #see how it looks like in XML
+
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{BinaryLogicOpType}
 \keyword{Expression}
 \keyword{OGC}

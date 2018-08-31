@@ -23,5 +23,14 @@ CSWConstraint
 }
 }
 
+\examples{
+  filter <- OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", "12345") )
+  cons <- CSWConstraint$new(filter = filter)
+  cons_xml <- cons$encode() #how it looks like in XML
+
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{Filter}
 \keyword{OGC}

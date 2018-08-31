@@ -5,8 +5,6 @@
 #' @keywords OGC WFS FeatureType
 #' @return Object of \code{\link{R6Class}} modelling a WFS feature type
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @note Class used internally by ows4R.
 #'
 #' @section Methods:
 #' \describe{
@@ -38,6 +36,8 @@
 #'    Get features
 #'  }
 #' }
+#' 
+#' @note Abstract class used by \pkg{ows4R}
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

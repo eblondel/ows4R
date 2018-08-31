@@ -13,6 +13,8 @@
 #'  }
 #' }
 #' 
+#' @note Abstract class used internally by \pkg{ows4R}
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSGetCapabilities <- R6Class("OWSGetCapabilities",

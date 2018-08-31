@@ -15,6 +15,9 @@ OWS Get Capabilities document.
 \description{
 OWSGetCapabilities
 }
+\note{
+abstract class used by \pkg{ows4R}
+}
 \section{Methods}{
 
 \describe{
@@ -42,12 +45,6 @@ OWSGetCapabilities
 }
 }
 
-\examples{
-\dontrun{
-   OWSCapabilities$new("http://localhost:8080/geoserver/wfs", service = "wfs" version = "1.1.0")
-}
-
-}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

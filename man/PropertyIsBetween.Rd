@@ -23,6 +23,14 @@ PropertyIsBetween
 }
 }
 
+\examples{
+  expr <- PropertyIsBetween$new(PropertyName = "property", lower = 1, upper = 10)
+  expr_xml <- expr$encode() #see how it looks like in XML
+  
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{Expression}
 \keyword{OGC}
 \keyword{PropertyIsBetween}

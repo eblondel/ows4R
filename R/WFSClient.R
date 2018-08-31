@@ -8,8 +8,19 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
-#' \dontrun{
-#'    WFSClient$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
+#' \donttest{
+#'    #example based on a WFS endpoint responding at http://localhost:8080/geoserver/wfs
+#'    wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", serviceVersion = "1.1.1")
+#'    
+#'    #get capabilities
+#'    caps <- wfs$getCapabilities()
+#'    
+#'    #find feature type
+#'    ft <- wfs$findFeatureTypeByName("mylayer", exact = TRUE)
+#'    data <- ft$getFeatures()
+#'    data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
+#'    
+#'    #Advanced examples at https://github.com/eblondel/ows4R/wiki#wfs
 #' }
 #'
 #' @section Methods:

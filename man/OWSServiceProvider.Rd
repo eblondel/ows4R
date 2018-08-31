@@ -14,6 +14,9 @@ Object of \code{\link{R6Class}} for modelling an OGC Service Provider
 \description{
 OWSServiceProvider
 }
+\note{
+Abstract class used internally by \pkg{ows4R}
+}
 \section{Methods}{
 
 \describe{

@@ -26,6 +26,9 @@ abstract super class of all the property operation classes
 }
 }
 
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{BinaryComparisonOpType}
 \keyword{Expression}
 \keyword{OGC}

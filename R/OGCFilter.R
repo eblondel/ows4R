@@ -11,6 +11,14 @@
 #'    argument should be an object of class \code{\link{OGCExpression}}
 #'  }
 #' }
+#' 
+#' @examples
+#'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
+#'   not <- Not$new(expr)
+#'   not_xml <- not$encode() #see how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 OGCFilter <-  R6Class("OGCFilter",
   inherit = OGCAbstractObject,
   private = list(

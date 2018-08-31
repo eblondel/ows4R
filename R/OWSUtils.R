@@ -30,6 +30,13 @@
 #'  }
 #' }
 #' 
+#' @examples
+#'   #toBBOX
+#'   bbox <- OWSUtils$toBBOX(-180,-90,180,90)
+#'   
+#'   #toCRS
+#'   crs <- OWSUtils$toCRS("EPSG:4326")
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSUtils <- list(
@@ -97,7 +104,7 @@ OWSUtils <- list(
       if (missing(srsName)) {
         stop("please provide a spatial reference system name")
       }
-      proj.lst <- as.character(projInfo("proj")$name)
+      proj.lst <- as.character(rgdal::projInfo("proj")$name)
       
       #we remove the latlong proj for compatibility with sp
       proj.lst <- proj.lst[proj.lst != "latlong" & proj.lst != "latlon"]
@@ -156,16 +163,16 @@ OWSUtils <- list(
         #search if srsName is a WKT PROJ name (PROJCS or GEOGCS)
         #if yes set srs with the corresponding proj4string
         #first search without any consideration of the ESRI representation
-        srsDef <- self$findP4s(srsName, morphToESRI=FALSE)
+        srsDef <- OWSUtils$findP4s(srsName, morphToESRI=FALSE)
         if (is.na(srsDef)) {
           #if not found search with consideration of the ESRI representation
-          srsDef <- self$findP4s(srsName, morphToESRI=TRUE)
+          srsDef <- OWSUtils$findP4s(srsName, morphToESRI=TRUE)
         }
         if (! is.na(srsDef) && ! length(srsDef) == 1) {
           srsDef <- NA
         }
       }
-      return(st_crs(srsDef))
+      return(sf::st_crs(srsDef))
     },
     
     #toEPSG

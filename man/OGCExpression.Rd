@@ -26,5 +26,8 @@ abstract class
 }
 }
 
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{Expression}
 \keyword{OGC}

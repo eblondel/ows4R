@@ -15,6 +15,10 @@ Catalogue Service for the Web (CSW) Get Capabilities document.
 \description{
 CSWCapabilities
 }
+\note{
+Class used to read a \code{CSWCapabilities} document. The use of \code{CSWClient} is
+recommended instead to benefit from the full set of capabilities associated to a CSW server.
+}
 \section{Methods}{
 
 \describe{
@@ -25,8 +29,9 @@ CSWCapabilities
 }
 
 \examples{
-\dontrun{
-   CSWCapabilities$new("http://localhost:8080/geonetwork/csw", version = "2.0.2")
+\donttest{
+   #example based on CSW endpoint responding at http://localhost:8000/csw
+   caps <- CSWCapabilities$new("http://localhost:8000/geonetwork/csw", version = "2.0.2")
 }
 
 }

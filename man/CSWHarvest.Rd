@@ -14,6 +14,9 @@ Object of \code{\link{R6Class}} for modelling a CSW Harvest request
 \description{
 CSWHarvest
 }
+\note{
+Class used internally by \pkg{ows4R} to trigger a CSW Harvest request
+}
 \section{Methods}{
 
 \describe{

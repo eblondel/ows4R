@@ -24,5 +24,14 @@ OGCFilter
 }
 }
 
+\examples{
+  expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
+  not <- Not$new(expr)
+  not_xml <- not$encode() #see how it looks like in XML
+
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{Filter}
 \keyword{OGC}

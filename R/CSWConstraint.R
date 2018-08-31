@@ -10,6 +10,14 @@
 #'    This method is used to instantiate an CSWConstraint object.
 #'  }
 #' }
+#' 
+#' @examples
+#'   filter <- OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", "12345") )
+#'   cons <- CSWConstraint$new(filter = filter)
+#'   cons_xml <- cons$encode() #how it looks like in XML
+#' 
+#' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
+#' 
 CSWConstraint <-  R6Class("CSWConstraint",
   inherit = OGCAbstractObject,
   private = list(

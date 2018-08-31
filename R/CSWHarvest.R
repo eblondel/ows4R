@@ -13,6 +13,8 @@
 #'  }
 #' }
 #' 
+#' @note Class used internally by \pkg{ows4R} to trigger a CSW Harvest request
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWHarvest <- R6Class("CSWHarvest",

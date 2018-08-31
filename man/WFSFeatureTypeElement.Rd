@@ -15,7 +15,7 @@ Object of \code{\link{R6Class}} modelling a WFS feature type element
 WFSFeatureTypeElement
 }
 \note{
-Class used internally by ows4R.
+Abstract class used by \pkg{ows4R}
 }
 \section{Methods}{
 

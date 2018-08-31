@@ -23,6 +23,9 @@ OWSClient
 \item{\code{version}}{the version of OWS service}
 }}
 
+\note{
+Abstract class used internally by \pkg{ows4R}
+}
 \section{Methods}{
 
 \describe{
@@ -45,12 +48,6 @@ OWSClient
 }
 }
 
-\examples{
-\dontrun{
-   OWSClient$new("http://localhost:8080/geoserver/ows", serviceVersion = "1.1.0")
-}
-
-}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

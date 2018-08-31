@@ -23,5 +23,13 @@ CSWRecordProperty
 }
 }
 
+\examples{
+   rp <- CSWRecordProperty$new(name = "NAME", value = "VALUE")
+   rp_xml <- rp$encode() #see how it looks in XML
+
+}
+\author{
+Emmanuel Blondel <emmanuel.blondel1@gmail.com>
+}
 \keyword{CSW}
 \keyword{RecordProperty}
