@@ -53,8 +53,6 @@ CSWHarvest <- R6Class("CSWHarvest",
        self$ResourceType = resourceType
        self$ResourceFormat = resourceFormat
        
-       print(self$encode())
-       
        #execute
        self$execute()
        

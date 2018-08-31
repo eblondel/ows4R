@@ -104,6 +104,17 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       #execute
       self$execute()
       
+      #inherit meta attributes
+      searchResults <- getNodeSet(private$response, paste0("//",names(private$xmlNamespace),":SearchResults"), private$xmlNamespace)[[1]]
+      searchResultsAttrs <- as.list(xmlAttrs(searchResults))
+      searchResultsAttrs$nextRecord <- as.integer(searchResultsAttrs$nextRecord)
+      searchResultsAttrs$numberOfRecordsMatched <- as.integer(searchResultsAttrs$numberOfRecordsMatched)
+      searchResultsAttrs$numberOfRecordsReturned <- as.integer(searchResultsAttrs$numberOfRecordsReturned)
+      
+      self$INFO(sprintf("Retrieving records %s to %s ...",
+                        as.integer(self$attrs$startPosition),
+                        as.integer(self$attrs$startPosition) + (searchResultsAttrs$numberOfRecordsReturned-1)))
+      
       #bindings
       private$response <- switch(self$attrs$outputSchema,
         "http://www.isotc211.org/2005/gmd" = {
@@ -116,6 +127,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
               return(out.obj)
             })
           }
+          attributes(out) <- searchResultsAttrs
           out
         },
         "http://www.isotc211.org/2005/gfc" = {
@@ -128,6 +140,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
               return(out.obj)
             })
           }
+          attributes(out) <- searchResultsAttrs
           out
         },
         "http://www.opengis.net/cat/csw/2.0.2" = {
@@ -151,6 +164,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
               return(out.obj)
             })
           }
+          attributes(out) <- searchResultsAttrs
           out
         },
         "http://www.opengis.net/cat/csw/3.0" = {
@@ -173,6 +187,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
               return(out.obj)
             })
           }
+          attributes(out) <- searchResultsAttrs
           out
         },
         "http://www.w3.org/ns/dcat#" = {
