@@ -236,6 +236,7 @@ test_that("CSW 2.0.2 - Harvest",{
   #remove records for next tests
   csw2$deleteRecordById("firms-mv-map-fishery")
   csw2$deleteRecordById("firms-mv-map-resource")
+  csw2$deleteRecordById("my-metadata-identifier")
   for(i in 1:10){
     id <- paste0("my-metadata-identifier",i)
     csw2$deleteRecordById(id)
