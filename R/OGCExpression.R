@@ -389,6 +389,7 @@ BBOX <-  R6Class("BBOX",
     Envelope = NULL,
     initialize = function(bbox, srsName = NULL){
       envelope <- GMLEnvelope$new(bbox = bbox, srsName = srsName)
+      envelope$wrap <- FALSE
       gmlNS <- envelope$getNamespaceDefinition()
       private$xmlNamespace = c(private$xmlNamespace, ns = gmlNS$gml)
       names(private$xmlNamespace)[length(private$xmlNamespace)] <- names(gmlNS)

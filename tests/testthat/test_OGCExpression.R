@@ -86,3 +86,9 @@ test_that("PropertyIsGreaterThanOrEqualTo",{
   expect_equal(xmlValue(children[[2]]), "value")
 })
 
+test_that("BBOX",{
+  bbox = matrix(c(-180,-90,180,90),2,2)
+  expr <- BBOX$new(bbox)
+  expect_is(expr, "BBOX")
+  
+})
