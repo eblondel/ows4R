@@ -102,7 +102,7 @@ CSWClient <- R6Class("CSWClient",
      },
      
      #getRecords
-     getRecords = function(query = CSWQuery$new(), ...){
+     getRecords = function(query = CSWQuery$new(), maxRecords = NULL, maxRecordsPerRequest = 10L, ...){
        self$INFO("Fetching records ...")
        operations <- self$capabilities$getOperationsMetadata()$getOperations()
        op <- operations[sapply(operations,function(x){x$getName()=="GetRecords"})]
@@ -114,18 +114,35 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        query$setServiceVersion(self$getVersion())
+       
+       hasMaxRecords <- !is.null(maxRecords)
+       if(hasMaxRecords) if(maxRecords < maxRecordsPerRequest) maxRecordsPerRequest <- maxRecords
+       
        firstRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                     user = self$getUser(), pwd = self$getPwd(),
-                                    query = query, logger = self$loggerType, ...)
+                                    query = query, logger = self$loggerType, 
+                                    maxRecords = maxRecordsPerRequest, ...)
        records <- firstRequest$getResponse()
+       if(hasMaxRecords) if(length(records) >= maxRecords){
+         records <- records[1:maxRecords]
+         return(records)
+       }
        nextRecord <- attr(records, "nextRecord")
        while(nextRecord != 0L){
+         if(hasMaxRecords) if(maxRecords - length(records) < maxRecordsPerRequest){
+           maxRecordsPerRequest <- maxRecords - length(records)
+         }
          nextRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                           user = self$getUser(), pwd = self$getPwd(),
                                           query = query, logger = self$loggerType, 
-                                          startPosition = nextRecord)
+                                          startPosition = nextRecord, 
+                                          maxRecords = maxRecordsPerRequest, ...)
          nextRecords <- nextRequest$getResponse()
          records <- c(records, nextRecords)
+         if(hasMaxRecords) if(length(records) >= maxRecords){
+           records <- records[1:maxRecords]
+           break
+         }
          nextRecord <- attr(nextRecords, "nextRecord")
        }
        return(records)
