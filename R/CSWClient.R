@@ -123,14 +123,27 @@ CSWClient <- R6Class("CSWClient",
                                     query = query, logger = self$loggerType, 
                                     maxRecords = maxRecordsPerRequest, ...)
        records <- firstRequest$getResponse()
-       if(hasMaxRecords) if(length(records) >= maxRecords){
-         records <- records[1:maxRecords]
-         return(records)
+       
+       numberOfRecordsMatched <- attr(records, "numberOfRecordsMatched")
+       numberOfRecordsMatchedSafe <- numberOfRecordsMatched
+       
+       if(hasMaxRecords){
+         numberOfRecordsMatched <- maxRecords
+         if(length(records) >= maxRecords){
+          records <- records[1:maxRecords]
+          return(records)
+         }
        }
        nextRecord <- attr(records, "nextRecord")
        while(nextRecord != 0L){
-         if(hasMaxRecords) if(maxRecords - length(records) < maxRecordsPerRequest){
-           maxRecordsPerRequest <- maxRecords - length(records)
+         if(hasMaxRecords) {
+           if(maxRecords - length(records) < maxRecordsPerRequest){
+            maxRecordsPerRequest <- maxRecords - length(records)
+           }
+         }else{
+           if(numberOfRecordsMatched - length(records) < maxRecordsPerRequest){
+             maxRecordsPerRequest <- numberOfRecordsMatched - length(records)
+           }
          }
          nextRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
                                           user = self$getUser(), pwd = self$getPwd(),
@@ -139,11 +152,9 @@ CSWClient <- R6Class("CSWClient",
                                           maxRecords = maxRecordsPerRequest, ...)
          nextRecords <- nextRequest$getResponse()
          records <- c(records, nextRecords)
-         if(hasMaxRecords) if(length(records) >= maxRecords){
-           records <- records[1:maxRecords]
-           break
-         }
+         if(length(records) == numberOfRecordsMatched) break
          nextRecord <- attr(nextRecords, "nextRecord")
+         if(nextRecord > numberOfRecordsMatchedSafe) nextRecord <- 0L
        }
        return(records)
      },
