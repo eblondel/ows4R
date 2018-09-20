@@ -23,8 +23,9 @@ Standard  |Description|Supported versions|Unsupported versions|Supported R bindi
 ----------|-----------|------------------|-----------------|--------------------|------|
 OGC Filter|[Filter Encoding](http://www.opengeospatial.org/standards/filter)|``1.1.0``|``2.0``||ongoing
 OGC Common|[Web Service Common](http://www.opengeospatial.org/standards/common)|``1.1``,``2.0``|||ongoing
-OGC CSW   |[Catalogue Service](http://www.opengeospatial.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking fundings
+OGC CSW   |[Catalogue Service](http://www.opengeospatial.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking sponsors
 OGC WFS   |[Web Feature Service](http://www.opengeospatial.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
+OGC WCS |[Web Coverage Service](http://www.opengeospatial.org/standards/wcs)|``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``|[raster](https://cran.r-project.org/package=raster)|under investigation/seek sponsors
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
 
