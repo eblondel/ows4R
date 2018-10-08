@@ -35,6 +35,9 @@
 #'  \item{\code{getCapabilities()}}{
 #'    Get service capabilities. Inherited from OWS Client
 #'  }
+#'  \item{\code{reloadCapabilities()}}{
+#'    Reload service capabilities
+#'  }
 #'  \item{\code{describeFeatureType(typeName)}}{
 #'    Get the description of a given featureType
 #'  }
@@ -60,6 +63,11 @@ WFSClient <- R6Class("WFSClient",
      #getCapabilities
      getCapabilities = function(){
        return(self$capabilities)
+     },
+     
+     #reloadCapabilities
+     reloadCapabilities = function(){
+       self$capabilities = WFSCapabilities$new(self$url, self$version, logger = self$loggerType)
      },
      
      #describeFeatureType

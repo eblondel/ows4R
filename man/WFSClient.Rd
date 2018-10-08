@@ -28,6 +28,9 @@ WFSClient
  \item{\code{getCapabilities()}}{
    Get service capabilities. Inherited from OWS Client
  }
+ \item{\code{reloadCapabilities()}}{
+   Reload service capabilities
+ }
  \item{\code{describeFeatureType(typeName)}}{
    Get the description of a given featureType
  }

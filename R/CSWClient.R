@@ -36,6 +36,9 @@
 #'  \item{\code{getCapabilities()}}{
 #'    Get service capabilities. Inherited from OWS Client
 #'  }
+#'  \item{\code{reloadCapabilities()}}{
+#'    Reload service capabilities
+#'  }
 #'  \item{\code{describeRecord(namespace, ...)}}{
 #'    Describe records. Retrieves the XML schema for CSW records. By default, returns the XML schema 
 #'    for the CSW records (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
@@ -64,6 +67,16 @@ CSWClient <- R6Class("CSWClient",
        if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0.0"
        super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
+     },
+     
+     #getCapabilities
+     getCapabilities = function(){
+       return(self$capabilities)
+     },
+     
+     #reloadCapabilities
+     reloadCapabilities = function(){
+      self$capabilities = CSWCapabilities$new(self$url, self$version, logger = self$loggerType)
      },
      
      #describeRecord
