@@ -54,18 +54,33 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        #type
        elementType <- NULL
        type <- tolower(xmlGetAttr(xmlObj, "type"))
-       elementType <- switch(type,
-                             "xsd:string" = "character",
-                             "xsd:long" = "numeric",
-                             "xsd:int" = "integer",
-                             "xsd:decimal" = "double",
-                             "xsd:double" = "double",
-                             "xsd:boolean" = "logical",
-                             "xsd:date" = "character", #TODO
-                             "xsd:datetime" = "character", #TODO
+       if(length(type)==0){
+         #try a basic parsing for types in type restriction
+         #TODO study further WFS Schema (through GML geometa?) to propose generic solution
+         type <- try(xpathSApply(xmlDoc(xmlObj), "//xs:restriction",
+                             namespaces = c(xs = "http://www.w3.org/2001/XMLSchema"),
+                             xmlGetAttr, "base"))
+         if(class(type)=="try-error") type <- NULL
+       }
+       if(is.null(type)){
+         stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
+       }
+       if(attr(regexpr("gml", type), "match.length") > 0){
+         elementType <- "geometry"
+       }else{
+         baseType <- unlist(strsplit(type,":"))[2] #ignore namespace xs/xsd
+         elementType <- switch(baseType,
+                             "string" = "character",
+                             "long" = "numeric",
+                             "int" = "integer",
+                             "decimal" = "double",
+                             "double" = "double",
+                             "boolean" = "logical",
+                             "date" = "character", #TODO
+                             "datetime" = "character", #TODO
                              NULL
-       )
-       if(attr(regexpr("gml", type), "match.length") > 0) elementType <- "geometry"
+        )
+       }
        
        element <- list(
          minOccurs = elementMinOccurs,
