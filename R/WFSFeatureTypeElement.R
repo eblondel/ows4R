@@ -53,7 +53,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        elementName <- xmlGetAttr(xmlObj, "name")
        #type
        elementType <- NULL
-       type <- xmlGetAttr(xmlObj, "type")
+       type <- tolower(xmlGetAttr(xmlObj, "type"))
        elementType <- switch(type,
                              "xsd:string" = "character",
                              "xsd:long" = "numeric",
