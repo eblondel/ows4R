@@ -246,7 +246,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       #ftFeatures
       if(hasGeometry){
         ftFeatures <- sf::st_read(destfile, quiet = TRUE)
-        st_crs(ftFeatures) <- self$getDefaultCRS()
+        if(is.null(st_crs(ftFeatures))){
+          st_crs(ftFeatures) <- self$getDefaultCRS()
+        }
       }else{
         if(private$version == "1.0.0"){
           membersContent <- sapply(getNodeSet(xmlObj, "//gml:featureMember"), function(x) xmlChildren(x))
