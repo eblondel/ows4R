@@ -19,7 +19,65 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     xmlElement = NULL,
     xmlNamespace = NULL,
     system_fields = c("verbose.info", "verbose.debug", "loggerType",
-                      "wrap", "attrs","defaults")
+                      "wrap", "attrs","defaults"),
+    xmlNodeToCharacter = function (x, ..., indent = "", tagSeparator = "\n") 
+    {
+      out <- ""
+      if (length(xmlAttrs(x))) {
+        tmp <- paste(names(xmlAttrs(x)), paste("\"", XML:::insertEntities(xmlAttrs(x)), 
+                                               "\"", sep = ""), sep = "=", collapse = " ")
+      } else{
+        tmp <- ""
+      }
+      if (length(x$namespaceDefinitions) > 0) {
+        k = as(x$namespaceDefinitions, "character")
+        ns = paste("xmlns", ifelse(nchar(names(k)), ":", ""), 
+                   names(k), "=", ddQuote(k), sep = "", collapse = " ")
+      } else{
+        ns <- ""
+      }
+      subIndent <- paste(indent, " ", sep = "")
+      if (is.logical(indent) && !indent) {
+        indent <- ""
+        subIndent <- FALSE
+      }
+      if (length(xmlChildren(x)) == 0) {
+        out <- paste(out,indent, paste("<", xmlName(x, TRUE), ifelse(tmp != 
+                                                                       "", " ", ""), tmp, ifelse(ns != "", " ", ""), ns, 
+                                       "/>", tagSeparator, sep = ""), sep = "")
+      } else if (length(xmlChildren(x)) == 1 && inherits(xmlChildren(x)[[1]], "XMLTextNode")) {
+        out <- paste(out,indent, paste("<", xmlName(x, TRUE), ifelse(tmp != 
+                                                                       "", " ", ""), tmp, ifelse(ns != "", " ", ""), ns, 
+                                       ">", sep = ""), sep = "")
+        kid = xmlChildren(x)[[1]]
+        if (inherits(kid, "EntitiesEscaped")) 
+          txt = xmlValue(kid)
+        else txt = XML:::insertEntities(xmlValue(kid))
+        out <- paste(out,txt, sep = "")
+        out <- paste(out,paste("</", xmlName(x, TRUE), ">", tagSeparator, 
+                               sep = ""), sep = "")
+      } else {
+        out <- paste(out,indent, paste("<", xmlName(x, TRUE), ifelse(tmp != 
+                                                                       "", " ", ""), tmp, ifelse(ns != "", " ", ""), ns, 
+                                       ">", tagSeparator, sep = ""), sep = "")
+        for (i in xmlChildren(x)){
+          out_child <- NULL
+          if(is(i,"XMLNode")){
+            if(is(i,"XMLCommentNode")){
+              out_child <- paste0(capture.output(i),collapse="")
+            }else{
+              out_child <- private$xmlNodeToCharacter(i)
+            }
+          }else{
+            out_child <- paste(as(i,"character"),tagSeparator,sep="")
+          }
+          if(!is.null(out_child)) out <- paste(out, out_child, sep="") 
+        }
+        out<-paste(out,indent, paste("</", xmlName(x, TRUE), ">", tagSeparator, 
+                                     sep = ""), sep = "")
+      }
+      return(out)
+    }
   ),
   public = list(
     #logger
@@ -203,8 +261,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
         }
       }
       out <- rootXML$value()
-      out <- paste0(capture.output(out), collapse="") #to character
-      out <- iconv(out, to = "UTF-8")
+      out <- private$xmlNodeToCharacter(out)
+      if(Encoding(out)!="UTF-8") out <- iconv(out, to = "UTF-8")
       out <- xmlParse(out, encoding = Encoding(out), error = function (msg, ...) {})
       out <- as(out, "XMLInternalNode") #to XMLInternalNode
       if(length(rootXMLAttrs)>0){
