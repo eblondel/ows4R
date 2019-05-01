@@ -152,7 +152,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
       
       #fields
       fields <- fields[!sapply(fields, function(x){
-        (class(self[[x]]) %in% c("environment", "function")) ||
+        (class(self[[x]])[1] %in% c("environment", "function")) ||
           (x %in% private$system_fields)
       })]
       
