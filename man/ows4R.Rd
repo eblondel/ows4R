@@ -4,7 +4,6 @@
 \name{ows4R}
 \alias{ows4R}
 \alias{ows4R-package}
-\alias{ows4R-package}
 \title{Interface to OGC Web-Services}
 \description{
 Provides an Interface to Web-Services defined as standards by the Open Geospatial Consortium (OGC), including Web Feature Service (WFS) 
@@ -18,7 +17,7 @@ Web Processing Service (WPS).
    Type: \tab Package\cr
    Version
    : \tab 0.1-1\cr
-   Date: \tab 2019-02-25\cr
+   Date: \tab 2019-05-26\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }
