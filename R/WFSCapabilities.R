@@ -18,8 +18,9 @@
 #'  \item{\code{new(url, version)}}{
 #'    This method is used to instantiate a WFSGetCapabilities object
 #'  }
-#'  \item{\code{getFeatureTypes()}}{
-#'    Retrieves the list of feature types
+#'  \item{\code{getFeatureTypes(pretty)}}{
+#'    List the feature types available. If \code{pretty} is TRUE,
+#'    the output will be an object of class \code{data.frame}
 #'  }
 #'  \item{\code{findFeatureTypeByName(name, exact)}}{
 #'    Find feature type(s) by name.
@@ -67,8 +68,18 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      },
      
      #getFeatureTypes
-     getFeatureTypes = function(){
-       return(private$featureTypes)
+     getFeatureTypes = function(pretty = FALSE){
+       fts <- private$featureTypes
+       if(pretty){
+         fts <- do.call("rbind", lapply(fts, function(x){
+           return(data.frame(
+             name = x$getName(),
+             title = x$getTitle(),
+             stringsAsFactors = FALSE
+           ))
+         }))
+       }
+       return(fts)
      },
      
      #findFeatureTypeByName

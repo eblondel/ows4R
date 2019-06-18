@@ -16,7 +16,7 @@
 #'    caps <- wfs$getCapabilities()
 #'    
 #'    #find feature type
-#'    ft <- wfs$findFeatureTypeByName("mylayer", exact = TRUE)
+#'    ft <- caps$findFeatureTypeByName("mylayer", exact = TRUE)
 #'    data <- ft$getFeatures()
 #'    data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
 #'    
@@ -43,6 +43,10 @@
 #'  }
 #'  \item{\code{getFeatures(typeName, ...)}}{
 #'    Retrieves the features for a given feature type.
+#'  }
+#'  \item{\code{getFeatureTypes(pretty)}}{
+#'    List the feature types available. If \code{pretty} is TRUE,
+#'    the output will be an object of class \code{data.frame}
 #'  }
 #' }
 #' 
@@ -90,7 +94,13 @@ WFSClient <- R6Class("WFSClient",
          features <- ft$getFeatures(...)
        }
        return(features)
+     },
+     
+     #getFeatureTypes
+     getFeatureTypes = function(pretty = FALSE){
+       return(self$capabilities$getFeatureTypes(pretty = pretty))
      }
+     
    )
 )
 
