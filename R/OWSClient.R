@@ -50,7 +50,8 @@ OWSClient <- R6Class("OWSClient",
   #TODO provider specific formatter to prevent these fields to be printable
   private = list(
     user = NULL,
-    pwd = NULL
+    pwd = NULL,
+    token = NULL
   ),
 
   public = list(
@@ -62,7 +63,7 @@ OWSClient <- R6Class("OWSClient",
     
     #initialize
     initialize = function(url, service, serviceVersion,
-                          user = NULL, pwd = NULL,
+                          user = NULL, pwd = NULL, token = NULL,
                           logger = NULL) {
       
       #logger
@@ -75,6 +76,7 @@ OWSClient <- R6Class("OWSClient",
       #authentication
       private$user <- user
       private$pwd <- pwd
+      private$token <- token
     },
      
     #getUrl
@@ -100,6 +102,11 @@ OWSClient <- R6Class("OWSClient",
     #getPwd
     getPwd = function(){
       return(private$pwd)
+    },
+    
+    #getToken
+    getToken = function(){
+      return(private$token)
     }
     
   )

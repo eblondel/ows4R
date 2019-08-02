@@ -26,10 +26,10 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
+#'  \item{\code{new(url, serviceVersion, user, pwd, token, logger)}}{
 #'    This method is used to instantiate a CSWClient with the \code{url} of the
-#'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
-#'    be added with the support of service transactional modes. By default, the \code{logger}
+#'    OGC service. Authentication is supported either with a basic (\code{user}/\code{pwd}) 
+#'    authentication or a \code{token}-based authentication. By default, the \code{logger}
 #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
 #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
 #'  }
@@ -63,9 +63,9 @@ CSWClient <- R6Class("CSWClient",
    ),
    public = list(
      #initialize
-     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
+     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, token = NULL, logger = NULL) {
        if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0.0"
-       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
+       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
      },
      
@@ -108,7 +108,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(),
-                                       user = self$getUser(), pwd = self$getPwd(),
+                                       user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
                                        id = id, elementSetName = elementSetName,
                                        logger = self$loggerType, ...)
        return(request$getResponse())
@@ -132,7 +132,7 @@ CSWClient <- R6Class("CSWClient",
        if(hasMaxRecords) if(maxRecords < maxRecordsPerRequest) maxRecordsPerRequest <- maxRecords
        
        firstRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
-                                    user = self$getUser(), pwd = self$getPwd(),
+                                    user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
                                     query = query, logger = self$loggerType, 
                                     maxRecords = maxRecordsPerRequest, ...)
        records <- firstRequest$getResponse()
@@ -159,7 +159,7 @@ CSWClient <- R6Class("CSWClient",
            }
          }
          nextRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
-                                          user = self$getUser(), pwd = self$getPwd(),
+                                          user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
                                           query = query, logger = self$loggerType, 
                                           startPosition = nextRecord, 
                                           maxRecords = maxRecordsPerRequest, ...)
@@ -194,7 +194,7 @@ CSWClient <- R6Class("CSWClient",
        }
        #transation
        transaction <- CSWTransaction$new(op, cswt_url, self$getVersion(), type = type,
-                                         user = self$getUser(), pwd = self$getPwd(),
+                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        

@@ -32,13 +32,13 @@ CSWHarvest <- R6Class("CSWHarvest",
      ResourceType = "http://www.isotc211.org/2005/gmd",
      ResourceFormat = "application/xml",
      initialize = function(op, url, serviceVersion = "2.0.2", 
-                           user = NULL, pwd = NULL,
+                           user = NULL, pwd = NULL, token = NULL,
                            source = NULL,
                            resourceType = "http://www.isotc211.org/schemas/2005/gmd/",
                            resourceFormat = "application/xml",
                            logger = NULL, ...) {
        super$initialize(op, "POST", url, request = private$xmlElement,
-                        user = user, pwd = pwd,
+                        user = user, pwd = pwd, token = token,
                         contentType = "text/xml", mimeType = "text/xml",
                         logger = logger, ...)
        nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)

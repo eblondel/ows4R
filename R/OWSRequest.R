@@ -57,6 +57,7 @@ OWSRequest <- R6Class("OWSRequest",
     user = NULL,
     pwd = NULL,
     token = NULL,
+    auth_scheme = NULL,
 
     #GET
     #---------------------------------------------------------------
@@ -71,7 +72,7 @@ OWSRequest <- R6Class("OWSRequest",
       #headers
       headers <- c()
       if(!is.null(private$token)){
-        headers <- c(headers, "Authorization" = paste("Basic", private$token))
+        headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
       
       r <- NULL
@@ -107,7 +108,7 @@ OWSRequest <- R6Class("OWSRequest",
       #headers
       headers <- c("Accept" = "application/xml", "Content-Type" = contentType)
       if(!is.null(private$token)){
-        headers <- c(headers, "Authorization" = paste("Basic", private$token))
+        headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
       
       #send request
@@ -146,7 +147,7 @@ OWSRequest <- R6Class("OWSRequest",
   public = list(
     #initialize
     initialize = function(op, type, url, request,
-                          user = NULL, pwd = NULL,
+                          user = NULL, pwd = NULL, token = NULL, 
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
@@ -158,12 +159,20 @@ OWSRequest <- R6Class("OWSRequest",
       private$contentType = contentType
       private$mimeType = mimeType
       
+      #authentication schemes
       if(!is.null(user) && !is.null(pwd)){
+        #Basic authentication (user/pwd) scheme
+        private$auth_scheme = "Basic"
         private$user = user
         private$pwd = pwd
         private$token = openssl::base64_encode(charToRaw(paste(user, pwd, sep=":")))
       }
-      
+      if(!is.null(token)){
+        #Token/Bearer authentication
+        private$auth_scheme = "Bearer"
+        private$token = token
+      }
+        
       vendorParams <- list(...)
       #if(!is.null(op)){
       #  for(param in names(vendorParams)){

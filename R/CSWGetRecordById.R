@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, serviceVersion, user, pwd, id, elementSetName, logger, ...)}}{
+#'  \item{\code{new(op, url, serviceVersion, user, pwd, token, id, elementSetName, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecordById object
 #'  }
 #' }
@@ -32,7 +32,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
       Id = NA,
       ElementSetName = "full",
       initialize = function(op, url, serviceVersion = "2.0.2",
-                            user = NULL, pwd = NULL,
+                            user = NULL, pwd = NULL, token = NULL,
                             id, elementSetName = "full", logger = NULL, ...) {
         self$Id = id
         allowedElementSetNames <- c("full", "brief", "summary")
@@ -42,7 +42,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
         }
         self$ElementSetName = elementSetName
         super$initialize(op, "POST", url, request = private$xmlElement,
-                         user = user, pwd = pwd,
+                         user = user, pwd = pwd, token = token,
                          contentType = "text/xml", mimeType = "text/xml",
                          logger = logger, ...)
         
