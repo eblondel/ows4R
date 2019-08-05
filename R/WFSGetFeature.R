@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, typeName, ...)}}{
+#'  \item{\code{new(op, url, version, typeName, logger, ...)}}{
 #'    This method is used to instantiate a WFSGetFeature object
 #'  }
 #' }
@@ -23,12 +23,13 @@ WFSGetFeature <- R6Class("WFSGetFeature",
      name = "GetFeature"
   ), 
   public = list(
-     initialize = function(op, url, version, typeName, ...) {
+     initialize = function(op, url, version, typeName, logger = NULL, ...) {
        namedParams <- list(service = "WFS", version = version, typeName = typeName)
        vendorParams <- list(...)
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        super$initialize(op, "GET", url, request = private$name, 
-                        namedParams = namedParams, mimeType = "text/xml", ...)
+                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
+                        ...)
        self$execute()
      }
    )
