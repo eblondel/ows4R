@@ -133,7 +133,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     },
     
     #encode
-    encode = function(addNS = TRUE){
+    encode = function(addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE){
       
       if(is.null(private$xmlElement) | is.null(private$xmlNamespace)){
         stop("Cannot encode an object of an abstract class!")
@@ -197,10 +197,10 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               rootXML$addNode(fieldObjXml)
             }
           }else if(is(fieldObj, "ISOAbstractObject")){
-            fieldObjXml <- fieldObj$encode(validate = FALSE)
+            fieldObjXml <- fieldObj$encode(validate = geometa_validate, inspire = geometa_inspire)
             fieldObjXml <- as(fieldObjXml, "character")
             fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
-            fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
+            #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
             fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
             print(field)
             if(fieldObj$wrap){ 
@@ -224,10 +224,10 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                 if(!is.null(item)){
                   fieldObjXml <- NULL
                   if(is(item,"ISOAbstractObject")){
-                    fieldObjXml <- item$encode(validate = FALSE)
+                    fieldObjXml <- item$encode(validate = geometa_validate, inspire = geometa_inspire)
                     fieldObjXml <- as(fieldObjXml, "character")
                     fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
-                    fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
+                    #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
                     fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
                   }else{
                     fieldObjXml <- item$encode()
@@ -241,10 +241,10 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                 if(!is.null(item)){
                   fieldObjXml <- NULL
                   if(is(item,"ISOAbstractObject")){
-                    fieldObjXml <- item$encode(validate = FALSE)
+                    fieldObjXml <- item$encode(validate = geometa_validate, inspire = geometa_inspire)
                     fieldObjXml <- as(fieldObjXml, "character")
                     fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
-                    fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
+                    #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
                     fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
                   }else{
                     fieldObjXml <- item$encode()
