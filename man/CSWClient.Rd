@@ -18,10 +18,10 @@ CSWClient
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
+ \item{\code{new(url, serviceVersion, user, pwd, token, logger)}}{
    This method is used to instantiate a CSWClient with the \code{url} of the
-   OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
-   be added with the support of service transactional modes. By default, the \code{logger}
+   OGC service. Authentication is supported either with a basic (\code{user}/\code{pwd}) 
+   authentication or a \code{token}-based authentication. By default, the \code{logger}
    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
  }

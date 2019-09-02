@@ -20,7 +20,7 @@ Class used internally by \pkg{ows4R} to trigger a CSW GetRecordById request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, serviceVersion, user, pwd, id, elementSetName, logger, ...)}}{
+ \item{\code{new(op, url, serviceVersion, user, pwd, token, id, elementSetName, logger, ...)}}{
    This method is used to instantiate a CSWGetRecordById object
  }
 }
