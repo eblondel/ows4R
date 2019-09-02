@@ -226,6 +226,20 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType, ...)
       xmlObj <- ftFeatures$getResponse()
       
+      vendorParams <- list(...)
+      if(length(vendorParams)>0){
+        names(vendorParams) <- tolower(names(vendorParams))
+        if("resulttype" %in% names(vendorParams)){
+          resultType = vendorParams[["resulttype"]]
+          if(resultType == "hits"){
+            hits <- xmlAttrs(xmlRoot(xmlObj))
+            hits <- as.list(hits)
+            hits <- hits[sapply(names(hits), function(x){x %in% c("numberOfFeatures", "numberMatched", "numberReturned", "timeStamp")})]
+            return(hits)
+          }
+        }
+      }
+      
       #write the file to disk
       tempf = tempfile() 
       destfile = paste(tempf,".gml",sep='')

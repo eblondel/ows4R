@@ -4,7 +4,8 @@
 
 **Corrections**
 
-* [#14](https://github.com/eblondel/ows4R/issues/14) debug parameter shouldn't be passed to WFS requests
+* [#14](https://github.com/eblondel/ows4R/issues/14) debug parameter shouldn't be passed to OWS requests
+* [#30](https://github.com/eblondel/ows4R/issues/30) WFS - Handle Resulttype Hits get features response
 
 **Enhancements**
 
