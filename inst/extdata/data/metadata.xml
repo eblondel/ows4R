@@ -463,6 +463,22 @@
     <gmd:MD_Distribution>
       <gmd:transferOptions>
         <gmd:MD_DigitalTransferOptions>
+           <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://somelink1/wms</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>OGC:WMS-1.1.0-http-get-map</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name>
+                <gco:CharacterString>layer1</gco:CharacterString>
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>description1</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
           <gmd:onLine>
             <gmd:CI_OnlineResource>
               <gmd:linkage>
