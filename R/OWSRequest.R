@@ -103,8 +103,8 @@ OWSRequest <- R6Class("OWSRequest",
     POST = function(url, contentType = "text/xml", mimeType = "text/xml"){
       
       #vendor params
-      geometa_validate <- if(!is.null(private$namedParams$geometa_validate)) private$namedParams$geometa_validate else TRUE
-      geometa_inspire <- if(!is.null(private$namedParams$geometa_inspire)) private$namedParams$geometa_inspire else FALSE
+      geometa_validate <- if(!is.null(private$namedParams$geometa_validate)) as.logical(private$namedParams$geometa_validate) else TRUE
+      geometa_inspire <- if(!is.null(private$namedParams$geometa_inspire)) as.logical(private$namedParams$geometa_inspire) else FALSE
       
       #XML encoding
       outXML <- self$encode(
