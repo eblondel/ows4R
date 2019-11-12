@@ -1,6 +1,13 @@
-# **[ows4R 0.2](https://github.com/eblondel/ows4R/issues?milestone=2)**
 
-## **_0.2-0_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://cran.r-project.org/package=ows4R)
+# **[ows4R 0.1](https://github.com/eblondel/ows4R/issues?milestone=1)**
+
+## **_0.1-4_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+
+**Corrections**
+
+*[#32](https://github.com/eblondel/ows4R/issues/32) Regression with WFS getfeatures - issue when setting CQL_filter
+
+## **_0.1-3_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 
 **Corrections**
 
@@ -15,9 +22,6 @@ _No enhancements_
 
 * [#16](https://github.com/eblondel/ows4R/issues/26) Add support for Bearer (token) authentication
 * [#28](https://github.com/eblondel/ows4R/issues/28) Support geometa record validate/inspire options in CSW-T
-
-
-# **[ows4R 0.1](https://github.com/eblondel/ows4R/issues?milestone=1)**
 
 ## **_0.1-2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 

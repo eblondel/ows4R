@@ -28,8 +28,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        vendorParams <- list(...)
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        super$initialize(op, "GET", url, request = private$name, 
-                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
-                        ...)
+                        namedParams = namedParams, mimeType = "text/xml", logger = logger)
        self$execute()
      }
    )
