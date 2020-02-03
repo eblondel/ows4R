@@ -298,7 +298,11 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         if(!is.null(attrType) && attrType != "geometry"){
           attrName = element$getName()
           if(!is.null(ftFeatures[[attrName]])){
-            ftFeatures[[attrName]] <- as(ftFeatures[[attrName]],attrType)
+            ftFeatures[[attrName]] <- switch(attrType,
+              "Date" = as.Date(ftFeatures[[attrName]]),
+              "POSIXct" = as.POSIXct(ftFeatures[[attrName]]),
+              as(ftFeatures[[attrName]], attrType)
+            )
           }
         }
       }

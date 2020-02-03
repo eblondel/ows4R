@@ -76,8 +76,8 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
                              "decimal" = "double",
                              "double" = "double",
                              "boolean" = "logical",
-                             "date" = "character", #TODO
-                             "datetime" = "character", #TODO
+                             "date" = "Date",
+                             "datetime" = "POSIXct",
                              NULL
         )
        }
