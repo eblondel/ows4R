@@ -24,7 +24,13 @@ WFSGetFeature <- R6Class("WFSGetFeature",
   ), 
   public = list(
      initialize = function(op, url, version, typeName, logger = NULL, ...) {
-       namedParams <- list(service = "WFS", version = version, typeName = typeName)
+       
+       namedParams <- list(service = "WFS", version = version)
+       if(startsWith(version, "1")){
+         namedParams <- c(namedParams, typeName = typeName)
+       }else if(startsWith(version, "2.0")){
+         namedParams <- c(namedParams, typeNames = typeName)
+       }
        vendorParams <- list(...)
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        super$initialize(op, "GET", url, request = private$name, 
