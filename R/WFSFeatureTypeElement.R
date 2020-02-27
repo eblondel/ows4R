@@ -68,7 +68,11 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        if(attr(regexpr("gml", type), "match.length") > 0){
          elementType <- "geometry"
        }else{
-         baseType <- unlist(strsplit(type,":"))[2] #ignore namespace xs/xsd
+         baseType <- type
+         #detect namespace xs/xsd (normal behavior)
+         #primitive types that are not prefixed with xsd (http://www.w3.org/2001/XMLSchema) schema are not handled well
+         #ows4R is permissive and controls it, although it is an issue of XML compliance on service providers side
+         if(regexpr(":", type)>0) baseType <- unlist(strsplit(type,":"))[2] 
          elementType <- switch(baseType,
                              "string" = "character",
                              "long" = "numeric",
