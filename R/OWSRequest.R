@@ -201,7 +201,6 @@ OWSRequest <- R6Class("OWSRequest",
       #}
       vendorParams <- vendorParams[!sapply(vendorParams, is.null)]
       vendorParams <- lapply(vendorParams, curl::curl_escape)
-      print(vendorParams)
       private$namedParams <- c(private$namedParams, vendorParams)
     },
     

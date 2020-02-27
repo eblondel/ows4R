@@ -202,7 +202,6 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
             #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
             fieldObjXml <- xmlRoot(xmlParse(fieldObjXml, encoding = "UTF-8"))
-            print(field)
             if(fieldObj$wrap){ 
               wrapperNode <- xmlOutputDOM(
                 tag = field,
