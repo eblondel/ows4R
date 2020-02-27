@@ -101,7 +101,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           ftDefaultCRS <- xmlValue(children$DefaultCRS)
         }
       }
-      ftDefaultCRS <- OWSUtils$toCRS(ftDefaultCRS)
+      if(!is.null(ftDefaultCRS)) ftDefaultCRS <- OWSUtils$toCRS(ftDefaultCRS)
       
       ftBoundingBox <- NULL
       if(version == "1.0.0"){
