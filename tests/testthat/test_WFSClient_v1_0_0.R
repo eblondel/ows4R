@@ -12,7 +12,7 @@ test_that("WFS 1.0.0",{
   expect_is(wfs, "WFSClient")
   caps <- wfs$getCapabilities()
   expect_is(caps, "WFSCapabilities")
-  ft <- caps$findFeatureTypeByName("topp:tasmania_water_bodies", exact = TRUE)
+  ft <- caps$findFeatureTypeByName("topp:tasmania_water_bodies")
   expect_is(ft, "WFSFeatureType")
   ft.des <- ft$getDescription()
   expect_is(ft.des, "list")

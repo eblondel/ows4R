@@ -53,7 +53,7 @@ WFSClient
    caps <- wfs$getCapabilities()
    
    #find feature type
-   ft <- caps$findFeatureTypeByName("mylayer", exact = TRUE)
+   ft <- caps$findFeatureTypeByName("mylayer")
    data <- ft$getFeatures()
    data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
    

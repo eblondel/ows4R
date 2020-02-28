@@ -16,7 +16,7 @@
 #'    caps <- wfs$getCapabilities()
 #'    
 #'    #find feature type
-#'    ft <- caps$findFeatureTypeByName("mylayer", exact = TRUE)
+#'    ft <- caps$findFeatureTypeByName("mylayer")
 #'    data <- ft$getFeatures()
 #'    data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
 #'    
@@ -78,9 +78,11 @@ WFSClient <- R6Class("WFSClient",
      describeFeatureType = function(typeName){
        self$INFO(sprintf("Fetching featureType description for '%s' ...", typeName))
        describeFeatureType <- NULL
-       ft <- self$capabilities$findFeatureTypeByName(typeName, exact = TRUE)
+       ft <- self$capabilities$findFeatureTypeByName(typeName)
        if(is(ft, "WFSFeatureType")){
          describeFeatureType <- ft$getDescription()
+       }else if(is(ft, "list")){
+          describeFeatureType <- ft[[1]]$getDescription()
        }
        return(describeFeatureType)
      },
@@ -89,9 +91,11 @@ WFSClient <- R6Class("WFSClient",
      getFeatures = function(typeName, ...){
        self$INFO(sprintf("Fetching features for '%s' ...", typeName))
        features <- NULL
-       ft <- self$capabilities$findFeatureTypeByName(typeName, exact = TRUE)
+       ft <- self$capabilities$findFeatureTypeByName(typeName)
        if(is(ft,"WFSFeatureType")){
          features <- ft$getFeatures(...)
+       }else if(is(ft, "list")){
+          features <- ft[[1]]$getFeatures(...)
        }
        return(features)
      },

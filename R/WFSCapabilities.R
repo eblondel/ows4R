@@ -22,7 +22,7 @@
 #'    List the feature types available. If \code{pretty} is TRUE,
 #'    the output will be an object of class \code{data.frame}
 #'  }
-#'  \item{\code{findFeatureTypeByName(name, exact)}}{
+#'  \item{\code{findFeatureTypeByName(name)}}{
 #'    Find feature type(s) by name.
 #'  }
 #' }
@@ -83,20 +83,14 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      },
      
      #findFeatureTypeByName
-     findFeatureTypeByName = function(expr, exact = FALSE){
-       result <- lapply(private$featureTypes,
-                        function(x){
-                          ft <- NULL
-                          if(exact){
-                            if(x$getName() == expr) ft <- x
-                          }else{
-                            if(attr(regexpr(expr, x$getName()),
-                                    "match.length") != -1){
-                              ft <- x
-                            }
-                          }                         
-                          return(ft)
-                        })
+     findFeatureTypeByName = function(expr){
+       result <- lapply(private$featureTypes, function(x){
+          ft <- NULL
+          if(attr(regexpr(expr, x$getName()), "match.length") != -1){
+            ft <- x
+          }
+           return(ft)
+       })
        result <- result[!sapply(result, is.null)]
        if(length(result) == 1) result <- result[[1]]
        return(result)
