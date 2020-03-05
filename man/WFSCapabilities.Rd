@@ -29,7 +29,7 @@ recommended instead to benefit from the full set of capabilities associated to a
    List the feature types available. If \code{pretty} is TRUE,
    the output will be an object of class \code{data.frame}
  }
- \item{\code{findFeatureTypeByName(name)}}{
+ \item{\code{findFeatureTypeByName(name, exact)}}{
    Find feature type(s) by name.
  }
 }
