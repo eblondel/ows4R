@@ -41,8 +41,9 @@ Abstract class used by \pkg{ows4R}
  \item{\code{getBoundingBox()}}{
    Get feature type bounding box
  }
- \item{\code{getDescription()}}{
-   Get feature type description
+ \item{\code{getDescription(pretty)}}{
+   Get feature type description. If \code{pretty} is TRUE,
+   the output will be an object of class \code{data.frame}
  }
  \item{\code{getFeatures()}}{
    Get features

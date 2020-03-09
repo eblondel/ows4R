@@ -29,8 +29,9 @@
 #'  \item{\code{getBoundingBox()}}{
 #'    Get feature type bounding box
 #'  }
-#'  \item{\code{getDescription()}}{
-#'    Get feature type description
+#'  \item{\code{getDescription(pretty)}}{
+#'    Get feature type description. If \code{pretty} is TRUE,
+#'    the output will be an object of class \code{data.frame}
 #'  }
 #'  \item{\code{getFeatures()}}{
 #'    Get features
@@ -190,7 +191,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     },
     
     #getDescription
-    getDescription = function(){
+    getDescription = function(pretty = FALSE){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -208,7 +209,21 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       elementXML <- getNodeSet(xmlObj, "//ns:sequence/ns:element", xsdNs)
       elements <- lapply(elementXML, WFSFeatureTypeElement$new)
       self$description <- elements
-      return(self$description)
+      out <- self$description
+      if(pretty){
+        out <- do.call("rbind", lapply(elements, function(element){
+          out_element <- data.frame(
+            name = element$getName(),
+            type = element$getType(),
+            minOccurs = element$getMinOccurs(),
+            maxOccurs = element$getMaxOccurs(),
+            nillable = element$isNillable(),
+            stringsAsFactors = FALSE
+          )
+          return(out_element)
+        }))
+      }
+      return(out)
     },
     
     #getFeatures
