@@ -96,11 +96,12 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
           },
           "http://www.isotc211.org/2005/gfc" = {
             out <- NULL
+            print(private$response)
             xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
             if(length(xmlObjs)>0){
               xmlObj <- xmlObjs[[1]]
               out <- geometa::ISOFeatureCatalogue$new()
-              out$decode(xml = xml)
+              out$decode(xml = xmlObj)
             }
             out
           },
