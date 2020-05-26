@@ -9,8 +9,8 @@
 #' 
 #' @examples
 #' \donttest{
-#'    #example based on CSW endpoint responding at http://localhost:8000/geoserver/wfs
-#'    caps <- WFSCapabilities$new("http://localhost:8000/geoserver/wfs", version = "1.1.1")
+#'    #example based on CSW endpoint responding at http://localhost:8080/geoserver/wfs
+#'    caps <- WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
 #' }
 #'
 #' @section Methods:
