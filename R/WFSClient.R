@@ -17,7 +17,7 @@
 #'    
 #'    #find feature type
 #'    ft <- caps$findFeatureTypeByName("mylayer")
-#'    if(!is.null(ft)){
+#'    if(length(ft)>0){
 #'      data <- ft$getFeatures()
 #'      data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
 #'    }
