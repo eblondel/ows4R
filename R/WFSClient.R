@@ -17,8 +17,10 @@
 #'    
 #'    #find feature type
 #'    ft <- caps$findFeatureTypeByName("mylayer")
-#'    data <- ft$getFeatures()
-#'    data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
+#'    if(!is.null(ft)){
+#'      data <- ft$getFeatures()
+#'      data_with_filter <- ft$getFeatures(cql_filter = "somefilter")
+#'    }
 #'    
 #'    #Advanced examples at https://github.com/eblondel/ows4R/wiki#wfs
 #' }
