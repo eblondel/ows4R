@@ -4,9 +4,8 @@
 \name{BinaryComparisonOpType}
 \alias{BinaryComparisonOpType}
 \title{BinaryComparisonOpType}
-\format{\code{\link{R6Class}} object.}
-\usage{
-BinaryComparisonOpType
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an BinaryComparisonOpType

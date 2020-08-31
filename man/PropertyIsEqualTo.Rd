@@ -4,9 +4,8 @@
 \name{PropertyIsEqualTo}
 \alias{PropertyIsEqualTo}
 \title{PropertyIsEqualTo}
-\format{\code{\link{R6Class}} object.}
-\usage{
-PropertyIsEqualTo
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an PropertyIsEqualTo

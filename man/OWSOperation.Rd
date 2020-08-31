@@ -4,9 +4,8 @@
 \name{OWSOperation}
 \alias{OWSOperation}
 \title{OWSOperation}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSOperation
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Operation

@@ -4,9 +4,8 @@
 \name{OWSServiceProvider}
 \alias{OWSServiceProvider}
 \title{OWSServiceProvider}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSServiceProvider
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Service Provider

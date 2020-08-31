@@ -4,9 +4,8 @@
 \name{CSWCapabilities}
 \alias{CSWCapabilities}
 \title{CSWCapabilities}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWCapabilities
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for interfacing an OGC

@@ -4,9 +4,8 @@
 \name{UnaryLogicOpType}
 \alias{UnaryLogicOpType}
 \title{UnaryLogicOpType}
-\format{\code{\link{R6Class}} object.}
-\usage{
-UnaryLogicOpType
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an UnaryLogicOpType

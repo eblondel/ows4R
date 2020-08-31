@@ -4,9 +4,8 @@
 \name{PropertyIsLessThan}
 \alias{PropertyIsLessThan}
 \title{PropertyIsLessThan}
-\format{\code{\link{R6Class}} object.}
-\usage{
-PropertyIsLessThan
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an PropertyIsLessThan

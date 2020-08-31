@@ -4,9 +4,8 @@
 \name{OGCExpression}
 \alias{OGCExpression}
 \title{OGCExpression}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OGCExpression
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Expression

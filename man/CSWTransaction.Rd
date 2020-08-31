@@ -4,9 +4,8 @@
 \name{CSWTransaction}
 \alias{CSWTransaction}
 \title{CSWTransaction}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWTransaction
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling a CSW Transaction request

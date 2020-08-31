@@ -4,9 +4,8 @@
 \name{OWSRequest}
 \alias{OWSRequest}
 \title{OWSRequest}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSRequest
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling a generic OWS request

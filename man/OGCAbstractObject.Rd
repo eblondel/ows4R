@@ -4,9 +4,8 @@
 \name{OGCAbstractObject}
 \alias{OGCAbstractObject}
 \title{OGCAbstractObject}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OGCAbstractObject
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGCAbstractObject

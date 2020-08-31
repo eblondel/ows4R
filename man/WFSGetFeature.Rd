@@ -4,9 +4,8 @@
 \name{WFSGetFeature}
 \alias{WFSGetFeature}
 \title{WFSGetFeature}
-\format{\code{\link{R6Class}} object.}
-\usage{
-WFSGetFeature
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling a WFS GetFeature request

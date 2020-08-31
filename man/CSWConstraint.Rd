@@ -4,9 +4,8 @@
 \name{CSWConstraint}
 \alias{CSWConstraint}
 \title{CSWConstraint}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWConstraint
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an CSW Constraint

@@ -4,9 +4,8 @@
 \name{Or}
 \alias{Or}
 \title{Or}
-\format{\code{\link{R6Class}} object.}
-\usage{
-Or
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an Or operator

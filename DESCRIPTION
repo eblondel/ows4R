@@ -1,6 +1,6 @@
 Package: ows4R
-Version: 0.1-5
-Date: 2020-05-27
+Version: 0.1-6
+Date: 2020-08-31
 Title: Interface to OGC Web-Services (OWS)
 Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
              person("Norbert", "Billet", role = c("ctb")))
@@ -16,4 +16,5 @@ License: MIT + file LICENSE
 URL: https://github.com/eblondel/ows4R, http://www.opengeospatial.org/standards
 BugReports: https://github.com/eblondel/ows4R/issues
 LazyLoad: yes
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
+Roxygen: list(r6 = FALSE)

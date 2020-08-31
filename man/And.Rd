@@ -4,9 +4,8 @@
 \name{And}
 \alias{And}
 \title{And}
-\format{\code{\link{R6Class}} object.}
-\usage{
-And
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an And operator

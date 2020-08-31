@@ -4,9 +4,8 @@
 \name{BBOX}
 \alias{BBOX}
 \title{BBOX}
-\format{\code{\link{R6Class}} object.}
-\usage{
-BBOX
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an BBOX

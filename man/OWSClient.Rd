@@ -4,9 +4,8 @@
 \name{OWSClient}
 \alias{OWSClient}
 \title{OWSClient}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSClient
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for interfacing

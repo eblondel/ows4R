@@ -4,7 +4,9 @@
 \name{OWSUtils}
 \alias{OWSUtils}
 \title{OWSUtils}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \usage{
 OWSUtils
 }

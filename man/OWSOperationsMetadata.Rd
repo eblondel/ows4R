@@ -4,9 +4,8 @@
 \name{OWSOperationsMetadata}
 \alias{OWSOperationsMetadata}
 \title{OWSOperationsMetadata}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSOperationsMetadata
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Operations Metadata

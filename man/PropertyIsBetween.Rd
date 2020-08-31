@@ -4,9 +4,8 @@
 \name{PropertyIsBetween}
 \alias{PropertyIsBetween}
 \title{PropertyIsBetween}
-\format{\code{\link{R6Class}} object.}
-\usage{
-PropertyIsBetween
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an PropertyIsBetween

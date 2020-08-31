@@ -4,9 +4,8 @@
 \name{CSWQuery}
 \alias{CSWQuery}
 \title{CSWQuery}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWQuery
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an CSW Query

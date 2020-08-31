@@ -4,9 +4,8 @@
 \name{WFSFeatureType}
 \alias{WFSFeatureType}
 \title{WFSFeatureType}
-\format{\code{\link{R6Class}} object.}
-\usage{
-WFSFeatureType
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} modelling a WFS feature type

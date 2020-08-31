@@ -4,9 +4,8 @@
 \name{OGCFilter}
 \alias{OGCFilter}
 \title{OGCFilter}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OGCFilter
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Filter

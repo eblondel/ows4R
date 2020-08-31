@@ -4,9 +4,8 @@
 \name{OWSServiceIdentification}
 \alias{OWSServiceIdentification}
 \title{OWSServiceIdentification}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSServiceIdentification
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an OGC Service Identification

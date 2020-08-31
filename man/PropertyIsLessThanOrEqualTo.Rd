@@ -4,9 +4,8 @@
 \name{PropertyIsLessThanOrEqualTo}
 \alias{PropertyIsLessThanOrEqualTo}
 \title{PropertyIsLesserThanOrEqualTo}
-\format{\code{\link{R6Class}} object.}
-\usage{
-PropertyIsLessThanOrEqualTo
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an PropertyIsLesserThanOrEqualTo

@@ -4,9 +4,8 @@
 \name{CSWClient}
 \alias{CSWClient}
 \title{CSWClient}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWClient
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for interfacing an OGC

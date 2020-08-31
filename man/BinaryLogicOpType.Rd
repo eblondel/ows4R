@@ -4,9 +4,8 @@
 \name{BinaryLogicOpType}
 \alias{BinaryLogicOpType}
 \title{BinaryLogicOpType}
-\format{\code{\link{R6Class}} object.}
-\usage{
-BinaryLogicOpType
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an BinaryLogicOpType

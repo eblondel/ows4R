@@ -4,9 +4,8 @@
 \name{CSWGetRecords}
 \alias{CSWGetRecords}
 \title{CSWGetRecords}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWGetRecords
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling a CSW GetRecords request

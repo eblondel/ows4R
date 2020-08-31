@@ -4,9 +4,8 @@
 \name{WFSClient}
 \alias{WFSClient}
 \title{WFSClient}
-\format{\code{\link{R6Class}} object.}
-\usage{
-WFSClient
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for interfacing an OGC

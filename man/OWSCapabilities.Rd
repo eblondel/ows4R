@@ -4,9 +4,8 @@
 \name{OWSCapabilities}
 \alias{OWSCapabilities}
 \title{OWSGetCapabilities}
-\format{\code{\link{R6Class}} object.}
-\usage{
-OWSCapabilities
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for interfacing an abstract

@@ -4,9 +4,8 @@
 \name{CSWDescribeRecord}
 \alias{CSWDescribeRecord}
 \title{CSWDescribeRecord}
-\format{\code{\link{R6Class}} object.}
-\usage{
-CSWDescribeRecord
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling a CSW DescribeRecord request

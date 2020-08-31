@@ -4,9 +4,8 @@
 \name{PropertyIsNull}
 \alias{PropertyIsNull}
 \title{PropertyIsNull}
-\format{\code{\link{R6Class}} object.}
-\usage{
-PropertyIsNull
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} for modelling an PropertyIsNull
