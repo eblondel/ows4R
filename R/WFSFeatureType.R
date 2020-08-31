@@ -271,6 +271,12 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           break
         }
       }
+      if(hasGeometry) if("propertyname" %in% names(vendorParams)){
+        geomElem = self$description[sapply(self$description, function(x){x$getType() == "geometry"})][[1]]
+        if(!geomElem$getName() %in% unlist(strsplit(vendorParams$propertyname,","))){
+          hasGeometry <- FALSE
+        }
+      }
       
       #ftFeatures
       if(hasGeometry){
