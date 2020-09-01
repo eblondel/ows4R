@@ -9,6 +9,7 @@
 #' @import sf
 #' @import rgdal
 #' @import geometa
+#' @import parallel
 #' @export
 #' @keywords OGC Common OWS
 #' @return Object of \code{\link{R6Class}} with methods for interfacing

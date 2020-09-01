@@ -45,7 +45,7 @@ Abstract class used by \pkg{ows4R}
    the output will be an object of class \code{data.frame}
  }
  \item{\code{getFeatures()}}{
-   Get features
+   Get features.
  }
 }
 }

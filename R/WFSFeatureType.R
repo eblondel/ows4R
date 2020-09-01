@@ -34,7 +34,7 @@
 #'    the output will be an object of class \code{data.frame}
 #'  }
 #'  \item{\code{getFeatures()}}{
-#'    Get features
+#'    Get features.
 #'  }
 #' }
 #' 
@@ -227,7 +227,48 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     },
     
     #getFeatures
-    getFeatures = function(...){
+    getFeatures = function(..., 
+                           paging = FALSE, paging_length = 1000,
+                           parallel = FALSE, parallel_handler = NULL, cl = NULL){
+      
+      #getdescription
+      if(is.null(self$description)){
+        self$description = self$getDescription()
+      }
+      
+      vendorParams <- list(...)
+      
+      if(paging){
+        hitParams <- vendorParams
+        hitParams$resulttype <- "hits"
+        hits <- do.call(self$getFeatures, hitParams)
+        numberMatched <- as.integer(hits$numberMatched)
+        startIndexes <- seq(from = 0, to = numberMatched, by = paging_length)
+        getFeaturesPaging <- function(startIndex, self){
+          pageParams <- vendorParams
+          pageParams$startIndex <- startIndex
+          pageParams$sortBy <- self$description[sapply(self$description, function(x){x$getType()!="geometry"})][[1]]$getName()
+          pageParams$count <- paging_length
+          do.call(self$getFeatures, pageParams)
+        }
+        out <- NULL
+        if(parallel){
+          if(is.null(parallel_handler)){
+            errMsg = "No 'parallel_handler' defined to get features in parallel"
+            self$ERROR(errMsg)
+            stop(errMsg)
+          }
+          if(!is.null(cl)){
+            out <- do.call("rbind", parallel_handler(cl, startIndexes, getFeaturesPaging, self))
+          }else{
+            out <- do.call("rbind", parallel_handler(startIndexes, getFeaturesPaging, self))
+          }
+        }else{
+          out <- do.call("rbind", lapply(startIndexes, getFeaturesPaging, self))
+        }
+        return(out)
+      }
+      
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -241,7 +282,6 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType, ...)
       xmlObj <- ftFeatures$getResponse()
       
-      vendorParams <- list(...)
       if(length(vendorParams)>0){
         names(vendorParams) <- tolower(names(vendorParams))
         if("resulttype" %in% names(vendorParams)){
@@ -262,9 +302,6 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       #hasGeometry?
       hasGeometry = FALSE
-      if(is.null(self$description)){
-        self$description = self$getDescription()
-      }
       for(element in self$description){
         if(element$getType() == "geometry"){
           hasGeometry = TRUE
@@ -327,7 +364,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           }
         }
       }
-      self$features <- ftFeatures;
+      self$features <- ftFeatures
       return(self$features)
     }
   )
