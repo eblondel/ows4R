@@ -15,8 +15,8 @@
 #'    Package: \tab ows4R\cr
 #'    Type: \tab Package\cr
 #'    Version
-#'    : \tab 0.1-6\cr
-#'    Date: \tab 2020-08-31\cr
+#'    : \tab 0.2\cr
+#'    Date: \tab 2020-09-03\cr
 #'    License: \tab MIT\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
