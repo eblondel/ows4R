@@ -23,7 +23,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
    name = "GetFeatureInfo"
  ), 
  public = list(
-   initialize = function(op, url, version, layers, srs, styles, feature_count = 1,
+   initialize = function(op, url, version, layers, srs, crs, styles, feature_count = 1,
                          x, y, width, height, bbox, info_format = "application/vnd.ogc.gml",
                          logger = NULL, ...) {
      
@@ -43,6 +43,8 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
        FORMAT = "image/png",
        TRANSPARENT = "true",
        QUERY_LAYERS = layers,
+       SRS = srs,
+       CRS = crs,
        LAYERS = layers,
        STYLES = styles,
        FEATURE_COUNT = format(feature_count, scientific = FALSE),
@@ -51,6 +53,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
        BBOX = bbox,
        INFO_FORMAT = info_format
      )
+     namedParams <- namedParams[!sapply(namedParams, is.null)]
      vendorParams <- list(...)
      if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
      super$initialize(op, "GET", url, request = private$name, 

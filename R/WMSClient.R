@@ -71,7 +71,8 @@ WMSClient <- R6Class("WMSClient",
      },
      
      #getFeatureInfo
-     getFeatureInfo = function(layer, styles = NULL, feature_count = 1,
+     getFeatureInfo = function(layer, srs = NULL, crs = NULL,
+                               styles = NULL, feature_count = 1,
                                x, y, width, height, bbox, 
                                info_format = "application/vnd.ogc.gml",
                                ...){
@@ -79,14 +80,14 @@ WMSClient <- R6Class("WMSClient",
        features <- NULL
        if(is(wmsLayer,"WMSLayer")){
           features <- wmsLayer$getFeatureInfo(
-             styles = styles, feature_count = feature_count,
+             srs = srs, crs = crs, styles = styles, feature_count = feature_count,
              x = x, y = y, width = width, height = height, bbox = bbox,
              info_format = info_format,
              ...
           )
        }else if(is(wmsLayer, "list")){
           features <- wmsLayer[[1]]$getFeatureInfo(
-             styles = styles, feature_count = feature_count,
+             srs = srs, crs = crs, styles = styles, feature_count = feature_count,
              x = x, y = y, width = width, height = height, bbox = bbox,
              info_format = info_format,
              ...

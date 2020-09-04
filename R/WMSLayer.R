@@ -43,6 +43,8 @@ WMSLayer <- R6Class("WMSLayer",
     keywords = NA,
     defaultCRS = NA,
     boundingBox = NA,
+    boundingBoxSRS = NA,
+    boundingBoxCRS = NA,
     style = NA,
     
     #fetchLayer
@@ -71,7 +73,7 @@ WMSLayer <- R6Class("WMSLayer",
       }
       
       layerDefaultCRS <- NULL
-      if(version == "1.1.1"){
+      if(startsWith(version, "1.1")){
         if(!is.null(children$SRS)){
           layerDefaultCRS <- xmlValue(children$SRS)
         }
@@ -80,11 +82,20 @@ WMSLayer <- R6Class("WMSLayer",
           layerDefaultCRS <- xmlValue(children[names(children)=="CRS"][[1]])
         }
       }
-      if(!is.null(layerDefaultCRS)) layerDefaultCRS <- OWSUtils$toCRS(layerDefaultCRS)
+      if(!is.null(layerDefaultCRS)){
+        layerDefaultCRS <- OWSUtils$toCRS(layerDefaultCRS)
+      }
       
+      layerSRS <- NULL
+      layerCRS <- NULL
       layerBoundingBox <- NULL
       bboxXML <- children$BoundingBox
       if(!is.null(bboxXML)){
+        if(startsWith(version, "1.1")){
+          layerSRS <- as.character(xmlGetAttr(bboxXML, "SRS"))
+        }else if(version == "1.3.0"){
+          layerCRS <- as.character(xmlGetAttr(bboxXML, "CRS"))
+        }
         layerBoundingBox <- OWSUtils$toBBOX(
           as.numeric(xmlGetAttr(bboxXML,"minx")),
           as.numeric(xmlGetAttr(bboxXML,"maxx")),
@@ -106,6 +117,8 @@ WMSLayer <- R6Class("WMSLayer",
         keywords = layerKeywords,
         defaultCRS = layerDefaultCRS,
         boundingBox = layerBoundingBox,
+        boundingBoxSRS = layerSRS,
+        boundingBoxCRS = layerCRS,
         style = layerStyle
       )
       
@@ -131,6 +144,8 @@ WMSLayer <- R6Class("WMSLayer",
       private$keywords = layer$keywords
       private$defaultCRS = layer$defaultCRS
       private$boundingBox = layer$boundingBox
+      private$boundingBoxSRS = layer$boundingBoxSRS
+      private$boundingBoxCRS = layer$boundingBoxCRS
       private$style = layer$style
       
     },
@@ -165,13 +180,23 @@ WMSLayer <- R6Class("WMSLayer",
       return(private$boundingBox)
     },
     
+    #getBoundingBoxSRS
+    getBoundingBoxSRS = function(){
+      return(private$boundingBoxSRS)
+    },
+    
+    #getBoundingBoxCRS
+    getBoundingBoxCRS = function(){
+      return(private$boundingBoxCRS)
+    },
+    
     #getStyle
     getStyle = function(){
       return(private$style)
     },
     
     #getFeatureInfo
-    getFeatureInfo = function(styles = NULL, feature_count = 1,
+    getFeatureInfo = function(srs = NULL, crs = NULL, styles = NULL, feature_count = 1,
                               x, y, width, height, bbox, 
                               info_format = "application/vnd.ogc.gml",
                               ...){
@@ -180,9 +205,16 @@ WMSLayer <- R6Class("WMSLayer",
         styles <- self$getStyle()
       }
       
+      if(is.null(srs)){
+        srs <- self$getBoundingBoxSRS()
+      }
+      if(is.null(crs)){
+        crs <- self$getBoundingBoxCRS()
+      }
+      
       ftFeatures <- WMSGetFeatureInfo$new(
         op = op, url = private$url, version = private$version, 
-        layers = private$name, styles = styles,
+        layers = private$name, srs = srs, crs = crs, styles = styles,
         feature_count = feature_count,
         x = x, y = y, width = width, height = height, bbox = bbox,
         info_format = info_format,
