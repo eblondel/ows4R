@@ -53,9 +53,9 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
        BBOX = bbox,
        INFO_FORMAT = info_format
      )
-     namedParams <- namedParams[!sapply(namedParams, is.null)]
      vendorParams <- list(...)
      if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
+     namedParams <- namedParams[!sapply(namedParams, is.null)]
      super$initialize(op, "GET", url, request = private$name, 
                       namedParams = namedParams, mimeType = mimeType, 
                       logger = logger)
