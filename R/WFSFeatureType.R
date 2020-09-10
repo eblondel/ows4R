@@ -327,55 +327,11 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         )
       }
       
-      #hasGeometry?
-      hasGeometry = FALSE
-      for(element in self$description){
-        if(element$getType() == "geometry"){
-          hasGeometry = TRUE
-          break
-        }
+      #read features
+      ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+      if(is.null(st_crs(ftFeatures))){
+        st_crs(ftFeatures) <- self$getDefaultCRS()
       }
-      if(hasGeometry) if("propertyname" %in% names(vendorParams)){
-        geomElem = self$description[sapply(self$description, function(x){x$getType() == "geometry"})][[1]]
-        if(!geomElem$getName() %in% unlist(strsplit(vendorParams$propertyname,","))){
-          hasGeometry <- FALSE
-        }
-      }
-      
-      #ftFeatures
-      #if(hasGeometry){
-        ftFeatures <- sf::st_read(destfile, quiet = TRUE)
-        if(is.null(st_crs(ftFeatures))){
-          st_crs(ftFeatures) <- self$getDefaultCRS()
-        }
-      #}else{
-      #  if(private$version == "1.0.0"){
-      #    membersContent <- sapply(getNodeSet(xmlObj, "//gml:featureMember"), function(x) xmlChildren(x))
-      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
-      #    membersAttributes <- xmlToDataFrame(
-      #      nodes = getNodeSet(xmlObj, "//gml:featureMember/*[@*]"),
-      #      stringsAsFactors = FALSE
-      #    )
-      #    
-      #  }else if(private$version == "1.1.0"){
-      #    membersContent <- xmlChildren(getNodeSet(xmlObj, "//gml:featureMembers")[[1]])
-      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
-      #    membersAttributes <- xmlToDataFrame(
-      #      nodes = getNodeSet(xmlObj, "//gml:featureMembers/*[@*]"),
-      #      stringsAsFactors = FALSE
-      #    )
-      #    
-      #  }else if(private$version == "2.0.0"){
-      #    membersContent <- sapply(getNodeSet(xmlObj, "//wfs:member"), function(x) xmlChildren(x))
-      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
-      #    membersAttributes <- xmlToDataFrame(
-      #      nodes = getNodeSet(xmlObj, "//wfs:member/*[@*]"),
-      #      stringsAsFactors = FALSE
-      #    )
-      #  }
-      #  
-      #  ftFeatures <- cbind(fid, membersAttributes, stringsAsFactors = FALSE)
-      #}
       
       #validating attributes vs. schema
       for(element in self$description){
