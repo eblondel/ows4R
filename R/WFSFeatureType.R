@@ -228,6 +228,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     
     #getFeatures
     getFeatures = function(..., 
+                           outputFormat = NULL,
                            paging = FALSE, paging_length = 1000,
                            parallel = FALSE, parallel_handler = NULL, cl = NULL){
       
@@ -279,15 +280,16 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'GetFeature' not supported by this service")
         }
       }
-      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, logger = self$loggerType, ...)
-      xmlObj <- ftFeatures$getResponse()
+      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, 
+                                      outputFormat = outputFormat, logger = self$loggerType, ...)
+      obj <- ftFeatures$getResponse()
       
       if(length(vendorParams)>0){
         names(vendorParams) <- tolower(names(vendorParams))
         if("resulttype" %in% names(vendorParams)){
           resultType = vendorParams[["resulttype"]]
           if(resultType == "hits"){
-            hits <- xmlAttrs(xmlRoot(xmlObj))
+            hits <- xmlAttrs(xmlRoot(obj))
             hits <- as.list(hits)
             hits <- hits[sapply(names(hits), function(x){x %in% c("numberOfFeatures", "numberMatched", "numberReturned", "timeStamp")})]
             return(hits)
@@ -296,9 +298,34 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       #write the file to disk
-      tempf = tempfile() 
-      destfile = paste(tempf,".gml",sep='')
-      saveXML(xmlObj, destfile)
+      tempf = tempfile()
+      if(is.null(outputFormat)){
+        destfile = paste0(tempf,".gml")
+        saveXML(obj, destfile)
+      }else{
+        switch(tolower(outputFormat),
+          "gml2" = {
+            destfile = paste0(tempf,".gml")
+            saveXML(obj, destfile)
+          },
+          "gml3" = {
+            destfile = paste0(tempf,".gml")
+            saveXML(obj, destfile)
+          },
+          "application/json" = {
+            destfile = paste0(tempf,".json")
+            write(obj, destfile)
+          },
+          "json" = {
+            destfile = paste0(tempf,".json")
+            write(obj, destfile)
+          },
+          "csv" = {
+            destfile = paste0(tempf,".csv")
+            write(obj, destfile)
+          }
+        )
+      }
       
       #hasGeometry?
       hasGeometry = FALSE
@@ -316,39 +343,39 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       #ftFeatures
-      if(hasGeometry){
+      #if(hasGeometry){
         ftFeatures <- sf::st_read(destfile, quiet = TRUE)
         if(is.null(st_crs(ftFeatures))){
           st_crs(ftFeatures) <- self$getDefaultCRS()
         }
-      }else{
-        if(private$version == "1.0.0"){
-          membersContent <- sapply(getNodeSet(xmlObj, "//gml:featureMember"), function(x) xmlChildren(x))
-          fid <- sapply(membersContent, function(x) xmlAttrs(x))
-          membersAttributes <- xmlToDataFrame(
-            nodes = getNodeSet(xmlObj, "//gml:featureMember/*[@*]"),
-            stringsAsFactors = FALSE
-          )
-          
-        }else if(private$version == "1.1.0"){
-          membersContent <- xmlChildren(getNodeSet(xmlObj, "//gml:featureMembers")[[1]])
-          fid <- sapply(membersContent, function(x) xmlAttrs(x))
-          membersAttributes <- xmlToDataFrame(
-            nodes = getNodeSet(xmlObj, "//gml:featureMembers/*[@*]"),
-            stringsAsFactors = FALSE
-          )
-          
-        }else if(private$version == "2.0.0"){
-          membersContent <- sapply(getNodeSet(xmlObj, "//wfs:member"), function(x) xmlChildren(x))
-          fid <- sapply(membersContent, function(x) xmlAttrs(x))
-          membersAttributes <- xmlToDataFrame(
-            nodes = getNodeSet(xmlObj, "//wfs:member/*[@*]"),
-            stringsAsFactors = FALSE
-          )
-        }
-        
-        ftFeatures <- cbind(fid, membersAttributes, stringsAsFactors = FALSE)
-      }
+      #}else{
+      #  if(private$version == "1.0.0"){
+      #    membersContent <- sapply(getNodeSet(xmlObj, "//gml:featureMember"), function(x) xmlChildren(x))
+      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
+      #    membersAttributes <- xmlToDataFrame(
+      #      nodes = getNodeSet(xmlObj, "//gml:featureMember/*[@*]"),
+      #      stringsAsFactors = FALSE
+      #    )
+      #    
+      #  }else if(private$version == "1.1.0"){
+      #    membersContent <- xmlChildren(getNodeSet(xmlObj, "//gml:featureMembers")[[1]])
+      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
+      #    membersAttributes <- xmlToDataFrame(
+      #      nodes = getNodeSet(xmlObj, "//gml:featureMembers/*[@*]"),
+      #      stringsAsFactors = FALSE
+      #    )
+      #    
+      #  }else if(private$version == "2.0.0"){
+      #    membersContent <- sapply(getNodeSet(xmlObj, "//wfs:member"), function(x) xmlChildren(x))
+      #    fid <- sapply(membersContent, function(x) xmlAttrs(x))
+      #    membersAttributes <- xmlToDataFrame(
+      #      nodes = getNodeSet(xmlObj, "//wfs:member/*[@*]"),
+      #      stringsAsFactors = FALSE
+      #    )
+      #  }
+      #  
+      #  ftFeatures <- cbind(fid, membersAttributes, stringsAsFactors = FALSE)
+      #}
       
       #validating attributes vs. schema
       for(element in self$description){

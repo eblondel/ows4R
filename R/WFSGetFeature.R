@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, typeName, logger, ...)}}{
+#'  \item{\code{new(op, url, version, typeName, outputFormat, logger, ...)}}{
 #'    This method is used to instantiate a WFSGetFeature object
 #'  }
 #' }
@@ -23,19 +23,31 @@ WFSGetFeature <- R6Class("WFSGetFeature",
      name = "GetFeature"
   ), 
   public = list(
-     initialize = function(op, url, version, typeName, logger = NULL, ...) {
+     initialize = function(op, url, version, typeName, outputFormat = NULL, logger = NULL, ...) {
        
+       if(is.null(outputFormat)){
+         mimeType <- "text/xml"
+       }else{
+         mimeType <- switch(tolower(outputFormat),
+           "application/json" = "application/json",
+           "json" = "application/json", #for backward compatibility
+           "csv" = "text/csv",
+           "text/plain"
+         )
+       }
+
        namedParams <- list(service = "WFS", version = version)
        if(startsWith(version, "1")){
          namedParams <- c(namedParams, typeName = typeName)
        }else if(startsWith(version, "2.0")){
          namedParams <- c(namedParams, typeNames = typeName)
        }
+       namedParams <- c(namedParams, outputFormat = outputFormat)
        vendorParams <- list(...)
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        namedParams <- namedParams[!sapply(namedParams, is.null)]
        super$initialize(op, "GET", url, request = private$name, 
-                        namedParams = namedParams, mimeType = "text/xml", logger = logger)
+                        namedParams = namedParams, mimeType = mimeType, logger = logger)
        self$execute()
      }
    )
