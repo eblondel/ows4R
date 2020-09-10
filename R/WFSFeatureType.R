@@ -250,6 +250,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           pageParams$startIndex <- startIndex
           pageParams$sortBy <- self$description[sapply(self$description, function(x){x$getType()!="geometry"})][[1]]$getName()
           pageParams$count <- paging_length
+          pageParams$outputFormat <- outputFormat
           do.call(self$getFeatures, pageParams)
         }
         out <- NULL
