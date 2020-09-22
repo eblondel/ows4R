@@ -35,11 +35,11 @@ In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4
 ## Development perspectives
 
 Support for additional OGC web-service standard specifications including
-* Filter Encoding (FES) version ``2.0``
-* Catalogue Service (CSW) version ``3.0`` (including ``Transaction`` and ``Harvest`` operations)
-* Web Feature Service (WFS) ``Transaction`` operations
 * Web Coverage Service (WCS)
 * Web Processing Service (WPS)
+* Filter Encoding (FES) version ``2.0``
+* Web Feature Service (WFS) ``Transaction`` operations
+* Catalogue Service (CSW) version ``3.0`` (including ``Transaction`` and ``Harvest`` operations)
 * ...
 
 For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:emmanuel.blondel1@gmail.com)
