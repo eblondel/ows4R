@@ -158,7 +158,7 @@ OWSUtils <- list(
               "match.length") > 0){
         srsStr <- unlist(strsplit(srsName, ":"))
         epsg <- srsStr[length(srsStr)]
-        srsDef <- paste("+init=epsg:", epsg, sep="")
+        srsDef <- paste("epsg:", epsg, sep="")
         
         #case of special wildcard 404000
         #see https://osgeo-org.atlassian.net/browse/GEOS-8993?focusedCommentId=79737&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-79737
