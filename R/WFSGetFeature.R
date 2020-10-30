@@ -44,6 +44,21 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        }
        namedParams <- c(namedParams, outputFormat = outputFormat)
        vendorParams <- list(...)
+       vendorParamNames <- names(vendorParams)
+       vendorParams <- lapply(vendorParamNames, function(param){
+         out <- vendorParams[[param]]
+         param <- tolower(param)
+         if(param == "cql_filter"){
+           out <- URLencode(out)
+         }else if(param == "filter"){
+           if(is(out, "OGCFilter")){
+             out <- URLencode(as(out$encode(), "character"))
+           }
+         }
+         return(out)
+       })
+       names(vendorParams) <- vendorParamNames
+       
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        namedParams <- namedParams[!sapply(namedParams, is.null)]
        super$initialize(op, "GET", url, request = private$name, 
