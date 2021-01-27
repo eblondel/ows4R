@@ -19,7 +19,8 @@ Abstract class used by \pkg{ows4R} to trigger a WMS GetFeatureInfo request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, version, typeName, logger, ...)}}{
+ \item{\code{new(op, url, version, layers, srs, styles, feature_count,
+                 x, y, width, height, bbox, info_format, logger, ...)}}{
    This method is used to instantiate a WMSGetFeatureInfo object
  }
 }

@@ -8,7 +8,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, typeName, logger, ...)}}{
+#'  \item{\code{new(op, url, version, layers, srs, styles, feature_count,
+#'                  x, y, width, height, bbox, info_format, logger, ...)}}{
 #'    This method is used to instantiate a WMSGetFeatureInfo object
 #'  }
 #' }
@@ -23,7 +24,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
    name = "GetFeatureInfo"
  ), 
  public = list(
-   initialize = function(op, url, version, layers, srs, crs, styles, feature_count = 1,
+   initialize = function(op, url, version, layers, srs, styles, feature_count = 1,
                          x, y, width, height, bbox, info_format = "application/vnd.ogc.gml",
                          logger = NULL, ...) {
      
@@ -37,6 +38,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
      if(is(bbox, "matrix")){
         bbox <- paste0(bbox, collapse=",")
      }
+     #case of 1.1
      namedParams <- list(
        service = "WMS", 
        version = version,
@@ -44,7 +46,6 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
        TRANSPARENT = "true",
        QUERY_LAYERS = layers,
        SRS = srs,
-       CRS = crs,
        LAYERS = layers,
        STYLES = styles,
        FEATURE_COUNT = format(feature_count, scientific = FALSE),
@@ -53,6 +54,12 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
        BBOX = bbox,
        INFO_FORMAT = info_format
      )
+     if(startsWith(version, "1.3")){
+        names(namedParams)[which(names(namedParams)=="SRS")] <- "CRS"
+        names(namedParams)[which(names(namedParams)=="X")] <- "I"
+        names(namedParams)[which(names(namedParams)=="Y")] <- "J"
+     }
+     
      vendorParams <- list(...)
      if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
      namedParams <- namedParams[!sapply(namedParams, is.null)]
