@@ -87,7 +87,7 @@ WMSClient <- R6Class("WMSClient",
           )
        }else if(is(wmsLayer, "list")){
           features <- wmsLayer[[1]]$getFeatureInfo(
-             srs = srs, crs = crs, styles = styles, feature_count = feature_count,
+             srs = srs, styles = styles, feature_count = feature_count,
              x = x, y = y, width = width, height = height, bbox = bbox,
              info_format = info_format,
              ...
