@@ -196,7 +196,7 @@ WMSLayer <- R6Class("WMSLayer",
     },
     
     #getFeatureInfo
-    getFeatureInfo = function(srs = NULL, crs = NULL, styles = NULL, feature_count = 1,
+    getFeatureInfo = function(srs = NULL, styles = NULL, feature_count = 1,
                               x, y, width, height, bbox, 
                               info_format = "application/vnd.ogc.gml",
                               ...){
@@ -206,15 +206,16 @@ WMSLayer <- R6Class("WMSLayer",
       }
       
       if(is.null(srs)){
-        srs <- self$getBoundingBoxSRS()
-      }
-      if(is.null(crs)){
-        crs <- self$getBoundingBoxCRS()
+        srs <- if(startsWith(private$version, "1.1")){
+          self$getBoundingBoxSRS()
+        }else if(startsWith(private$version, "1.3")){
+          self$getBoundingBoxCRS()
+        }
       }
       
       ftFeatures <- WMSGetFeatureInfo$new(
         op = op, url = private$url, version = private$version, 
-        layers = private$name, srs = srs, crs = crs, styles = styles,
+        layers = private$name, srs = srs, styles = styles,
         feature_count = feature_count,
         x = x, y = y, width = width, height = height, bbox = bbox,
         info_format = info_format,
