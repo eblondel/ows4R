@@ -23,6 +23,34 @@
 #'  \item{\code{getKeywords()}}{
 #'    Get layer keywords
 #'  }
+#'  \item{\code{getDefaultCRS()}}{
+#'    Get layer default CRS
+#'  }
+#'  \item{\code{getBoundingBox()}}{
+#'    Get layer bounding box
+#'  }
+#'  \item{\code{getBoundingBoxSRS()}}{
+#'    Get layer bounding box SRS
+#'  }
+#'  \item{\code{getBoundingBoxCRS()}}{
+#'    Get layer bounding box CRS
+#'  }
+#'  \item{\code{getStyle()}}{
+#'    Get layer style
+#'  }
+#'  \item{\code{getDimensions()}}{
+#'    Get layer dimensions
+#'  }
+#'  \item{\code{getTimeDimension()}}{
+#'    Get layer time dimension
+#'  }
+#'  \item{\code{getElevationDimension()}}{
+#'    Get layer elevation dimension
+#'  }
+#'  \item{\code{getFeatureInfo(srs, styles, feature_count,
+#'              x, y, width, height, bbox, info_format)}}{
+#'    Get layer feature info                           
+#'  }
 #' }
 #' 
 #' @note Abstract class used by \pkg{ows4R}
@@ -46,6 +74,7 @@ WMSLayer <- R6Class("WMSLayer",
     boundingBoxSRS = NA,
     boundingBoxCRS = NA,
     style = NA,
+    dimensions = list(),
     
     #fetchLayer
     fetchLayer = function(xmlObj, version){
@@ -110,6 +139,22 @@ WMSLayer <- R6Class("WMSLayer",
         layerStyle <- xmlValue(xmlChildren(styleXML)$Name)
       }
       
+      dimensions <- list()
+      dimensionXML <- children[names(children)=="Dimension"]
+      if(!is.null(dimensionXML)){
+        dimensions <- lapply(dimensionXML, function(dimXML){
+          return(list(
+            name = xmlGetAttr(dimXML, "name"),
+            units = xmlGetAttr(dimXML, "units"),
+            multipleValues = xmlGetAttr(dimXML, "multipleValues") == "true",
+            current = xmlGetAttr(dimXML, "current") == "true",
+            default = xmlGetAttr(dimXML, "default"),
+            values = unlist(strsplit(gsub("\n", "", gsub(" ", "", xmlValue(dimXML))),","))
+          ))
+        })
+        names(dimensions) <- sapply(dimensionXML, xmlGetAttr, "name")
+      }
+      
       layer <- list(
         name = layerName,
         title = layerTitle,
@@ -119,7 +164,8 @@ WMSLayer <- R6Class("WMSLayer",
         boundingBox = layerBoundingBox,
         boundingBoxSRS = layerSRS,
         boundingBoxCRS = layerCRS,
-        style = layerStyle
+        style = layerStyle,
+        dimensions = dimensions
       )
       
       return(layer)
@@ -147,6 +193,7 @@ WMSLayer <- R6Class("WMSLayer",
       private$boundingBoxSRS = layer$boundingBoxSRS
       private$boundingBoxCRS = layer$boundingBoxCRS
       private$style = layer$style
+      private$dimensions = layer$dimensions
       
     },
     
@@ -193,6 +240,21 @@ WMSLayer <- R6Class("WMSLayer",
     #getStyle
     getStyle = function(){
       return(private$style)
+    },
+    
+    #getDimensions
+    getDimensions = function(){
+      return(private$dimensions)
+    },
+    
+    #getTimeDimension
+    getTimeDimension = function(){
+      return(private$dimensions[["time"]])
+    },
+    
+    #getElevationDimension
+    getElevationDimension = function(){
+      return(private$dimensions[["elevation"]])
     },
     
     #getFeatureInfo

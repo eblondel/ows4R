@@ -34,6 +34,34 @@ Abstract class used by \pkg{ows4R}
  \item{\code{getKeywords()}}{
    Get layer keywords
  }
+ \item{\code{getDefaultCRS()}}{
+   Get layer default CRS
+ }
+ \item{\code{getBoundingBox()}}{
+   Get layer bounding box
+ }
+ \item{\code{getBoundingBoxSRS()}}{
+   Get layer bounding box SRS
+ }
+ \item{\code{getBoundingBoxCRS()}}{
+   Get layer bounding box CRS
+ }
+ \item{\code{getStyle()}}{
+   Get layer style
+ }
+ \item{\code{getDimensions()}}{
+   Get layer dimensions
+ }
+ \item{\code{getTimeDimension()}}{
+   Get layer time dimension
+ }
+ \item{\code{getElevationDimension()}}{
+   Get layer elevation dimension
+ }
+ \item{\code{getFeatureInfo(srs, styles, feature_count,
+             x, y, width, height, bbox, info_format)}}{
+   Get layer feature info                           
+ }
 }
 }
 
