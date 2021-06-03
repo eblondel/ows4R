@@ -75,7 +75,7 @@ WMSCapabilities <- R6Class("WMSCapabilities",
      if(pretty){
        layers <- do.call("rbind", lapply(layers, function(x){
          return(data.frame(
-           name = x$getName(),
+           name = if(!is.null(x$getName())){x$getName()}else{NA},
            title = x$getTitle(),
            stringsAsFactors = FALSE
          ))
