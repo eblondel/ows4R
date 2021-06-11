@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version)}}{
+#'  \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
 #'    This method is used to instantiate a OWSServiceProvider object
 #'  }
 #'  \item{\code{getProviderName()}}{
@@ -34,17 +34,22 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      serviceContact = NA,
      
      #fetchServiceProvider
-     fetchServiceProvider = function(xmlObj, version){
+     fetchServiceProvider = function(xmlObj, owsVersion, serviceVersion){
        
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespaceURI <- paste("http://www.opengis.net/ows", version, sep ="/")
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
+          namespaceURI <- NULL
+          if(endsWith(namespaces[1L, "uri"], "ows")){
+             namespaceURI <- paste(namespaces[1L, "uri"], owsVersion, sep ="/")
+          }else{
+             namespaceURI <- paste(namespaces[1L, "uri"])
+          }
          ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
          if(length(ns)>0){
            serviceXML <- getNodeSet(xmlObj, "//ns:ServiceProvider", ns)
@@ -128,8 +133,8 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      }
    ),
    public = list(
-     initialize = function(xmlObj, version){
-       serviceProvider <- private$fetchServiceProvider(xmlObj, version)
+     initialize = function(xmlObj, owsVersion, serviceVersion){
+       serviceProvider <- private$fetchServiceProvider(xmlObj, owsVersion, serviceVersion)
        private$providerName <- serviceProvider$providerName
        private$providerSite <- serviceProvider$providerSite
        private$serviceContact <- serviceProvider$serviceContact

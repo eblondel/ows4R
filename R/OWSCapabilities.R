@@ -9,7 +9,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, service, serviceVersion, owsVersion, logger)}}{
+#'  \item{\code{new(url, service,  owsVersion, serviceVersion, logger)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
 #'  \item{\code{getUrl()}}{
@@ -52,18 +52,18 @@ OWSCapabilities <- R6Class("OWSCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, service, serviceVersion, owsVersion, logger = NULL) {
+     initialize = function(url, service, owsVersion, serviceVersion, logger = NULL) {
        super$initialize(logger = logger)
        private$url <- url
        private$service <- service
-       private$serviceVersion <- serviceVersion
        private$owsVersion <- owsVersion
+       private$serviceVersion <- serviceVersion
        namedParams <- list(service = service, version = serviceVersion)
        private$request <- OWSGetCapabilities$new(op = NULL, url, service, serviceVersion, logger = logger)
        xmlObj <- private$request$getResponse()
-       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion)
-       private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion)
-       private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion)
+       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
+       private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
+       private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
      },
      
      #getUrl

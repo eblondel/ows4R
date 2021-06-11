@@ -8,38 +8,25 @@
 \code{\link{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a generic OWS request
+Object of \code{\link{R6Class}} modelling a OWS Service Capability Request
 }
 \description{
 OWSRequest
 }
 \note{
-Abstract class used internally by \pkg{ows4R}
+Abstract class used by \pkg{ows4R}
 }
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
-                 contentType, mimeType, logger)}}{
-   This method is used to instantiate a object for doing an OWS request
+ \item{\code{new(xmlObj, capabilities, version, logger)}}{
+   This method is used to instantiate a \code{OWSRequest} object
  }
- \item{\code{getRequest()}}{
-   Get the request payload
+ \item{\code{getName()}}{
+   Get request name
  }
- \item{\code{getRequestHeaders()}}{
-   Get the request headers
- }
- \item{\code{getStatus()}}{
-   Get the request status code
- }
- \item{\code{getResponse()}}{
-   Get the request response
- }
- \item{\code{getException()}}{
-   Get the exception (in case of request failure)
- }
- \item{\code{getResult()}}{
-   Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
+ \item{\code{getFormats()}}{
+   Get request formats
  }
 }
 }
@@ -48,5 +35,5 @@ Abstract class used internally by \pkg{ows4R}
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
 \keyword{OGC}
-\keyword{OWS}
 \keyword{Request}
+\keyword{Service}

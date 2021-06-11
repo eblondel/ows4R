@@ -18,7 +18,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWDescribeRecord <- R6Class("CSWDescribeRecord",
-   inherit = OWSRequest,
+   inherit = OWSHttpRequest,
    private = list(
      name = "DescribeRecord",
      defaultNamespace = "csw:http://www.opengis.net/cat/csw/2.0.2"

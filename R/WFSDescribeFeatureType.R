@@ -18,7 +18,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSDescribeFeatureType <- R6Class("WFSDescribeFeatureType",
-  inherit = OWSRequest,
+  inherit = OWSHttpRequest,
   private = list(
     name = "DescribeFeatureType"
   ),

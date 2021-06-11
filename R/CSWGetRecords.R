@@ -18,7 +18,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWGetRecords <- R6Class("CSWGetRecords",
-  inherit = OWSRequest,
+  inherit = OWSHttpRequest,
   private = list(
     xmlElement = "GetRecords",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),

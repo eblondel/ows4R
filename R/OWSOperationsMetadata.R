@@ -25,16 +25,21 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
      operations = list(),
      
      #fetchOperations
-     fetchOperations = function(xmlObj, serviceVersion){
+     fetchOperations = function(xmlObj, owsVersion, serviceVersion){
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
        
        opXML <- NULL
        if(nrow(namespaces) > 0){
+          namespaceURI <- NULL
+          if(endsWith(namespaces[1L, "uri"], "ows")){
+             namespaceURI <- paste(namespaces[1L, "uri"], owsVersion, sep ="/")
+          }else{
+             namespaceURI <- paste(namespaces[1L, "uri"])
+          }
          ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
          if(length(ns)>0){
            opXML <- getNodeSet(xmlObj, "//ns:OperationsMetadata/ns:Operation", ns)
@@ -58,8 +63,8 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
      }
    ),
    public = list(
-     initialize = function(xmlObj, serviceVersion){
-       private$operations <- private$fetchOperations(xmlObj, serviceVersion)
+     initialize = function(xmlObj, owsVersion, serviceVersion){
+       private$operations <- private$fetchOperations(xmlObj, owsVersion, serviceVersion)
      },
      
      #getOperations

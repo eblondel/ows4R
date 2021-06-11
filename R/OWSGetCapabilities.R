@@ -18,7 +18,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 OWSGetCapabilities <- R6Class("OWSGetCapabilities",
-  inherit = OWSRequest,
+  inherit = OWSHttpRequest,
   private = list(
     name = "GetCapabilities"
   ),

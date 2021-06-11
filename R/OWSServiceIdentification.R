@@ -51,21 +51,26 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      accessConstraints = NA,
      
      #fetchServiceIdentification
-     fetchServiceIdentification = function(xmlObj, serviceVersion){
+     fetchServiceIdentification = function(xmlObj, owsVersion, serviceVersion){
        
        namespaces <- NULL
        if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
          namespaces <- OWSUtils$getNamespaces(xmlObj)
        }
        namespaces <- as.data.frame(namespaces)
-       namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
        
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
+          namespaceURI <- NULL
+          if(endsWith(namespaces[1L, "uri"], "ows")){
+             namespaceURI <- paste(namespaces[1L, "uri"], owsVersion, sep ="/")
+          }else{
+             namespaceURI <- paste(namespaces[1L, "uri"])
+          }
           ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
           if(length(ns)>0){
-              serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
-              if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
+             serviceXML <- getNodeSet(xmlObj, "//ns:Service", ns)
+             if(length(serviceXML)==0) serviceXML <- getNodeSet(xmlObj, "//ns:ServiceIdentification", ns)
           }
           if(length(serviceXML)==0){
             ns <- OWSUtils$findNamespace(namespaces, id = "ows")
@@ -151,8 +156,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      }
    ),
    public = list(
-     initialize = function(xmlObj, serviceVersion){
-       serviceIdentification <- private$fetchServiceIdentification(xmlObj, serviceVersion)
+     initialize = function(xmlObj, owsVersion, serviceVersion){
+       serviceIdentification <- private$fetchServiceIdentification(xmlObj, owsVersion, serviceVersion)
        private$name <- serviceIdentification$name
        private$title <- serviceIdentification$title
        private$abstract <- serviceIdentification$abstract

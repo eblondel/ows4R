@@ -24,6 +24,13 @@ recommended instead to benefit from the full set of capabilities associated to a
  \item{\code{new(url, version)}}{
    This method is used to instantiate a WMSGetCapabilities object
  }
+ \item{\code{getRequests(pretty)}}{
+   List the requests available. If \code{pretty} is TRUE,
+   the output will be an object of class \code{data.frame}
+ }
+ \item{\code{getRequestNames()}}{
+   List the request names available.
+ }
  \item{\code{getLayers(pretty)}}{
    List the layers available. If \code{pretty} is TRUE,
    the output will be an object of class \code{data.frame}

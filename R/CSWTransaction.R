@@ -19,7 +19,7 @@
 #'
 CSWTransaction <- R6Class("CSWTransaction",
   lock_objects = FALSE,
-  inherit = OWSRequest, 
+  inherit = OWSHttpRequest, 
   private = list(
     xmlElement = "Transaction",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")

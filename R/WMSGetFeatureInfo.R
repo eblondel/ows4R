@@ -19,7 +19,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
- inherit = OWSRequest,
+ inherit = OWSHttpRequest,
  private = list(
    name = "GetFeatureInfo"
  ), 

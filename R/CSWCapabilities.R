@@ -36,8 +36,7 @@ CSWCapabilities <- R6Class("CSWCapabilities",
          "2.0.2" = "1.1",
          "3.0.0" = "2.0"
        )
-       super$initialize(url, service = "CSW", serviceVersion = version,
-                        owsVersion = owsVersion, logger = logger)
+       super$initialize(url, service = "CSW", owsVersion = owsVersion, serviceVersion = version, logger = logger)
        xmlObj <- self$getRequest()$getResponse()
      }
    )

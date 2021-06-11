@@ -18,7 +18,7 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 CSWHarvest <- R6Class("CSWHarvest",
-   inherit = OWSRequest,
+   inherit = OWSHttpRequest,
    private = list(
      xmlElement = "Harvest",
      xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),

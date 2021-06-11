@@ -17,7 +17,7 @@ Web Processing Service (WPS).
    Type: \tab Package\cr
    Version
    : \tab 0.2\cr
-   Date: \tab 2021-05-03\cr
+   Date: \tab 2021-06-11\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }

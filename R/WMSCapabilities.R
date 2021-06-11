@@ -18,6 +18,13 @@
 #'  \item{\code{new(url, version)}}{
 #'    This method is used to instantiate a WMSGetCapabilities object
 #'  }
+#'  \item{\code{getRequests(pretty)}}{
+#'    List the requests available. If \code{pretty} is TRUE,
+#'    the output will be an object of class \code{data.frame}
+#'  }
+#'  \item{\code{getRequestNames()}}{
+#'    List the request names available.
+#'  }
 #'  \item{\code{getLayers(pretty)}}{
 #'    List the layers available. If \code{pretty} is TRUE,
 #'    the output will be an object of class \code{data.frame}
@@ -36,7 +43,31 @@ WMSCapabilities <- R6Class("WMSCapabilities",
  inherit = OWSCapabilities,
  private = list(
    
-   layers = NA,
+   requests = list(),
+   layers = list(),
+   
+   #fetchRequests
+   fetchRequests = function(xmlObj, version){
+      wmsNs <- NULL
+      if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
+         namespaces <- OWSUtils$getNamespaces(xmlObj)
+         if(!is.null(namespaces)) wmsNs <- OWSUtils$findNamespace(namespaces, id = "wms")
+      }
+      requestsXML <- list()
+      if(is.null(wmsNs)){
+         requestsXML <- getNodeSet(xmlObj, "//Request")
+      }else{
+         requestsXML <- getNodeSet(xmlObj, "//ns:Request", wmsNs) 
+      }
+      requestsList <- list()
+      if(length(requestsXML)>0){
+         requests <- xmlChildren(requestsXML[[1]])
+         requestsList <- lapply(requests, function(x){
+            OWSRequest$new(x, self, version, logger = self$loggerType)
+         })
+      }
+      return(requestsList)
+   },
    
    #fetchLayers
    fetchLayers = function(xmlObj, version){
@@ -63,10 +94,30 @@ WMSCapabilities <- R6Class("WMSCapabilities",
    
    #initialize
    initialize = function(url, version, logger = NULL) {
-     super$initialize(url, service = "WMS", serviceVersion = version,
-                      owsVersion = "1.1", logger = logger)
+     super$initialize(url, service = "WMS", owsVersion = "1.1", serviceVersion = version, logger = logger)
      xmlObj <- self$getRequest()$getResponse()
+     private$requests = private$fetchRequests(xmlObj, version)
      private$layers = private$fetchLayers(xmlObj, version)
+   },
+   
+   #getRequests
+   getRequests = function(pretty = FALSE){
+      requests <- private$requests
+      if(pretty){
+         requests <- do.call("rbind", lapply(requests, function(x){
+            return(data.frame(
+               name = x$getName(),
+               formats = paste0(x$getFormats(), collapse=","),
+               stringsAsFactors = FALSE
+            ))
+         }))
+      }
+      return(requests)
+   },
+   
+   #getRequestNames
+   getRequestNames = function(){
+      return(names(private$requests))
    },
    
    #getLayers
