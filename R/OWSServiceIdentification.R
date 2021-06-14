@@ -62,8 +62,8 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        serviceXML <- NULL
        if(nrow(namespaces) > 0){
           namespaceURI <- NULL
-          if(endsWith(namespaces[1L, "uri"], "ows")){
-             namespaceURI <- paste(namespaces[1L, "uri"], owsVersion, sep ="/")
+          if(any(sapply(namespaces$uri, endsWith, "ows"))){
+             namespaceURI <- paste(namespaces[which(sapply(namespaces$uri, endsWith, "ows")), "uri"], owsVersion, sep ="/")
           }else{
              namespaceURI <- paste(namespaces[1L, "uri"])
           }

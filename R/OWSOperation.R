@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, serviceVersion)}}{
+#'  \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
 #'    This method is used to instantiate an OWSOperation object
 #'  }
 #'  \item{\code{getName()}}{
@@ -32,16 +32,21 @@ OWSOperation <-  R6Class("OWSOperation",
     parameters = list()
   ),
   public = list(
-    initialize = function(xmlObj, serviceVersion){
+    initialize = function(xmlObj, owsVersion, serviceVersion){
       namespaces <- OWSUtils$getNamespaces(xmlDoc(xmlObj))
       namespaces <- as.data.frame(namespaces)
-      namespaceURI <- paste("http://www.opengis.net/ows", serviceVersion, sep ="/")
+      namespaceURI <- NULL
+      if(any(sapply(namespaces$uri, endsWith, "ows"))){
+        namespaceURI <- paste(namespaces[which(sapply(namespaces$uri, endsWith, "ows")), "uri"], owsVersion, sep ="/")
+      }else{
+        namespaceURI <- paste(namespaces[1L, "uri"])
+      }
       ns <- OWSUtils$findNamespace(namespaces, uri = namespaceURI)
       if(is.null(ns)) ns <- OWSUtils$findNamespace(namespaces, id = "ows")
       private$name <- xmlGetAttr(xmlObj, "name")
       paramXML <- getNodeSet(xmlDoc(xmlObj), "//ns:Parameter", ns)
       private$parameters <- lapply(paramXML, function(x){
-        valuesXpath <- switch(serviceVersion,
+        valuesXpath <- switch(owsVersion,
           "1.1" = "//ns:Value",
           "2.0" = "//ns:AllowedValues/ns:Value"
         )

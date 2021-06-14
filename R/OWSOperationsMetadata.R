@@ -35,8 +35,8 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
        opXML <- NULL
        if(nrow(namespaces) > 0){
           namespaceURI <- NULL
-          if(endsWith(namespaces[1L, "uri"], "ows")){
-             namespaceURI <- paste(namespaces[1L, "uri"], owsVersion, sep ="/")
+          if(any(sapply(namespaces$uri, endsWith, "ows"))){
+             namespaceURI <- paste(namespaces[which(sapply(namespaces$uri, endsWith, "ows")), "uri"], owsVersion, sep ="/")
           }else{
              namespaceURI <- paste(namespaces[1L, "uri"])
           }
@@ -56,7 +56,7 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
        
        operations <- list()
        if(length(opXML)>0){
-          operations <- lapply(opXML, function(x){return(OWSOperation$new(x, serviceVersion))})
+          operations <- lapply(opXML, function(x){return(OWSOperation$new(x, owsVersion, serviceVersion))})
        }
        return(operations)
        
