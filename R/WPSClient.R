@@ -1,29 +1,25 @@
-#' WMSClient
+#' WPSClient
 #'
 #' @docType class
 #' @export
-#' @keywords OGC WMS Map GetFeatureInfo
+#' @keywords OGC WPS Processing Process
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
-#' Web Map Service.
+#' Web Processing Service.
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
 #' \donttest{
-#'    #example based on a WMS endpoint responding at http://localhost:8080/geoserver/wms
-#'    wms <- WMSClient$new("http://localhost:8080/geoserver/wms", serviceVersion = "1.1.1")
+#'    #example based on a WPS endpoint responding at http://localhost:8080/geoserver/wps
+#'    wps <- WPSClient$new("http://localhost:8080/geoserver/wps", serviceVersion = "1.0.0")
 #'    
 #'    #get capabilities
-#'    caps <- wms$getCapabilities()
-#'    
-#'    #get feature info
-#'    
-#'    #Advanced examples at https://github.com/eblondel/ows4R/wiki#wms
+#'    caps <- wps$getCapabilities()
 #' }
 #'
 #' @section Methods:
 #' \describe{
 #'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
-#'    This method is used to instantiate a WMSClient with the \code{url} of the
+#'    This method is used to instantiate a WPSClient with the \code{url} of the
 #'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
 #'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
 #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
@@ -39,10 +35,10 @@
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
-WMSClient <- R6Class("WMSClient",
+WPSClient <- R6Class("WPSClient",
    inherit = OWSClient,
    private = list(
-     serviceName = "WMS"
+     serviceName = "WPS"
    ),
    public = list(
      #initialize
@@ -50,7 +46,7 @@ WMSClient <- R6Class("WMSClient",
                            user = NULL, pwd = NULL, token = NULL, headers = c(),
                            logger = NULL) {
        super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, headers, logger)
-       self$capabilities = WMSCapabilities$new(self$url, self$version, 
+       self$capabilities = WPSCapabilities$new(self$url, self$version, 
                                                user = user, pwd = pwd, token = token, headers = headers,
                                                logger = logger)
      },
@@ -62,50 +58,15 @@ WMSClient <- R6Class("WMSClient",
      
      #reloadCapabilities
      reloadCapabilities = function(){
-       self$capabilities = WMSCapabilities$new(self$url, self$version, 
+       self$capabilities = WPSCapabilities$new(self$url, self$version, 
                                                user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                                logger = self$loggerType)
      },
      
-     #getLayers
-     getLayers = function(pretty = FALSE){
-       return(self$capabilities$getLayers(pretty = pretty))
-     },
-     
-     #getMap
-     getMap = function(){
+     #getProcessOfferings
+     getProcessOfferings = function(pretty = FALSE){
        stop("Not yet supported")
-     },
-     
-     #getFeatureInfo
-     getFeatureInfo = function(layer, srs = NULL,
-                               styles = NULL, feature_count = 1,
-                               x, y, width, height, bbox, 
-                               info_format = "application/vnd.ogc.gml",
-                               ...){
-       wmsLayer = self$capabilities$findLayerByName(layer)
-       features <- NULL
-       if(is(wmsLayer,"WMSLayer")){
-          features <- wmsLayer$getFeatureInfo(
-             srs = srs, styles = styles, feature_count = feature_count,
-             x = x, y = y, width = width, height = height, bbox = bbox,
-             info_format = info_format,
-             ...
-          )
-       }else if(is(wmsLayer, "list")){
-          features <- wmsLayer[[1]]$getFeatureInfo(
-             srs = srs, styles = styles, feature_count = feature_count,
-             x = x, y = y, width = width, height = height, bbox = bbox,
-             info_format = info_format,
-             ...
-          )
-       }
-       return(features)
-     },
-     
-     #getLegendGraphic
-     getLegendGraphic = function(){
-       stop("Not yet supported")
+       #return(self$capabilities$getProcessOfferings(pretty = pretty))
      }
      
    )

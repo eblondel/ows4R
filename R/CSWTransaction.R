@@ -8,7 +8,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, id)}}{
+#'  \item{\code{new(op, url, serviceVersion, type, user, pwd, token, headers,
+#'                  record, recordProperty, constraint, logger, ...)}}{
 #'    This method is used to instantiate a CSWTransaction object
 #'  }
 #' }
@@ -25,7 +26,8 @@ CSWTransaction <- R6Class("CSWTransaction",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    initialize = function(op, url, serviceVersion, type, user = NULL, pwd = NULL, token = NULL,
+    initialize = function(op, url, serviceVersion, type, 
+                          user = NULL, pwd = NULL, token = NULL, headers = list(),
                           record = NULL, recordProperty = NULL, constraint = NULL,
                           logger = NULL, ...) {
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
@@ -38,7 +40,7 @@ CSWTransaction <- R6Class("CSWTransaction",
         constraint = constraint
       )
       super$initialize(op, "POST", url, request = private$xmlElement,
-                       user = user, pwd = pwd, token = token,
+                       user = user, pwd = pwd, token = token, headers = list(),
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
       self$wrap <- TRUE

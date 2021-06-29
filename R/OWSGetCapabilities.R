@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, service, version)}}{
+#'  \item{\code{new(op, url, service, version, ...)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
 #' }

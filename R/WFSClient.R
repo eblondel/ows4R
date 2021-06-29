@@ -29,8 +29,8 @@
 #' \describe{
 #'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
 #'    This method is used to instantiate a WFSClient with the \code{url} of the
-#'    OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
-#'    be added with the support of service transactional modes. By default, the \code{logger}
+#'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
+#'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
 #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
 #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
 #'  }
@@ -61,9 +61,13 @@ WFSClient <- R6Class("WFSClient",
    ),
    public = list(
      #initialize
-     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
-       self$capabilities = WFSCapabilities$new(self$url, self$version, logger = logger)
+     initialize = function(url, serviceVersion = NULL, 
+                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           logger = NULL) {
+       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, headers, logger)
+       self$capabilities = WFSCapabilities$new(self$url, self$version, 
+                                               user = user, pwd = pwd, token = token, headers = headers,
+                                               logger = logger)
      },
      
      #getCapabilities
@@ -73,7 +77,9 @@ WFSClient <- R6Class("WFSClient",
      
      #reloadCapabilities
      reloadCapabilities = function(){
-       self$capabilities = WFSCapabilities$new(self$url, self$version, logger = self$loggerType)
+       self$capabilities = WFSCapabilities$new(self$url, self$version, 
+                                               user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                               logger = self$loggerType)
      },
      
      #describeFeatureType

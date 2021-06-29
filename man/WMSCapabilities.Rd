@@ -21,8 +21,8 @@ recommended instead to benefit from the full set of capabilities associated to a
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version)}}{
-   This method is used to instantiate a WMSGetCapabilities object
+ \item{\code{new(url, version, logger, ...)}}{
+   This method is used to instantiate a WMSCapabilities object
  }
  \item{\code{getRequests(pretty)}}{
    List the requests available. If \code{pretty} is TRUE,

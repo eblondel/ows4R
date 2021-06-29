@@ -28,8 +28,8 @@
 #' \describe{
 #'  \item{\code{new(url, serviceVersion, user, pwd, token, logger)}}{
 #'    This method is used to instantiate a CSWClient with the \code{url} of the
-#'    OGC service. Authentication is supported either with a basic (\code{user}/\code{pwd}) 
-#'    authentication or a \code{token}-based authentication. By default, the \code{logger}
+#'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
+#'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
 #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
 #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
 #'  }
@@ -63,10 +63,14 @@ CSWClient <- R6Class("CSWClient",
    ),
    public = list(
      #initialize
-     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, token = NULL, logger = NULL) {
+     initialize = function(url, serviceVersion = NULL, 
+                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           logger = NULL) {
        if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0.0"
-       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, logger)
-       self$capabilities = CSWCapabilities$new(self$url, self$version, logger = logger)
+       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, headers, logger)
+       self$capabilities = CSWCapabilities$new(self$url, self$version, 
+                                               user = user, pwd = pwd, token = token, headers = headers,
+                                               logger = logger)
      },
      
      #getCapabilities
@@ -76,7 +80,9 @@ CSWClient <- R6Class("CSWClient",
      
      #reloadCapabilities
      reloadCapabilities = function(){
-      self$capabilities = CSWCapabilities$new(self$url, self$version, logger = self$loggerType)
+      self$capabilities = CSWCapabilities$new(self$url, self$version, 
+                                              user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                              logger = self$loggerType)
      },
      
      #describeRecord
@@ -91,7 +97,9 @@ CSWClient <- R6Class("CSWClient",
          self$ERROR(errorMsg)
          stop(errorMsg)
        }
-       request <- CSWDescribeRecord$new(op, self$getUrl(), self$getVersion(), namespace = namespace, logger = self$loggerType, ...)
+       request <- CSWDescribeRecord$new(op, self$getUrl(), self$getVersion(), 
+                                        user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                        namespace = namespace, logger = self$loggerType, ...)
        return(request$getResponse())
      },
      
@@ -108,7 +116,7 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecordById$new(op, self$getUrl(), self$getVersion(),
-                                       user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
+                                       user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                        id = id, elementSetName = elementSetName,
                                        logger = self$loggerType, ...)
        return(request$getResponse())
@@ -132,7 +140,7 @@ CSWClient <- R6Class("CSWClient",
        if(hasMaxRecords) if(maxRecords < maxRecordsPerRequest) maxRecordsPerRequest <- maxRecords
        
        firstRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
-                                    user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
+                                    user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                     query = query, logger = self$loggerType, 
                                     maxRecords = maxRecordsPerRequest, ...)
        records <- firstRequest$getResponse()
@@ -159,7 +167,7 @@ CSWClient <- R6Class("CSWClient",
            }
          }
          nextRequest <- CSWGetRecords$new(op, self$getUrl(), self$getVersion(),
-                                          user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
+                                          user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                           query = query, logger = self$loggerType, 
                                           startPosition = nextRecord, 
                                           maxRecords = maxRecordsPerRequest, ...)
@@ -194,7 +202,7 @@ CSWClient <- R6Class("CSWClient",
        }
        #transation
        transaction <- CSWTransaction$new(op, cswt_url, self$getVersion(), type = type,
-                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(),
+                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        
@@ -294,7 +302,9 @@ CSWClient <- R6Class("CSWClient",
                             query = CSWQuery$new(), resourceType = "http://www.isotc211.org/2005/gmd",
                             sourceBaseUrl){
        nodeHarvest <- NULL
-       csw <- CSWClient$new(url = url, serviceVersion = self$getVersion(), logger = self$loggerType)
+       csw <- CSWClient$new(url = url, serviceVersion = self$getVersion(), 
+                            user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                            logger = self$loggerType)
        if(!is.null(csw)){
          records <- csw$getRecords(query = query)
          nodeHarvest$found <- length(records)

@@ -20,7 +20,7 @@ abstract class used by \pkg{ows4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, service,  owsVersion, serviceVersion, logger)}}{
+ \item{\code{new(url, service,  owsVersion, serviceVersion, logger, ...)}}{
    This method is used to instantiate a OWSGetCapabilities object
  }
  \item{\code{getUrl()}}{

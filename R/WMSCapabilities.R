@@ -15,8 +15,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version)}}{
-#'    This method is used to instantiate a WMSGetCapabilities object
+#'  \item{\code{new(url, version, logger, ...)}}{
+#'    This method is used to instantiate a WMSCapabilities object
 #'  }
 #'  \item{\code{getRequests(pretty)}}{
 #'    List the requests available. If \code{pretty} is TRUE,
@@ -93,8 +93,9 @@ WMSCapabilities <- R6Class("WMSCapabilities",
  public = list(
    
    #initialize
-   initialize = function(url, version, logger = NULL) {
-     super$initialize(url, service = "WMS", owsVersion = "1.1", serviceVersion = version, logger = logger)
+   initialize = function(url, version, logger = NULL, ...) {
+     super$initialize(url, service = "WMS", owsVersion = "1.1", serviceVersion = version, 
+                      logger = logger, ...)
      xmlObj <- self$getRequest()$getResponse()
      private$requests = private$fetchRequests(xmlObj, version)
      private$layers = private$fetchLayers(xmlObj, version)

@@ -19,8 +19,8 @@ WFSClient
 \describe{
  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
    This method is used to instantiate a WFSClient with the \code{url} of the
-   OGC service. Authentication (\code{user}/\code{pwd}) is not yet supported and will
-   be added with the support of service transactional modes. By default, the \code{logger}
+   OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
+   bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
  }

@@ -57,6 +57,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     user = NULL,
     pwd = NULL,
     token = NULL,
+    headers = c(),
     auth_scheme = NULL,
 
     #GET
@@ -70,7 +71,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       self$INFO(sprintf("Fetching %s", req))
       
       #headers
-      headers <- c()
+      headers <- private$headers
       if(!is.null(private$token)){
         headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
@@ -93,7 +94,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
           responseContent <- content(r, type = "text", encoding = "UTF-8")
         }
       }
-      response <- list(request = request, requestHeaders = headers(r),
+      response <- list(request = request, requestHeaders = httr::headers(r),
                        status = status_code(r), response = responseContent)
       return(response)
     },
@@ -113,7 +114,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       )
       
       #headers
-      headers <- c("Accept" = "application/xml", "Content-Type" = contentType)
+      headers <- list("Accept" = "application/xml", "Content-Type" = contentType, unlist(private$headers))
       if(!is.null(private$token)){
         headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
@@ -154,7 +155,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   public = list(
     #initialize
     initialize = function(op, type, url, request,
-                          user = NULL, pwd = NULL, token = NULL, 
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), 
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
@@ -179,6 +180,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         private$auth_scheme = "Bearer"
         private$token = token
       }
+      private$headers = headers
         
       vendorParams <- list(...)
       #if(!is.null(op)){
