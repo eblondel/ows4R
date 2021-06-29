@@ -275,12 +275,14 @@ WMSLayer <- R6Class("WMSLayer",
         }
       }
       
+      client = private$capabilities$getClient()
       ftFeatures <- WMSGetFeatureInfo$new(
         op = op, url = private$url, version = private$version, 
         layers = private$name, srs = srs, styles = styles,
         feature_count = feature_count,
         x = x, y = y, width = width, height = height, bbox = bbox,
         info_format = info_format,
+        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
         logger = self$loggerType, ...)
       obj <- ftFeatures$getResponse()
       

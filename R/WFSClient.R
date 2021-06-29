@@ -68,6 +68,7 @@ WFSClient <- R6Class("WFSClient",
        self$capabilities = WFSCapabilities$new(self$url, self$version, 
                                                user = user, pwd = pwd, token = token, headers = headers,
                                                logger = logger)
+       self$capabilities$setClient(self)
      },
      
      #getCapabilities
@@ -80,6 +81,7 @@ WFSClient <- R6Class("WFSClient",
        self$capabilities = WFSCapabilities$new(self$url, self$version, 
                                                user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                                logger = self$loggerType)
+       self$capabilities$setClient(self)
      },
      
      #describeFeatureType

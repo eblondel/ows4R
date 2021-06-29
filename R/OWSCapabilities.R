@@ -12,6 +12,9 @@
 #'  \item{\code{new(url, service,  owsVersion, serviceVersion, logger, ...)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
+#'  \item{\code{setClient(client)}}{
+#'    Internal method to self-assign the parent client
+#'  }
 #'  \item{\code{getUrl()}}{
 #'    Get URL
 #'  }
@@ -39,6 +42,7 @@
 OWSCapabilities <- R6Class("OWSCapabilities",
    inherit = OGCAbstractObject,
    private = list(
+     client = NULL,
      url = NA,
      service = NA,
      serviceVersion = NA,
@@ -66,6 +70,11 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
        private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
+     },
+     
+     #setClient
+     setClient = function(client){
+        private$client <- client
      },
      
      #getUrl
@@ -106,6 +115,11 @@ OWSCapabilities <- R6Class("OWSCapabilities",
      #getOperationsMetadata
      getOperationsMetadata = function(){
        return(private$operationsMetadata)
+     },
+     
+     #getClient
+     getClient = function(){
+        return(private$client)
      }
    )
 )

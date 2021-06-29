@@ -58,13 +58,13 @@ WPSCapabilities <- R6Class("WPSCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, version, logger = NULL, ...) {
+     initialize = function(url, version, client = NULL, logger = NULL, ...) {
        owsVersion <- switch(version,
                             "1.0.0" = "1.1",
                             "2.0.0" = "2.0"
        )
        super$initialize(url, service = "WPS", owsVersion = owsVersion, serviceVersion = version, 
-                        logger = logger, ...)
+                        client = client, logger = logger, ...)
        xmlObj <- self$getRequest()$getResponse()
        private$processes <- private$fetchProcesses(xmlObj, version)
      },

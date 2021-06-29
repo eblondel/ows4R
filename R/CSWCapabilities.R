@@ -31,7 +31,7 @@ CSWCapabilities <- R6Class("CSWCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, version, logger = NULL, ...) {
+     initialize = function(url, version, client = NULL, logger = NULL, ...) {
        owsVersion <- switch(version,
          "2.0.2" = "1.1",
          "3.0.0" = "2.0"

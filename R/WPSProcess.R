@@ -29,7 +29,7 @@
 WPSProcess <- R6Class("WPSProcess",
   inherit = OGCAbstractObject,                       
   private = list(
-    
+  
     capabilities = NULL,
     url = NA,
     version = NA,
@@ -66,7 +66,7 @@ WPSProcess <- R6Class("WPSProcess",
     
   ),
   public = list(
-    initialize = function(xmlObj, capabilities, version, logger = NULL){
+    initialize = function(xmlObj, capabilities, version, logger = NULL, ...){
       super$initialize(logger = logger)
       
       private$capabilities = capabilities
@@ -92,6 +92,26 @@ WPSProcess <- R6Class("WPSProcess",
     #getVersion
     getVersion = function(){
       return(private$processVersion)
+    },
+    
+    #getDescription
+    getDescription = function(){
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="DescribeProcess"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'DescribeProcess' not supported by this service")
+        }
+      }
+      client = private$capabilities$getClient()
+      processDescription <- WPSDescribeProcess$new(op = op, private$url, private$version, private$identifier, 
+                                                   user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+                                                   logger = self$loggerType)
+      xmlObj <- processDescription$getResponse()
+      return(xmlObj)
     }
   )
 )

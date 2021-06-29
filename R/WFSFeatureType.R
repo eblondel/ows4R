@@ -202,7 +202,10 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'DescribeFeatureType' not supported by this service")
         }
       }
-      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name, logger = self$loggerType)
+      client = private$capabilities$getClient()
+      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name, 
+                                                  user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+                                                  logger = self$loggerType)
       xmlObj <- ftDescription$getResponse()
       namespaces <- OWSUtils$getNamespaces(xmlObj)
       xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
@@ -281,8 +284,10 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'GetFeature' not supported by this service")
         }
       }
-      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, 
-                                      outputFormat = outputFormat, logger = self$loggerType, ...)
+      client = private$capabilities$getClient()
+      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
+                                      user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+                                      logger = self$loggerType, ...)
       obj <- ftFeatures$getResponse()
       
       if(length(vendorParams)>0){
