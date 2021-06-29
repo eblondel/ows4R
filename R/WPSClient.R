@@ -31,6 +31,9 @@
 #'  \item{\code{reloadCapabilities()}}{
 #'    Reload service capabilities
 #'  }
+#'  \item{\code{getProcesses(pretty)}}{
+#'    Get the list of processes offered by the service
+#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -63,10 +66,9 @@ WPSClient <- R6Class("WPSClient",
                                                logger = self$loggerType)
      },
      
-     #getProcessOfferings
-     getProcessOfferings = function(pretty = FALSE){
-       stop("Not yet supported")
-       #return(self$capabilities$getProcessOfferings(pretty = pretty))
+     #getProcesses
+     getProcesses = function(pretty = FALSE){
+       return(self$capabilities$getProcesses(pretty = pretty))
      }
      
    )

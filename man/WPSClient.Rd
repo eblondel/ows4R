@@ -30,6 +30,9 @@ WPSClient
  \item{\code{reloadCapabilities()}}{
    Reload service capabilities
  }
+ \item{\code{getProcesses(pretty)}}{
+   Get the list of processes offered by the service
+ }
 }
 }
 

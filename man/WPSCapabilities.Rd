@@ -24,6 +24,9 @@ recommended instead to benefit from the full set of capabilities associated to a
  \item{\code{new(url, version, logger, ...)}}{
    This method is used to instantiate a WPSCapabilities object
  }
+ \item{\code{getProcesses(pretty)}}{
+   Return the list of processes offered by the service capabilities.
+ }
 }
 }
 
