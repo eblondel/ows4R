@@ -29,7 +29,7 @@ OGC CSW   |[Catalogue Service](https://www.ogc.org/standards/cat)|``2.0.2``|``3.
 OGC WFS   |[Web Feature Service](https://www.ogc.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
 OGC WMS   |[Web Map Service](https://www.ogc.org/standards/wms)|``1.1.0``,``1.1.1``,``1.3.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation)|ongoing
 OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``|[raster](https://cran.r-project.org/package=raster)|under development (sponsoring/funding required)
-OGC WPS |[Web Processing Service](https://www.ogc.org/standards/wps)|`1.0.0`|`2.0`||under development (sponsoring welcome)
+OGC WPS |[Web Processing Service](https://www.ogc.org/standards/wps)|`1.0.0`|`2.0`||under development (contribs welcome)
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
 
