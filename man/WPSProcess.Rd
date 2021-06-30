@@ -14,7 +14,7 @@ Object of \code{\link{R6Class}} modelling a WPS process
 WPSProcess
 }
 \note{
-Abstract class used by \pkg{ows4R}
+Class used internally by \pkg{ows4R}
 }
 \section{Methods}{
 

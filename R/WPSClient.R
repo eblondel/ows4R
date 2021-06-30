@@ -31,8 +31,12 @@
 #'  \item{\code{reloadCapabilities()}}{
 #'    Reload service capabilities
 #'  }
-#'  \item{\code{getProcesses(pretty)}}{
-#'    Get the list of processes offered by the service
+#'  \item{\code{getProcesses(pretty, full)}}{
+#'    Return the list of processes offered by the service capabilities. \code{pretty} allows to control
+#'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
+#'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
+#'    case a the WPS client will request a process description (with more information about the process) for
+#'    each process listed in the capabilities.
 #'  }
 #' }
 #' 
@@ -69,8 +73,8 @@ WPSClient <- R6Class("WPSClient",
      },
      
      #getProcesses
-     getProcesses = function(pretty = FALSE){
-       return(self$capabilities$getProcesses(pretty = pretty))
+     getProcesses = function(pretty = FALSE, full = FALSE){
+       return(self$capabilities$getProcesses(pretty = pretty, full = full))
      }
      
    )

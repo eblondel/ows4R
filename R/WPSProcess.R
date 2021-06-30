@@ -22,7 +22,7 @@
 #'  }
 #' }
 #' 
-#' @note Abstract class used by \pkg{ows4R}
+#' @note Class used internally by \pkg{ows4R}
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -111,7 +111,9 @@ WPSProcess <- R6Class("WPSProcess",
                                                    user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                                    logger = self$loggerType)
       xmlObj <- processDescription$getResponse()
-      return(xmlObj)
+      processDescXML <- xmlChildren(xmlChildren(xmlObj)[[1]])[[1]]
+      processDesc <- WPSProcessDescription$new(xmlObj = processDescXML, capabilities = private$capabilities, private$version)
+      return(processDesc)
     }
   )
 )

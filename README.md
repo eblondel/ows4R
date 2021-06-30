@@ -23,23 +23,26 @@ We thank in advance people that use ``ows4R`` for citing it in their work / publ
 
 Standard  |Description|Supported versions|Unsupported versions|Supported R bindings|Support
 ----------|-----------|------------------|-----------------|--------------------|------|
-OGC Filter|[Filter Encoding](http://www.opengeospatial.org/standards/filter)|``1.1.0``|``2.0``||ongoing
-OGC Common|[Web Service Common](http://www.opengeospatial.org/standards/common)|``1.1``,``2.0``|||ongoing
-OGC CSW   |[Catalogue Service](http://www.opengeospatial.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking sponsors
-OGC WFS   |[Web Feature Service](http://www.opengeospatial.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
-OGC WMS   |[Web Map Service](http://www.opengeospatial.org/standards/wms)|``1.1.0``,``1.1.1``,``1.3.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for GetFeatureInfo operations)|ongoing
-OGC WCS |[Web Coverage Service](http://www.opengeospatial.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``|[raster](https://cran.r-project.org/package=raster)|under investigation/seek sponsors
+OGC Filter|[Filter Encoding](https://www.ogc.org/standards/filter)|``1.1.0``|``2.0``||ongoing
+OGC Common|[Web Service Common](https://www.ogc.org/standards/common)|``1.1``,``2.0``|||ongoing
+OGC CSW   |[Catalogue Service](https://www.ogc.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking sponsors
+OGC WFS   |[Web Feature Service](https://www.ogc.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
+OGC WMS   |[Web Map Service](https://www.ogc.org/standards/wms)|``1.1.0``,``1.1.1``,``1.3.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation)|ongoing
+OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``|[raster](https://cran.r-project.org/package=raster)|under development (sponsoring/funding required)
+OGC WPS |[Web Processing Service](https://www.ogc.org/standards/wps)|`1.0.0`|`2.0`||under development (sponsoring welcome)
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
 
 ## Development perspectives
 
 Support for additional OGC web-service standard specifications including
-* Web Coverage Service (WCS)
 * Web Processing Service (WPS)
+* Web Coverage Service (WCS)
+* Web Coverage Processing Service (WCPS)
 * Filter Encoding (FES) version ``2.0``
 * Web Feature Service (WFS) ``Transaction`` operations
 * Catalogue Service (CSW) version ``3.0`` (including ``Transaction`` and ``Harvest`` operations)
+* OGC API
 * ...
 
 For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:emmanuel.blondel1@gmail.com)

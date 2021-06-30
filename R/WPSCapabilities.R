@@ -18,8 +18,12 @@
 #'  \item{\code{new(url, version, logger, ...)}}{
 #'    This method is used to instantiate a WPSCapabilities object
 #'  }
-#'  \item{\code{getProcesses(pretty)}}{
-#'    Return the list of processes offered by the service capabilities.
+#'  \item{\code{getProcesses(pretty, full)}}{
+#'    Return the list of processes offered by the service capabilities. \code{pretty} allows to control
+#'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
+#'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
+#'    case a the WPS client will request a process description (with more information about the process) for
+#'    each process listed in the capabilities.
 #'  }
 #' }
 #' 
@@ -70,16 +74,18 @@ WPSCapabilities <- R6Class("WPSCapabilities",
      },
      
      #getProcesses
-     getProcesses = function(pretty = FALSE){
+     getProcesses = function(pretty = FALSE, full = FALSE){
        processes <- private$processes
        if(pretty){
          processes <- do.call("rbind", lapply(processes, function(x){
-           return(data.frame(
+           desc <- data.frame(
              identifier = x$getIdentifier(),
              title = x$getTitle(),
              version = x$getVersion(),
              stringsAsFactors = FALSE
-           ))
+           )
+           if(full) desc <- x$getDescription()$asDataFrame()
+           return(desc)
          }))
        }
        return(processes)
