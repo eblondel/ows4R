@@ -112,7 +112,7 @@ WPSProcess <- R6Class("WPSProcess",
                                                    logger = self$loggerType)
       xmlObj <- processDescription$getResponse()
       processDescXML <- xmlChildren(xmlChildren(xmlObj)[[1]])[[1]]
-      processDesc <- WPSProcessDescription$new(xmlObj = processDescXML, capabilities = private$capabilities, private$version)
+      processDesc <- WPSProcessDescription$new(xmlObj = processDescXML, version = private$version)
       return(processDesc)
     }
   )

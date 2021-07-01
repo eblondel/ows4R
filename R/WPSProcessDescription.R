@@ -29,6 +29,12 @@
 #'  \item{\code{isStoreSupported()}}{
 #'    Get whether store is supported
 #'  }
+#'  \item{\code{getDataInputs()}}{
+#'    Get data inputs
+#'  }
+#'  \item{\code{getProcessOutputs()}}{
+#'    Get process outputs
+#'  }
 #'  \item{\code{asDataFrame()}}{
 #'    Get process description as data.frame
 #'  }
@@ -52,6 +58,8 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     processVersion = NA,
     statusSupported = FALSE,
     storeSupported = FALSE,
+    dataInputs = list(),
+    processOutputs = list(),
     
     #fetchProcessDescription
     fetchProcessDescription = function(xmlObj, version){
@@ -77,13 +85,30 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       statusSupported <- xmlGetAttr(xmlObj, "statusSupported") == "true"
       storeSupported <- xmlGetAttr(xmlObj, "storeSupported") == "true"
       
+      dataInputsXML <- xmlChildren(children$DataInputs)
+      dataInputsXML <- dataInputsXML[names(dataInputsXML)=="Input"]
+      dataInputs <- lapply(dataInputsXML, function(x){
+        input_binding <- NULL
+        if("LiteralData" %in% names(xmlChildren(x))){
+          input_binding = WPSLiteralInputDescription$new(xmlObj = x, version = version)
+        }else if("ComplexData" %in% names(xmlChildren(x))){
+          input_binding = WPSComplexInputDescription$new(xmlObj = x, version = version)
+        }else if("BoundingBoxData" %in% names(xmlChildren(x))){
+          #TODO
+        }
+        return(input_binding)
+      })
+      names(dataInputs) <- NULL
+      dataInputs <- dataInputs[!sapply(dataInputs, is.null)]
+      
       processDescription <- list(
         identifier = processIdentifier,
         title = processTitle,
         abstract = processAbstract,
         version = processVersion,
         statusSupported = statusSupported,
-        storeSupported = storeSupported
+        storeSupported = storeSupported,
+        dataInputs = dataInputs
       )
       
       return(processDescription)
@@ -91,11 +116,8 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     
   ),
   public = list(
-    initialize = function(xmlObj, capabilities, version, logger = NULL, ...){
+    initialize = function(xmlObj, version, logger = NULL, ...){
       super$initialize(logger = logger)
-      
-      private$capabilities = capabilities
-      private$url = capabilities$getUrl()
       private$version = version
       
       processDesc = private$fetchProcessDescription(xmlObj, version)
@@ -105,6 +127,7 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       private$processVersion = processDesc$version
       private$statusSupported = processDesc$statusSupported
       private$storeSupported = processDesc$storeSupported
+      private$dataInputs = processDesc$dataInputs
     },
     
     #getIdentifier
@@ -129,26 +152,22 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     
     #isStatusSupported
     isStatusSupported = function(){
-      return(private$statusSupported)
+      return(private$isStatusSupported)
     },
     
     #isStoreSupported
     isStoreSupported = function(){
-      return(private$storeSupported)
+      return(private$isStoreSupported)
     },
     
-    #asDataFrame
-    asDataFrame = function(){
-      return(data.frame(
-        identifier = self$getIdentifier(),
-        title = self$getTitle(),
-        abstract = self$getAbstract(),
-        version = self$getVersion(),
-        statusSupported = self$isStatusSupported(),
-        storeSupported = self$isStoreSupported(),
-        stringsAsFactors = FALSE
-      ))
-    }
+    #getDataInputs
+    getDataInputs = function(){
+      return(private$dataInputs)
+    },
     
+    #getProcessOutputs
+    getProcessOutputs = function(){
+      return(private$processOutputs)
+    }
   )
 )

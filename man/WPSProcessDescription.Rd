@@ -40,6 +40,12 @@ Class used internally by \pkg{ows4R}
  \item{\code{isStoreSupported()}}{
    Get whether store is supported
  }
+ \item{\code{getDataInputs()}}{
+   Get data inputs
+ }
+ \item{\code{getProcessOutputs()}}{
+   Get process outputs
+ }
  \item{\code{asDataFrame()}}{
    Get process description as data.frame
  }
