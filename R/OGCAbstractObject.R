@@ -77,6 +77,29 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                                      sep = ""), sep = "")
       }
       return(out)
+    },
+    #fromComplexTypes
+    fromComplexTypes = function(value){
+      #datetime types
+      if(suppressWarnings(all(class(value)==c("POSIXct","POSIXt")))){
+        tz <- attr(value, "tzone")
+        if(length(tz)>0){
+          if(tz %in% c("UTC","GMT")){
+            value <- format(value,"%Y-%m-%dT%H:%M:%S")
+            value <- paste0(value,"Z")
+          }else{
+            utc_offset <- format(value, "%z")
+            utc_offset <- paste0(substr(utc_offset,1,3),":",substr(utc_offset,4,5))
+            value <- paste0(format(value,"%Y-%m-%dT%H:%M:%S"), utc_offset)
+          }
+        }else{
+          value <- format(value,"%Y-%m-%dT%H:%M:%S")
+        }
+      }else if(class(value)[1] == "Date"){
+        value <- format(value,"%Y-%m-%d")
+      }
+      
+      return(value)
     }
   ),
   public = list(
@@ -189,9 +212,9 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               wrapperNode <- xmlOutputDOM(
                 tag = field,
                 nameSpace = names(private$xmlNamespace)[1],
-                attrs = field$attrs
+                attrs = fieldObj$attrs
               )
-              if(!fieldObj$isNull) wrapperNode$addNode(fieldObjXml)
+              wrapperNode$addNode(fieldObjXml)
               rootXML$addNode(wrapperNode$value())
             }else{
               rootXML$addNode(fieldObjXml)
@@ -208,7 +231,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                 nameSpace = names(private$xmlNamespace)[1],
                 attrs = fieldObj$attrs
               )
-              if(!fieldObj$isNull) wrapperNode$addNode(fieldObjXml)
+              wrapperNode$addNode(fieldObjXml)
               rootXML$addNode(wrapperNode$value())
             }else{
               rootXML$addNode(fieldObjXml)
@@ -253,9 +276,15 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               }
             }
           }else{
-            wrapperNode <- xmlOutputDOM(tag = field, nameSpace = names(private$xmlNamespace)[1])
-            wrapperNode$addNode(xmlTextNode(fieldObj))
-            rootXML$addNode(wrapperNode$value())
+            if(field == "value"){
+              if(is.logical(fieldObj)) fieldObj <- tolower(as.character(is.logical(fieldObj)))
+              fieldObj <- private$fromComplexTypes(fieldObj)
+              rootXML$addNode(xmlTextNode(fieldObj))
+            }else{
+              wrapperNode <- xmlOutputDOM(tag = field, nameSpace = names(private$xmlNamespace)[1])
+              wrapperNode$addNode(xmlTextNode(fieldObj))
+              rootXML$addNode(wrapperNode$value())
+            }
           }
         }
       }

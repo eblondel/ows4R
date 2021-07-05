@@ -37,10 +37,10 @@ WPSClient
    case a the WPS client will request a process description (with more information about the process) for
    each process listed in the capabilities.
  }
- \item{\code{describeProcess(processId)}}{
-   Get the description of a process, given its \code{processId}, returning an object of class \code{WPSProcessDescription}
+ \item{\code{describeProcess(identifier)}}{
+   Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
  }
- \item{\code{execute(processId, inputs, output)}}{
+ \item{\code{execute(identifier, dataInputs, responseForm, language)}}{
    Execute a process
  }
 }

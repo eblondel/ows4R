@@ -118,7 +118,24 @@ WPSProcess <- R6Class("WPSProcess",
     
     #execute
     execute = function(dataInputs, responseForm, language){
-      stop("Not yet implemented")
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="Execute"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'Execute' not supported by this service") #control altough Execute request is mandatory for WPS
+        }
+      }
+      
+      client = private$capabilities$getClient()
+      processExecute <- WPSExecute$new(op = op, private$url, private$version, private$identifier,
+                                       dataInputs = dataInputs, responseForm = responseForm, language = language,
+                                       user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+                                       logger = self$loggerType)
+      xmlObj <- processExecute$getResponse()
+      return(xmlObj)
     }
   )
 )
