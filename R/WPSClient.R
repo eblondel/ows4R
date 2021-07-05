@@ -38,10 +38,10 @@
 #'    case a the WPS client will request a process description (with more information about the process) for
 #'    each process listed in the capabilities.
 #'  }
-#'  \item{\code{describeProcess(processId)}}{
-#'    Get the description of a process, given its \code{processId}, returning an object of class \code{WPSProcessDescription}
+#'  \item{\code{describeProcess(identifier)}}{
+#'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
 #'  }
-#'  \item{\code{execute(processId, inputs, output)}}{
+#'  \item{\code{execute(identifier, dataInputs, responseForm, language)}}{
 #'    Execute a process
 #'  }
 #' }
@@ -84,11 +84,11 @@ WPSClient <- R6Class("WPSClient",
      },
      
      #describeProcess
-     describeProcess = function(processId){
+     describeProcess = function(identifier){
         processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$identifier == processId})]
+        processes <- processes[sapply(processes, function(process){process$identifier == identifier})]
         if(length(processes)==0){
-           errMsg <- sprintf("There is no process with identifier '%s'", processId)
+           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
            self$ERROR(errMsg)
            stop(errMsg)
         }
@@ -97,16 +97,16 @@ WPSClient <- R6Class("WPSClient",
      },
      
      #execute
-     execute = function(processId, inputs, output){
+     execute = function(identifier, dataInputs, responseForm, language){
         processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$identifier == processId})]
+        processes <- processes[sapply(processes, function(process){process$identifier == identifier})]
         if(length(processes)==0){
-           errMsg <- sprintf("There is no process with identifier '%s'", processId)
+           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
            self$ERROR(errMsg)
            stop(errMsg)
         }
         process <- processes[[1]]
-        return(process$execute(processId, inputs, output))
+        return(process$execute(dataInputs, responseForm, language))
      }
      
    )

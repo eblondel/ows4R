@@ -114,6 +114,11 @@ WPSProcess <- R6Class("WPSProcess",
       processDescXML <- xmlChildren(xmlChildren(xmlObj)[[1]])[[1]]
       processDesc <- WPSProcessDescription$new(xmlObj = processDescXML, version = private$version)
       return(processDesc)
+    },
+    
+    #execute
+    execute = function(dataInputs, responseForm, language){
+      stop("Not yet implemented")
     }
   )
 )
