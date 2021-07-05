@@ -38,6 +38,12 @@
 #'    case a the WPS client will request a process description (with more information about the process) for
 #'    each process listed in the capabilities.
 #'  }
+#'  \item{\code{describeProcess(processId)}}{
+#'    Get the description of a process, given its \code{processId}, returning an object of class \code{WPSProcessDescription}
+#'  }
+#'  \item{\code{execute(processId, inputs, output)}}{
+#'    Execute a process
+#'  }
 #' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -75,6 +81,32 @@ WPSClient <- R6Class("WPSClient",
      #getProcesses
      getProcesses = function(pretty = FALSE, full = FALSE){
        return(self$capabilities$getProcesses(pretty = pretty, full = full))
+     },
+     
+     #describeProcess
+     describeProcess = function(processId){
+        processes <- self$getProcesses()
+        processes <- processes[sapply(processes, function(process){process$identifier == processId})]
+        if(length(processes)==0){
+           errMsg <- sprintf("There is no process with identifier '%s'", processId)
+           self$ERROR(errMsg)
+           stop(errMsg)
+        }
+        process <- processes[[1]]
+        return(process$getDescription())
+     },
+     
+     #execute
+     execute = function(processId, inputs, output){
+        processes <- self$getProcesses()
+        processes <- processes[sapply(processes, function(process){process$identifier == processId})]
+        if(length(processes)==0){
+           errMsg <- sprintf("There is no process with identifier '%s'", processId)
+           self$ERROR(errMsg)
+           stop(errMsg)
+        }
+        process <- processes[[1]]
+        return(process$execute(processId, inputs, output))
      }
      
    )

@@ -82,8 +82,10 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       }
       
       processVersion <- xmlGetAttr(xmlObj, "wps:processVersion")
-      statusSupported <- xmlGetAttr(xmlObj, "statusSupported") == "true"
-      storeSupported <- xmlGetAttr(xmlObj, "storeSupported") == "true"
+      statusAttr <- xmlGetAttr(xmlObj, "statusSupported")
+      if(!is.null(statusAttr)) statusSupported <- statusAttr == "true"
+      storeAttr <- xmlGetAttr(xmlObj, "storeSupported")
+      if(!is.null(storeAttr)) storeSupported <- storeAttr == "true"
       
       dataInputsXML <- xmlChildren(children$DataInputs)
       dataInputsXML <- dataInputsXML[names(dataInputsXML)=="Input"]
@@ -170,12 +172,12 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     
     #isStatusSupported
     isStatusSupported = function(){
-      return(private$isStatusSupported)
+      return(private$statusSupported)
     },
     
     #isStoreSupported
     isStoreSupported = function(){
-      return(private$isStoreSupported)
+      return(private$storeSupported)
     },
     
     #getDataInputs
@@ -186,6 +188,19 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     #getProcessOutputs
     getProcessOutputs = function(){
       return(private$processOutputs)
+    },
+    
+    #asDataFrame
+    asDataFrame = function(){
+      return(data.frame(
+        identifier = self$getIdentifier(),
+        title = self$getTitle(),
+        abstract = self$getAbstract(),
+        processVersion = self$getVersion(),
+        statusSupported = self$isStatusSupported(),
+        storeSupported = self$isStoreSupported(),
+        stringsAsFactors = FALSE
+      ))
     }
   )
 )
