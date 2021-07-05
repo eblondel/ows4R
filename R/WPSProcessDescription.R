@@ -101,6 +101,22 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       names(dataInputs) <- NULL
       dataInputs <- dataInputs[!sapply(dataInputs, is.null)]
       
+      processOutputsXML <- xmlChildren(children$ProcessOutputs)
+      processOutputsXML <- processOutputsXML[names(processOutputsXML)=="Output"]
+      processOutputs <- lapply(processOutputsXML, function(x){
+        output_binding <- NULL
+        if("LiteralOutput" %in% names(xmlChildren(x))){
+          output_binding = WPSLiteralOutputDescription$new(xmlObj = x, version = version)
+        }else if("ComplexOutput" %in% names(xmlChildren(x))){
+          output_binding = WPSComplexOutputDescription$new(xmlObj = x, version = version)
+        }else if("BoundingBoxOutput" %in% names(xmlChildren(x))){
+          #TODO
+        }
+        return(output_binding)
+      })
+      names(processOutputs)
+      processOutputs <- processOutputs[!sapply(processOutputs, is.null)]
+      
       processDescription <- list(
         identifier = processIdentifier,
         title = processTitle,
@@ -108,7 +124,8 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
         version = processVersion,
         statusSupported = statusSupported,
         storeSupported = storeSupported,
-        dataInputs = dataInputs
+        dataInputs = dataInputs,
+        processOutputs = processOutputs
       )
       
       return(processDescription)
@@ -128,6 +145,7 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       private$statusSupported = processDesc$statusSupported
       private$storeSupported = processDesc$storeSupported
       private$dataInputs = processDesc$dataInputs
+      private$processOutputs = processDesc$processOutputs
     },
     
     #getIdentifier

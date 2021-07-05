@@ -30,7 +30,11 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
      fetchFormats = function(xmlObj, version){
        
        children <- xmlChildren(xmlObj)
-       dataElement <- names(children)[endsWith(names(children), "Data")][1]
+       dataElement <- NULL
+       dataElements <- names(children)[endsWith(names(children), "Data")]
+       if(length(dataElements)>0) dataElement <- dataElements[1]
+       dataElements <- names(children)[endsWith(names(children), "Output")]
+       if(length(dataElements)>0) dataElement <- dataElements[1]
        children <- xmlChildren(children[[dataElement]])
        
        formats <- list()
