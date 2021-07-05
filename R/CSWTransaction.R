@@ -40,7 +40,7 @@ CSWTransaction <- R6Class("CSWTransaction",
         constraint = constraint
       )
       super$initialize(op, "POST", url, request = private$xmlElement,
-                       user = user, pwd = pwd, token = token, headers = list(),
+                       user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
       self$wrap <- TRUE
