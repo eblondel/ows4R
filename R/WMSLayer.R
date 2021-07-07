@@ -291,6 +291,7 @@ WMSLayer <- R6Class("WMSLayer",
         "application/vnd.ogc.gml" = "gml",
         "application/vnd.ogc.gml/3.1.1" = "gml",
         "application/json" = "json",
+        "text/xml" = "xml",
         "gml"                  
       )
       tempf = tempfile() 
