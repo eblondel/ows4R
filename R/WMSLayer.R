@@ -302,7 +302,18 @@ WMSLayer <- R6Class("WMSLayer",
         write(obj, destfile)
       }
       
-      ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+      ftFeatures <- NULL
+      if(destext == "xml"){
+        rootname <- xmlName(xmlChildren(xml)[[1]])
+        if(rootname == "FeatureInfoResponse"){
+          #TODO build sf(s) based on a FeatureInfoResponse xml (eg. case of Thredds data servers)
+        }else{
+          ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+        }
+      }else{
+        ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+      }
+      
       if(is.null(st_crs(ftFeatures))){
         st_crs(ftFeatures) <- self$getDefaultCRS()
       }
