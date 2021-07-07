@@ -86,7 +86,7 @@ WPSClient <- R6Class("WPSClient",
      #describeProcess
      describeProcess = function(identifier){
         processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$identifier == identifier})]
+        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
         if(length(processes)==0){
            errMsg <- sprintf("There is no process with identifier '%s'", identifier)
            self$ERROR(errMsg)
@@ -99,7 +99,7 @@ WPSClient <- R6Class("WPSClient",
      #execute
      execute = function(identifier, request, dataInputs, responseForm, language){
         processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$identifier == identifier})]
+        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
         if(length(processes)==0){
            errMsg <- sprintf("There is no process with identifier '%s'", identifier)
            self$ERROR(errMsg)
