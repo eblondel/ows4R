@@ -25,7 +25,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
  ), 
  public = list(
    initialize = function(op, url, version, layers, srs, styles, feature_count = 1,
-                         x, y, width, height, bbox, info_format = "application/vnd.ogc.gml",
+                         x, y, width, height, bbox, info_format = "text/xml",
                          logger = NULL, ...) {
      
      mimeType <- switch(info_format,
