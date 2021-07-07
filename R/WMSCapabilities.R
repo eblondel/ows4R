@@ -140,7 +140,7 @@ WMSCapabilities <- R6Class("WMSCapabilities",
    findLayerByName = function(expr, exact = TRUE){
      result <- lapply(private$layers, function(x){
        ft <- NULL
-       if(attr(regexpr(expr, x$getName()), "match.length") != -1 
+       if(!is.null(x$getName())) if(attr(regexpr(expr, x$getName()), "match.length") != -1 
           && endsWith(x$getName(), expr)){
          ft <- x
        }
