@@ -9,7 +9,10 @@
 #' @section Methods:
 #' \describe{
 #'  \item{\code{new(xmlObj, value)}}{
-#'    This method is used to instantiate a WPSLiteralData object
+#'    This method is used to instantiate a \code{WPSLiteralData} object
+#'  }
+#'  \item{\code{decode()}}{
+#'    Decodes WPS input from XML
 #'  }
 #' }
 #' 

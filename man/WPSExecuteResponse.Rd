@@ -28,6 +28,9 @@ WPSExecuteResponse
  \item{\code{getProcessOutputs()}}{
    Get the process output(s)
  }
+ \item{\code{decode()}}{
+   Decodes WPS Execute response from XML
+ }
 }
 }
 

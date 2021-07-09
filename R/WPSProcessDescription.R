@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
+#'  \item{\code{new(xmlObj, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSProcessDescription} object
 #'  }
 #'  \item{\code{getIdentifier()}}{

@@ -24,7 +24,7 @@
 #'    Set if default format or not
 #'  }
 #'  \item{\code{isDefault()}}{
-#'    Is default format?
+#'    Is default format
 #'  }
 #' }
 #' 

@@ -20,6 +20,9 @@
 #'  \item{\code{getProcessOutputs()}}{
 #'    Get the process output(s)
 #'  }
+#'  \item{\code{decode()}}{
+#'    Decodes WPS Execute response from XML
+#'  }
 #' }
 #' 
 #' 
@@ -29,8 +32,7 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "ExecuteResponse",
-    xmlNamespace = c(wps = "http://www.opengis.net/wps"),
-    xmlObj = NULL
+    xmlNamespace = c(wps = "http://www.opengis.net/wps")
   ),
   public = list(
     process = NULL,
@@ -64,11 +66,6 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
         self$processOutputs <- lapply(outputsXML, function(x){WPSOutput$new(xmlObj = x)})
         names(self$processOutputs) <- NULL
       }
-    },
-    
-    #
-    xml = function(){
-      return(private$xmlObj)
     }
   )
 )

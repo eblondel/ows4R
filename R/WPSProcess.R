@@ -130,7 +130,6 @@ WPSProcess <- R6Class("WPSProcess",
       }
       
       client = private$capabilities$getClient()
-      print(client$getHeaders())
       processExecute <- WPSExecute$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier,
                                        dataInputs = dataInputs, responseForm = responseForm, language = language,
                                        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),

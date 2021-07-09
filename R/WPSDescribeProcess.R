@@ -9,7 +9,7 @@
 #' @section Methods:
 #' \describe{
 #'  \item{\code{new(capabilities, op, url, version, identifier, logger, ...)}}{
-#'    This method is used to instantiate a WPSDescribeProcess object
+#'    This method is used to instantiate a \code{WPSDescribeProcess} object
 #'  }
 #' }
 #' 
