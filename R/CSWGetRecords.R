@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, serviceVersion, user, pwd, token, query, logger, ...)}}{
+#'  \item{\code{new(capabilities, op, url, serviceVersion, user, pwd, token, headers, query, logger, ...)}}{
 #'    This method is used to instantiate a CSWGetRecords object
 #'  }
 #' }
@@ -34,11 +34,11 @@ CSWGetRecords <- R6Class("CSWGetRecords",
   ),
   public = list(
     Query = NULL,
-    initialize = function(op, url, serviceVersion = "2.0.2", 
-                          user = NULL, pwd = NULL, token = NULL,
+    initialize = function(capabilities, op, url, serviceVersion = "2.0.2", 
+                          user = NULL, pwd = NULL, token = NULL, headers = list(),
                           query = NULL, logger = NULL, ...) {
       super$initialize(op, "POST", url, request = private$xmlElement,
-                       user = user, pwd = pwd, token = token,
+                       user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)

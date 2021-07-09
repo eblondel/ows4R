@@ -277,6 +277,7 @@ WMSLayer <- R6Class("WMSLayer",
       
       client = private$capabilities$getClient()
       ftFeatures <- WMSGetFeatureInfo$new(
+        private$capabilities,
         op = op, url = private$url, version = private$version, 
         layers = private$name, srs = srs, styles = styles,
         feature_count = feature_count,

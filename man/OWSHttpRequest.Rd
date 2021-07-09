@@ -19,9 +19,12 @@ Abstract class used internally by \pkg{ows4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
+ \item{\code{new(capabilities, op, type, url, request, user, pwd, namedParams, attrs, 
                  contentType, mimeType, logger)}}{
-   This method is used to instantiate a object for doing an OWS request
+   This method is used to instantiate a object for doing an OWS HTTP request
+ }
+ \item{\code{getCapabilities()}}{
+   Get the capabilities
  }
  \item{\code{getRequest()}}{
    Get the request payload

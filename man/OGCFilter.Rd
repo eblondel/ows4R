@@ -16,9 +16,12 @@ OGCFilter
 \section{Methods}{
 
 \describe{
- \item{\code{new(expr)}}{
+ \item{\code{new(exprn filterVersion)}}{
    This method is used to instantiate an OGCFilter object. The unique
    argument should be an object of class \code{\link{OGCExpression}}
+ }
+ \item{\code{setFilterVersion(filterVersion)}}{
+   Set filter version
  }
 }
 }

@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, serviceVersion, identifier, logger, ...)}}{
+#'  \item{\code{new(capabilities, op, url, serviceVersion, identifier, logger, ...)}}{
 #'    This method is used to instantiate a WPSExecute object
 #'  }
 #' }
@@ -26,21 +26,22 @@ WPSExecute <- R6Class("WPSExecute",
   public = list(
     Identifier = "",
     DataInputs = list(),
-    initialize = function(op, url, serviceVersion, identifier, 
+    initialize = function(capabilities, op, url, serviceVersion, identifier, 
                           dataInputs = list(), logger = NULL, ...) {
       private$xmlNamespace = paste(private$xmlNamespace, serviceVersion, sep="/")
       names(private$xmlNamespace) <- "wps"
-      namedParams <- list(service = "WPS", version = version, identifier = identifier)
-      super$initialize(op, "POST", url, request = private$name,
+      namedParams <- list(service = "WPS", version = serviceVersion)
+      super$initialize(capabilities, op, "POST", sprintf("%s?service=WPS", url), request = private$name,
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
+      self$attrs <- namedParams
       self$Identifier <- OWSCodeType$new(value = identifier)
       dataInputNames <- names(dataInputs)
       self$DataInputs <- lapply(dataInputNames, function(dataInputName){
         dataInput <- dataInputs[[dataInputName]]
         WPSInput$new(identifier = dataInputName, data = dataInput)
       })
-      #self$execute()
+      self$execute()
     }
   )
 )

@@ -19,7 +19,7 @@ Class used internally by \pkg{ows4R} to trigger a CSW DescribeRecord request
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version, namespace, ...)}}{
+ \item{\code{new(capabilities, op, url, version, namespace, logger, ...)}}{
    This method is used to instantiate a CSWDescribeRecord object
  }
 }

@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, namespace, ...)}}{
+#'  \item{\code{new(capabilities, op, url, version, namespace, logger, ...)}}{
 #'    This method is used to instantiate a CSWDescribeRecord object
 #'  }
 #' }
@@ -24,7 +24,7 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
      defaultNamespace = "csw:http://www.opengis.net/cat/csw/2.0.2"
    ),
    public = list(
-     initialize = function(op, url, version, namespace = NULL, logger = NULL, ...) {
+     initialize = function(capabilities, op, url, version, namespace = NULL, logger = NULL, ...) {
        namedParams <- list(service = "CSW", version = version)
        
        #default output schema

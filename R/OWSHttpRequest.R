@@ -8,9 +8,12 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, type, url, request, user, pwd, namedParams, attrs, 
+#'  \item{\code{new(capabilities, op, type, url, request, user, pwd, namedParams, attrs, 
 #'                  contentType, mimeType, logger)}}{
-#'    This method is used to instantiate a object for doing an OWS request
+#'    This method is used to instantiate a object for doing an OWS HTTP request
+#'  }
+#'  \item{\code{getCapabilities()}}{
+#'    Get the capabilities
 #'  }
 #'  \item{\code{getRequest()}}{
 #'    Get the request payload
@@ -42,6 +45,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   private = list(
     xmlElement = NULL,
     xmlNamespace = c(ows = "http://www.opengis.net/ows"),
+    capabilities = NULL,
     url = NA,
     type = NA,
     request = NA,
@@ -114,11 +118,11 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       )
       
       #headers
-      headers <- list("Accept" = "application/xml", "Content-Type" = contentType, unlist(private$headers))
+      headers <- c(private$headers, "Accept" = "application/xml", "Content-Type" = contentType)
       if(!is.null(private$token)){
         headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
-      
+      print(headers)
       #send request
       if(self$verbose.debug){
         r <- with_verbose(httr::POST(
@@ -154,12 +158,13 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   #public methods
   public = list(
     #initialize
-    initialize = function(op, type, url, request,
+    initialize = function(capabilities, op, type, url, request,
                           user = NULL, pwd = NULL, token = NULL, headers = c(), 
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
       super$initialize(logger = logger)
+      private$capabilities = capabilities
       private$type = type
       private$url = url
       private$request = request
@@ -235,6 +240,11 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
           }
         }
       }
+    },
+    
+    #getCapabilities
+    getCapabilities = function(){
+      return(private$capabilities)
     },
     
     #getRequest

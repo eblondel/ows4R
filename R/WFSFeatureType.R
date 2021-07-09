@@ -203,7 +203,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         }
       }
       client = private$capabilities$getClient()
-      ftDescription <- WFSDescribeFeatureType$new(op = op, private$url, private$version, private$name, 
+      ftDescription <- WFSDescribeFeatureType$new(private$capabilities, op = op, private$url, private$version, private$name, 
                                                   user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                                   logger = self$loggerType)
       xmlObj <- ftDescription$getResponse()
@@ -285,7 +285,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         }
       }
       client = private$capabilities$getClient()
-      ftFeatures <- WFSGetFeature$new(op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
+      ftFeatures <- WFSGetFeature$new(private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
                                       user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                       logger = self$loggerType, ...)
       obj <- ftFeatures$getResponse()

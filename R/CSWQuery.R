@@ -6,8 +6,11 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(filter, serviceVersion)}}{
-#'    This method is used to instantiate an CSWQUery object.
+#'  \item{\code{new(elementSetName, constraint, typeNames, serviceVersion)}}{
+#'    This method is used to instantiate an CSWQUery object. The \code{elementSetName} can be 
+#'    either "full" (default), "brief" or "summary". A constraint \code{CSWConstraint} can be
+#'    defined for the query. The \code{typeNames} indicates to query (default "csw:Record").
+#'    The \code{serviceVersion} gives the CSW service version (default "2.0.2")
 #'  }
 #' }
 #' 

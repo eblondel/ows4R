@@ -19,7 +19,7 @@ Class used internally by \pkg{ows4R} to trigger a CSW Harvest request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, serviceVersion, user, pwd, source, resourceType, resourceFormat, logger, ...)}}{
+ \item{\code{new(capabilities, op, url, serviceVersion, user, pwd, source, resourceType, resourceFormat, logger, ...)}}{
    This method is used to instantiate a CSWHarvest object
  }
 }

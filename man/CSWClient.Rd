@@ -17,7 +17,7 @@ CSWClient
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, serviceVersion, user, pwd, token, logger)}}{
+ \item{\code{new(url, serviceVersion, user, pwd, token, headers, logger, ...)}}{
    This method is used to instantiate a CSWClient with the \code{url} of the
    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
@@ -25,7 +25,7 @@ CSWClient
    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
  }
  \item{\code{getCapabilities()}}{
-   Get service capabilities. Inherited from OWS Client
+   Get service capabilities.
  }
  \item{\code{reloadCapabilities()}}{
    Reload service capabilities
@@ -42,6 +42,39 @@ CSWClient
    The parameter \code{elementSetName} should among values "full", "brief", "summary". The default
    "full" corresponds to the full metadata sheet returned. "brief" and "summary" will contain only
    a subset of the metadata content.
+ }
+ \item{\code{getRecords(query, maxRecords, maxRecordsPerRequest)}}{
+   Get records based on a query, object of class \code{CSWQuery}. The maximum number of records can be
+   set either for the full query (\code{maxRecords}) or per request (\code{maxRecordsPerRequest}, default set to 10 records)
+   considering this operation is paginated. By default, the record will be returned following the CSW schema 
+   (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the \code{outputSchema} 
+   required,  e.g. http://www.isotc211.org/2005/gmd for ISO 19115/19139 records.
+ }
+ \item{\code{transaction(type, record, recordProperty, constraint)}}{
+   Generic transaction method. Used for inserting, updating or deleting metadata using the transactional CSW service.
+   The \code{type} gives the type of transaction (Insert, Update, or Delete). The record
+ }
+ \item{\code{insertRecord(record, ...)}}{
+   Inserts a new record
+ }
+ \item{\code{updateRecord(record, recordProperty, constraint, ...)}}{
+   Updates an existing \code{record}. It can be a partial update by specifying a \code{recordProperty}.
+   A constraint (object of class \code{CSWConstraint}) can be specified. 
+ }
+ \item{\code(deleteRecord(record, constraint, ...))}{
+   Deletes an existing \code{record}.  A constraint (object of class \code{CSWConstraint}) can be specified to limit
+   the deletion to some records.
+ }
+ \item{\code{deleteRecordById(record, ...)}}{
+   Deletes an existing record by identifier (constraint used to identify the record based on its identifier).
+ }
+ \item{\code{harvestRecord(sourceUrl, resourceType)}}{
+   Harvests a single record from a \code{sourceUrl}, given a \code{resourceType} (by default "http://www.isotc211.org/2005/gmd").
+ }
+ \item{\code{harvestNode(url, query, resourceType, sourceBaseUrl)}}{
+   Harvests a CSW node (having its endpoint defined by an  \code{url}). A \code{query} (object of class \code{CSWQuery}) can be
+   specificed if needed to restrain the harvesting to a subset. The \code{resourceType} defines the type of resources to be harvested
+   (by default "http://www.isotc211.org/2005/gmd")
  }
 }
 }

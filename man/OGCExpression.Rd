@@ -19,8 +19,14 @@ abstract class
 \section{Methods}{
 
 \describe{
- \item{\code{new()}}{
-   This method is used to instantiate an OGCExpression object
+ \item{\code{new(attrs, defaults, exprVersion)}}{
+   This method is used to instantiate an \code{OGCExpression} object
+ }
+ \item{\code{setExprVersion(exprVersion)}}{
+   Set expression version
+ }
+ \item{\code{getExprVersion()}}{
+   Get expression version
  }
 }
 }

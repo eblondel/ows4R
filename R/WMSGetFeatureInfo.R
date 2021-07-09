@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, layers, srs, styles, feature_count,
+#'  \item{\code{new(capabilities, op, url, version, layers, srs, styles, feature_count,
 #'                  x, y, width, height, bbox, info_format, logger, ...)}}{
 #'    This method is used to instantiate a WMSGetFeatureInfo object
 #'  }
@@ -24,7 +24,7 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
    name = "GetFeatureInfo"
  ), 
  public = list(
-   initialize = function(op, url, version, layers, srs, styles, feature_count = 1,
+   initialize = function(capabilities, op, url, version, layers, srs, styles, feature_count = 1,
                          x, y, width, height, bbox, info_format = "text/xml",
                          logger = NULL, ...) {
      

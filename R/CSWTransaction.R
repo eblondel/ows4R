@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, serviceVersion, type, user, pwd, token, headers,
+#'  \item{\code{new(capabilities, op, url, serviceVersion, type, user, pwd, token, headers,
 #'                  record, recordProperty, constraint, logger, ...)}}{
 #'    This method is used to instantiate a CSWTransaction object
 #'  }
@@ -26,7 +26,7 @@ CSWTransaction <- R6Class("CSWTransaction",
     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
   ),
   public = list(
-    initialize = function(op, url, serviceVersion, type, 
+    initialize = function(capabilities, op, url, serviceVersion, type, 
                           user = NULL, pwd = NULL, token = NULL, headers = list(),
                           record = NULL, recordProperty = NULL, constraint = NULL,
                           logger = NULL, ...) {

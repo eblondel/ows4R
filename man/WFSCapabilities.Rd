@@ -21,7 +21,7 @@ recommended instead to benefit from the full set of capabilities associated to a
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, version)}}{
+ \item{\code{new(url, version, logger)}}{
    This method is used to instantiate a WFSGetCapabilities object
  }
  \item{\code{getFeatureTypes(pretty)}}{

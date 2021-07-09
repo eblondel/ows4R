@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, identifier, logger, ...)}}{
+#'  \item{\code{new(capabilities, op, url, version, identifier, logger, ...)}}{
 #'    This method is used to instantiate a WPSDescribeProcess object
 #'  }
 #' }
@@ -23,9 +23,9 @@ WPSDescribeProcess <- R6Class("WPSDescribeProcess",
     name = "DescribeProcess"
   ),
   public = list(
-    initialize = function(op, url, version, identifier, logger = NULL, ...) {
+    initialize = function(capabilities, op, url, version, identifier, logger = NULL, ...) {
       namedParams <- list(service = "WPS", version = version, identifier = identifier)
-      super$initialize(op, "GET", url, request = private$name,
+      super$initialize(capabilities, op, "GET", url, request = private$name,
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
       self$execute()

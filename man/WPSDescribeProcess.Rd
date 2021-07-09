@@ -19,7 +19,7 @@ Abstract class used by \pkg{ows4R} to trigger a WPS DescribeProcess request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, version, identifier, logger, ...)}}{
+ \item{\code{new(capabilities, op, url, version, identifier, logger, ...)}}{
    This method is used to instantiate a WPSDescribeProcess object
  }
 }

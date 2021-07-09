@@ -6,8 +6,17 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new()}}{
+#'  \item{\code{new(attrs, defaults = list(), wrap, logger)}}{
 #'    This method is used to instantiate an OGCAbstractObject
+#'  }
+#'  \item{\code{getClassName()}}{
+#'    Get class name
+#'  }
+#'  \item{\code{getClass()}}{
+#'    Get class
+#'  }
+#'  \item{\code{encode(addNS, geometa_validate, geometa_inspire)}}{
+#'    Encode as XML
 #'  }
 #' }
 #' @note abstract class used by \pkg{ows4R}

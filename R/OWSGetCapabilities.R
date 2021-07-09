@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, service, version, ...)}}{
+#'  \item{\code{new(capabilities, op, url, service, version, ...)}}{
 #'    This method is used to instantiate a OWSGetCapabilities object
 #'  }
 #' }
@@ -23,9 +23,9 @@ OWSGetCapabilities <- R6Class("OWSGetCapabilities",
     name = "GetCapabilities"
   ),
   public = list(
-    initialize = function(op, url, service, version, ...) {
+    initialize = function(url, service, version, ...) {
       namedParams <- list(service = service, version = version)
-      super$initialize(op, "GET", url, request = private$name,
+      super$initialize(capabilities = NULL, op = NULL, "GET", url, request = private$name,
                        namedParams = namedParams, mimeType = "text/xml", ...)
       self$execute()
     }

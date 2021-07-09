@@ -19,7 +19,7 @@ Abstract class used by \pkg{ows4R} to trigger a WPS Execute request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, serviceVersion, identifier, logger, ...)}}{
+ \item{\code{new(capabilities, op, url, serviceVersion, identifier, logger, ...)}}{
    This method is used to instantiate a WPSExecute object
  }
 }

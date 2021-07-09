@@ -19,7 +19,7 @@ Abstract class used by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, version, typeName, logger, ...)}}{
+ \item{\code{new(capabilities, op, url, version, typeName, logger, ...)}}{
    This method is used to instantiate a WFSDescribeFeatureType object
  }
 }

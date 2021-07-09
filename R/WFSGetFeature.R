@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, version, typeName, outputFormat, logger, ...)}}{
+#'  \item{\code{new(capabilities, op, url, version, typeName, outputFormat, logger, ...)}}{
 #'    This method is used to instantiate a WFSGetFeature object
 #'  }
 #' }
@@ -23,7 +23,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
      name = "GetFeature"
   ), 
   public = list(
-     initialize = function(op, url, version, typeName, outputFormat = NULL, logger = NULL, ...) {
+     initialize = function(capabilities, op, url, version, typeName, outputFormat = NULL, logger = NULL, ...) {
        
        if(is.null(outputFormat)){
          mimeType <- "text/xml"

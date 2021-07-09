@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(op, url, serviceVersion, user, pwd, source, resourceType, resourceFormat, logger, ...)}}{
+#'  \item{\code{new(capabilities, op, url, serviceVersion, user, pwd, source, resourceType, resourceFormat, logger, ...)}}{
 #'    This method is used to instantiate a CSWHarvest object
 #'  }
 #' }
@@ -31,14 +31,14 @@ CSWHarvest <- R6Class("CSWHarvest",
      Source = NULL,
      ResourceType = "http://www.isotc211.org/2005/gmd",
      ResourceFormat = "application/xml",
-     initialize = function(op, url, serviceVersion = "2.0.2", 
-                           user = NULL, pwd = NULL, token = NULL,
+     initialize = function(capabilities, op, url, serviceVersion = "2.0.2", 
+                           user = NULL, pwd = NULL, token = NULL, headers = list(),
                            source = NULL,
                            resourceType = "http://www.isotc211.org/schemas/2005/gmd/",
                            resourceFormat = "application/xml",
                            logger = NULL, ...) {
        super$initialize(op, "POST", url, request = private$xmlElement,
-                        user = user, pwd = pwd, token = token,
+                        user = user, pwd = pwd, token = token, headers = headers,
                         contentType = "text/xml", mimeType = "text/xml",
                         logger = logger, ...)
        nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)

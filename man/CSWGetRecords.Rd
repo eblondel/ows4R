@@ -19,7 +19,7 @@ Class used internally by \pkg{ows4R} to trigger a CSW GetRecords request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, serviceVersion, user, pwd, token, query, logger, ...)}}{
+ \item{\code{new(capabilities, op, url, serviceVersion, user, pwd, token, headers, query, logger, ...)}}{
    This method is used to instantiate a CSWGetRecords object
  }
 }

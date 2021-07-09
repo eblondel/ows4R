@@ -16,7 +16,7 @@ CSWRecordProperty
 \section{Methods}{
 
 \describe{
- \item{\code{new(name, value)}}{
+ \item{\code{new(name, value, cswVersion)}}{
    This method is used to instantiate an CSWRecordProperty object.
  }
 }

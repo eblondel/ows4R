@@ -19,7 +19,7 @@ Class used internally by \pkg{ows4R} to trigger a CSW Transaction request
 \section{Methods}{
 
 \describe{
- \item{\code{new(op, url, serviceVersion, type, user, pwd, token, headers,
+ \item{\code{new(capabilities, op, url, serviceVersion, type, user, pwd, token, headers,
                  record, recordProperty, constraint, logger, ...)}}{
    This method is used to instantiate a CSWTransaction object
  }

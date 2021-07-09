@@ -15,8 +15,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, version, logger)}}{
-#'    This method is used to instantiate a WFSGetCapabilities object
+#'  \item{\code{new(url, version, client logger)}}{
+#'    This method is used to instantiate a \code{CSWCapabilities} object
 #'  }
 #' }
 #' 

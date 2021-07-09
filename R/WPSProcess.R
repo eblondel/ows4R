@@ -66,7 +66,7 @@ WPSProcess <- R6Class("WPSProcess",
     
   ),
   public = list(
-    initialize = function(xmlObj, capabilities, version, logger = NULL, ...){
+    initialize = function(xmlObj, capabilities = NULL, version, logger = NULL, ...){
       super$initialize(logger = logger)
       
       private$capabilities = capabilities
@@ -107,7 +107,7 @@ WPSProcess <- R6Class("WPSProcess",
         }
       }
       client = private$capabilities$getClient()
-      processDescription <- WPSDescribeProcess$new(op = op, private$url, private$version, private$identifier, 
+      processDescription <- WPSDescribeProcess$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier, 
                                                    user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                                    logger = self$loggerType)
       xmlObj <- processDescription$getResponse()
@@ -117,7 +117,7 @@ WPSProcess <- R6Class("WPSProcess",
     },
     
     #execute
-    execute = function(dataInputs, responseForm, language){
+    execute = function(dataInputs = list(), responseForm = NULL, language = NULL){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -130,12 +130,14 @@ WPSProcess <- R6Class("WPSProcess",
       }
       
       client = private$capabilities$getClient()
-      processExecute <- WPSExecute$new(op = op, private$url, private$version, private$identifier,
+      print(client$getHeaders())
+      processExecute <- WPSExecute$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier,
                                        dataInputs = dataInputs, responseForm = responseForm, language = language,
                                        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                        logger = self$loggerType)
       xmlObj <- processExecute$getResponse()
-      return(xmlObj)
+      resp <- WPSExecuteResponse$new(xmlObj = xmlObj, capabilities = private$capabilities, logger = self$loggerType)
+      return(resp)
     }
   )
 )

@@ -97,7 +97,7 @@ WPSClient <- R6Class("WPSClient",
      },
      
      #execute
-     execute = function(identifier, request, dataInputs, responseForm, language){
+     execute = function(identifier, dataInputs = list(), responseForm = NULL, language = NULL){
         processes <- self$getProcesses()
         processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
         if(length(processes)==0){
@@ -106,7 +106,7 @@ WPSClient <- R6Class("WPSClient",
            stop(errMsg)
         }
         process <- processes[[1]]
-        return(process$execute(dataInputs, request, responseForm, language))
+        return(process$execute(dataInputs, responseForm, language = language))
      }
      
    )

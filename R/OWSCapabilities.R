@@ -64,8 +64,7 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        private$owsVersion <- owsVersion
        private$serviceVersion <- serviceVersion
        namedParams <- list(service = service, version = serviceVersion)
-       private$request <- OWSGetCapabilities$new(op = NULL, url, service, serviceVersion, 
-                                                 logger = logger, ...)
+       private$request <- OWSGetCapabilities$new(url, service, serviceVersion, logger = logger, ...)
        xmlObj <- private$request$getResponse()
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
        private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
