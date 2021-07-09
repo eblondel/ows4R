@@ -301,13 +301,13 @@ WMSLayer <- R6Class("WMSLayer",
         saveXML(obj, destfile)
       }else if(destext == "json"){
         write(obj, destfile)
-      # }else if(destext == "xml"){
-      #   write(obj, destfile)
-       }
+      }else if(destext == "xml"){
+        saveXML(obj, destfile)
+      }
       
       ftFeatures <- NULL
       if(destext == "xml"){
-        xml<- xmlParse(obj)
+        xml<- xmlParse(file = destfile)
         rootname <- xmlName(xmlChildren(xml)[[1]])
         if(rootname == "FeatureInfoResponse"){
           xml_list <- xmlToList(xml)
