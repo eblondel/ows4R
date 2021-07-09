@@ -37,7 +37,7 @@ CSWHarvest <- R6Class("CSWHarvest",
                            resourceType = "http://www.isotc211.org/schemas/2005/gmd/",
                            resourceFormat = "application/xml",
                            logger = NULL, ...) {
-       super$initialize(op, "POST", url, request = private$xmlElement,
+       super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
                         user = user, pwd = pwd, token = token, headers = headers,
                         contentType = "text/xml", mimeType = "text/xml",
                         logger = logger, ...)

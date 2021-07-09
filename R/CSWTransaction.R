@@ -39,7 +39,7 @@ CSWTransaction <- R6Class("CSWTransaction",
         recordProperty = recordProperty,
         constraint = constraint
       )
-      super$initialize(op, "POST", url, request = private$xmlElement,
+      super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
                        user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)

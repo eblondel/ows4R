@@ -42,7 +42,7 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
        )
        namedParams <- c(namedParams, namespace = namespace, typeName = typeName)
        
-       super$initialize(op, "GET", url, request = private$name,
+       super$initialize(capabilities, op, "GET", url, request = private$name,
                         namedParams = namedParams,
                         mimeType = "text/xml", logger = logger, ...)
        self$execute()

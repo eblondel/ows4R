@@ -61,7 +61,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        namedParams <- namedParams[!sapply(namedParams, is.null)]
-       super$initialize(op, "GET", url, request = private$name, 
+       super$initialize(capabilities, op, "GET", url, request = private$name, 
                         namedParams = namedParams, mimeType = mimeType, logger = logger)
        self$execute()
      }

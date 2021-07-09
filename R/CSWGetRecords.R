@@ -37,7 +37,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
     initialize = function(capabilities, op, url, serviceVersion = "2.0.2", 
                           user = NULL, pwd = NULL, token = NULL, headers = list(),
                           query = NULL, logger = NULL, ...) {
-      super$initialize(op, "POST", url, request = private$xmlElement,
+      super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
                        user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
