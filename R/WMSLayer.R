@@ -300,13 +300,30 @@ WMSLayer <- R6Class("WMSLayer",
         saveXML(obj, destfile)
       }else if(destext == "json"){
         write(obj, destfile)
-      }
+      # }else if(destext == "xml"){
+      #   write(obj, destfile)
+       }
       
       ftFeatures <- NULL
       if(destext == "xml"){
+        xml<- xmlParse(obj)
         rootname <- xmlName(xmlChildren(xml)[[1]])
         if(rootname == "FeatureInfoResponse"){
-          #TODO build sf(s) based on a FeatureInfoResponse xml (eg. case of Thredds data servers)
+          xml_list <- xmlToList(xml)
+          if("FIELDS" %in% names(xml_list)){
+            variables = lapply(xml_list[["FIELDS"]], function(x){
+              outvar <- x
+              name <- names(x)
+              attr(outvar, "description") <- name
+              return(outvar)
+            })
+            ftFeatures<-data.frame(variables)
+          }else{
+            #THREDDS STRUCTURE
+            ftFeatures<-data.frame(xml_list,stringsAsFactors=FALSE)
+            names(ftFeatures)<-gsub("^.*\\.","",names(ftFeatures))
+            ftFeatures<-sf::st_as_sf(ftFeatures,coords= c("longitude","latitude"))
+          }
         }else{
           ftFeatures <- sf::st_read(destfile, quiet = TRUE)
         }
