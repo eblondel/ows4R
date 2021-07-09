@@ -302,7 +302,7 @@ WMSLayer <- R6Class("WMSLayer",
         write(obj, destfile)
       # }else if(destext == "xml"){
       #   write(obj, destfile)
-      # }
+       }
       
       ftFeatures <- NULL
       if(destext == "xml"){
@@ -320,9 +320,9 @@ WMSLayer <- R6Class("WMSLayer",
             ftFeatures<-data.frame(variables)
           }else{
             #THREDDS STRUCTURE
-          ftFeatures<-data.frame(xml_list,stringsAsFactors=FALSE)
-          names(ftFeatures)<-gsub("^.*\\.","",names(ftFeatures))
-          ftFeatures<-sf::st_as_sf(ftFeatures,coords= c("longitude","latitude"))
+            ftFeatures<-data.frame(xml_list,stringsAsFactors=FALSE)
+            names(ftFeatures)<-gsub("^.*\\.","",names(ftFeatures))
+            ftFeatures<-sf::st_as_sf(ftFeatures,coords= c("longitude","latitude"))
           }
         }else{
           ftFeatures <- sf::st_read(destfile, quiet = TRUE)
