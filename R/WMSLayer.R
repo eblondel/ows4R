@@ -243,13 +243,23 @@ WMSLayer <- R6Class("WMSLayer",
     },
     
     #getDimensions
-    getDimensions = function(){
-      return(private$dimensions)
+    getDimensions = function(time_format = "character"){
+      dimensions <- private$dimensions
+      if(time_format=="posix"){
+        dimensions[["time"]]$default<-as.POSIXct(dimensions[["time"]]$default,format="%Y-%m-%dT%H:%M:%OSZ")
+        dimensions[["time"]]$values<-as.POSIXct(dimensions[["time"]]$values,format="%Y-%m-%dT%H:%M:%OSZ")
+      }
+      return(dimensions)
     },
     
     #getTimeDimension
-    getTimeDimension = function(){
-      return(private$dimensions[["time"]])
+    getTimeDimension = function(time_format = "character"){
+      time_dimensions <- private$dimensions[["time"]]
+      if(time_format=="posix"){
+        time_dimensions$default<-as.POSIXct(time_dimensions$default,format="%Y-%m-%dT%H:%M:%OSZ")
+        time_dimensions$values<-as.POSIXct(time_dimensions$values,format="%Y-%m-%dT%H:%M:%OSZ")
+      }
+      return(time_dimensions)
     },
     
     #getElevationDimension
@@ -260,7 +270,7 @@ WMSLayer <- R6Class("WMSLayer",
     #getFeatureInfo
     getFeatureInfo = function(srs = NULL, styles = NULL, feature_count = 1,
                               x, y, width, height, bbox, 
-                              info_format = "application/vnd.ogc.gml",
+                              info_format = "text/xml",
                               ...){
       
       if(is.null(styles)){
