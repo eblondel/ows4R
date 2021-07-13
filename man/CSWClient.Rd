@@ -61,7 +61,7 @@ CSWClient
    Updates an existing \code{record}. It can be a partial update by specifying a \code{recordProperty}.
    A constraint (object of class \code{CSWConstraint}) can be specified. 
  }
- \item{\code(deleteRecord(record, constraint, ...))}{
+ \item{\code{deleteRecord(record, constraint, ...)}}{
    Deletes an existing \code{record}.  A constraint (object of class \code{CSWConstraint}) can be specified to limit
    the deletion to some records.
  }
