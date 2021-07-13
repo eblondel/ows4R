@@ -28,7 +28,7 @@ Class used internally by \pkg{ows4R}
  \item{\code{getEncoding()}}{
    Get encoding
  }
- \ìtem{\code{getSchema()}}{
+ \item{\code{getSchema()}}{
    Get schema
  }
  \item{\code{setIsDefault(default)}}{

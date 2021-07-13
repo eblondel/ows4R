@@ -17,7 +17,7 @@
 #'  \item{\code{getEncoding()}}{
 #'    Get encoding
 #'  }
-#'  \ìtem{\code{getSchema()}}{
+#'  \item{\code{getSchema()}}{
 #'    Get schema
 #'  }
 #'  \item{\code{setIsDefault(default)}}{

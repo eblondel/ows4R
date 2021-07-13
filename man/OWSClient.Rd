@@ -8,8 +8,7 @@
 \code{\link{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} with methods for interfacing
-a Common OGC web-service.
+Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.
 }
 \description{
 OWSClient
@@ -50,7 +49,7 @@ Abstract class used internally by \pkg{ows4R}
  \item{\code{getPwd()}}{
    Get password
  }
- \ìtem{\code{getToken()}}{
+ \item{\code{getToken()}}{
    Get token
  }
  \item{\code{getHeaders()}}{

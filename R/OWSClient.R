@@ -12,8 +12,7 @@
 #' @import parallel
 #' @export
 #' @keywords OGC Common OWS
-#' @return Object of \code{\link{R6Class}} with methods for interfacing
-#' a Common OGC web-service.
+#' @return Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.
 #' @format \code{\link{R6Class}} object.
 #'
 #' @field url the Base url of OWS service
@@ -43,7 +42,7 @@
 #'  \item{\code{getPwd()}}{
 #'    Get password
 #'  }
-#'  \ìtem{\code{getToken()}}{
+#'  \item{\code{getToken()}}{
 #'    Get token
 #'  }
 #'  \item{\code{getHeaders()}}{
