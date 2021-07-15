@@ -9,11 +9,21 @@
 
 R client for OGC Web-Services
 
-``ows4R`` is a new project that aims to set-up a pure R interface to OGC Web-Services. In a first time (ongoing work), ``ows4R`` will target:
+``ows4R`` is a new project that aims to set-up a pure R interface to OGC Web-Services.  ``ows4R`` currently targets:
 * the Common OGC Web-Services specifications, versions ``1.1`` and ``2.0``
 * the Catalogue Service for the Web (CSW), version ``2.0.2`` (including ``Transaction`` and ``Harvest`` operations)
 * the Web Feature Service (WFS), versions ``1.0.0``, ``1.1.0``, and ``2.0.0``
 * the Web Map Service (WMS), versions ``1.1.0``, ``1.1.1``, and ``1.3.0``
+* the Web Processing service (WPS) version `1.0.0`
+
+The following projects have contributed to strenghten ``ows4R``:
+
+* for the WMS and WPS support (ongoing)
+
+<a href="https://www.blue-cloud.org"><img height=100 width=300 src="https://www.blue-cloud.org/sites/all/themes/arcadia/logo.png"/></a>
+
+_Blue-Cloud has received funding from the European Union's Horizon programme call BG-07-2019-2020, topic: [A] 2019 - Blue Cloud services, Grant Agreement No.862409._
+
 
 ### Citation
 
