@@ -16,7 +16,7 @@ WPSInput
 \section{Methods}{
 
 \describe{
- \item{\code{new(identifier, data)}}{
+ \item{\code{new(xml, identifier, data, serviceVersion)}}{
    This method is used to instantiate a WPSInput object
  }
 }

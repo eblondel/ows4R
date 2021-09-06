@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version, logger)}}{
+#'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSLiteralInputDescription} object
 #'  }
 #'  \item{\code{getDataType()}}{
@@ -36,9 +36,9 @@ WPSLiteralInputDescription <- R6Class("WPSLiteralInputDescription",
      uoms = list(), #NOT IMPLEMENTED
      
      #fetchLiteralInput
-     fetchLiteralInput = function(xmlObj, version){
+     fetchLiteralInput = function(xml, version){
        
-       children <- xmlChildren(xmlChildren(xmlObj)$LiteralData)
+       children <- xmlChildren(xmlChildren(xml)$LiteralData)
        
        literalInput <- list(
          dataType = xmlGetAttr(children$DataType, "ows:reference"),
@@ -51,11 +51,11 @@ WPSLiteralInputDescription <- R6Class("WPSLiteralInputDescription",
      
    ),
    public = list(
-     initialize = function(xmlObj = NULL, version, logger = NULL, ...){
-       super$initialize(xmlObj = xmlObj, version = version, logger = logger, ...)
+     initialize = function(xml = NULL, version, logger = NULL, ...){
+       super$initialize(xml = xml, version = version, logger = logger, ...)
        private$version = version
-       if(!is.null(xmlObj)){
-         literalInput = private$fetchLiteralInput(xmlObj, version)
+       if(!is.null(xml)){
+         literalInput = private$fetchLiteralInput(xml, version)
          private$dataType = literalInput$dataType
          private$defaultValue = literalInput$defaultValue
          private$allowedValues = literalInput$allowedValues

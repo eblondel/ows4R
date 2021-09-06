@@ -60,7 +60,8 @@
 WMSLayer <- R6Class("WMSLayer",
   inherit = OGCAbstractObject,                       
   private = list(
-    
+    xmlElement = "Layer",
+    xmlNamespacePrefix = "WMS",
     capabilities = NULL,
     url = NA,
     version = NA,
@@ -177,7 +178,7 @@ WMSLayer <- R6Class("WMSLayer",
     description = NULL,
     features = NULL,
     initialize = function(xmlObj, capabilities, version, logger = NULL){
-      super$initialize(logger = logger)
+      super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix, logger = logger)
       
       private$capabilities = capabilities
       private$url = capabilities$getUrl()

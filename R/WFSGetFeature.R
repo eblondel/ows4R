@@ -20,7 +20,8 @@
 WFSGetFeature <- R6Class("WFSGetFeature",
   inherit = OWSHttpRequest,
   private = list(
-     name = "GetFeature"
+     xmlElement = "GetFeature",
+     xmlNamespacePrefix = "WFS"
   ), 
   public = list(
      initialize = function(capabilities, op, url, version, typeName, outputFormat = NULL, logger = NULL, ...) {
@@ -61,7 +62,8 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        
        if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
        namedParams <- namedParams[!sapply(namedParams, is.null)]
-       super$initialize(capabilities, op, "GET", url, request = private$name, 
+       super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
+                        capabilities, op, "GET", url, request = "GetFeature", 
                         namedParams = namedParams, mimeType = mimeType, logger = logger)
        self$execute()
      }

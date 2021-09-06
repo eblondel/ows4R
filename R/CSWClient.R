@@ -308,7 +308,8 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        self$INFO(sprintf("Harvesting '%s' ...", sourceUrl))
-       harvest <- CSWHarvest$new(self$capabilities, op, self$getUrl(), self$getVersion(), 
+       harvest <- CSWHarvest$new(self$capabilities, op, self$getUrl(), self$getVersion(),
+                                 user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
                                  source = sourceUrl, resourceType = resourceType, resourceFormat = "application/xml",
                                  logger = self$loggerType)
        

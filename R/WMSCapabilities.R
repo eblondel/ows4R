@@ -42,7 +42,8 @@
 WMSCapabilities <- R6Class("WMSCapabilities",
  inherit = OWSCapabilities,
  private = list(
-   
+   xmlElement = "Capabilities",
+   xmlNamespacePrefix = "WMS",
    requests = list(),
    layers = list(),
    
@@ -94,7 +95,8 @@ WMSCapabilities <- R6Class("WMSCapabilities",
    
    #initialize
    initialize = function(url, version, logger = NULL, ...) {
-     super$initialize(url, service = "WMS", owsVersion = "1.1", serviceVersion = version, 
+     super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
+                      url, service = "WMS", owsVersion = "1.1", serviceVersion = version, 
                       logger = logger, ...)
      xmlObj <- self$getRequest()$getResponse()
      private$requests = private$fetchRequests(xmlObj, version)

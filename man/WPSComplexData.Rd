@@ -16,10 +16,10 @@ WPSComplexData
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, value, schema, mimeType)}}{
+ \item{\code{new(xml, value, schema, mimeType)}}{
    This method is used to instantiate a \code{WPSComplexData} object
  }
- \item{\code{decode(xmlObj)}}{
+ \item{\code{decode(xml)}}{
    Decodes from XML
  }
  \item{\code{getFeatures()}}{

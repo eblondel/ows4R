@@ -19,7 +19,7 @@ abstract class used by \pkg{ows4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(attrs, defaults = list(), wrap, logger)}}{
+ \item{\code{new(xml, element, namespacePrefix, attrs, defaults, wrap, logger)}}{
    This method is used to instantiate an OGCAbstractObject
  }
  \item{\code{getClassName()}}{

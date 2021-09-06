@@ -19,7 +19,7 @@ abstract super class of all the property operation classes
 \section{Methods}{
 
 \describe{
- \item{\code{new(PropertyName, Literal, matchCase)}}{
+ \item{\code{new(element, namespacePrefix, PropertyName, Literal, matchCase)}}{
    This method is used to instantiate an BinaryComparisonOpType
  }
 }

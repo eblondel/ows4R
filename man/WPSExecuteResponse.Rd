@@ -16,7 +16,7 @@ WPSExecuteResponse
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj)}}{
+ \item{\code{new(xml)}}{
    This method is used to instantiate a WPSExecuteResponse object
  }
  \item{\code{getProcess()}}{

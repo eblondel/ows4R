@@ -21,7 +21,7 @@ CSWHarvest <- R6Class("CSWHarvest",
    inherit = OWSHttpRequest,
    private = list(
      xmlElement = "Harvest",
-     xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),
+     xmlNamespacePrefix = "CSW",
      defaultAttrs = list(
        service = "CSW",
        version = "2.0.2"
@@ -37,13 +37,13 @@ CSWHarvest <- R6Class("CSWHarvest",
                            resourceType = "http://www.isotc211.org/schemas/2005/gmd/",
                            resourceFormat = "application/xml",
                            logger = NULL, ...) {
-       super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
+       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
+       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
+       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+                        capabilities, op, "POST", url, request = private$xmlElement,
                         user = user, pwd = pwd, token = token, headers = headers,
                         contentType = "text/xml", mimeType = "text/xml",
                         logger = logger, ...)
-       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
-       private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
-       names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
        
        self$attrs <- private$defaultAttrs
        

@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version, logger)}}{
+#'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSParameter} object
 #'  }
 #'  \item{\code{getIdentifier()}}{
@@ -35,9 +35,9 @@ WPSParameter <- R6Class("WPSParameter",
      abstract= NA,
     
      #fetchParameter
-     fetchParameter = function(xmlObj, version){
+     fetchParameter = function(xml, version){
        
-       children <- xmlChildren(xmlObj)
+       children <- xmlChildren(xml)
        
        processIdentifier <- NULL
        if(!is.null(children$Identifier)){
@@ -65,11 +65,11 @@ WPSParameter <- R6Class("WPSParameter",
      
    ),
    public = list(
-     initialize = function(xmlObj = NULL, version, logger = NULL, ...){
+     initialize = function(xml = NULL, version, logger = NULL, ...){
        super$initialize(logger = logger)
        private$version = version
-       if(!is.null(xmlObj)){
-         processInput = private$fetchParameter(xmlObj, version)
+       if(!is.null(xml)){
+         processInput = private$fetchParameter(xml, version)
          private$identifier = processInput$identifier
          private$title = processInput$title
          private$abstract = processInput$abstract

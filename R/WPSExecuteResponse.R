@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj)}}{
+#'  \item{\code{new(xml)}}{
 #'    This method is used to instantiate a WPSExecuteResponse object
 #'  }
 #'  \item{\code{getProcess()}}{
@@ -31,6 +31,7 @@
 WPSExecuteResponse <- R6Class("WPSExecuteResponse",
   inherit = OGCAbstractObject,
   private = list(
+    xml = NULL,
     xmlElement = "ExecuteResponse",
     xmlNamespace = c(wps = "http://www.opengis.net/wps")
   ),
@@ -38,9 +39,9 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     process = NULL,
     status = NULL,
     processOutputs = list(),
-    initialize = function(xmlObj, capabilities, logger = NULL) {
-      private$xmlObj = xmlObj
-      self$decode(xmlObj, capabilities = capabilities, logger = logger)
+    initialize = function(xml, capabilities, logger = NULL) {
+      private$xml = xml
+      self$decode(xml, capabilities = capabilities, logger = logger)
     },
     
     getProcess = function(){
@@ -56,14 +57,14 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     },
     
     #decode
-    decode = function(xmlObj, capabilities, logger){
-      children <- xmlChildren(xmlChildren(xmlObj)[[1]])
-      self$process <- WPSProcess$new(xmlObj = children$Process, capabilities = capabilities, version = xmlGetAttr(xmlChildren(xmlObj)[[1]], "version"), logger = logger)
-      #self$status <- WPSStatus$new(xmlObj = children$Status)
+    decode = function(xml, capabilities, logger){
+      children <- xmlChildren(xmlChildren(xml)[[1]])
+      self$process <- WPSProcess$new(xml = children$Process, capabilities = capabilities, version = xmlGetAttr(xmlChildren(xml)[[1]], "version"), logger = logger)
+      #TODO self$status <- WPSStatus$new(xml = children$Status)
       if("ProcessOutputs" %in% names(children)){
         children <- xmlChildren(children$ProcessOutputs)
         outputsXML <- children[names(children) == "Output"]
-        self$processOutputs <- lapply(outputsXML, function(x){WPSOutput$new(xmlObj = x)})
+        self$processOutputs <- lapply(outputsXML, function(x){WPSOutput$new(xml = x)})
         names(self$processOutputs) <- NULL
       }
     }

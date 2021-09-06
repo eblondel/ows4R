@@ -18,13 +18,13 @@ OWSCodeType <-  R6Class("OWSCodeType",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "Identifier",
-    xmlNamespace = c(ows = "http://www.opengis.net/ows")
+    xmlNamespacePrefix = "OWS"
   ),
   public = list(
     value = NULL,
-    initialize = function(xml = NULL, serviceVersion = "1.1", value){
-      private$xmlNamespace <- paste0(private$xmlNamespace, "/", serviceVersion)
-      names(private$xmlNamespace) <- "ows"
+    initialize = function(xml = NULL, owsVersion = "1.1", value){
+      private$xmlNamespacePrefix <- paste0(private$xmlNamespacePrefix, "_", gsub("\\.", "_", owsVersion))
+      super$initialize(xml = xml, element = private$xmlElement)
       if(is.null(xml)){
         self$value <- value
       }

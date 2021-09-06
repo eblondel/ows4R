@@ -19,7 +19,7 @@ Class used internally by \pkg{ows4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, version, logger)}}{
+ \item{\code{new(xml, version, logger)}}{
    This method is used to instantiate a \code{WPSOutputDescription} object
  }
 }

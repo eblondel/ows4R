@@ -41,8 +41,8 @@
 #'  \item{\code{describeProcess(identifier)}}{
 #'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
 #'  }
-#'  \item{\code{execute(identifier, dataInputs, responseForm, language)}}{
-#'    Execute a process
+#'  \item{\code{execute(identifier, dataInputs)}}{
+#'    Execute a process, given its \code{identifier}
 #'  }
 #' }
 #' 
@@ -85,28 +85,12 @@ WPSClient <- R6Class("WPSClient",
      
      #describeProcess
      describeProcess = function(identifier){
-        processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
-        if(length(processes)==0){
-           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
-           self$ERROR(errMsg)
-           stop(errMsg)
-        }
-        process <- processes[[1]]
-        return(process$getDescription())
+        return(self$capabilities$describeProcess(identifier = identifier))
      },
      
      #execute
-     execute = function(identifier, dataInputs = list(), responseForm = NULL, language = NULL){
-        processes <- self$getProcesses()
-        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
-        if(length(processes)==0){
-           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
-           self$ERROR(errMsg)
-           stop(errMsg)
-        }
-        process <- processes[[1]]
-        return(process$execute(dataInputs, responseForm, language = language))
+     execute = function(identifier, dataInputs = list(), responseForm = NULL){
+        return(self$capabilities$execute(identifier = identifier, dataInputs = dataInputs, responseForm = responseForm))
      }
      
    )

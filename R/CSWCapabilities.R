@@ -27,7 +27,10 @@
 #'
 CSWCapabilities <- R6Class("CSWCapabilities",
    inherit = OWSCapabilities,
-   private = list(),
+   private = list(
+      xmlElement = "Capabilities",
+      xmlNamespacePrefix = "CSW"
+   ),
    public = list(
      
      #initialize
@@ -36,8 +39,11 @@ CSWCapabilities <- R6Class("CSWCapabilities",
          "2.0.2" = "1.1",
          "3.0.0" = "2.0"
        )
-       super$initialize(url, service = "CSW", owsVersion = owsVersion, serviceVersion = version, 
-                        logger = logger, ...)
+       private$xmlNamespacePrefix <- paste0(private$xmlNamespacePrefix,"_",gsub("\\.","_",version))
+       super$initialize(
+          element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+          url, service = "CSW", owsVersion = owsVersion, serviceVersion = version, 
+          logger = logger, ...)
        xmlObj <- self$getRequest()$getResponse()
      }
    )

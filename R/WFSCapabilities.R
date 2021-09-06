@@ -35,7 +35,8 @@
 WFSCapabilities <- R6Class("WFSCapabilities",
    inherit = OWSCapabilities,
    private = list(
-     
+     xmlElement = "Capabilities",
+     xmlNamespacePrefix = "WFS",
      featureTypes = NA,
 
      #fetchFeatureTypes
@@ -61,7 +62,10 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      
      #initialize
      initialize = function(url, version, logger = NULL, ...) {
-       super$initialize(url, service = "WFS", owsVersion = "1.1", serviceVersion = version, logger = logger, ...)
+       super$initialize(
+          element = private$xmlElement, namespacePrefix = private$namespacePrefix,
+          url, service = "WFS", owsVersion = "1.1", serviceVersion = version, logger = logger, 
+          ...)
        xmlObj <- self$getRequest()$getResponse()
        private$featureTypes = private$fetchFeatureTypes(xmlObj, version)
      },

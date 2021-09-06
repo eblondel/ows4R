@@ -19,7 +19,7 @@ abstract class
 \section{Methods}{
 
 \describe{
- \item{\code{new(attrs, defaults, exprVersion)}}{
+ \item{\code{new(element, namespacePrefix, attrs, defaults, exprVersion)}}{
    This method is used to instantiate an \code{OGCExpression} object
  }
  \item{\code{setExprVersion(exprVersion)}}{

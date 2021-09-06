@@ -6,7 +6,7 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(exprn filterVersion)}}{
+#'  \item{\code{new(expr, filterVersion)}}{
 #'    This method is used to instantiate an OGCFilter object. The unique
 #'    argument should be an object of class \code{\link{OGCExpression}}
 #'  }
@@ -26,14 +26,13 @@ OGCFilter <-  R6Class("OGCFilter",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "Filter",
-    xmlNamespaceBase = "http://www.opengis.net/ogc",
-    xmlNamespace = c(ogc = "http://www.opengis.net/ogc")
+    xmlNamespacePrefix = "OGC"
   ),
   public = list(
     expr = NULL,
     initialize = function(expr, filterVersion = "1.1.0"){
       self$setFilterVersion(filterVersion)
-      super$initialize()
+      super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
       if(!is(expr, "OGCExpression")){
         stop("The argument should be an object of class 'OGCExpression'")
       }
@@ -43,11 +42,9 @@ OGCFilter <-  R6Class("OGCFilter",
     #setFilterVersion
     setFilterVersion = function(filterVersion) {
       if(filterVersion=="2.0"){
-        private$xmlNamespace = "http://www.opengis.net/fes/2.0"
-        names(private$xmlNamespace) <- "fes"
+        private$xmlNamespacePrefix = "FES"
       }else{
-        private$xmlNamespace = private$xmlNamespaceBase
-        names(private$xmlNamespace) = "ogc"
+        private$xmlNamespacePrefix = "OGC"
       }
     }
   )

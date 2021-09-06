@@ -16,7 +16,7 @@ WPSLiteralData
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, value)}}{
+ \item{\code{new(xml, value)}}{
    This method is used to instantiate a \code{WPSLiteralData} object
  }
  \item{\code{decode()}}{

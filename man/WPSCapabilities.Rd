@@ -31,6 +31,12 @@ recommended instead to benefit from the full set of capabilities associated to a
    case a the WPS client will request a process description (with more information about the process) for
    each process listed in the capabilities.
  }
+ \item{\code{describeProcess(identifier)}}{
+   Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
+ }
+ \item{\code{execute(identifier, dataInputs)}}{
+   Execute a process, given its \code{identifier}
+ }
 }
 }
 

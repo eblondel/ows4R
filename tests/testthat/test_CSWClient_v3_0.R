@@ -106,7 +106,7 @@ test_that("CSW 3.0 - Transaction - Update (Full)",{
 #CSW 3.0 – GetRecordById
 #--------------------------------------------------------------------------
 test_that("CSW 3.0 - GetRecordById",{
-  record <- csw3$getRecordById(id = "urn:uuid:19887a8a-f6b0-4a63-ae56-7fba0e17801f")
+  record <- csw3$getRecordById(id = md$fileIdentifier)
   expect_is(record, "list")
 })
 
@@ -115,14 +115,14 @@ test_that("CSW 3.0 - GetRecordById",{
 test_that("CSW 3.0 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw3$getRecords(query = CSWQuery$new())
-  expect_equal(length(records), 13L)
+  expect_equal(length(records), 1L)
   #ignoring query param (default is CSWQuery$new())
   records <- csw3$getRecords()
-  expect_equal(length(records), 13L)
+  expect_equal(length(records), 1L)
 })
 
 test_that("CSW 3.0 - GetRecords - full / maxRecords",{
   #as Dublin core records (R lists)
   records <- csw3$getRecords(query = CSWQuery$new(), maxRecords = 10L)
-  expect_equal(length(records), 10L)
+  expect_equal(length(records), 1L)
 })

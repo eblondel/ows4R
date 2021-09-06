@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version, logger)}}{
+#'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSDescriptionParameter} object
 #'  }
 #'  \item{\code{getFormats()}}{
@@ -27,9 +27,9 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
      formats = list(),
      
      #fetchFormats
-     fetchFormats = function(xmlObj, version){
+     fetchFormats = function(xml, version){
        
-       children <- xmlChildren(xmlObj)
+       children <- xmlChildren(xml)
        dataElement <- NULL
        dataElements <- names(children)[endsWith(names(children), "Data")]
        if(length(dataElements)>0) dataElement <- dataElements[1]
@@ -40,7 +40,7 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
        formats <- list()
        if(version == "1.0.0"){
          if("Default" %in% names(children)){
-           defaultFormat <- WPSFormat$new(xmlObj = xmlChildren(children$Default)$Format, version = version)
+           defaultFormat <- WPSFormat$new(xml = xmlChildren(children$Default)$Format, version = version)
            defaultFormat$setIsDefault(TRUE)
            formats <- c(formats, defaultFormat)
          }
@@ -60,11 +60,11 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
      
    ),
    public = list(
-     initialize = function(xmlObj = NULL, version, logger = NULL, ...){
-       super$initialize(xmlObj = xmlObj, version = version, logger = logger, ...)
+     initialize = function(xml = NULL, version, logger = NULL, ...){
+       super$initialize(xml = xml, version = version, logger = logger, ...)
        private$version = version
-       if(!is.null(xmlObj)){
-         private$formats = private$fetchFormats(xmlObj, version)
+       if(!is.null(xml)){
+         private$formats = private$fetchFormats(xml, version)
        }
      },
      

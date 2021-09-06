@@ -16,10 +16,10 @@ WPSOutput
 \section{Methods}{
 
 \describe{
- \item{\code{new(xmlObj, identifier, title, data)}}{
+ \item{\code{new(xml, identifier, title, data)}}{
    This method is used to instantiate a \code{WPSOutput} object
  }
- \item{\code{decode()}}{
+ \item{\code{decode(xml)}}{
    Decodes WPS output from XML
  }
 }

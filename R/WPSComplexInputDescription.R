@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version, logger)}}{
+#'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSComplexInputDescription} object
 #'  }
 #' }
@@ -21,8 +21,8 @@ WPSComplexInputDescription <- R6Class("WPSComplexInputDescription",
   inherit = WPSInputDescription,                       
   private = list(),
   public = list(
-    initialize = function(xmlObj = NULL, version, logger = NULL, ...){
-      super$initialize(xmlObj = xmlObj, version = version, logger = logger, ...)
+    initialize = function(xml = NULL, version, logger = NULL, ...){
+      super$initialize(xml = xml, version = version, logger = logger, ...)
     }
   )
 )

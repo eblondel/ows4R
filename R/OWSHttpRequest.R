@@ -44,7 +44,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   #private methods
   private = list(
     xmlElement = NULL,
-    xmlNamespace = c(ows = "http://www.opengis.net/ows"),
+    xmlNamespacePrefix = NULL,
     capabilities = NULL,
     url = NA,
     type = NA,
@@ -122,7 +122,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       if(!is.null(private$token)){
         headers <- c(headers, "Authorization" = paste(private$auth_scheme, private$token))
       }
-      print(headers)
+      
       #send request
       if(self$verbose.debug){
         r <- with_verbose(httr::POST(
@@ -158,12 +158,13 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   #public methods
   public = list(
     #initialize
-    initialize = function(capabilities, op, type, url, request,
+    initialize = function(element, namespacePrefix,
+                          capabilities, op, type, url, request,
                           user = NULL, pwd = NULL, token = NULL, headers = c(), 
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
-      super$initialize(logger = logger)
+      super$initialize(element = element, namespacePrefix = namespacePrefix, logger = logger)
       private$capabilities = capabilities
       private$type = type
       private$url = url

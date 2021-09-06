@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
+#'  \item{\code{new(xml, capabilities, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSProcess} object
 #'  }
 #'  \item{\code{getIdentifier()}}{
@@ -39,9 +39,9 @@ WPSProcess <- R6Class("WPSProcess",
     processVersion = NA,
     
     #fetchProcess
-    fetchProcess = function(xmlObj, version){
+    fetchProcess = function(xml, version){
       
-      children <- xmlChildren(xmlObj)
+      children <- xmlChildren(xml)
       
       processIdentifier <- NULL
       if(!is.null(children$Identifier)){
@@ -53,7 +53,7 @@ WPSProcess <- R6Class("WPSProcess",
         processTitle <- xmlValue(children$Title)
       }
       
-      processVersion <- xmlGetAttr(xmlObj, "wps:processVersion")
+      processVersion <- xmlGetAttr(xml, "wps:processVersion")
       
       process <- list(
         identifier = processIdentifier,
@@ -66,14 +66,14 @@ WPSProcess <- R6Class("WPSProcess",
     
   ),
   public = list(
-    initialize = function(xmlObj, capabilities = NULL, version, logger = NULL, ...){
+    initialize = function(xml, capabilities = NULL, version, logger = NULL, ...){
       super$initialize(logger = logger)
       
       private$capabilities = capabilities
       private$url = capabilities$getUrl()
       private$version = version
       
-      process = private$fetchProcess(xmlObj, version)
+      process = private$fetchProcess(xml, version)
       private$identifier = process$identifier
       private$title = process$title
       private$processVersion = process$version
@@ -110,14 +110,14 @@ WPSProcess <- R6Class("WPSProcess",
       processDescription <- WPSDescribeProcess$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier, 
                                                    user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                                    logger = self$loggerType)
-      xmlObj <- processDescription$getResponse()
-      processDescXML <- xmlChildren(xmlChildren(xmlObj)[[1]])[[1]]
-      processDesc <- WPSProcessDescription$new(xmlObj = processDescXML, version = private$version)
+      xml <- processDescription$getResponse()
+      processDescXML <- xmlChildren(xmlChildren(xml)[[1]])[[1]]
+      processDesc <- WPSProcessDescription$new(xml = processDescXML, version = private$version)
       return(processDesc)
     },
     
     #execute
-    execute = function(dataInputs = list(), responseForm = NULL, language = NULL){
+    execute = function(dataInputs = list(), responseForm = NULL){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -131,11 +131,11 @@ WPSProcess <- R6Class("WPSProcess",
       
       client = private$capabilities$getClient()
       processExecute <- WPSExecute$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier,
-                                       dataInputs = dataInputs, responseForm = responseForm, language = language,
+                                       dataInputs = dataInputs, responseForm = responseForm,
                                        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                        logger = self$loggerType)
-      xmlObj <- processExecute$getResponse()
-      resp <- WPSExecuteResponse$new(xmlObj = xmlObj, capabilities = private$capabilities, logger = self$loggerType)
+      xml <- processExecute$getResponse()
+      resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, logger = self$loggerType)
       return(resp)
     }
   )

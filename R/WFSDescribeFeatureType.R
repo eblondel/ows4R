@@ -20,12 +20,14 @@
 WFSDescribeFeatureType <- R6Class("WFSDescribeFeatureType",
   inherit = OWSHttpRequest,
   private = list(
-    name = "DescribeFeatureType"
+    xmlElement = "DescribeFeatureType",
+    xmlNamespacePrefix = "WFS"
   ),
   public = list(
     initialize = function(capabilities, op, url, version, typeName, logger = NULL, ...) {
       namedParams <- list(service = "WFS", version = version, typeName = typeName)
-      super$initialize(capabilities, op, "GET", url, request = private$name,
+      super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
+                       capabilities, op, "GET", url, request = "DescribeFeatureType",
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
       self$execute()

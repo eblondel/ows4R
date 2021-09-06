@@ -21,17 +21,15 @@ CSWRecordProperty <-  R6Class("CSWRecordProperty",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "RecordProperty",
-    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
+    xmlNamespacePrefix = "CSW"
   ),
   public = list(
     wrap = TRUE,
     Name = NULL,
     Value = NULL,
     initialize = function(name, value, cswVersion = "2.0.2"){
-      nsName <- names(private$xmlNamespace)
-      private$xmlNamespace = paste(private$xmlNamespace, cswVersion, sep="/")
-      names(private$xmlNamespace) <- nsName
-      super$initialize()
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", cswVersion), sep="_")
+      super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
       self$Name = name
       self$Value = value
     }

@@ -5,6 +5,7 @@
 #=======================
 require(ows4R, quietly = TRUE)
 require(geometa)
+require(XML)
 require(testthat)
 context("CSWRecordProperty")
 

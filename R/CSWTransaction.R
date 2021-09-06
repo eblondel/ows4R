@@ -23,7 +23,7 @@ CSWTransaction <- R6Class("CSWTransaction",
   inherit = OWSHttpRequest, 
   private = list(
     xmlElement = "Transaction",
-    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
+    xmlNamespacePrefix = "CSW"
   ),
   public = list(
     initialize = function(capabilities, op, url, serviceVersion, type, 
@@ -31,15 +31,15 @@ CSWTransaction <- R6Class("CSWTransaction",
                           record = NULL, recordProperty = NULL, constraint = NULL,
                           logger = NULL, ...) {
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
-      private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
-      names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
       
       self[[type]] = list(
         record = record,
         recordProperty = recordProperty,
         constraint = constraint
       )
-      super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
+      super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+                       capabilities, op, "POST", url, request = private$xmlElement,
                        user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)

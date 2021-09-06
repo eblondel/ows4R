@@ -25,6 +25,12 @@
 #'    case a the WPS client will request a process description (with more information about the process) for
 #'    each process listed in the capabilities.
 #'  }
+#'  \item{\code{describeProcess(identifier)}}{
+#'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
+#'  }
+#'  \item{\code{execute(identifier, dataInputs)}}{
+#'    Execute a process, given its \code{identifier}
+#'  }
 #' }
 #' 
 #' @note Class used to read a \code{WPSCapabilities} document. The use of \code{WPSClient} is
@@ -35,20 +41,22 @@
 WPSCapabilities <- R6Class("WPSCapabilities",
    inherit = OWSCapabilities,
    private = list(
+     xmlElement = "Capabilities",
+     xmlNamespacePrefix = "WPS",
      processes = list(),
      
      #fetchProcesses
-     fetchProcesses = function(xmlObj, version){
+     fetchProcesses = function(xml, version){
        wpsNs <- NULL
-       if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
-         namespaces <- OWSUtils$getNamespaces(xmlObj)
+       if(all(class(xml) == c("XMLInternalDocument","XMLAbstractDocument"))){
+         namespaces <- OWSUtils$getNamespaces(xml)
          if(!is.null(namespaces)) wpsNs <- OWSUtils$findNamespace(namespaces, id = "wps")
        }
        processListXML <- list()
        if(is.null(wpsNs)){
-         processListXML <- getNodeSet(xmlObj, "//ProcessOfferings/Process")
+         processListXML <- getNodeSet(xml, "//ProcessOfferings/Process")
        }else{
-         processListXML <- getNodeSet(xmlObj, "//ns:ProcessOfferings/ns:Process", wpsNs) 
+         processListXML <- getNodeSet(xml, "//ns:ProcessOfferings/ns:Process", wpsNs) 
        }
        processList <- list()
        if(length(processListXML)>0){
@@ -67,10 +75,11 @@ WPSCapabilities <- R6Class("WPSCapabilities",
                             "1.0.0" = "1.1",
                             "2.0.0" = "2.0"
        )
-       super$initialize(url, service = "WPS", owsVersion = owsVersion, serviceVersion = version, 
+       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+                        url, service = "WPS", owsVersion = owsVersion, serviceVersion = version, 
                         client = client, logger = logger, ...)
-       xmlObj <- self$getRequest()$getResponse()
-       private$processes <- private$fetchProcesses(xmlObj, version)
+       xml <- self$getRequest()$getResponse()
+       private$processes <- private$fetchProcesses(xml, version)
      },
      
      #getProcesses
@@ -89,6 +98,32 @@ WPSCapabilities <- R6Class("WPSCapabilities",
          }))
        }
        return(processes)
+     },
+     
+     #describeProcess
+     describeProcess = function(identifier){
+        processes <- self$getProcesses()
+        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
+        if(length(processes)==0){
+           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
+           self$ERROR(errMsg)
+           stop(errMsg)
+        }
+        process <- processes[[1]]
+        return(process$getDescription())
+     },
+     
+     #execute
+     execute = function(identifier, dataInputs = list(), responseForm = NULL){
+        processes <- self$getProcesses()
+        processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
+        if(length(processes)==0){
+           errMsg <- sprintf("There is no process with identifier '%s'", identifier)
+           self$ERROR(errMsg)
+           stop(errMsg)
+        }
+        process <- processes[[1]]
+        return(process$execute(dataInputs, responseForm))
      }
    )
 )

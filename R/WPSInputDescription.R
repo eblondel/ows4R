@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
+#'  \item{\code{new(xml, capabilities, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSInputDescription} object
 #'  }
 #'  \item{\code{getMinOccurs()}}{
@@ -30,11 +30,11 @@ WPSInputDescription <- R6Class("WPSInputDescription",
      maxOccurs = NA,
      
      #fetchInputDescription
-     fetchInputDescription = function(xmlObj, version){
+     fetchInputDescription = function(xml, version){
        
        inputDescription <- list(
-         minOccurs = xmlGetAttr(xmlObj, "minOccurs"),
-         maxOccurs = xmlGetAttr(xmlObj, "maxOccurs")
+         minOccurs = xmlGetAttr(xml, "minOccurs"),
+         maxOccurs = xmlGetAttr(xml, "maxOccurs")
        )
        
        return(inputDescription)
@@ -42,11 +42,11 @@ WPSInputDescription <- R6Class("WPSInputDescription",
      
    ),
    public = list(
-     initialize = function(xmlObj = NULL, version, logger = NULL, ...){
-       super$initialize(xmlObj = xmlObj, version = version, logger = logger, ...)
+     initialize = function(xml = NULL, version, logger = NULL, ...){
+       super$initialize(xml = xml, version = version, logger = logger, ...)
        private$version = version
-       if(!is.null(xmlObj)){
-          inputDescription = private$fetchInputDescription(xmlObj, version)
+       if(!is.null(xml)){
+          inputDescription = private$fetchInputDescription(xml, version)
           private$minOccurs = inputDescription$minOccurs
           private$maxOccurs = inputDescription$maxOccurs
        }

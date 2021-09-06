@@ -21,7 +21,8 @@
 WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
  inherit = OWSHttpRequest,
  private = list(
-   name = "GetFeatureInfo"
+   xmlElement = "GetFeatureInfo",
+   xmlNamespacePrefix = "WMS"
  ), 
  public = list(
    initialize = function(capabilities, op, url, version, layers, srs, styles, feature_count = 1,
@@ -63,7 +64,8 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
      vendorParams <- list(...)
      if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
      namedParams <- namedParams[!sapply(namedParams, is.null)]
-     super$initialize(capabilities, op, "GET", url, request = private$name, 
+     super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
+                      capabilities, op, "GET", url, request = "GetFeatureInfo", 
                       namedParams = namedParams, mimeType = mimeType, 
                       logger = logger)
      self$execute()

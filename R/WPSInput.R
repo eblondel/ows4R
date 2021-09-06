@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(identifier, data)}}{
+#'  \item{\code{new(xml, identifier, data, serviceVersion)}}{
 #'    This method is used to instantiate a WPSInput object
 #'  }
 #' }
@@ -20,17 +20,25 @@ WPSInput <- R6Class("WPSInput",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "Input",
-    xmlNamespace = c(wps = "http://www.opengis.net/wps")
+    xmlNamespacePrefix = "WPS"
   ),
   public = list(
     Identifier = NULL,
     Data = NULL,
-    initialize = function(identifier, data) {
-      if(is(identifier, "character")){
-        identifier <- OWSCodeType$new(value = identifier)
+    initialize = function(xml = NULL, identifier, data,
+                          serviceVersion = "1.0.0") {
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
+      super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
+      self$wrap <- TRUE
+      if(is.null(xml)){
+        if(is(identifier, "character")){
+          identifier <- OWSCodeType$new(value = identifier)
+        }
+        self$Identifier <- identifier
+        self$Data <- data
+      }else{
+        self$decode(xml)
       }
-      self$Identifier <- identifier
-      self$Data <- data
     }
   )
 )

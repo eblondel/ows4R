@@ -42,6 +42,8 @@
 OWSCapabilities <- R6Class("OWSCapabilities",
    inherit = OGCAbstractObject,
    private = list(
+     xmlElement = "Capabilities",
+     xmlNamespacePrefix = "OWS",
      client = NULL,
      url = NA,
      service = NA,
@@ -56,15 +58,26 @@ OWSCapabilities <- R6Class("OWSCapabilities",
    public = list(
      
      #initialize
-     initialize = function(url, service, owsVersion, serviceVersion, 
+     initialize = function(element = NULL, namespacePrefix = NULL,
+                           url, service, owsVersion, serviceVersion, 
                            logger = NULL, ...) {
-       super$initialize(logger = logger)
+       if(!is.null(element)) private$xmlElement <- element
+       if(!is.null(namespacePrefix)){
+          private$xmlNamespacePrefix <- namespacePrefix
+          private$xmlNamespacePrefix <- paste0(private$xmlNamespacePrefix,"_",gsub("\\.","_",serviceVersion))
+       }else{
+          private$xmlNamespacePrefix <- paste0(private$xmlNamespacePrefix,"_",gsub("\\.","_",owsVersion))
+       }
+       
+       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix, logger = logger)
        private$url <- url
        private$service <- service
        private$owsVersion <- owsVersion
        private$serviceVersion <- serviceVersion
        namedParams <- list(service = service, version = serviceVersion)
-       private$request <- OWSGetCapabilities$new(url, service, serviceVersion, logger = logger, ...)
+       private$request <- OWSGetCapabilities$new(
+          element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+          url, service, serviceVersion, logger = logger, ...)
        xmlObj <- private$request$getResponse()
        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
        private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)

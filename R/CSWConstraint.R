@@ -22,8 +22,7 @@ CSWConstraint <-  R6Class("CSWConstraint",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "Constraint",
-    xmlNamespaceBase = "http://www.opengis.net/cat/csw",
-    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw")
+    xmlNamespacePrefix = "CSW"
   ),
   public = list(
     wrap = TRUE,
@@ -31,7 +30,9 @@ CSWConstraint <-  R6Class("CSWConstraint",
     filter = NULL,
     initialize = function(cqlText = NULL, filter = NULL, serviceVersion = "2.0.2"){
       self$setServiceVersion(serviceVersion)
-      super$initialize(attrs = list(version = "1.1.0"))
+      super$initialize(
+        element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+        attrs = list(version = "1.1.0"))
       if(!is.null(cqlText)) if(!is(cqlText, "character")){
         stop("The argument 'cqlText' should be an object of class 'character'")
       }
@@ -46,8 +47,7 @@ CSWConstraint <-  R6Class("CSWConstraint",
     #setServiceVersion
     setServiceVersion = function(serviceVersion){
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
-      private$xmlNamespace = paste(private$xmlNamespaceBase, nsVersion, sep="/")
-      names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
       if(!is.null(self$filter)){
         if(serviceVersion=="3.0.0"){
           self$filter$setFilterVersion("2.0")

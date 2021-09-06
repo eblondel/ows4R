@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, version, logger)}}{
+#'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSProcessDescription} object
 #'  }
 #'  \item{\code{getIdentifier()}}{
@@ -62,9 +62,9 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     processOutputs = list(),
     
     #fetchProcessDescription
-    fetchProcessDescription = function(xmlObj, version){
+    fetchProcessDescription = function(xml, version){
       
-      children <- xmlChildren(xmlObj)
+      children <- xmlChildren(xml)
       
       processIdentifier <- NULL
       if(!is.null(children$Identifier)){
@@ -81,10 +81,10 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
         processAbstract <- xmlValue(children$Abstract)
       }
       
-      processVersion <- xmlGetAttr(xmlObj, "wps:processVersion")
-      statusAttr <- xmlGetAttr(xmlObj, "statusSupported")
+      processVersion <- xmlGetAttr(xml, "wps:processVersion")
+      statusAttr <- xmlGetAttr(xml, "statusSupported")
       if(!is.null(statusAttr)) statusSupported <- statusAttr == "true"
-      storeAttr <- xmlGetAttr(xmlObj, "storeSupported")
+      storeAttr <- xmlGetAttr(xml, "storeSupported")
       if(!is.null(storeAttr)) storeSupported <- storeAttr == "true"
       
       dataInputsXML <- xmlChildren(children$DataInputs)
@@ -92,9 +92,9 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       dataInputs <- lapply(dataInputsXML, function(x){
         input_binding <- NULL
         if("LiteralData" %in% names(xmlChildren(x))){
-          input_binding = WPSLiteralInputDescription$new(xmlObj = x, version = version)
+          input_binding = WPSLiteralInputDescription$new(xml = x, version = version)
         }else if("ComplexData" %in% names(xmlChildren(x))){
-          input_binding = WPSComplexInputDescription$new(xmlObj = x, version = version)
+          input_binding = WPSComplexInputDescription$new(xml = x, version = version)
         }else if("BoundingBoxData" %in% names(xmlChildren(x))){
           #TODO
         }
@@ -108,9 +108,9 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
       processOutputs <- lapply(processOutputsXML, function(x){
         output_binding <- NULL
         if("LiteralOutput" %in% names(xmlChildren(x))){
-          output_binding = WPSLiteralOutputDescription$new(xmlObj = x, version = version)
+          output_binding = WPSLiteralOutputDescription$new(xml = x, version = version)
         }else if("ComplexOutput" %in% names(xmlChildren(x))){
-          output_binding = WPSComplexOutputDescription$new(xmlObj = x, version = version)
+          output_binding = WPSComplexOutputDescription$new(xml = x, version = version)
         }else if("BoundingBoxOutput" %in% names(xmlChildren(x))){
           #TODO
         }
@@ -135,11 +135,11 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     
   ),
   public = list(
-    initialize = function(xmlObj, version, logger = NULL, ...){
+    initialize = function(xml, version, logger = NULL, ...){
       super$initialize(logger = logger)
       private$version = version
       
-      processDesc = private$fetchProcessDescription(xmlObj, version)
+      processDesc = private$fetchProcessDescription(xml, version)
       private$identifier = processDesc$identifier
       private$title = processDesc$title
       private$abstract = processDesc$abstract

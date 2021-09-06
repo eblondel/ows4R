@@ -19,7 +19,7 @@ Abstract class used internally by \pkg{ows4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(capabilities, op, url, service, version, ...)}}{
+ \item{\code{new(element, namespacePrefix, url, service, version, ...)}}{
    This method is used to instantiate a OWSGetCapabilities object
  }
 }

@@ -8,10 +8,10 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, value, schema, mimeType)}}{
+#'  \item{\code{new(xml, value, schema, mimeType)}}{
 #'    This method is used to instantiate a \code{WPSComplexData} object
 #'  }
-#'  \item{\code{decode(xmlObj)}}{
+#'  \item{\code{decode(xml)}}{
 #'    Decodes from XML
 #'  }
 #'  \item{\code{getFeatures()}}{
@@ -26,25 +26,28 @@ WPSComplexData <- R6Class("WPSComplexData",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "ComplexData",
-    xmlNamespace = c(wps = "http://www.opengis.net/wps"),
+    xmlNamespacePrefix = "WPS",
     features = NULL
   ),
   public = list(
     value = NULL,
-    wrap = TRUE,
-    initialize = function(xmlObj = NULL, value = NULL, schema = NULL, mimeType = NULL) {
-      if(is.null(xmlObj)){
+    initialize = function(xml = NULL, value = NULL, schema = NULL, mimeType = NULL,
+                          serviceVersion = "1.0.0") {
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
+      super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
+      self$wrap <- TRUE
+      if(is.null(xml)){
         self$value <- value
         self$attrs$schema <- schema
         self$attrs$mimeType <- mimeType
       }else{
-        self$decode(xmlObj)
+        self$decode(xml)
       }
     },
     #decode
-    decode = function(xmlObj){
-      self$value <- as(xmlChildren(xmlObj)[[1]], "character")
-      self$attrs <- as.list(xmlAttrs(xmlObj))
+    decode = function(xml){
+      self$value <- as(xmlChildren(xml)[[1]], "character")
+      self$attrs <- as.list(xmlAttrs(xml))
       if(!is.null(self$attrs$mimeType)) if(regexpr("gml", self$attrs$mimeType)>0){
         tmp <- tempfile(fileext = "gml")
         write(self$value, file = tmp)

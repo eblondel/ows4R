@@ -8,7 +8,7 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xmlObj, value)}}{
+#'  \item{\code{new(xml, value)}}{
 #'    This method is used to instantiate a \code{WPSLiteralData} object
 #'  }
 #'  \item{\code{decode()}}{
@@ -23,13 +23,15 @@ WPSLiteralData <- R6Class("WPSLiteralData",
   inherit = OGCAbstractObject,
   private = list(
     xmlElement = "LiteralData",
-    xmlNamespace = c(wps = "http://www.opengis.net/wps")
+    xmlNamespacePrefix = "WPS"
   ),
   public = list(
     value = NULL,
-    wrap = TRUE,
-    initialize = function(xmlObj = NULL, value = NULL) {
-      if(is.null(xmlObj)){
+    initialize = function(xml = NULL, value = NULL, serviceVersion = "1.0.0") {
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
+      super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
+      self$wrap <- TRUE
+      if(is.null(xml)){
         self$attrs$dataType <- switch(class(value),
           "character" = "xs:string",
           "numeric" = "xs:double",
@@ -40,13 +42,13 @@ WPSLiteralData <- R6Class("WPSLiteralData",
         self$value <- value
         if(is.logical(value)) self$value <- tolower(as.character(value))
       }else{
-        self$decode(xmlObj)
+        self$decode(xml)
       }
     },
     
     #decode
-    decode = function(xmlObj){
-      dataType <- xmlGetAttr(xmlObj, "dataType")
+    decode = function(xml){
+      dataType <- xmlGetAttr(xml, "dataType")
       self$attrs$dataType <- dataType
       value <- xmlValue(Obj)
       self$value <- switch(dataType,

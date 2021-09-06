@@ -21,7 +21,8 @@ CSWGetRecords <- R6Class("CSWGetRecords",
   inherit = OWSHttpRequest,
   private = list(
     xmlElement = "GetRecords",
-    xmlNamespace = c(csw = "http://www.opengis.net/cat/csw"),
+    xmlNamespacePrefix = "CSW",
+    xmlExtraNamespaces = c(),
     defaultAttrs = list(
       service = "CSW",
       version = "2.0.2",
@@ -37,13 +38,13 @@ CSWGetRecords <- R6Class("CSWGetRecords",
     initialize = function(capabilities, op, url, serviceVersion = "2.0.2", 
                           user = NULL, pwd = NULL, token = NULL, headers = list(),
                           query = NULL, logger = NULL, ...) {
-      super$initialize(capabilities, op, "POST", url, request = private$xmlElement,
+      nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
+      private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
+      super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
+                       capabilities, op, "POST", url, request = private$xmlElement,
                        user = user, pwd = pwd, token = token, headers = headers,
                        contentType = "text/xml", mimeType = "text/xml",
                        logger = logger, ...)
-      nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
-      private$xmlNamespace = paste(private$xmlNamespace, nsVersion, sep="/")
-      names(private$xmlNamespace) <- ifelse(serviceVersion=="3.0.0", "csw30", "csw")
       
       self$attrs <- private$defaultAttrs
       
@@ -90,9 +91,14 @@ CSWGetRecords <- R6Class("CSWGetRecords",
         "http://www.opengis.net/cat/csw/3.0" = "csw30:Record",
         "http://www.w3.org/ns/dcat#" = "dcat"
       )
+      #namespace extension
+      ns <- unlist(getOWSNamespace(private$xmlNamespacePrefix)$getDefinition())
       if(!(typeNames %in% c("csw:Record","csw30:Record"))){
-        private$xmlNamespace = c(private$xmlNamespace, ns = self$attrs$outputSchema)
-        names(private$xmlNamespace)[2] <- unlist(strsplit(typeNames,":"))[1]
+        ns = c(ns, ns = self$attrs$outputSchema)
+        names(ns)[2] <- unlist(strsplit(typeNames,":"))[1]
+        #adding extra namespace
+        private$xmlExtraNamespaces <- c(ns = self$attrs$outputSchema)
+        names(private$xmlExtraNamespaces) <- unlist(strsplit(typeNames,":"))[1]
       }
       
       if(!is.null(query)){
@@ -100,6 +106,9 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           stop("The argument 'query' should be an object of class 'CSWQuery'")
         }
         query$attrs$typeNames = typeNames
+        if(startsWith(serviceVersion, "3")){
+          query$namespace <- getOWSNamespace("CSW_3_0")
+        }
         self$Query = query
       }
       
@@ -107,7 +116,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       self$execute()
       
       #inherit meta attributes
-      searchResults <- getNodeSet(private$response, paste0("//",names(private$xmlNamespace),":SearchResults"), private$xmlNamespace)[[1]]
+      searchResults <- getNodeSet(private$response, paste0("//",names(ns)[1],":SearchResults"), namespaces = ns)[[1]]
       searchResultsAttrs <- as.list(xmlAttrs(searchResults))
       searchResultsAttrs$nextRecord <- as.integer(searchResultsAttrs$nextRecord)
       searchResultsAttrs$numberOfRecordsMatched <- as.integer(searchResultsAttrs$numberOfRecordsMatched)
@@ -157,7 +166,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
             "summary" = "csw:SummaryRecord"
           )
           out <- list()
-          recordsXML <- getNodeSet(private$response,paste0("//csw:GetRecordsResponse/csw:SearchResults/",resultElement), private$xmlNamespace[1])
+          recordsXML <- getNodeSet(private$response,paste0("//csw:GetRecordsResponse/csw:SearchResults/",resultElement), namespaces = ns)
           if(length(recordsXML)>0){
             out <- lapply(recordsXML, function(recordXML){
               children <- xmlChildren(recordXML)
@@ -180,7 +189,7 @@ CSWGetRecords <- R6Class("CSWGetRecords",
             "summary" = "csw30:SummaryRecord"
           )
           out <- list()
-          recordsXML <- getNodeSet(private$response,paste0("//csw30:GetRecordsResponse/csw30:SearchResults/",resultElement), private$xmlNamespace[1])
+          recordsXML <- getNodeSet(private$response,paste0("//csw30:GetRecordsResponse/csw30:SearchResults/",resultElement), namespaces = ns)
           if(length(recordsXML)>0){
             out <- lapply(recordsXML, function(recordXML){
               children <- xmlChildren(recordXML)

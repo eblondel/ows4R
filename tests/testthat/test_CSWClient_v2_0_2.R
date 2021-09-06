@@ -20,7 +20,7 @@ csw2 <- NULL
 #--------------------------------------------------------------------------
 #--> pycsw
 test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
-  csw2 <<- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="INFO")
+  csw2 <<- CSWClient$new("http://localhost:8000/csw", "2.0.2", logger="DEBUG")
   expect_is(csw2, "CSWClient")
   expect_equal(csw2$getVersion(), "2.0.2")
   caps <- csw2$getCapabilities()
@@ -111,7 +111,7 @@ test_that("CSW 2.0.2 - Transaction - Delete",{
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecordById",{
   #insert a list of 10 records for next tests
-  for(i in 1:10){
+  for(i in 1:25){
     md$fileIdentifier <- paste0("my-metadata-identifier",i)
     md$identificationInfo[[1]]$citation$title <- paste0("sometitle", i)
     md$identificationInfo[[1]]$abstract <- ifelse(i==10,"lastabstract",paste0("abstract", i))
@@ -127,10 +127,10 @@ test_that("CSW 2.0.2 - GetRecordById",{
 test_that("CSW 2.0.2 - GetRecords - full",{
   #as Dublin core records (R lists)
   records <- csw2$getRecords(query = CSWQuery$new())
-  expect_equal(length(records), 22L)
+  expect_equal(length(records), 25L)
   #ignoring query param (default is CSWQuery$new())
   records <- csw2$getRecords()
-  expect_equal(length(records), 22L)
+  expect_equal(length(records), 25L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - full / maxRecords",{
@@ -143,7 +143,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:title",{
   cons <- CSWConstraint$new(cqlText = "dc:title like '%title1%'")
   query <- CSWQuery$new(constraint = cons)
   records <- csw2$getRecords(query = query)
-  expect_equal(length(records), 2L)
+  expect_equal(length(records), 11L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:title and dc:abstract",{
@@ -186,7 +186,7 @@ test_that("CSW 2.0.2 - GetRecords - Filter / AnyText And Not",{
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(constraint = cons)
   records <- csw2$getRecords(query = query)
-  expect_equal(length(records), 8L)
+  expect_equal(length(records), 14L)
 })
 
 test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
@@ -196,7 +196,7 @@ test_that("CSW 2.0.2 - GetRecords - Filter / BBOX",{
   cons <- CSWConstraint$new(filter = filter)
   query <- CSWQuery$new(elementSetName = "brief", constraint = cons)
   records <- csw2$getRecords(query = query)
-  expect_equal(length(records), 13L)
+  expect_equal(length(records), 25L)
 })
 
 #CSW 2.0.2 – GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
@@ -226,8 +226,8 @@ test_that("CSW 2.0.2 - Harvest",{
   cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
   query <- CSWQuery$new(constraint = cons)
   harvested <- csw2$harvestNode(
-    url = "http://www.fao.org/geonetwork/srv/en/csw", query = query,
-    sourceBaseUrl = "http://www.fao.org/geonetwork/srv/en/xml.metadata.get?uuid="
+    url = "http://www.fao.org/fishery/geonetwork/srv/en/csw", query = query,
+    sourceBaseUrl = "http://www.fao.org/fishery/geonetwork/srv/en/xml.metadata.get?uuid="
   )
   expect_is(harvested, "list")
   expect_equal(harvested$found, 2)
@@ -250,7 +250,7 @@ fao_csw <- NULL
 #CSW 2.0.2 – FAO - GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
-  fao_csw <<- CSWClient$new("http://www.fao.org/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
+  fao_csw <<- CSWClient$new("http://www.fao.org/fishery/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
   expect_is(fao_csw, "CSWClient")
   expect_equal(fao_csw$getVersion(), "2.0.2")
   caps <- fao_csw$getCapabilities()
