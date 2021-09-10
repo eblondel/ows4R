@@ -55,5 +55,5 @@ Support for additional OGC web-service standard specifications including
 * OGC API
 * ...
 
-For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:emmanuel.blondel1@gmail.com)
+For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:eblondel.pro@gmail.com)
 
