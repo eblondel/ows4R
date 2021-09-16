@@ -1,7 +1,6 @@
 # ows4R
 
-[![Build Status](https://travis-ci.org/eblondel/ows4R.svg?branch=master)](https://travis-ci.org/eblondel/ows4R)
-[![codecov.io](http://codecov.io/github/eblondel/ows4R/coverage.svg?branch=master)](http://codecov.io/github/eblondel/ows4R?branch=master)
+[![Build Status](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ows4R)](https://cran.r-project.org/package=ows4R)
 [![cran checks](https://cranchecks.info/badges/worst/ows4R)](https://cran.r-project.org/web/checks/check_results_ows4R.html)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.2-blue.svg)](https://github.com/eblondel/ows4R)
