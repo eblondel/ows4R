@@ -40,13 +40,6 @@ recommended instead to benefit from the full set of capabilities associated to a
 }
 }
 
-\examples{
-\donttest{
-   #example based on WPS endpoint responding at http://localhost:8000/wps
-   caps <- WPSCapabilities$new("http://localhost:8000/wps", version = "2.0.2")
-}
-
-}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

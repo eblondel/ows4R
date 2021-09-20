@@ -6,12 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Catalogue Service for the Web (CSW) Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @examples
-#' \donttest{
-#'    #example based on CSW endpoint responding at http://localhost:8000/csw
-#'    caps <- CSWCapabilities$new("http://localhost:8000/csw", version = "2.0.2")
-#' }
 #'
 #' @section Methods:
 #' \describe{

@@ -41,13 +41,6 @@ recommended instead to benefit from the full set of capabilities associated to a
 }
 }
 
-\examples{
-\donttest{
-   #example based on WMS endpoint responding at http://localhost:8080/geoserver/wms
-   caps <- WMSCapabilities$new("http://localhost:8080/geoserver/wms", version = "1.1.1")
-}
-
-}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

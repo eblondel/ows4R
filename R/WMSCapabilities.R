@@ -6,12 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Map Service Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @examples
-#' \donttest{
-#'    #example based on WMS endpoint responding at http://localhost:8080/geoserver/wms
-#'    caps <- WMSCapabilities$new("http://localhost:8080/geoserver/wms", version = "1.1.1")
-#' }
 #'
 #' @section Methods:
 #' \describe{

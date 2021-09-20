@@ -6,12 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Feature Service Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @examples
-#' \donttest{
-#'    #example based on WMS endpoint responding at http://localhost:8080/geoserver/wfs
-#'    caps <- WFSCapabilities$new("http://localhost:8080/geoserver/wfs", version = "1.1.1")
-#' }
 #'
 #' @section Methods:
 #' \describe{

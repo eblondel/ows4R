@@ -6,12 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Processing Service (WPS) Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#' 
-#' @examples
-#' \donttest{
-#'    #example based on WPS endpoint responding at http://localhost:8000/wps
-#'    caps <- WPSCapabilities$new("http://localhost:8000/wps", version = "2.0.2")
-#' }
 #'
 #' @section Methods:
 #' \describe{

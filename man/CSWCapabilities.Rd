@@ -27,13 +27,6 @@ recommended instead to benefit from the full set of capabilities associated to a
 }
 }
 
-\examples{
-\donttest{
-   #example based on CSW endpoint responding at http://localhost:8000/csw
-   caps <- CSWCapabilities$new("http://localhost:8000/csw", version = "2.0.2")
-}
-
-}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
