@@ -82,6 +82,10 @@ test_that("CSW 2.0.2 - GetCapabilities | pycsw",{
 
 #Insert
 test_that("CSW 2.0.2 - Transaction - Insert",{
+  #csw3 tests seem to be triggered first, and deleteRecordById not yet supported for CSW3
+  #we first check if the record exist (if inserted through csw3), and delete it in case
+  record <- csw2$getRecordById(id = md$fileIdentifier)
+  if(!is.null(record)) csw2$deleteRecordById(md$fileIdentifier)
   insert <- csw2$insertRecord(record = md)
   expect_true(insert$getResult())
 })
@@ -103,11 +107,6 @@ test_that("CSW 2.0.2 - Transaction - Update (Partial)",{
 
 #Delete
 test_that("CSW 2.0.2 - Transaction - Delete",{
-  #csw3 tests seem to be triggered first, and deleteRecordById not yet supported for CSW3
-  #we first check if the record exist (if inserted through csw3), and delete it in case
-  record <- csw2$getRecordById(id = md$fileIdentifier)
-  if(!is.null(record)) csw2$deleteRecordById(md$fileIdentifier)
-
   delete <- csw2$deleteRecordById(md$fileIdentifier)
   expect_true(delete$getResult())
 })
