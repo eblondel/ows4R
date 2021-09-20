@@ -25,7 +25,7 @@ jobs:
         run: |
           docker pull kartoza/postgis
           docker run -d --name="postgis" kartoza/postgis
-          docker run --link postgis:postgis -d -p 8080:8080 kartoza/geoserver:latest
+          docker run --link postgis:postgis -d -p 8080:8080 -e SAMPLE_DATA=true kartoza/geoserver:latest
       #OGC CSW integration tests
       #-------------------------
       #Docker PyCSW set-up
