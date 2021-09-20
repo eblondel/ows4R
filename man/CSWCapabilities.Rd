@@ -30,7 +30,7 @@ recommended instead to benefit from the full set of capabilities associated to a
 \examples{
 \donttest{
    #example based on CSW endpoint responding at http://localhost:8000/csw
-   caps <- CSWCapabilities$new("http://localhost:8000/geonetwork/csw", version = "2.0.2")
+   caps <- CSWCapabilities$new("http://localhost:8000/csw", version = "2.0.2")
 }
 
 }
