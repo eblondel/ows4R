@@ -41,6 +41,7 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     processOutputs = list(),
     initialize = function(xml, capabilities, processDescription = NULL, logger = NULL) {
       private$xml = xml
+      print(xml)
       self$decode(xml, capabilities = capabilities, processDescription = processDescription, logger = logger)
     },
     
@@ -68,8 +69,11 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
           outputXML <- outputsXML[[i]]
           dataType <- NULL
           if(!is.null(processDescription)){
-            processOutput <- processDescription$getProcessOutputs()[[i]]
-            dataType <- processOutput$getDataType()
+            processDescOutputs <- processDescription$getProcessOutputs()
+            if(length(processDescOutputs)>0){
+              processDescOutput <- processDescOutputs[[i]]
+              dataType <- processDescOutput$getDataType()
+            }
           }
           WPSOutput$new(xml = outputXML, dataType = dataType)
         })
