@@ -16,11 +16,18 @@ WPSOutput
 \section{Methods}{
 
 \describe{
- \item{\code{new(xml, identifier, title, data)}}{
+ \item{\code{new(xml, identifier, title, data, dataType)}}{
    This method is used to instantiate a \code{WPSOutput} object
  }
  \item{\code{decode(xml)}}{
    Decodes WPS output from XML
+ }
+ \item{\code{getData()}}{
+   Get data, as object of class \code{WPSLiteralData} or \code{WPSComplexData}
+ }
+ \item{\code{getDataValue()}}{
+   Get data value, as shortcut method to get value associated to \code{WPSLiteralData} 
+   or \code{WPSComplexData}
  }
 }
 }

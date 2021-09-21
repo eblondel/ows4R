@@ -32,12 +32,13 @@ WPSComplexData <- R6Class("WPSComplexData",
   public = list(
     value = NULL,
     initialize = function(xml = NULL, value = NULL, schema = NULL, mimeType = NULL,
-                          serviceVersion = "1.0.0") {
+                          serviceVersion = "1.0.0", cdata = TRUE) {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
       self$wrap <- TRUE
       if(is.null(xml)){
         self$value <- value
+        if(cdata) self$value <- XML::xmlCDataNode(value)
         self$attrs$schema <- schema
         self$attrs$mimeType <- mimeType
       }else{

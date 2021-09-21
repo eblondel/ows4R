@@ -11,6 +11,9 @@
 #'  \item{\code{new(xml, version, logger)}}{
 #'    This method is used to instantiate a \code{WPSDescriptionParameter} object
 #'  }
+#'  \item{\code{getDataType()}}{
+#'    Get data type
+#'  }
 #'  \item{\code{getFormats()}}{
 #'    Get formats
 #'  }
@@ -23,7 +26,7 @@
 WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
    inherit = WPSParameter,                       
    private = list(
-     
+     dataType = NULL,
      formats = list(),
      
      #fetchFormats
@@ -37,6 +40,12 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
        if(length(dataElements)>0) dataElement <- dataElements[1]
        children <- xmlChildren(children[[dataElement]])
        
+       #dataType
+       if("DataType" %in% names(children)){
+          private$dataType <- xmlValue(children$DataType)
+       }
+       
+       #formats
        formats <- list()
        if(version == "1.0.0"){
          if("Default" %in% names(children)){
@@ -66,6 +75,11 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
        if(!is.null(xml)){
          private$formats = private$fetchFormats(xml, version)
        }
+     },
+     
+     #getDataType
+     getDataType = function(){
+        return(private$dataType)
      },
      
      #getFormats

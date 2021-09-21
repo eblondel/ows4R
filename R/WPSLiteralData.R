@@ -48,9 +48,11 @@ WPSLiteralData <- R6Class("WPSLiteralData",
     
     #decode
     decode = function(xml){
+      print(xml)
       dataType <- xmlGetAttr(xml, "dataType")
+      if(is.null(dataType)) dataType <- "xs:string"
       self$attrs$dataType <- dataType
-      value <- xmlValue(Obj)
+      value <- xmlValue(xml)
       self$value <- switch(dataType,
         "xs:string" = value,
         "xs:numeric" = as.numeric(value),

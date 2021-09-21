@@ -66,6 +66,16 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
         out <- paste(out,txt, sep = "")
         out <- paste(out,paste("</", xmlName(x, TRUE), ">", tagSeparator, 
                                sep = ""), sep = "")
+      } else if (length(xmlChildren(x)) == 1 && inherits(xmlChildren(x)[[1]], "XMLCDataNode")) {
+        out <- paste(out,indent, paste("<", xmlName(x, TRUE), ifelse(tmp != 
+                                                                       "", " ", ""), tmp, ifelse(ns != "", " ", ""), ns, 
+                                       ">", sep = ""), sep = "")
+        kid = xmlChildren(x)[[1]]
+        txt = xmlValue(kid)
+        txt <- paste("<![CDATA[", txt, "]]>", sep="")
+        out <- paste(out,txt, sep = "")
+        out <- paste(out,paste("</", xmlName(x, TRUE), ">", tagSeparator, 
+                               sep = ""), sep = "")
       } else {
         out <- paste(out,indent, paste("<", xmlName(x, TRUE), ifelse(tmp != 
                                                                        "", " ", ""), tmp, ifelse(ns != "", " ", ""), ns, 
@@ -424,12 +434,20 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
             }
           }else{
             if(field == "value"){
+              isCData <- is(fieldObj, "XMLCDataNode")
+              if(isCData) fieldObj <- xmlValue(fieldObj)
               if(is.logical(fieldObj)) fieldObj <- tolower(as.character(is.logical(fieldObj)))
               fieldObj <- private$fromComplexTypes(fieldObj)
-              rootXML$addNode(xmlTextNode(fieldObj))
+              if(isCData){
+                fieldObj <- xmlCDataNode(fieldObj)
+              }else{
+                fieldObj <- xmlTextNode(fieldObj)
+              }
+              rootXML$addNode(fieldObj)
             }else{
               wrapperNode <- xmlOutputDOM(tag = field, nameSpace = namespaceId)
-              wrapperNode$addNode(xmlTextNode(fieldObj))
+              if(!is(fieldObj, "XMLCDataNode")) fieldObj <- xmlTextNode(fieldObj)
+              wrapperNode$addNode(fieldObj)
               rootXML$addNode(wrapperNode$value())
             }
           }

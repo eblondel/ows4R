@@ -22,6 +22,9 @@ Class used internally by \pkg{ows4R}
  \item{\code{new(xml, version, logger)}}{
    This method is used to instantiate a \code{WPSDescriptionParameter} object
  }
+ \item{\code{getDataType()}}{
+   Get data type
+ }
  \item{\code{getFormats()}}{
    Get formats
  }

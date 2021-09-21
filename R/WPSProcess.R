@@ -135,7 +135,9 @@ WPSProcess <- R6Class("WPSProcess",
                                        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                        logger = self$loggerType)
       xml <- processExecute$getResponse()
-      resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, logger = self$loggerType)
+      resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, 
+                                     processDescription = processExecute$getProcessDescription(),
+                                     logger = self$loggerType)
       return(resp)
     }
   )

@@ -22,6 +22,9 @@ Abstract class used by \pkg{ows4R} to trigger a WPS Execute request
  \item{\code{new(capabilities, op, url, serviceVersion, identifier, logger, ...)}}{
    This method is used to instantiate a WPSExecute object
  }
+ \item{\code{getProcessDescription()}}{
+   Get process description
+ }
 }
 }
 

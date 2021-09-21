@@ -39,9 +39,9 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     process = NULL,
     status = NULL,
     processOutputs = list(),
-    initialize = function(xml, capabilities, logger = NULL) {
+    initialize = function(xml, capabilities, processDescription = NULL, logger = NULL) {
       private$xml = xml
-      self$decode(xml, capabilities = capabilities, logger = logger)
+      self$decode(xml, capabilities = capabilities, processDescription = processDescription, logger = logger)
     },
     
     getProcess = function(){
@@ -57,14 +57,22 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     },
     
     #decode
-    decode = function(xml, capabilities, logger){
+    decode = function(xml, capabilities, processDescription, logger){
       children <- xmlChildren(xmlChildren(xml)[[1]])
       self$process <- WPSProcess$new(xml = children$Process, capabilities = capabilities, version = xmlGetAttr(xmlChildren(xml)[[1]], "version"), logger = logger)
       #TODO self$status <- WPSStatus$new(xml = children$Status)
       if("ProcessOutputs" %in% names(children)){
         children <- xmlChildren(children$ProcessOutputs)
         outputsXML <- children[names(children) == "Output"]
-        self$processOutputs <- lapply(outputsXML, function(x){WPSOutput$new(xml = x)})
+        self$processOutputs <- lapply(1:length(outputsXML), function(i){
+          outputXML <- outputsXML[[i]]
+          dataType <- NULL
+          if(!is.null(processDescription)){
+            processOutput <- processDescription$getProcessOutputs()[[i]]
+            dataType <- processOutput$getDataType()
+          }
+          WPSOutput$new(xml = outputXML, dataType = dataType)
+        })
         names(self$processOutputs) <- NULL
       }
     }

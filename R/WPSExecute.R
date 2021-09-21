@@ -11,6 +11,9 @@
 #'  \item{\code{new(capabilities, op, url, serviceVersion, identifier, logger, ...)}}{
 #'    This method is used to instantiate a WPSExecute object
 #'  }
+#'  \item{\code{getProcessDescription()}}{
+#'    Get process description
+#'  }
 #' }
 #' 
 #' @note Abstract class used by \pkg{ows4R} to trigger a WPS Execute request
@@ -21,7 +24,8 @@ WPSExecute <- R6Class("WPSExecute",
   inherit = OWSHttpRequest,
   private = list(
     xmlElement = "Execute",
-    xmlNamespacePrefix = "WPS"
+    xmlNamespacePrefix = "WPS",
+    processDescription = NULL
   ),
   public = list(
     Identifier = "",
@@ -41,6 +45,7 @@ WPSExecute <- R6Class("WPSExecute",
       
       #get process description
       desc <- capabilities$describeProcess(identifier = identifier)
+      private$processDescription <- desc
       
       #Identifier
       self$Identifier <- OWSCodeType$new(value = identifier, owsVersion = capabilities$getOWSVersion())
@@ -65,6 +70,11 @@ WPSExecute <- R6Class("WPSExecute",
       }
       self$ResponseForm <- responseForm
       self$execute()
+    },
+    
+    #getProcessDescription
+    getProcessDescription = function(){
+      return(private$processDescription)
     }
   )
 )
