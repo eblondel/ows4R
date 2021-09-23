@@ -52,7 +52,20 @@ WPSExecute <- R6Class("WPSExecute",
       dataInputNames <- names(dataInputs)
       #DataInputs
       self$DataInputs <- lapply(dataInputNames, function(dataInputName){
+        #check parameters vs process description
+        descDataInput <- desc$getDataInputs()[sapply(desc$getDataInputs(), function(x){x$getIdentifier() == dataInputName})]
+        if(length(descDataInput)==0){
+          errMsg <- sprintf("No parameter '%s' for process '%s'. Allowed parameters are [%s]",
+                            dataInputName, identifier, paste0(sapply(desc$getDataInputs(), function(x){x$getIdentifier()}), collapse=","))
+          self$ERROR(errMsg)
+          stop(errMsg)
+        }
+        descDataInput <- descDataInput[[1]]
+        
         dataInput <- dataInputs[[dataInputName]]
+        #check parameter validity vs. parameter description
+        dataInput$checkValidity(descDataInput)
+        
         WPSInput$new(identifier = dataInputName, data = dataInput, serviceVersion = serviceVersion)
       })
       #ResponseForm

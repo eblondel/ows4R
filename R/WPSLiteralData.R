@@ -8,11 +8,16 @@
 #'
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(xml, value)}}{
+#'  \item{\code{new(xml, value, serviceVersion)}}{
 #'    This method is used to instantiate a \code{WPSLiteralData} object
 #'  }
-#'  \item{\code{decode()}}{
+#'  \item{\code{decode(xml)}}{
 #'    Decodes WPS input from XML
+#'  }
+#'  \item{\code{checkValidity(parameterDescription)}}{
+#'    Check the object against a parameter description inherited from a WPS process description,
+#'    object of class \code{WPSLiteralInputDescription}. If not valid, the function will raise 
+#'    an error.
 #'  }
 #' }
 #' 
@@ -60,6 +65,23 @@ WPSLiteralData <- R6Class("WPSLiteralData",
         "xs:boolean" = as.logical(value),
         value
       )
+    },
+    
+    #checkValidity
+    checkValidity = function(parameterDescription){
+      valid <- switch(self$attrs$dataType,
+        "character" = { parameterDescription$getDataType() == "string" },
+        "numeric"   = { parameterDescription$getDataType() == "double" },
+        "integer"   = { parameterDescription$getDataType() == "integer"},
+        "logical"   = { parameterDescription$getDataType() == "boolean"},
+        TRUE
+      )
+      if(!valid){
+        errMsg <- sprintf("WPS Parameter [%s]: Data type '%s' is invalid.",
+                          parameterDescription$getIdentifier(), self$attrs$dataType)
+        self$ERROR(errMsg)
+        stop(errMsg)
+      }
     }
   )
 )

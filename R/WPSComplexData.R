@@ -14,6 +14,11 @@
 #'  \item{\code{decode(xml)}}{
 #'    Decodes from XML
 #'  }
+#'  \item{\code{checkValidity(parameterDescription)}}{
+#'    Check the object against a parameter description inherited from a WPS process description,
+#'    object of class \code{WPSComplexInputDescription}. If not valid, the function will raise an
+#'    error.
+#'  }
 #'  \item{\code{getFeatures()}}{
 #'    Returns features associates with output, if the output si made of a GML feature collection
 #'  }
@@ -27,7 +32,69 @@ WPSComplexData <- R6Class("WPSComplexData",
   private = list(
     xmlElement = "ComplexData",
     xmlNamespacePrefix = "WPS",
-    features = NULL
+    features = NULL,
+    coerceToMimeType = function(value, mimeType){
+      out_value <- value
+      if(is(out_value, "sf")){
+        out_value <- switch(mimeType,
+          "text/xml; subtype=wfs-collection/1.0" = {
+            #OK
+            tmpfile <- tempfile(fileext = ".gml")
+            sf::st_write(value, tmpfile, options = "FORMAT=GML2")
+            out <- paste0(readLines(tmpfile), collapse="")
+            unlink(tmpfile)
+            out
+          },
+          "text/xml; subtype=wfs-collection/1.1" = {
+            #TODO doesn't work
+            tmpfile <- tempfile(fileext = ".gml")
+            sf::st_write(value, tmpfile, options = "FORMAT=GML3")
+            out <- paste0(readLines(tmpfile), collapse="")
+            unlink(tmpfile)
+            out
+          },
+          "application/wfs-collection-1.0" = {
+            #OK
+            tmpfile <- tempfile(fileext = ".gml")
+            sf::st_write(value, tmpfile, options = "FORMAT=GML2")
+            out <- paste0(readLines(tmpfile), collapse="")
+            unlink(tmpfile)
+            out
+          },
+          "application/wfs-collection-1.1" = {
+            #TODO doesn't work
+            tmpfile <- tempfile(fileext = ".gml")
+            sf::st_write(value, tmpfile, options = "FORMAT=GML3")
+            out <- paste0(readLines(tmpfile), collapse="")
+            unlink(tmpfile)
+            out
+          },
+          "text/xml; subtype=gml/2.1.2" = {
+            #TODO
+          },
+          "text/xml; subtype=gml/3.1.1" = {
+            #TODO
+          },
+          "text/xml; subtype=gml/3.2.1" = {
+            #TODO
+          },
+          "application/gml-2.1.2" = {
+            #TODO
+          },
+          "application/gml-3.2.1" = {
+            #TODO
+          },
+          "application/json" = {
+            tmpfile <- tempfile(fileext = ".geojson")
+            sf::st_write(value, tmpfile)
+            out <- paste0(readLines(tmpfile), collapse="")
+            unlink(tmpfile)
+            out
+          }
+        )
+      } 
+      return(out_value)
+    }
   ),
   public = list(
     value = NULL,
@@ -44,6 +111,7 @@ WPSComplexData <- R6Class("WPSComplexData",
       }else{
         self$decode(xml)
       }
+      if(!is.null(mimeType)) self$value <- private$coerceToMimeType(value, mimeType)
     },
     #decode
     decode = function(xml){
@@ -54,6 +122,17 @@ WPSComplexData <- R6Class("WPSComplexData",
         write(self$value, file = tmp)
         private$features = sf::st_read(tmp, quiet = TRUE)
         unlink(tmp)
+      }
+    },
+    
+    #checkValidity
+    checkValidity = function(parameterDescription){
+      valid <- self$attrs$mimeType %in% sapply(parameterDescription$getFormats(), function(x){x$getMimeType()})
+      if(!valid){
+        errMsg <- sprintf("WPS Parameter [%s]: Mime type '%s' is invalid.",
+                          parameterDescription$getIdentifier(), self$attrs$mimeType)
+        self$ERROR(errMsg)
+        stop(errMsg)
       }
     },
     

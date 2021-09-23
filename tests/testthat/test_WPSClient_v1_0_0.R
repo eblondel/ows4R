@@ -23,7 +23,7 @@ test_that("WPS 1.0.0",{
   expect_is(desc, "WPSProcessDescription")
   expect_equal(length(desc$getDataInputs()), 1L)
   
-  #process execution
+  #jts process execution
   exec <- caps$execute(
     identifier = "JTS:area", 
     dataInputs = list(
@@ -32,5 +32,27 @@ test_that("WPS 1.0.0",{
   )
   expect_is(exec, "WPSExecuteResponse")
   expect_equal(exec$getProcessOutputs()[[1]]$getDataValue(), 18)
+  
+  #vector process execution from raw xml
+  exec <- caps$execute(
+    identifier = "vec:Bounds",
+    dataInputs = list(
+      features = WPSComplexData$new( value = as(XML::xmlParse("http://localhost:8080/geoserver/topp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=topp%3Astates&maxFeatures=1"),"character"),
+                                     mimeType = "text/xml; subtype=wfs-collection/1.0")
+    )
+  )
+  
+  #vector process execution with sf object
+  wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", "1.1.0", logger = "DEBUG")
+  wfs.caps <- wfs$getCapabilities()
+  ft <- wfs.caps$findFeatureTypeByName("topp:tasmania_water_bodies")
+  ft.sp <- ft$getFeatures()
+  
+  exec <- caps$execute(
+    identifier = "vec:Bounds",
+    dataInputs = list(
+        features = WPSComplexData$new( value = ft.sp, mimeType = "text/xml; subtype=wfs-collection/1.0")
+    )
+  )
   
 })

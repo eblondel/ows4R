@@ -46,7 +46,8 @@ WPSOutput <- R6Class("WPSOutput",
     Identifier = NULL,
     Title = NULL,
     Data = NULL,
-    initialize = function(xml = NULL, identifier = NULL, title = NULL, data = NULL, dataType = NULL,
+    initialize = function(xml = NULL, identifier = NULL, title = NULL, 
+                          data = NULL, dataType = NULL,
                           serviceVersion = "1.0.0") {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
@@ -78,7 +79,7 @@ WPSOutput <- R6Class("WPSOutput",
           self$Data <- switch(xmlName(data_xml),
             "LiteralData" = WPSLiteralData$new(xml = data_xml),
             "ComplexData" = WPSComplexData$new(xml = data_xml),
-            NULL
+            "BoundingBoxData" = WPSBoundingBoxData$new(xml = data_xml)
           )
         }
       }
