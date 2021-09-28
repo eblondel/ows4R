@@ -40,32 +40,60 @@ WPSComplexData <- R6Class("WPSComplexData",
           "text/xml; subtype=wfs-collection/1.0" = {
             #OK
             tmpfile <- tempfile(fileext = ".gml")
-            sf::st_write(value, tmpfile, options = "FORMAT=GML2")
+            sf::st_write(value, tmpfile, dataset_options = "FORMAT=GML2")
             out <- paste0(readLines(tmpfile), collapse="")
             unlink(tmpfile)
             out
           },
           "text/xml; subtype=wfs-collection/1.1" = {
-            #TODO doesn't work
+            #OK
             tmpfile <- tempfile(fileext = ".gml")
-            sf::st_write(value, tmpfile, options = "FORMAT=GML3")
-            out <- paste0(readLines(tmpfile), collapse="")
+            sf::st_write(
+              value, tmpfile, 
+              dataset_options = c(
+                "FORMAT=GML3", 
+                "WRITE_FEATURE_BOUNDED_BY=NO",
+                "PREFIX=wfs", 
+                "TARGET_NAMESPACE=http://www.opengis.net/wfs")
+            )
+            xml_txt <- paste0(readLines(tmpfile), collapse="")
+            xml <- XML::xmlParse(xml_txt)
+            xml <- xmlRoot(xml)
+            removeAttributes(xml, .attrs = "xsi:schemaLocation")
+            nodes = getNodeSet(xml, "//wfs:featureMember", namespaces = c(wfs = "http://www.opengis.net/wfs"))
+            invisible(lapply(nodes, function(x){ xmlNamespace(x) <- "gml"}))
+            
+            out <- as(xml, "character")
             unlink(tmpfile)
             out
           },
           "application/wfs-collection-1.0" = {
             #OK
             tmpfile <- tempfile(fileext = ".gml")
-            sf::st_write(value, tmpfile, options = "FORMAT=GML2")
+            sf::st_write(value, tmpfile, dataset_options = "FORMAT=GML2")
             out <- paste0(readLines(tmpfile), collapse="")
             unlink(tmpfile)
             out
           },
           "application/wfs-collection-1.1" = {
-            #TODO doesn't work
+            #OK
             tmpfile <- tempfile(fileext = ".gml")
-            sf::st_write(value, tmpfile, options = "FORMAT=GML3")
-            out <- paste0(readLines(tmpfile), collapse="")
+            sf::st_write(
+              value, tmpfile, 
+              dataset_options = c(
+                "FORMAT=GML3", 
+                "WRITE_FEATURE_BOUNDED_BY=NO",
+                "PREFIX=wfs", 
+                "TARGET_NAMESPACE=http://www.opengis.net/wfs")
+            )
+            xml_txt <- paste0(readLines(tmpfile), collapse="")
+            xml <- XML::xmlParse(xml_txt)
+            xml <- xmlRoot(xml)
+            removeAttributes(xml, .attrs = "xsi:schemaLocation")
+            nodes = getNodeSet(xml, "//wfs:featureMember", namespaces = c(wfs = "http://www.opengis.net/wfs"))
+            invisible(lapply(nodes, function(x){ xmlNamespace(x) <- "gml"}))
+            
+            out <- as(xml, "character")
             unlink(tmpfile)
             out
           },

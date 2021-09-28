@@ -8,7 +8,7 @@ require(testthat)
 context("WPS")
 
 test_that("WPS 1.0.0",{
-  wps <- WPSClient$new("http://localhost:8080/geoserver/wps", serviceVersion = "1.0.0", logger = "INFO")
+  wps <- WPSClient$new("http://localhost:8080/geoserver/wps", serviceVersion = "1.0.0", logger = "DEBUG")
   expect_is(wps, "WPSClient")
   caps <- wps$getCapabilities()
   expect_is(caps, "WPSCapabilities")
@@ -48,11 +48,42 @@ test_that("WPS 1.0.0",{
   ft <- wfs.caps$findFeatureTypeByName("topp:tasmania_water_bodies")
   ft.sp <- ft$getFeatures()
   
-  exec <- caps$execute(
+  #text/xml; subtype=wfs-collection/1.0
+  exec_wfs10_subtype <- caps$execute(
     identifier = "vec:Bounds",
     dataInputs = list(
         features = WPSComplexData$new( value = ft.sp, mimeType = "text/xml; subtype=wfs-collection/1.0")
     )
+  )
+  #text/xml; subtype=wfs-collection/1.1
+  exec_wfs11_subtype <- caps$execute(
+    identifier = "vec:Bounds",
+    dataInputs = list(
+      features = WPSComplexData$new( value = ft.sp, mimeType = "text/xml; subtype=wfs-collection/1.1")
+    )
+  )
+  expect_equal(
+    exec_wfs10_subtype$getProcessOutputs()[[1]]$getData()$getBBOX(),
+    exec_wfs11_subtype$getProcessOutputs()[[1]]$getData()$getBBOX()  
+  )
+  
+  #application/wfs-collection-1.0
+  exec_wfs10_app <- caps$execute(
+    identifier = "vec:Bounds",
+    dataInputs = list(
+      features = WPSComplexData$new( value = ft.sp, mimeType = "application/wfs-collection-1.0")
+    )
+  )
+  #application/wfs-collection-1.1
+  exec_wfs11_app <- caps$execute(
+    identifier = "vec:Bounds",
+    dataInputs = list(
+      features = WPSComplexData$new( value = ft.sp, mimeType = "application/wfs-collection-1.1")
+    )
+  )
+  expect_equal(
+    exec_wfs10_app$getProcessOutputs()[[1]]$getData()$getBBOX(),
+    exec_wfs11_app$getProcessOutputs()[[1]]$getData()$getBBOX()  
   )
   
 })

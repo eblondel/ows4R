@@ -67,7 +67,7 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
         })
         self$LowerCorner <- t(matrix(lc_values))
         
-        uc_values <- unlist(strsplit(xmlValue(params$LowerCorner), " "))
+        uc_values <- unlist(strsplit(xmlValue(params$UpperCorner), " "))
         uc_coerceable <- !is.na(suppressWarnings(as.numeric(uc_values)))
         uc_values <- lapply(1:length(uc_values), function(i){
            out <- uc_values[i]
