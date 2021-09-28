@@ -85,5 +85,13 @@ test_that("WPS 1.0.0",{
     exec_wfs10_app$getProcessOutputs()[[1]]$getData()$getBBOX(),
     exec_wfs11_app$getProcessOutputs()[[1]]$getData()$getBBOX()  
   )
+  expect_equal(
+    exec_wfs10_subtype$getProcessOutputs()[[1]]$getData()$getBBOX(),
+    exec_wfs10_app$getProcessOutputs()[[1]]$getData()$getBBOX()  
+  )
+  expect_equal(
+    exec_wfs11_subtype$getProcessOutputs()[[1]]$getData()$getBBOX(),
+    exec_wfs11_app$getProcessOutputs()[[1]]$getData()$getBBOX()  
+  )
   
 })
