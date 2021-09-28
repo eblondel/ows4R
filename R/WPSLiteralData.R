@@ -69,6 +69,7 @@ WPSLiteralData <- R6Class("WPSLiteralData",
     
     #checkValidity
     checkValidity = function(parameterDescription){
+      #datatype
       valid <- switch(self$attrs$dataType,
         "character" = { parameterDescription$getDataType() == "string" },
         "numeric"   = { parameterDescription$getDataType() == "double" },
@@ -81,6 +82,17 @@ WPSLiteralData <- R6Class("WPSLiteralData",
                           parameterDescription$getIdentifier(), self$attrs$dataType)
         self$ERROR(errMsg)
         stop(errMsg)
+      }
+      #allowed values
+      allowedValues <- parameterDescription$getAllowedValues()
+      if(length(allowedValues)>0){
+        if(!self$value %in% allowedValues){
+          errMsg <- sprintf("WPS Parameter [%s]: Value '%s' is invalid. Allowed values are [%s]",
+                            parameterDescription$getIdentifier(), self$value, 
+                            paste0(allowedValues, collapse=", "))
+          self$ERROR(errMsg)
+          stop(errMsg)
+        }
       }
     }
   )

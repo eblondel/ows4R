@@ -43,7 +43,7 @@ WPSLiteralInputDescription <- R6Class("WPSLiteralInputDescription",
        literalInput <- list(
          dataType = xmlGetAttr(children$DataType, "ows:reference"),
          defaultValue = xmlValue(children$DefaultValue),
-         allowedValues = if("AllowedValues" %in% names(children)) sapply(xmlChildren(children$AllowedValues), xmlValue) else NA
+         allowedValues = if("AllowedValues" %in% names(children)) sapply(xmlChildren(children$AllowedValues), xmlValue) else c()
        )
        
        return(literalInput)
