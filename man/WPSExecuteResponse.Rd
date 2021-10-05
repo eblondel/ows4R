@@ -25,11 +25,18 @@ WPSExecuteResponse
  \item{\code{getStatus()}}{
    Get the status
  }
+ \item{\code{getStatusLocation()}}{
+   Get the status location
+ }
  \item{\code{getProcessOutputs()}}{
    Get the process output(s)
  }
  \item{\code{decode()}}{
    Decodes WPS Execute response from XML
+ }
+ \item{\code{update(verbose)}}{
+   Updates the status based on the execute status location.
+   Returns an object of class \code{WPSExecuteResponse}
  }
 }
 }

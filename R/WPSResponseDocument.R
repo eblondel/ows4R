@@ -31,8 +31,23 @@ WPSResponseDocument <- R6Class("WPSResponseDocument",
       self$wrap <- TRUE
       if(is.null(xml)){
         self$attrs$storeExecuteResponse <- tolower(as.character(storeExecuteResponse))
-        if(!is.null(lineage)) self$attrs$lineage <- tolower(as.character(lineage))
-        if(!is.null(status)) self$attrs$status <- tolower(as.character(status))
+        if(!is.null(lineage)){
+          if(!is(lineage, "logical")){
+            errMsg <- "Process lineage should be of type 'logical'"
+            self$ERROR(errMsg)
+            stop(errMsg)
+          }
+          self$attrs$lineage <- tolower(as.character(lineage))
+        }
+        if(!is.null(status)){
+          if(!is(status, "logical")){
+            errMsg <- "Process status should be of type 'logical'"
+            self$ERROR(errMsg)
+            stop(errMsg)
+          }
+          self$attrs$status <- tolower(as.character(status))
+          if(self$attrs$status) self$attrs$storeExecuteResponse <- "true"
+        }
         self$Output <- output
       }else{
         self$decode(xml)

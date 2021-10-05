@@ -70,7 +70,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       namedParams <- c(namedParams, request = request)
       params <- paste(names(namedParams), namedParams, sep = "=", collapse = "&")
       req <- url
-      if(!endsWith(url,"?")) req <- paste0(req, "?")
+      if(!endsWith(url,"?") && nzchar(params)) req <- paste0(req, "?")
       req <- paste0(req, params)
       self$INFO(sprintf("Fetching %s", req))
       

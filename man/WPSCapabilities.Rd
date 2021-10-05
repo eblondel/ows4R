@@ -34,7 +34,8 @@ recommended instead to benefit from the full set of capabilities associated to a
  \item{\code{describeProcess(identifier)}}{
    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
  }
- \item{\code{execute(identifier, dataInputs)}}{
+ \item{\code{execute(identifier, dataInputs, responseForm, storeExecuteResponse, lineage, status,
+                     update, updateInterval)}}{
    Execute a process, given its \code{identifier}
  }
 }

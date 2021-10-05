@@ -33,6 +33,7 @@ WPSExecute <- R6Class("WPSExecute",
     ResponseForm = NULL,
     initialize = function(capabilities, op, url, serviceVersion, identifier, 
                           dataInputs = list(), responseForm = NULL,
+                          storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
                           logger = NULL, ...) {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       namedParams <- list(service = "WPS", version = serviceVersion)
@@ -74,7 +75,12 @@ WPSExecute <- R6Class("WPSExecute",
         if(length(desc$getProcessOutputs())>0){
           output <- WPSOutput$new(identifier = desc$getProcessOutputs()[[1]]$getIdentifier())
         }
-        responseForm <- WPSResponseDocument$new(output = output)
+        responseForm <- WPSResponseDocument$new(
+          output = output,
+          storeExecuteResponse = storeExecuteResponse,
+          lineage = lineage,
+          status = status
+        )
       }else{
         if(!is(responseForm, "WPSResponseDocument")){
           errMsg <- "The argument 'responseForm' should be an object of class 'WPSResponseDocument"

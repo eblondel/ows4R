@@ -41,7 +41,8 @@
 #'  \item{\code{describeProcess(identifier)}}{
 #'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
 #'  }
-#'  \item{\code{execute(identifier, dataInputs)}}{
+#'  \item{\code{execute(identifier, dataInputs, responseForm, storeExecuteResponse, lineage, status,
+#'                      update, updateInterval)}}{
 #'    Execute a process, given its \code{identifier}
 #'  }
 #' }
@@ -89,8 +90,13 @@ WPSClient <- R6Class("WPSClient",
      },
      
      #execute
-     execute = function(identifier, dataInputs = list(), responseForm = NULL){
-        return(self$capabilities$execute(identifier = identifier, dataInputs = dataInputs, responseForm = responseForm))
+     execute = function(identifier, dataInputs = list(), responseForm = NULL,
+                        storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
+                        update = FALSE, updateInterval = 1){
+        return(self$capabilities$execute(identifier = identifier, dataInputs = dataInputs, 
+                                         responseForm = responseForm, storeExecuteResponse = storeExecuteResponse, 
+                                         lineage = lineage, status = status,
+                                         update = update, updateInterval = updateInterval))
      }
      
    )

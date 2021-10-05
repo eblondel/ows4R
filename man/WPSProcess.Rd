@@ -31,6 +31,14 @@ Class used internally by \pkg{ows4R}
  \item{\code{getVersion()}}{
    Get process version
  }
+ \item{\code{getDescription()}}{
+   Get process description as object of class \code{WPSProcessDescription}
+ }
+ \item{\code{execute(dataInputs, responseForm,
+                     storeExecuteResponse, lineage, status,
+                     update, updateInterval)}}{
+   Executes the process.
+ }
 }
 }
 

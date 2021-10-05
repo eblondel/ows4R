@@ -20,6 +20,14 @@
 #'  \item{\code{getVersion()}}{
 #'    Get process version
 #'  }
+#'  \item{\code{getDescription()}}{
+#'    Get process description as object of class \code{WPSProcessDescription}
+#'  }
+#'  \item{\code{execute(dataInputs, responseForm,
+#'                      storeExecuteResponse, lineage, status,
+#'                      update, updateInterval)}}{
+#'    Executes the process.
+#'  }
 #' }
 #' 
 #' @note Class used internally by \pkg{ows4R}
@@ -117,7 +125,9 @@ WPSProcess <- R6Class("WPSProcess",
     },
     
     #execute
-    execute = function(dataInputs = list(), responseForm = NULL){
+    execute = function(dataInputs = list(), responseForm = NULL,
+                       storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
+                       update = FALSE, updateInterval = 1){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
       if(length(operations)>0){
@@ -132,13 +142,38 @@ WPSProcess <- R6Class("WPSProcess",
       client = private$capabilities$getClient()
       processExecute <- WPSExecute$new(capabilities = private$capabilities, op = op, private$url, private$version, private$identifier,
                                        dataInputs = dataInputs, responseForm = responseForm,
+                                       storeExecuteResponse = storeExecuteResponse, lineage = lineage, status = lineage,
                                        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                        logger = self$loggerType)
-      xml <- processExecute$getResponse()
-      resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, 
-                                     processDescription = processExecute$getProcessDescription(),
-                                     logger = self$loggerType)
+      resp <- NULL
+      executeStatus <- processExecute$getStatus()
+      if(executeStatus == 200){
+        xml <- processExecute$getResponse()
+        resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, 
+                                       processDescription = processExecute$getProcessDescription(),
+                                       logger = self$loggerType)
+        if(update){
+          if(is.null(status) || isFALSE(status)){
+            self$WARN("Argument 'update' is ignored because 'status' is not TRUE")
+          }
+          while(!resp$getStatus()$getValue() %in% c("ProcessSucceeded", "ProcessFailed")){
+            Sys.sleep(updateInterval)
+            resp <- resp$update(verbose = !is.null(self$loggerType))
+          }
+          self$INFO("Process status history:")
+          print(resp$getStatusHistory())
+        }
+        
+      }else{
+        #500
+        self$ERROR("Error during WPS execution:")
+        xml <- processExecute$getResponse()
+        resp <- WPSExecuteResponse$new(xml = xml, capabilities = private$capabilities, 
+                                       processDescription = processExecute$getProcessDescription(),
+                                       logger = self$loggerType)
+      }
       return(resp)
+      
     }
   )
 )

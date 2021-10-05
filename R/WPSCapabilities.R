@@ -22,7 +22,8 @@
 #'  \item{\code{describeProcess(identifier)}}{
 #'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
 #'  }
-#'  \item{\code{execute(identifier, dataInputs)}}{
+#'  \item{\code{execute(identifier, dataInputs, responseForm, storeExecuteResponse, lineage, status,
+#'                      update, updateInterval)}}{
 #'    Execute a process, given its \code{identifier}
 #'  }
 #' }
@@ -108,7 +109,9 @@ WPSCapabilities <- R6Class("WPSCapabilities",
      },
      
      #execute
-     execute = function(identifier, dataInputs = list(), responseForm = NULL){
+     execute = function(identifier, dataInputs = list(), responseForm = NULL,
+                        storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
+                        update = FALSE, updateInterval = 1){
         processes <- self$getProcesses()
         processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
         if(length(processes)==0){
@@ -117,7 +120,9 @@ WPSCapabilities <- R6Class("WPSCapabilities",
            stop(errMsg)
         }
         process <- processes[[1]]
-        return(process$execute(dataInputs, responseForm))
+        return(process$execute(dataInputs = dataInputs, responseForm = responseForm,
+                               storeExecuteResponse = storeExecuteResponse, lineage = lineage, status = status,
+                               update = update, updateInterval = updateInterval))
      }
    )
 )
