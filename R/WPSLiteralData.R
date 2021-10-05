@@ -40,7 +40,7 @@ WPSLiteralData <- R6Class("WPSLiteralData",
         self$attrs$dataType <- switch(class(value),
           "character" = "xs:string",
           "numeric" = "xs:double",
-          "integer" = "xs:integer",
+          "integer" = "xs:int",
           "logical" = "xs:boolean",
           "xs:string"
         )
@@ -61,6 +61,8 @@ WPSLiteralData <- R6Class("WPSLiteralData",
       self$value <- switch(dataType,
         "xs:string" = value,
         "xs:numeric" = as.numeric(value),
+        "xs:double" = as.numeric(value),
+        "xs:int" = as.integer(value),
         "xs:integer" = as.integer(value),
         "xs:boolean" = as.logical(value),
         value
