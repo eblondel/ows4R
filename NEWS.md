@@ -1,7 +1,7 @@
 
 # **[ows4R 0.2](https://github.com/eblondel/ows4R/issues?milestone=2)**
 
-## **_0.2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://cran.r-project.org/package=ows4R)
+## **_0.2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 
 **Corrections**
 
