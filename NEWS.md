@@ -1,5 +1,38 @@
 
+# **[ows4R 0.2](https://github.com/eblondel/ows4R/issues?milestone=2)**
+
+## **_0.2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://cran.r-project.org/package=ows4R)
+
+**Corrections**
+
+- [#45](https://github.com/eblondel/ows4R/issues/45) WFS featureType getDescription fails as prettified when missing properties
+- [#49](https://github.com/eblondel/ows4R/issues/49) OWS Capabilities components not correctly parsed when ref namespace is from service (eg. wms)
+
+**Enhancements**
+
+- [#41](https://github.com/eblondel/ows4R/issues/41) Add control on hasGeometry in case geom excluded from propertyNames
+- [#42](https://github.com/eblondel/ows4R/issues/42) Support other WFS output formats than GML
+- [#44](https://github.com/eblondel/ows4R/issues/44) Warning raised when reading WFS capabilities / proj4 with +init
+
+**New features**
+
+- [#10](https://github.com/eblondel/ows4R/issues/10) Support WPS client version 1.0.0
+- [#15](https://github.com/eblondel/ows4R/issues/15) Generalize auth to clients/requests
+- [#43](https://github.com/eblondel/ows4R/issues/43) Support WMS GetCapabilities, GetFeatureInfo requests
+
+
 # **[ows4R 0.1](https://github.com/eblondel/ows4R/issues?milestone=1)**
+
+## **_0.1-5_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+
+**Enhancements**
+
+* [#34](https://github.com/eblondel/ows4R/issues/34) WFS – Support coercing of date/datetime fields
+* [#35](https://github.com/eblondel/ows4R/issues/35) WFS – Improve support of WFS 2.0
+* [#36](https://github.com/eblondel/ows4R/issues/36) WFS – findFeatureTypeByName fixes
+* [#37](https://github.com/eblondel/ows4R/issues/37) WFS – Support for xsd:float primitive type
+* [#38](https://github.com/eblondel/ows4R/issues/38) WFS – add pretty option for feature type description
+* [#39](https://github.com/eblondel/ows4R/issues/39) CSW – fix getRecordById for feature catalogue (ISO 19110) parsing
 
 ## **_0.1-4_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 

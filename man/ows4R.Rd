@@ -17,7 +17,7 @@ additional OGC service standards such as Web Coverage Service (WCS), Web Coverag
    Type: \tab Package\cr
    Version
    : \tab 0.2\cr
-   Date: \tab 2021-10-05\cr
+   Date: \tab 2021-11-29\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }

@@ -33,7 +33,41 @@ test_that("WPS 1.0.0",{
   expect_is(exec, "WPSExecuteResponse")
   expect_equal(exec$getProcessOutputs()[[1]]$getDataValue(), 18)
   
+  #geometry process from raw xml
+  #-------------------------------------------------------------------------------------
+  #to investigate
+  if(FALSE){
+    require(sf)
+    require(geometa)
+    outer = matrix(c(0,0,10,0,10,10,0,10,0,0),ncol=2, byrow=TRUE)
+    hole1 = matrix(c(1,1,1,2,2,2,2,1,1,1),ncol=2, byrow=TRUE)
+    hole2 = matrix(c(5,5,5,6,6,6,6,5,5,5),ncol=2, byrow=TRUE)
+    pts = list(outer, hole1, hole2)
+    pl1 = st_polygon(pts)
+    pts3 = lapply(pts, function(x) cbind(x, 0))
+    pl2 = st_polygon(pts3)
+    pl3 = st_polygon(pts3, "XYM")
+    pts4 = lapply(pts3, function(x) cbind(x, 0))
+    pl4 = st_polygon(pts4)
+    pol1 = list(outer, hole1, hole2)
+    pol2 = list(outer + 12, hole1 + 12)
+    pol3 = list(outer + 24)
+    mp = list(pol1,pol2,pol3)
+    mpl = st_multipolygon(mp)
+    md <- GMLMultiSurface$new(sfg = mpl)
+    xml <- md$encode()
+    
+    exec <- caps$execute(
+      identifier = "JTS:area",
+      dataInputs = list(
+        geom = WPSComplexData$new(value = as(xml, "character"), mimeType = "text/xml; subtype=gml/3.1.1")
+      )
+    )
+  }
+  
+  
   #vector process execution from raw xml
+  #-------------------------------------------------------------------------------------
   exec <- caps$execute(
     identifier = "vec:Bounds",
     dataInputs = list(
@@ -43,6 +77,7 @@ test_that("WPS 1.0.0",{
   )
   
   #vector process execution with sf object
+  #-------------------------------------------------------------------------------------
   wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", "1.1.0", logger = "DEBUG")
   wfs.caps <- wfs$getCapabilities()
   ft <- wfs.caps$findFeatureTypeByName("topp:tasmania_water_bodies")
@@ -93,5 +128,9 @@ test_that("WPS 1.0.0",{
     exec_wfs11_subtype$getProcessOutputs()[[1]]$getData()$getBBOX(),
     exec_wfs11_app$getProcessOutputs()[[1]]$getData()$getBBOX()  
   )
+  
+  
+  
+  
   
 })
