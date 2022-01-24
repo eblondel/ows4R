@@ -230,8 +230,8 @@ test_that("CSW 2.0.2 - Harvest",{
   cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
   query <- CSWQuery$new(constraint = cons)
   harvested <- csw2$harvestNode(
-    url = "http://www.fao.org/fishery/geonetwork/srv/en/csw", query = query,
-    sourceBaseUrl = "http://www.fao.org/fishery/geonetwork/srv/en/xml.metadata.get?uuid="
+    url = "https://www.fao.org/fishery/geonetwork/srv/en/csw", query = query,
+    sourceBaseUrl = "https://www.fao.org/fishery/geonetwork/srv/en/xml.metadata.get?uuid="
   )
   expect_is(harvested, "list")
   expect_equal(harvested$found, 2)
@@ -254,7 +254,7 @@ fao_csw <- NULL
 #CSW 2.0.2 – FAO - GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
-  fao_csw <<- CSWClient$new("http://www.fao.org/fishery/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
+  fao_csw <<- CSWClient$new("https://www.fao.org/fishery/geonetwork/srv/en/csw", "2.0.2", logger="INFO")
   expect_is(fao_csw, "CSWClient")
   expect_equal(fao_csw$getVersion(), "2.0.2")
   caps <- fao_csw$getCapabilities()
@@ -264,10 +264,10 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
 #CSW 2.0.2 – FAO - GetRecords / gmd:MD_Metadata (ISO 19115/19319 - R geometa binding)
 #--------------------------------------------------------------------------
 test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
-  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms%'")
+  cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms-%'")
   query <- CSWQuery$new(constraint = cons)
   records <- fao_csw$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
-  expect_equal(length(records), 2L)
+  expect_equal(length(records), 6L)
   expect_true(unique(sapply(records, is, "ISOMetadata")))
 })
 
