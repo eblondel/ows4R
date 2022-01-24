@@ -28,8 +28,12 @@ abstract class used by \pkg{ows4R}
  \item{\code{getClass()}}{
    Get class
  }
- \item{\code{encode(addNS, geometa_validate, geometa_inspire)}}{
-   Encode as XML
+ \item{\code{encode(addNS, geometa_validate, geometa_inspire, geometa_inspireValidator)}}{
+   Encodes as XML. The \code{addNS} controls the addition of XML namespaces.
+   Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
+   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
+   \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
+   argument.
  }
 }
 }

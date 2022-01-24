@@ -15,8 +15,12 @@
 #'  \item{\code{getClass()}}{
 #'    Get class
 #'  }
-#'  \item{\code{encode(addNS, geometa_validate, geometa_inspire)}}{
-#'    Encode as XML
+#'  \item{\code{encode(addNS, geometa_validate, geometa_inspire, geometa_inspireValidator)}}{
+#'    Encodes as XML. The \code{addNS} controls the addition of XML namespaces.
+#'    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
+#'    (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
+#'    \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
+#'    argument.
 #'  }
 #' }
 #' @note abstract class used by \pkg{ows4R}
@@ -304,7 +308,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     },
     
     #encode
-    encode = function(addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE){
+    encode = function(addNS = TRUE, geometa_validate = TRUE, 
+                      geometa_inspire = FALSE, geometa_inspireValidator = NULL){
       
       if(is.null(private$xmlElement) | is.null(private$xmlNamespacePrefix)){
         stop("Cannot encode an object of an abstract class!")
@@ -377,7 +382,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
               rootXML$addNode(fieldObjXml)
             }
           }else if(is(fieldObj, "ISOAbstractObject")){
-            fieldObjXml <- fieldObj$encode(validate = geometa_validate, inspire = geometa_inspire)
+            fieldObjXml <- fieldObj$encode(validate = geometa_validate, 
+                                           inspire = geometa_inspire, inspireValidator = geometa_inspireValidator)
             fieldObjXml <- as(fieldObjXml, "character")
             fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
             #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
@@ -403,7 +409,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                 if(!is.null(item)){
                   fieldObjXml <- NULL
                   if(is(item,"ISOAbstractObject")){
-                    fieldObjXml <- item$encode(validate = geometa_validate, inspire = geometa_inspire)
+                    fieldObjXml <- item$encode(validate = geometa_validate, 
+                                               inspire = geometa_inspire, inspireValidator = geometa_inspireValidator)
                     fieldObjXml <- as(fieldObjXml, "character")
                     fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
                     #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
@@ -420,7 +427,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
                 if(!is.null(item)){
                   fieldObjXml <- NULL
                   if(is(item,"ISOAbstractObject")){
-                    fieldObjXml <- item$encode(validate = geometa_validate, inspire = geometa_inspire)
+                    fieldObjXml <- item$encode(validate = geometa_validate, 
+                                               inspire = geometa_inspire, inspireValidator = geometa_inspireValidator)
                     fieldObjXml <- as(fieldObjXml, "character")
                     fieldObjXml <- gsub("<\\?xml.*?\\?>", "", fieldObjXml)
                     #fieldObjXml <- gsub("<!--.*?-->", "", fieldObjXml)
