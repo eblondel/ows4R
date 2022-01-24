@@ -9,6 +9,7 @@
 #' @import sf
 #' @import rgdal
 #' @import geometa
+#' @import keyring
 #' @import parallel
 #' @export
 #' @keywords OGC Common OWS
