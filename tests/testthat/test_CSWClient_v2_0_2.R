@@ -267,7 +267,7 @@ test_that("CSW 2.0.2 - GetRecords - cqlText / dc:identifier",{
   cons <- CSWConstraint$new(cqlText = "dc:identifier like '%firms-%'")
   query <- CSWQuery$new(constraint = cons)
   records <- fao_csw$getRecords(query = query, outputSchema = "http://www.isotc211.org/2005/gmd")
-  expect_equal(length(records), 6L)
+  expect_equal(length(records), 2L)
   expect_true(unique(sapply(records, is, "ISOMetadata")))
 })
 
