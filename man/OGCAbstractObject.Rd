@@ -12,35 +12,278 @@ Object of \code{\link{R6Class}} for modelling an OGCAbstractObject
 }
 \description{
 OGCAbstractObject
+
+OGCAbstractObject
 }
 \note{
 abstract class used by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xml, element, namespacePrefix, attrs, defaults, wrap, logger)}}{
-   This method is used to instantiate an OGCAbstractObject
- }
- \item{\code{getClassName()}}{
-   Get class name
- }
- \item{\code{getClass()}}{
-   Get class
- }
- \item{\code{encode(addNS, geometa_validate, geometa_inspire, geometa_inspireValidator)}}{
-   Encodes as XML. The \code{addNS} controls the addition of XML namespaces.
-   Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
-   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
-   \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
-   argument.
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
 \keyword{Abstract}
 \keyword{OGC}
 \keyword{Object}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{verbose.info}}{\code{logical} property to indicate whether INFO logs have to be displayed}
+
+\item{\code{verbose.debug}}{\code{logical} property to indicate whether DEBUG logs have to be displayed}
+
+\item{\code{loggerType}}{logger type, either \code{NULL}, "INFO", or "DEBUG"}
+
+\item{\code{wrap}}{internal property for XML encoding}
+
+\item{\code{element}}{element used for XML encoding}
+
+\item{\code{namespace}}{namespace used for XML encoding}
+
+\item{\code{defaults}}{default values to be used for XML encoding}
+
+\item{\code{attrs}}{attributes to be used for XML encoding}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-logger}{\code{OGCAbstractObject$logger()}}
+\item \href{#method-INFO}{\code{OGCAbstractObject$INFO()}}
+\item \href{#method-WARN}{\code{OGCAbstractObject$WARN()}}
+\item \href{#method-ERROR}{\code{OGCAbstractObject$ERROR()}}
+\item \href{#method-new}{\code{OGCAbstractObject$new()}}
+\item \href{#method-getClassName}{\code{OGCAbstractObject$getClassName()}}
+\item \href{#method-getClass}{\code{OGCAbstractObject$getClass()}}
+\item \href{#method-isFieldInheritedFrom}{\code{OGCAbstractObject$isFieldInheritedFrom()}}
+\item \href{#method-getNamespaceDefinition}{\code{OGCAbstractObject$getNamespaceDefinition()}}
+\item \href{#method-encode}{\code{OGCAbstractObject$encode()}}
+\item \href{#method-clone}{\code{OGCAbstractObject$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-logger"></a>}}
+\if{latex}{\out{\hypertarget{method-logger}{}}}
+\subsection{Method \code{logger()}}{
+A basic logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$logger(type, text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{type}}{type of logs message.}
+
+\item{\code{text}}{log message text to be displayed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-INFO"></a>}}
+\if{latex}{\out{\hypertarget{method-INFO}{}}}
+\subsection{Method \code{INFO()}}{
+a basic INFO logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$INFO(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{log message text to be displayed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WARN"></a>}}
+\if{latex}{\out{\hypertarget{method-WARN}{}}}
+\subsection{Method \code{WARN()}}{
+a basic WARN logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$WARN(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{log message text to be displayed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ERROR"></a>}}
+\if{latex}{\out{\hypertarget{method-ERROR}{}}}
+\subsection{Method \code{ERROR()}}{
+a basic ERROR logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$ERROR(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{log message text to be displayed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object extending \link{OGCAbstractObject}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$new(
+  xml = NULL,
+  element = NULL,
+  namespacePrefix = NULL,
+  attrs = list(),
+  defaults = list(),
+  wrap = FALSE,
+  logger = NULL
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{element}}{element name}
+
+\item{\code{namespacePrefix}}{namespace prefix for XML encoding}
+
+\item{\code{attrs}}{list of attributes}
+
+\item{\code{defaults}}{list of default values}
+
+\item{\code{wrap}}{whether XML element has to be wrapped during XML encoding}
+
+\item{\code{logger}}{logger}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassName}{}}}
+\subsection{Method \code{getClassName()}}{
+Get class name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$getClassName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getClass}{}}}
+\subsection{Method \code{getClass()}}{
+Get class
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$getClass()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{R6Class}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-isFieldInheritedFrom"></a>}}
+\if{latex}{\out{\hypertarget{method-isFieldInheritedFrom}{}}}
+\subsection{Method \code{isFieldInheritedFrom()}}{
+Utility to return the parent class in which field is defined
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$isFieldInheritedFrom(field)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{field}}{field name}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+object of class \code{R6Class}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getNamespaceDefinition"></a>}}
+\if{latex}{\out{\hypertarget{method-getNamespaceDefinition}{}}}
+\subsection{Method \code{getNamespaceDefinition()}}{
+Gets the namespace definition
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$getNamespaceDefinition(recursive = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{recursive}}{Get all namespace recursively}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+the namespace definitions as named \code{list}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-encode"></a>}}
+\if{latex}{\out{\hypertarget{method-encode}{}}}
+\subsection{Method \code{encode()}}{
+Encodes as XML. The \code{addNS} .
+   Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
+   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
+   \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
+   argument.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$encode(
+  addNS = TRUE,
+  geometa_validate = TRUE,
+  geometa_inspire = FALSE,
+  geometa_inspireValidator = NULL
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{addNS}}{addNS controls the addition of XML namespaces}
+
+\item{\code{geometa_validate}}{Relates to \pkg{geometa} object ISO validation. Default is \code{TRUE}}
+
+\item{\code{geometa_inspire}}{Relates to \pkg{geometa} object INSPIRE validation. Default is \code{FALSE}}
+
+\item{\code{geometa_inspireValidator}}{Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \link{XMLInternalNode-class} from \pkg{XML}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

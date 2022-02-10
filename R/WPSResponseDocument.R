@@ -3,16 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS ResponseDocument
-#' @return Object of \code{\link{R6Class}} for modelling a WPS ResponseDocument
-#' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, storeExecuteResponse, lineage, status, output)}}{
-#'    This method is used to instantiate a WPSResponseDocument object
-#'  }
-#' }
-#' 
+#' @return Object of \code{\link{R6Class}} for modelling an OGC WPS response document
+#' @format \link{R6Class} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -23,7 +15,16 @@ WPSResponseDocument <- R6Class("WPSResponseDocument",
     xmlNamespacePrefix = "WPS"
   ),
   public = list(
+    #'@field Output output property
     Output = NULL,
+    
+    #'@description Initializes a \link{WPSResponseDocument}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param storeExecuteResponse store execute response, object of class \code{logical}
+    #'@param lineage lineage, object of class \code{logical}
+    #'@param status status, object of class \code{logical}
+    #'@param output output
+    #'@param serviceVersion WPS service version
     initialize = function(xml = NULL, storeExecuteResponse = FALSE, lineage = NULL, status = NULL, output = NULL,
                           serviceVersion = "1.0.0") {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")

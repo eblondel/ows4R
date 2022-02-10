@@ -21,6 +21,12 @@ WPSOutputDescription <- R6Class("WPSOutputDescription",
  inherit = WPSDescriptionParameter,                       
  private = list(),
  public = list(
+    
+    #'@description Initializes a \link{WPSOutputDescription}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param version WPS service version
+    #'@param logger logger
+    #'@param ... any other parameter
    initialize = function(xml = NULL, version, logger = NULL, ...){
      super$initialize(xml = xml, version = version, logger = logger, ...)
    }

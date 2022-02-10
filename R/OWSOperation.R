@@ -22,7 +22,7 @@
 #'  }
 #' }
 #' 
-#' @note Abstract class used internally by \pkg{ows4R}
+#' @note Internal class used internally by \pkg{ows4R} when reading capabilities documents
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -32,6 +32,11 @@ OWSOperation <-  R6Class("OWSOperation",
     parameters = list()
   ),
   public = list(
+    
+    #'@description Initializes an object of class \link{OWSOperation}. 
+    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param owsVersion OWS version
+    #'@param serviceVersion service version
     initialize = function(xmlObj, owsVersion, serviceVersion){
       namespaces <- OWSUtils$getNamespaces(xmlDoc(xmlObj))
       namespaces <- as.data.frame(namespaces)
@@ -56,17 +61,21 @@ OWSOperation <-  R6Class("OWSOperation",
       names(private$parameters) <- sapply(paramXML, xmlGetAttr, "name")
     },
     
-    #getName
+    #'@description Get operation name
+    #'@return an object of class \code{character}
     getName = function(){
       return(private$name)
     },
     
-    #getParameters
+    #'@description Get parameters
+    #'@return the parameters
     getParameters = function(){
       return(private$parameters)
     },
     
-    #getParameter
+    #'@description Get parameter
+    #'@param name name
+    #'@return the parameter
     getParameter = function(name){
       return(private$parameters[[name]])
     }

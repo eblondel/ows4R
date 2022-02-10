@@ -5,16 +5,6 @@
 #' @keywords OGC OWS boundingbox
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Bounding Box
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, element, namespacePrefix, owsVersion, serviceVersion, logger)}}{
-#'    This method is used to instantiate an \code{OWSBoundingBox} object
-#'  }
-#'  \item{\code{getBBOX()}}{
-#'    Get BBOX as object of class \code{bbox} from \pkg{sf} package
-#'  }
-#' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -25,9 +15,21 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
       xmlNamespacePrefix = "OWS" 
    ),
    public = list(
+     #'@field attrs attributes to be associated to XML
      attrs = list(),
+     #'@field LowerCorner lower corner coordinates
      LowerCorner = matrix(NA,1,2),
+     #'@field UpperCorner upper corner coordinates
      UpperCorner = matrix(NA,1,2),
+     
+     #'@description Initializes an object of class \link{OWSBoundingBox}
+     #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+     #'@param element element name
+     #'@param namespacePrefix namespace prefix
+     #'@param owsVersion OWS version
+     #'@param serviceVersion service version
+     #'@param logger logger
+     #'@param ... any other parameter
      initialize = function(xml = NULL, 
                            element = NULL, namespacePrefix = NULL,
                            owsVersion, serviceVersion, 
@@ -45,10 +47,10 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
       if(!is.null(xml)){
          self$decode(xml)
       }
-      
      },
      
-     #decode
+     #'@description Decodes an object of class \link{OWSBoundingBox} from XML
+     #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
      decode = function(xml){
         self$attrs$crs <- xmlGetAttr(xml, "crs")
         params <- xmlChildren(xml)
@@ -77,7 +79,8 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
         self$UpperCorner <- t(matrix(uc_values))
      },
      
-     #getBBOX
+     #'@description Get BBOX as object of class \code{bbox} from \pkg{sf} package
+     #'@return a numeric vector of length four, with xmin, ymin, xmax and ymax values
      getBBOX = function(){
        sf::st_bbox(c(
          xmin = self$LowerCorner[[1]], 

@@ -5,22 +5,6 @@
 #' @keywords OGC WPS Parameter
 #' @return Object of \code{\link{R6Class}} modelling a WPS parameter
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, version, logger)}}{
-#'    This method is used to instantiate a \code{WPSParameter} object
-#'  }
-#'  \item{\code{getIdentifier()}}{
-#'    Get input identifier
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get input title
-#'  }
-#'  \item{\code{getAbstract()}}{
-#'    Get input abstract
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -65,6 +49,12 @@ WPSParameter <- R6Class("WPSParameter",
      
    ),
    public = list(
+      
+     #'@description Initializes an object of class \link{WPSParameter}
+     #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+     #'@param version WPS service version
+     #'@param logger logger
+     #'@param ... any additional parameter
      initialize = function(xml = NULL, version, logger = NULL, ...){
        super$initialize(logger = logger)
        private$version = version
@@ -76,17 +66,20 @@ WPSParameter <- R6Class("WPSParameter",
        }
      },
      
-     #getIdentifier
+     #'@description Get identifier
+     #'@return object of class \code{character}
      getIdentifier = function(){
        return(private$identifier)
      },
      
-     #getTitle
+     #'@description Get title
+     #'@return object of class \code{character}
      getTitle = function(){
        return(private$title)
      },
      
-     #getAbstract
+     #'@description Get abstract
+     #'@return object of class \code{character}
      getAbstract = function(){
        return(private$abstract)
      }

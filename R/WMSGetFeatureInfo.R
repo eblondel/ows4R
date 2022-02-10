@@ -5,14 +5,6 @@
 #' @keywords OGC WMS GetFeatureInfo
 #' @return Object of \code{\link{R6Class}} for modelling a WMS GetFeatureInfo request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(capabilities, op, url, version, layers, srs, styles, feature_count,
-#'                  x, y, width, height, bbox, info_format, logger, ...)}}{
-#'    This method is used to instantiate a WMSGetFeatureInfo object
-#'  }
-#' }
 #' 
 #' @note Abstract class used by \pkg{ows4R} to trigger a WMS GetFeatureInfo request
 #' 
@@ -25,6 +17,24 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
    xmlNamespacePrefix = "WMS"
  ), 
  public = list(
+    
+    #'@description Initializes a \link{WMSGetFeatureInfo} service request
+    #'@param capabilities an object of class \link{WMSCapabilities}
+    #'@param op object of class \link{OWSOperation} as retrieved from capabilities
+    #'@param url url
+    #'@param version version
+    #'@param layers layers
+    #'@param srs srs
+    #'@param styles styles
+    #'@param feature_count feature count
+    #'@param x x
+    #'@param y y
+    #'@param width width
+    #'@param height height
+    #'@param bbox bbox
+    #'@param info_format info format
+    #'@param logger logger
+    #'@param ... any parameter to pass to the service request
    initialize = function(capabilities, op, url, version, layers, srs, styles, feature_count = 1,
                          x, y, width, height, bbox, info_format = "text/xml",
                          logger = NULL, ...) {

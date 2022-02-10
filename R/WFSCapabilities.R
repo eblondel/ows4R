@@ -6,20 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Feature Service Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, version, logger)}}{
-#'    This method is used to instantiate a WFSGetCapabilities object
-#'  }
-#'  \item{\code{getFeatureTypes(pretty)}}{
-#'    List the feature types available. If \code{pretty} is TRUE,
-#'    the output will be an object of class \code{data.frame}
-#'  }
-#'  \item{\code{findFeatureTypeByName(name, exact)}}{
-#'    Find feature type(s) by name.
-#'  }
-#' }
 #' 
 #' @note Class used to read a \code{WFSCapabilities} document. The use of \code{WFSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WFS server.
@@ -54,7 +40,11 @@ WFSCapabilities <- R6Class("WFSCapabilities",
                            
    public = list(
      
-     #initialize
+      #'@description Initializes a \link{WFSCapabilities} object
+      #'@param url url
+      #'@param version version
+      #'@param logger logger type \code{NULL}, "INFO" or "DEBUG"
+      #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
      initialize = function(url, version, logger = NULL, ...) {
        super$initialize(
           element = private$xmlElement, namespacePrefix = private$namespacePrefix,
@@ -64,7 +54,10 @@ WFSCapabilities <- R6Class("WFSCapabilities",
        private$featureTypes = private$fetchFeatureTypes(xmlObj, version)
      },
      
-     #getFeatureTypes
+     #'@description List the feature types available. If \code{pretty} is TRUE,
+     #'    the output will be an object of class \code{data.frame}
+     #'@param pretty whether the output should be summarized as \code{data.frame}
+     #'@return a \code{list} of \link{WFSFeatureType} or a \code{data.frame}
      getFeatureTypes = function(pretty = FALSE){
        fts <- private$featureTypes
        if(pretty){
@@ -79,7 +72,9 @@ WFSCapabilities <- R6Class("WFSCapabilities",
        return(fts)
      },
      
-     #findFeatureTypeByName
+     #'@description Finds a feature type by name
+     #'@param expr expr
+     #'@param exact exact matching? Default is \code{TRUE}
      findFeatureTypeByName = function(expr, exact = TRUE){
        result <- lapply(private$featureTypes, function(x){
           ft <- NULL

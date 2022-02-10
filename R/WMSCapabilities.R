@@ -87,7 +87,11 @@ WMSCapabilities <- R6Class("WMSCapabilities",
  
  public = list(
    
-   #initialize
+    #'@description Initializes a \link{WMSCapabilities} object
+    #'@param url url
+    #'@param version version
+    #'@param logger logger type \code{NULL}, "INFO" or "DEBUG"
+    #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
    initialize = function(url, version, logger = NULL, ...) {
      super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                       url, service = "WMS", owsVersion = "1.1", serviceVersion = version, 
@@ -97,7 +101,10 @@ WMSCapabilities <- R6Class("WMSCapabilities",
      private$layers = private$fetchLayers(xmlObj, version)
    },
    
-   #getRequests
+   #'@description List the requests available. If \code{pretty} is TRUE,
+   #'    the output will be an object of class \code{data.frame}
+   #'@param pretty pretty
+   #'@return a \code{list} of \link{OWSRequest} available, or a \code{data.frame}
    getRequests = function(pretty = FALSE){
       requests <- private$requests
       if(pretty){
@@ -112,12 +119,16 @@ WMSCapabilities <- R6Class("WMSCapabilities",
       return(requests)
    },
    
-   #getRequestNames
+   #'@description List the names of requests available.
+   #'@return object of class \code{character}
    getRequestNames = function(){
       return(names(private$requests))
    },
    
-   #getLayers
+   #'@description List the layers available. If \code{pretty} is TRUE,
+   #'    the output will be an object of class \code{data.frame}
+   #'@param pretty pretty
+   #'@return a \code{list} of \link{WMSLayer} available, or a \code{data.frame}
    getLayers = function(pretty = FALSE){
      layers <- private$layers
      if(pretty){
@@ -132,7 +143,10 @@ WMSCapabilities <- R6Class("WMSCapabilities",
      return(layers)
    },
    
-   #findLayerByName
+   
+   #'@description Finds a layer by name
+   #'@param expr expr
+   #'@param exact exact matching? Default is \code{TRUE}
    findLayerByName = function(expr, exact = TRUE){
      result <- lapply(private$layers, function(x){
        ft <- NULL

@@ -4,12 +4,6 @@
 #' @keywords CSW RecordProperty
 #' @return Object of \code{\link{R6Class}} for modelling an CSW RecordProperty
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(name, value, cswVersion)}}{
-#'    This method is used to instantiate an CSWRecordProperty object.
-#'  }
-#' }
 #' 
 #' @examples 
 #'    rp <- CSWRecordProperty$new(name = "NAME", value = "VALUE")
@@ -24,9 +18,17 @@ CSWRecordProperty <-  R6Class("CSWRecordProperty",
     xmlNamespacePrefix = "CSW"
   ),
   public = list(
+    #'@field wrap internal property for XML encoding
     wrap = TRUE,
+    #'@field Name name property for request XML encoding
     Name = NULL,
+    #'@field Value property for request XML encoding
     Value = NULL,
+    
+    #'@description Initializes an object of class \link{CSWRecordProperty}
+    #'@param name name
+    #'@param value value
+    #'@param cswVersion CSW service version. Default is "2.0.2"
     initialize = function(name, value, cswVersion = "2.0.2"){
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", cswVersion), sep="_")
       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)

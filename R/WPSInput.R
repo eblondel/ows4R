@@ -5,14 +5,6 @@
 #' @keywords OGC WPS Input
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Input
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, identifier, data, serviceVersion)}}{
-#'    This method is used to instantiate a WPSInput object
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -23,8 +15,16 @@ WPSInput <- R6Class("WPSInput",
     xmlNamespacePrefix = "WPS"
   ),
   public = list(
+    #'@field Identifier identifier
     Identifier = NULL,
+    #'@field Data data
     Data = NULL,
+    
+    #'@description Initializes a \link{WPSInput}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param identifier identifier
+    #'@param data data
+    #'@param serviceVersion service version. Default "1.0.0"
     initialize = function(xml = NULL, identifier, data,
                           serviceVersion = "1.0.0") {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")

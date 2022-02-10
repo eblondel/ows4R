@@ -12,40 +12,12 @@ Object of \code{\link{R6Class}} for modelling an OGC Service Identification
 }
 \description{
 OWSServiceIdentification
+
+OWSServiceIdentification
 }
 \note{
 Abstract class used internally by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, serviceVersion)}}{
-   This method is used to instantiate a OWSServiceIdentification object
- }
- \item{\code{getName()}}{
-   Get service name
- }
- \item{\code{getTitle()}}{
-   Get service title
- }
- \item{\code{getAbstract()}}{
-   Get service abstract
- }
- \item{\code{getKeywords()}}{
-   Get service keywords
- }
- \item{\code{getOnlineResource()}}{
-   Get service online resource
- }
- \item{\code{getServiceType}}{
-   Get service type
- }
- \item{\code{getServiceTypeVersion}}{
-  Get service type version
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
@@ -53,3 +25,175 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{OGC}
 \keyword{OWS}
 \keyword{Service}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{OWSServiceIdentification$new()}}
+\item \href{#method-getName}{\code{OWSServiceIdentification$getName()}}
+\item \href{#method-getTitle}{\code{OWSServiceIdentification$getTitle()}}
+\item \href{#method-getAbstract}{\code{OWSServiceIdentification$getAbstract()}}
+\item \href{#method-getKeywords}{\code{OWSServiceIdentification$getKeywords()}}
+\item \href{#method-getOnlineResource}{\code{OWSServiceIdentification$getOnlineResource()}}
+\item \href{#method-getServiceType}{\code{OWSServiceIdentification$getServiceType()}}
+\item \href{#method-getServiceTypeVersion}{\code{OWSServiceIdentification$getServiceTypeVersion()}}
+\item \href{#method-getFees}{\code{OWSServiceIdentification$getFees()}}
+\item \href{#method-getAccessConstraints}{\code{OWSServiceIdentification$getAccessConstraints()}}
+\item \href{#method-clone}{\code{OWSServiceIdentification$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object of class \link{OWSServiceIdentification}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{owsVersion}}{OWS version}
+
+\item{\code{serviceVersion}}{service version}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-getName}{}}}
+\subsection{Method \code{getName()}}{
+Get service identification - name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the name, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\subsection{Method \code{getTitle()}}{
+Get service identification - title
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getTitle()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the title, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\subsection{Method \code{getAbstract()}}{
+Get service identification - abstract
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getAbstract()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the abstract, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getKeywords"></a>}}
+\if{latex}{\out{\hypertarget{method-getKeywords}{}}}
+\subsection{Method \code{getKeywords()}}{
+Get service identification - keywords
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getKeywords()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the keywords, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getOnlineResource"></a>}}
+\if{latex}{\out{\hypertarget{method-getOnlineResource}{}}}
+\subsection{Method \code{getOnlineResource()}}{
+Get service identification - online resource
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getOnlineResource()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the online resource, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getServiceType"></a>}}
+\if{latex}{\out{\hypertarget{method-getServiceType}{}}}
+\subsection{Method \code{getServiceType()}}{
+Get service identification - service type
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getServiceType()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the service type, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getServiceTypeVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-getServiceTypeVersion}{}}}
+\subsection{Method \code{getServiceTypeVersion()}}{
+Get service identification - service type version
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getServiceTypeVersion()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the service type version, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getFees"></a>}}
+\if{latex}{\out{\hypertarget{method-getFees}{}}}
+\subsection{Method \code{getFees()}}{
+Get service identification - fees
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getFees()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the fees, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getAccessConstraints"></a>}}
+\if{latex}{\out{\hypertarget{method-getAccessConstraints}{}}}
+\subsection{Method \code{getAccessConstraints()}}{
+Get service identification - access constraints
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$getAccessConstraints()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the access constraints, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceIdentification$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

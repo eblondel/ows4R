@@ -5,34 +5,6 @@
 #' @keywords OGC OWS Service Identification
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Service Identification
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, serviceVersion)}}{
-#'    This method is used to instantiate a OWSServiceIdentification object
-#'  }
-#'  \item{\code{getName()}}{
-#'    Get service name
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get service title
-#'  }
-#'  \item{\code{getAbstract()}}{
-#'    Get service abstract
-#'  }
-#'  \item{\code{getKeywords()}}{
-#'    Get service keywords
-#'  }
-#'  \item{\code{getOnlineResource()}}{
-#'    Get service online resource
-#'  }
-#'  \item{\code{getServiceType}}{
-#'    Get service type
-#'  }
-#'  \item{\code{getServiceTypeVersion}}{
-#'   Get service type version
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -156,6 +128,11 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
      }
    ),
    public = list(
+      
+     #'@description Initializes an object of class \link{OWSServiceIdentification}
+      #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+      #'@param owsVersion OWS version
+      #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){
        serviceIdentification <- private$fetchServiceIdentification(xmlObj, owsVersion, serviceVersion)
        private$name <- serviceIdentification$name
@@ -169,47 +146,56 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
        private$accessConstraints <- serviceIdentification$accessConstraints
      },
      
-     #getName
+     #'@description Get service identification - name
+     #'@return the name, object of class \code{character}
      getName = function(){
        return(private$name)
      },
      
-     #getTitle
+     #'@description Get service identification - title
+     #'@return the title, object of class \code{character}
      getTitle = function(){
        return(private$title)
      },
      
-     #getAbstract
+     #'@description Get service identification - abstract
+     #'@return the abstract, object of class \code{character}
      getAbstract = function(){
        return(private$abstract)
      },
      
-     #getKeywords
+     #'@description Get service identification - keywords
+     #'@return the keywords, object of class \code{character}
      getKeywords = function(){
        return(private$keywords)
      },
      
-     #getOnlineResource
+     #'@description Get service identification - online resource
+     #'@return the online resource, object of class \code{character}
      getOnlineResource = function(){
        return(private$onlineResource)
      },
      
-     #getServiceType
+     #'@description Get service identification - service type
+     #'@return the service type, object of class \code{character}
      getServiceType = function(){
        return(private$serviceType)
      },
      
-     #getServiceTypeVersion
+     #'@description Get service identification - service type version
+     #'@return the service type version, object of class \code{character}
      getServiceTypeVersion = function(){
        return(private$serviceTypeVersion)
      },
      
-     #getFees
+     #'@description Get service identification - fees
+     #'@return the fees, object of class \code{character}
      getFees = function(){
        return(private$fees)
      },
      
-     #getAccessConstraints
+     #'@description Get service identification - access constraints
+     #'@return the access constraints, object of class \code{character}
      getAccessConstraints = function(){
        return(private$accessConstraints)
      }

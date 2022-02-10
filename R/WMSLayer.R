@@ -175,8 +175,16 @@ WMSLayer <- R6Class("WMSLayer",
     
   ),
   public = list(
+    #'@field description description
     description = NULL,
+    #'@field features features
     features = NULL,
+    
+    #'@description Initializes an object of class \link{WMSLayer}
+    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param capabilities object of class \link{WMSCapabilities}
+    #'@param version service version
+    #'@param logger logger
     initialize = function(xmlObj, capabilities, version, logger = NULL){
       super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix, logger = logger)
       
@@ -198,52 +206,57 @@ WMSLayer <- R6Class("WMSLayer",
       
     },
     
-    #getName
-    getName = function(){
-      return(private$name)
-    },
-    
-    #getTitle
+    #'@description Get layer title
+    #'@param object of class \code{character}
     getTitle = function(){
       return(private$title)
     },
     
-    #getAbstract
+    #'@description Get layer abstract
+    #'@param object of class \code{character}
     getAbstract = function(){
       return(private$abstract)
     },
     
-    #getKeywords
+    #'@description Get layer keywords
+    #'@param object of class \code{character}
     getKeywords = function(){
       return(private$keywords)
     },
     
-    #getDefaultCRS
+    #'@description Get layer default CRS
+    #'@param object of class \code{character}
     getDefaultCRS = function(){
       return(private$defaultCRS)
     },
     
-    #getBoundingBox
+    #'@description Get layer bounding box
+    #'@param object of class \code{matrix}
     getBoundingBox = function(){
       return(private$boundingBox)
     },
-    
-    #getBoundingBoxSRS
+     
+    #'@description Get layer bounding box SRS
+    #'@param object of class \code{character}
     getBoundingBoxSRS = function(){
       return(private$boundingBoxSRS)
     },
     
-    #getBoundingBoxCRS
+    #'@description Get layer bounding box CRS
+    #'@param object of class \code{character}
     getBoundingBoxCRS = function(){
       return(private$boundingBoxCRS)
     },
     
-    #getStyle
+    #'@description Get layer style
+    #'@param object of class \code{character}
     getStyle = function(){
       return(private$style)
     },
     
-    #getDimensions
+    #'@description Get layer dimensions
+    #'@param time_format time format. Default is \code{character}
+    #'@return a \code{list} including default value and listed possible values
     getDimensions = function(time_format = "character"){
       dimensions <- private$dimensions
       if(time_format=="posix"){
@@ -253,7 +266,9 @@ WMSLayer <- R6Class("WMSLayer",
       return(dimensions)
     },
     
-    #getTimeDimension
+    #'@description Get layer TIME dimensions
+    #'@param time_format time format. Default is \code{character}
+    #'@return a \code{list} including default value and listed possible values
     getTimeDimension = function(time_format = "character"){
       time_dimensions <- private$dimensions[["time"]]
       if(time_format=="posix"){
@@ -263,12 +278,24 @@ WMSLayer <- R6Class("WMSLayer",
       return(time_dimensions)
     },
     
-    #getElevationDimension
+    #'@description Get layer ELEVATION dimensions
+    #'@return a \code{list} including default value and listed possible values
     getElevationDimension = function(){
       return(private$dimensions[["elevation"]])
     },
     
-    #getFeatureInfo
+    #'@description Get feature info
+    #'@param srs srs
+    #'@param styles styles
+    #'@param feature_count feature count. Default is 1
+    #'@param x x
+    #'@param y y
+    #'@param width width
+    #'@param height height
+    #'@param bbox bbox
+    #'@param info_format info format. Default is "text/xml"
+    #'@param ... any other parameter to pass to a \link{WMSGetFeatureInfo} request
+    #'@return an object of class \code{sf} given the feature(s)
     getFeatureInfo = function(srs = NULL, styles = NULL, feature_count = 1,
                               x, y, width, height, bbox, 
                               info_format = "text/xml",

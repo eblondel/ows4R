@@ -5,13 +5,6 @@
 #' @keywords OGC CSW GetRecordById
 #' @return Object of \code{\link{R6Class}} for modelling a CSW GetRecordById request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(capabilities, op, url, serviceVersion, user, pwd, token, headers, id, elementSetName, logger, ...)}}{
-#'    This method is used to instantiate a CSWGetRecordById object
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a CSW GetRecordById request
 #' 
@@ -29,8 +22,24 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
       )
     ),
     public = list(
+      #'@field Id record Id property for request XML encoding
       Id = NA,
+      #'@field ElementSetName element set name property for XML encoding
       ElementSetName = "full",
+      
+      #'@description Initializes a \link{CSWGetRecordById} service request
+      #'@param capabilities an object of class \link{CSWCapabilities}
+      #'@param op object of class \link{OWSOperation} as retrieved from capabilities
+      #'@param url url
+      #'@param serviceVersion serviceVersion. Default is "2.0.2
+      #'@param user user
+      #'@param pwd password
+      #'@param token token
+      #'@param headers headers
+      #'@param id record id
+      #'@param elementSetName element set name. Default is "full"
+      #'@param logger logger
+      #'@param ... any parameter to pass to the service request
       initialize = function(capabilities, op, url, serviceVersion = "2.0.2",
                             user = NULL, pwd = NULL, token = NULL, headers = headers,
                             id, elementSetName = "full", logger = NULL, ...) {

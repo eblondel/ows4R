@@ -5,17 +5,6 @@
 #' @keywords OGC WPS Exception
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Exception
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, serviceVersion)}}{
-#'    This method is used to instantiate a \code{WPSException} object
-#'  }
-#'  \item{\code{decode(xml)}}{
-#'    Decodes WPS exception from XML
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -26,8 +15,14 @@ WPSException <- R6Class("WPSException",
      xmlNamespacePrefix = "WPS"
    ),
    public = list(
+     #'@field value value
      value = NULL,
+     #'@field percentCompleted percent of completion
      percentCompleted = 0L,
+     
+     #'@description Initializes a \link{WPSException}
+     #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param serviceVersion service version. Default "1.0.0"
      initialize = function(xml = NULL, serviceVersion = "1.0.0") {
        private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
        super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
@@ -36,9 +31,10 @@ WPSException <- R6Class("WPSException",
        }
      },
      
-     #decode
+     #'@description Decodes an object of class \link{WPSException} from XML
+     #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
      decode = function(xml){
-      
+       stop("Not yet implemented")
      }
    )
 )

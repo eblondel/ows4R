@@ -4,18 +4,6 @@
 #' @keywords OGC Expression
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Expression
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(element, namespacePrefix, attrs, defaults, exprVersion)}}{
-#'    This method is used to instantiate an \code{OGCExpression} object
-#'  }
-#'  \item{\code{setExprVersion(exprVersion)}}{
-#'    Set expression version
-#'  }
-#'  \item{\code{getExprVersion()}}{
-#'    Get expression version
-#'  }
-#' }
 #' 
 #' @note abstract class
 #' 
@@ -27,13 +15,21 @@ OGCExpression <-  R6Class("OGCExpression",
      exprVersion = "1.1.0"
    ),
    public = list(
+     
+     #'@description Initializes an object of class \link{OGCExpression}
+     #'@param element element name
+     #'@param namespacePrefix XML namespace prefix
+     #'@param attrs attributes
+     #'@param defaults default values
+     #'@param exprVersion OGC version for the expression
      initialize = function(element, namespacePrefix, attrs = NULL, defaults = NULL, exprVersion = "1.1.0"){
        self$setExprVersion(exprVersion)
        super$initialize(element = element, namespacePrefix = namespacePrefix,
                         attrs = attrs, defaults = defaults)
      },
      
-     #setExprVersion
+     #'@description Sets expression version. The methods will control proper XML namespace prefix setting
+     #'@param exprVersion OGC expression version
      setExprVersion = function(exprVersion) {
        private$exprVersion = exprVersion
        if(exprVersion=="2.0"){
@@ -43,7 +39,8 @@ OGCExpression <-  R6Class("OGCExpression",
        }
      },
      
-     #getExprVersion
+     #'@description Gets expression version
+     #'@return object of class \code{character}
      getExprVersion = function(){
        return(private$exprVersion)
      }
@@ -56,12 +53,7 @@ OGCExpression <-  R6Class("OGCExpression",
 #' @keywords OGC Expression BinaryComparisonOpType
 #' @return Object of \code{\link{R6Class}} for modelling an BinaryComparisonOpType
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(element, namespacePrefix, PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an BinaryComparisonOpType
-#'  }
-#' }
+#' 
 #' @note abstract super class of all the property operation classes
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -69,9 +61,19 @@ OGCExpression <-  R6Class("OGCExpression",
 BinaryComparisonOpType <-  R6Class("BinaryComparisonOpType",
   inherit = OGCExpression,
   public = list(
+    #'@field PropertyName property name field for XML encoding
     PropertyName = NULL,
+    #'@field Literal literal field for XML encoding
     Literal = NULL,
+    #'@field attrs attributes for XML encoding
     attrs = list(matchCase = NA),
+    
+    #'@description Initializes an object extending \link{BinaryComparisonOpType}
+    #'@param element element name
+    #'@param namespacePrefix XML namespace prefix
+    #'@param PropertyName property name
+    #'@param Literal literal
+    #'@param matchCase match case
     initialize = function(element, namespacePrefix, PropertyName, Literal, matchCase = NA){
       super$initialize(element = element, namespacePrefix = namespacePrefix)
       self$PropertyName = PropertyName
@@ -87,12 +89,6 @@ BinaryComparisonOpType <-  R6Class("BinaryComparisonOpType",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsEqualTo
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsEqualTo
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsEqualTo
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
@@ -107,6 +103,11 @@ PropertyIsEqualTo <-R6Class("PropertyIsEqualTo",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    
+    #'@description Initializes an object extending \link{PropertyIsEqualTo}
+    #'@param PropertyName property name
+    #'@param Literal literal
+    #'@param matchCase match case
     initialize = function(PropertyName, Literal, matchCase = NA){
       super$initialize(
         element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -122,12 +123,6 @@ PropertyIsEqualTo <-R6Class("PropertyIsEqualTo",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsNotEqualTo
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsNotEqualTo
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsNotEqualTo
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsNotEqualTo$new(PropertyName = "property", Literal = "value")
@@ -142,6 +137,11 @@ PropertyIsNotEqualTo <-R6Class("PropertyIsNotEqualTo",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    
+    #'@description Initializes an object extending \link{PropertyIsNotEqualTo}
+    #'@param PropertyName property name
+    #'@param Literal literal
+    #'@param matchCase match case
     initialize = function(PropertyName, Literal, matchCase = NA){
       super$initialize(
         element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -157,12 +157,6 @@ PropertyIsNotEqualTo <-R6Class("PropertyIsNotEqualTo",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsLessThan
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLessThan
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsLessThan
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsLessThan$new(PropertyName = "property", Literal = "value")
@@ -177,6 +171,11 @@ PropertyIsLessThan <-R6Class("PropertyIsLessThan",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     
+     #'@description Initializes an object extending \link{PropertyIsLessThan}
+     #'@param PropertyName property name
+     #'@param Literal literal
+     #'@param matchCase match case
      initialize = function(PropertyName, Literal, matchCase = NA){
        super$initialize(
          element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -192,12 +191,6 @@ PropertyIsLessThan <-R6Class("PropertyIsLessThan",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsGreaterThan
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsGreaterThan
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsGreaterThan
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsGreaterThan$new(PropertyName = "property", Literal = "value")
@@ -212,6 +205,11 @@ PropertyIsGreaterThan <-R6Class("PropertyIsGreaterThan",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     
+     #'@description Initializes an object extending \link{PropertyIsGreaterThan}
+     #'@param PropertyName property name
+     #'@param Literal literal
+     #'@param matchCase match case
      initialize = function(PropertyName, Literal, matchCase = NA){
        super$initialize(
          element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -227,12 +225,6 @@ PropertyIsGreaterThan <-R6Class("PropertyIsGreaterThan",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsLesserThanOrEqualTo
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLesserThanOrEqualTo
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsLesserThanOrEqualTo
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsLessThanOrEqualTo$new(PropertyName = "property", Literal = "value")
@@ -247,6 +239,11 @@ PropertyIsLessThanOrEqualTo <-R6Class("PropertyIsLessThanOrEqualTo",
    xmlNamespacePrefix = "OGC"
  ),
  public = list(
+   
+   #'@description Initializes an object extending \link{PropertyIsLessThanOrEqualTo}
+   #'@param PropertyName property name
+   #'@param Literal literal
+   #'@param matchCase match case
    initialize = function(PropertyName, Literal, matchCase = NA){
      super$initialize(
        element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -262,12 +259,6 @@ PropertyIsLessThanOrEqualTo <-R6Class("PropertyIsLessThanOrEqualTo",
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsGreaterThanOrEqualTo
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsGreaterThanOrEqualTo
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, Literal, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsGreaterThanOrEqualTo
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsGreaterThanOrEqualTo$new(PropertyName = "property", Literal = "value")
@@ -282,6 +273,11 @@ PropertyIsGreaterThanOrEqualTo <-R6Class("PropertyIsGreaterThanOrEqualTo",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    
+    #'@description Initializes an object extending \link{PropertyIsGreaterThanOrEqualTo}
+    #'@param PropertyName property name
+    #'@param Literal literal
+    #'@param matchCase match case
     initialize = function(PropertyName, Literal, matchCase = NA){
       super$initialize(
         element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
@@ -297,13 +293,6 @@ PropertyIsGreaterThanOrEqualTo <-R6Class("PropertyIsGreaterThanOrEqualTo",
 #' @keywords OGC Expression PropertyIsLike
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLike
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyOperator, PropertyName, Literal,
-#'                  escapeChar, singleChar, wildCard, matchCase)}}{
-#'    This method is used to instantiate an PropertyIsLike
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsLike$new(PropertyName = "property", Literal = "value")
@@ -318,14 +307,25 @@ PropertyIsLike <-  R6Class("PropertyIsLike",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     #'@field PropertyName property name field for XML encoding
      PropertyName = NULL,
+     #'@field Literal literal field for XML encoding
      Literal = NULL,
+     #'@field attrs attributes for XML encoding
      attrs = list(
       escapeChar = "\\",
       singleChar = "_",
       wildCard = "%",
       matchCase = NA
      ),
+     
+     #'@description Initializes an object extending \link{PropertyIsLike}
+     #'@param PropertyName property name
+     #'@param Literal literal
+     #'@param escapeChar escape character. Default is "\\"
+     #'@param singleChar single character. Default is "_"
+     #'@param wildCard wildcard
+     #'@param matchCase match case
      initialize = function(PropertyName, Literal,
                            escapeChar = "\\", singleChar = "_", wildCard = "%", matchCase = NA){
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
@@ -347,12 +347,6 @@ PropertyIsLike <-  R6Class("PropertyIsLike",
 #' @keywords OGC Expression PropertyIsNull
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsNull
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName)}}{
-#'    This method is used to instantiate an PropertyIsNull
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsNull$new(PropertyName = "property")
@@ -367,7 +361,11 @@ PropertyIsNull <-  R6Class("PropertyIsNull",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     #'@field PropertyName property name field for XML encoding
      PropertyName = NULL,
+     
+     #'@description Initializes an object extending \link{PropertyIsLike}
+     #'@param PropertyName property name 
      initialize = function(PropertyName){
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
        self$PropertyName = PropertyName
@@ -381,12 +379,6 @@ PropertyIsNull <-  R6Class("PropertyIsNull",
 #' @keywords OGC Expression PropertyIsBetween
 #' @return Object of \code{\link{R6Class}} for modelling an PropertyIsBetween
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(PropertyName, lower, upper)}}{
-#'    This method is used to instantiate an PropertyIsBetween
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsBetween$new(PropertyName = "property", lower = 1, upper = 10)
@@ -401,9 +393,17 @@ PropertyIsBetween <-  R6Class("PropertyIsBetween",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     #'@field PropertyName property name field for XML encoding
      PropertyName = NULL,
+     #'@field lower lower value
      lower = NULL,
+     #'@field upper upper value
      upper = NULL,
+     
+     #'@description Initializes an object extending \link{PropertyIsLike}
+     #'@param PropertyName property name
+     #'@param lower lower value
+     #'@param upper upper value 
      initialize = function(PropertyName, lower, upper){
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
        self$PropertyName = PropertyName
@@ -419,12 +419,6 @@ PropertyIsBetween <-  R6Class("PropertyIsBetween",
 #' @keywords OGC Expression BBOX
 #' @return Object of \code{\link{R6Class}} for modelling an BBOX
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(bbox, srsName)}}{
-#'    This method is used to instantiate an BBOX
-#'  }
-#' }
 #' 
 #' @examples
 #'   bbox <- OWSUtils$toBBOX(-180,-90,180,90)
@@ -440,8 +434,14 @@ BBOX <-  R6Class("BBOX",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    #'@field PropertyName property name field for XML encoding
     PropertyName = "ows:BoundingBox",
+    #'@field Envelope envelope as object of class \link{GMLEnvelope} from \pkg{geometa}
     Envelope = NULL,
+    
+    #'@description Initializes a \link{BBOX} expression
+    #'@param bbox an object of class \code{matrix}
+    #'@param srsName srs name
     initialize = function(bbox, srsName = NULL){
       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
       envelope <- GMLEnvelope$new(bbox = bbox, srsName = srsName)
@@ -462,17 +462,18 @@ BBOX <-  R6Class("BBOX",
 #' @keywords OGC Expression BinaryLogicOpType
 #' @return Object of \code{\link{R6Class}} for modelling an BinaryLogicOpType
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(...)}}{
-#'    This method is used to instantiate an BinaryLogicOpType
-#'  }
-#' }
 #' @note abstract super class of all the binary logical operation classes
 BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
    inherit = OGCExpression,
    public = list(
+     #'@field operations a list OGC expressions
      operations = list(),
+     
+     #'@description Initializes a \link{BinaryLogicOpType} expression
+     #'@param ... list of objects of class \link{OGCExpression}
+     #'@param element element
+     #'@param namespacePrefix namespacePrefix
+     #'@param exprVersion OGC expression version. Default is "1.1.0"
      initialize = function(..., element, namespacePrefix, exprVersion = "1.1.0"){
        super$initialize(element = element, namespacePrefix = namespacePrefix, exprVersion = exprVersion)
        operations <- list(...)
@@ -483,7 +484,9 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
        self$setExprVersion(exprVersion)
      },
      
-     #setExprVersion
+     #'@description Sets expression version. The methods will control that expression versions are set
+     #' for each of the operations specified in the expression.
+     #'@param exprVersion OGC expression version
      setExprVersion = function(exprVersion){
        private$exprVersion <- exprVersion
        if(length(self$operations)>0) for(i in 1:length(self$operations)){
@@ -499,12 +502,6 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
 #' @keywords OGC Expression BinaryLogicOpType And
 #' @return Object of \code{\link{R6Class}} for modelling an And operator
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(...)}}{
-#'    This method is used to instantiate an And operator
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
@@ -521,6 +518,9 @@ And <-  R6Class("And",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    
+    #'@description Initializes an \link{And} expression
+    #'@param ... list of objects of class \link{OGCExpression}
     initialize = function(...){
       super$initialize(..., element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
     }
@@ -533,12 +533,6 @@ And <-  R6Class("And",
 #' @keywords OGC Expression BinaryLogicOpType Or
 #' @return Object of \code{\link{R6Class}} for modelling an Or operator
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(...)}}{
-#'    This method is used to instantiate an Or operator
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
@@ -555,6 +549,9 @@ Or <-  R6Class("Or",
     xmlNamespacePrefix = "OGC"
   ),
   public = list(
+    
+    #'@description Initializes an \link{Or} expression
+    #'@param ... list of objects of class \link{OGCExpression}
     initialize = function(...){
       super$initialize(..., element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
     }
@@ -569,24 +566,27 @@ Or <-  R6Class("Or",
 #' @keywords OGC Expression UnaryLogicOpType
 #' @return Object of \code{\link{R6Class}} for modelling an UnaryLogicOpType
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(...)}}{
-#'    This method is used to instantiate an UnaryLogicOpType
-#'  }
-#' }
 #' @note abstract super class of all the unary logical operation classes
 UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
   inherit = OGCExpression,
   public = list(
+    #'@field operations a list OGC expressions
     operations = list(),
+    
+    #'@description Initializes a \link{UnaryLogicOpType} expression
+    #'@param ... list of objects of class \link{OGCExpression}
+    #'@param element element
+    #'@param namespacePrefix namespacePrefix
+    #'@param exprVersion OGC expression version. Default is "1.1.0"
     initialize = function(..., element, namespacePrefix, exprVersion = "1.1.0"){
       super$initialize(element = element, namespacePrefix = namespacePrefix, exprVersion = exprVersion)
       self$operations = list(...)
       self$setExprVersion(exprVersion)
     },
     
-    #setExprVersion
+    #'@description Sets expression version. The methods will control that expression versions are set
+    #' for each of the operations specified in the expression.
+    #'@param exprVersion OGC expression version
     setExprVersion = function(exprVersion){
       private$exprVersion <- exprVersion
       if(length(self$operations)>0) for(i in 1:length(self$operations)){
@@ -602,12 +602,6 @@ UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
 #' @keywords OGC Expression UnaryLogicOpType Not
 #' @return Object of \code{\link{R6Class}} for modelling an Not
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(...)}}{
-#'    This method is used to instantiate an Not operator
-#'  }
-#' }
 #' 
 #' @examples
 #'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
@@ -623,6 +617,9 @@ Not <-  R6Class("Not",
      xmlNamespacePrefix = "OGC"
    ),
    public = list(
+     
+     #'@description Initializes an \link{Not} expression
+     #'@param ... list of objects of class \link{OGCExpression}
      initialize = function(...){
        super$initialize(..., element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
      }

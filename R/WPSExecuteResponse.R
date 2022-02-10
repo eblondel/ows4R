@@ -5,33 +5,6 @@
 #' @keywords OGC WPS ExecuteResponse
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Execute response
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml)}}{
-#'    This method is used to instantiate a WPSExecuteResponse object
-#'  }
-#'  \item{\code{getProcess()}}{
-#'    Get the process
-#'  }
-#'  \item{\code{getStatus()}}{
-#'    Get the status
-#'  }
-#'  \item{\code{getStatusLocation()}}{
-#'    Get the status location
-#'  }
-#'  \item{\code{getProcessOutputs()}}{
-#'    Get the process output(s)
-#'  }
-#'  \item{\code{decode()}}{
-#'    Decodes WPS Execute response from XML
-#'  }
-#'  \item{\code{update(verbose)}}{
-#'    Updates the status based on the execute status location.
-#'    Returns an object of class \code{WPSExecuteResponse}
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -45,12 +18,24 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     processDescription = NULL
   ),
   public = list(
+    #'@field process process
     process = NULL,
+    #'@field status status
     status = NULL,
+    #'@field statusLocation status location
     statusLocation = NULL,
+    #'@field statusHistory status history
     statusHistory = NULL,
+    #'@field processOutputs process outputs
     processOutputs = list(),
+    #'@field exception exception
     exception = NULL,
+    
+    #'@description Initializes a \link{WPSExecuteResponse}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param capabilities object of class \link{WPSCapabilities}
+    #'@param processDescription process description
+    #'@param logger logger
     initialize = function(xml, capabilities, processDescription = NULL, logger = NULL) {
       super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix, logger = logger) 
       private$xml = xml
@@ -61,37 +46,47 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
       self$decode(xml, capabilities = capabilities, processDescription = processDescription, logger = logger)
     },
     
-    #getProcess
+    #'@description Get process
+    #'@return an object of class \link{WPSProcess}
     getProcess = function(){
       return(self$process)
     },
     
-    #getStatus
+    #'@description Get status
+    #'@return an object of class \link{WPSStatus}
     getStatus = function(){
       return(self$status)
     },
     
-    #getStatusLocation
+    #'@description Get status location
+    #'@return an object of class \code{character}
     getStatusLocation = function(){
       return(self$statusLocation)
     },
     
-    #getStatusHistory
+    #'@description Get status history
+    #'@return an object of class \code{character}
     getStatusHistory = function(){
       return(self$statusHistory)
     },
     
-    #getProcessOutputs
+    #'@description Get list of process outputs
+    #'@return a \code{list} of outputs
     getProcessOutputs = function(){
       return(self$processOutputs)
     },
     
-    #getException
+    #'@description Get exception
+    #'@return an object of class \link{WPSException}
     getException = function(){
       return(self$exception)
     },
     
-    #decode
+    #'@description Decodes an object of class \link{WPSExecuteResponse} from XML
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param capabilities object of class \link{WPSCapabilities}
+    #'@param processDescription process description
+    #'@param logger logger
     decode = function(xml, capabilities, processDescription, logger){
       children <- xmlChildren(xmlChildren(xml)[[1]])
       self$process <- WPSProcess$new(xml = children$Process, capabilities = capabilities, version = xmlGetAttr(xmlChildren(xml)[[1]], "version"), logger = logger)
@@ -138,7 +133,8 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
       }
     },
     
-    #update
+    #'@description Updates status history
+    #'@param verbose verbose. Default is \code{FALSE}
     update = function(verbose = FALSE){
       
       if(!private$processDescription$isStoreSupported()){

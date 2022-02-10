@@ -12,27 +12,120 @@ Object of \code{\link{R6Class}} for modelling an OGC Expression
 }
 \description{
 OGCExpression
+
+OGCExpression
 }
 \note{
 abstract class
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(element, namespacePrefix, attrs, defaults, exprVersion)}}{
-   This method is used to instantiate an \code{OGCExpression} object
- }
- \item{\code{setExprVersion(exprVersion)}}{
-   Set expression version
- }
- \item{\code{getExprVersion()}}{
-   Get expression version
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
 \keyword{Expression}
 \keyword{OGC}
+\section{Super class}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{OGCExpression}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{OGCExpression$new()}}
+\item \href{#method-setExprVersion}{\code{OGCExpression$setExprVersion()}}
+\item \href{#method-getExprVersion}{\code{OGCExpression$getExprVersion()}}
+\item \href{#method-clone}{\code{OGCExpression$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object of class \link{OGCExpression}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCExpression$new(
+  element,
+  namespacePrefix,
+  attrs = NULL,
+  defaults = NULL,
+  exprVersion = "1.1.0"
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{element}}{element name}
+
+\item{\code{namespacePrefix}}{XML namespace prefix}
+
+\item{\code{attrs}}{attributes}
+
+\item{\code{defaults}}{default values}
+
+\item{\code{exprVersion}}{OGC version for the expression}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setExprVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-setExprVersion}{}}}
+\subsection{Method \code{setExprVersion()}}{
+Sets expression version. The methods will control proper XML namespace prefix setting
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCExpression$setExprVersion(exprVersion)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{exprVersion}}{OGC expression version}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getExprVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-getExprVersion}{}}}
+\subsection{Method \code{getExprVersion()}}{
+Gets expression version
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCExpression$getExprVersion()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCExpression$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

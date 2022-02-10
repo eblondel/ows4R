@@ -12,37 +12,127 @@ Object of \code{\link{R6Class}} modelling a WFS feature type element
 }
 \description{
 WFSFeatureTypeElement
+
+WFSFeatureTypeElement
 }
 \note{
 Abstract class used by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj)}}{
-   This method is used to instantiate a \code{WFSFeatureTypeElement} object
- }
- \item{\code{getMinOccurs()}}{
-   Get min occurs
- }
- \item{\code{getMaxOccurs()}}{
-   Get max occurs
- }
- \item{\code{isNillable()}}{
-   Get TRUE if nillable, FALSE otherwise
- }
- \item{\code{getName()}}{
-   Get element name
- }
- \item{\code{getType()}}{
-   Get element type
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
 \keyword{FeatureType}
 \keyword{OGC}
 \keyword{WFS}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WFSFeatureTypeElement$new()}}
+\item \href{#method-getMinOccurs}{\code{WFSFeatureTypeElement$getMinOccurs()}}
+\item \href{#method-getMaxOccurs}{\code{WFSFeatureTypeElement$getMaxOccurs()}}
+\item \href{#method-isNillable}{\code{WFSFeatureTypeElement$isNillable()}}
+\item \href{#method-getName}{\code{WFSFeatureTypeElement$getName()}}
+\item \href{#method-getType}{\code{WFSFeatureTypeElement$getType()}}
+\item \href{#method-clone}{\code{WFSFeatureTypeElement$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes a \link{WFSFeatureTypeElement}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$new(xmlObj)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getMinOccurs"></a>}}
+\if{latex}{\out{\hypertarget{method-getMinOccurs}{}}}
+\subsection{Method \code{getMinOccurs()}}{
+get min occurs
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$getMinOccurs()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getMaxOccurs"></a>}}
+\if{latex}{\out{\hypertarget{method-getMaxOccurs}{}}}
+\subsection{Method \code{getMaxOccurs()}}{
+get max occurs
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$getMaxOccurs()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-isNillable"></a>}}
+\if{latex}{\out{\hypertarget{method-isNillable}{}}}
+\subsection{Method \code{isNillable()}}{
+get if nillable
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$isNillable()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{logical}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-getName}{}}}
+\subsection{Method \code{getName()}}{
+get name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$getName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-getType}{}}}
+\subsection{Method \code{getType()}}{
+get type
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$getType()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

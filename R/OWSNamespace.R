@@ -6,13 +6,6 @@
 #' @keywords OWS namespace
 #' @return Object of \code{\link{R6Class}} for modelling an OWS Namespace
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(id, uri)}}{
-#'    This method is used to instantiate an OWS namespace
-#'  }
-#' }
 #' 
 #' @note class used internally by ows4R for specifying XML namespaces
 #' 
@@ -20,12 +13,22 @@
 #'
 OWSNamespace <- R6Class("OWSNamespace",
   public = list(
+    
+    #'@field id namespace id
     id = NA,
+    #'@field uri namespace uri
     uri = NA,
+    
+    #'@description Initializes an \link{OWSNamespace}
+    #'@param id id
+    #'@param uri uri
     initialize = function(id, uri){
       self$id = id
       self$uri = uri
     },
+    
+    #'@description Get namespace definition
+    #'@return a named \code{list} with id and uri
     getDefinition = function(){
       ns <- list(self$uri)
       names(ns) <- self$id
@@ -33,6 +36,7 @@ OWSNamespace <- R6Class("OWSNamespace",
     }
   )
 )
+
 OWSNamespace$CSW_2_0_2 = OWSNamespace$new("csw", "http://www.opengis.net/cat/csw/2.0.2")
 OWSNamespace$CSW_3_0 = OWSNamespace$new("csw30", "http://www.opengis.net/cat/csw/3.0")
 OWSNamespace$FES = OWSNamespace$new("fes", "http://www.opengis.net/fes/2.0")

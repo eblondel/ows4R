@@ -12,22 +12,12 @@ Object of \code{\link{R6Class}} for modelling an OGC Operations Metadata
 }
 \description{
 OWSOperationsMetadata
+
+OWSOperationsMetadata
 }
 \note{
 Abstract class used internally by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, serviceVersion)}}{
-   This method is used to instantiate a OWSOperationsMetadata object
- }
- \item{\code{getOperations()}}{
-   Get operations
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
@@ -35,3 +25,63 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{OWS}
 \keyword{metadata}
 \keyword{operation}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{OWSOperationsMetadata$new()}}
+\item \href{#method-getOperations}{\code{OWSOperationsMetadata$getOperations()}}
+\item \href{#method-clone}{\code{OWSOperationsMetadata$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an \link{OWSOperationsMetadata} object
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{owsVersion}}{OWS version}
+
+\item{\code{serviceVersion}}{service version}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getOperations"></a>}}
+\if{latex}{\out{\hypertarget{method-getOperations}{}}}
+\subsection{Method \code{getOperations()}}{
+Get operations
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSOperationsMetadata$getOperations()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a list of \link{OWSOperation}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSOperationsMetadata$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

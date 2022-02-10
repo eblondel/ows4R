@@ -5,16 +5,6 @@
 #' @keywords OGC OWS operation metadata
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Operations Metadata
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, serviceVersion)}}{
-#'    This method is used to instantiate a OWSOperationsMetadata object
-#'  }
-#'  \item{\code{getOperations()}}{
-#'    Get operations
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -63,11 +53,17 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
      }
    ),
    public = list(
+      
+     #'@description Initializes an \link{OWSOperationsMetadata} object
+     #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param owsVersion OWS version
+     #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){
        private$operations <- private$fetchOperations(xmlObj, owsVersion, serviceVersion)
      },
      
-     #getOperations
+     #'@description Get operations
+     #'@return a list of \link{OWSOperation}
      getOperations = function(){
        return(private$operations)
      }

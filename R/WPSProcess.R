@@ -74,6 +74,13 @@ WPSProcess <- R6Class("WPSProcess",
     
   ),
   public = list(
+    
+    #'@description Initializes a \link{WPSProcess}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param capabilities object of class \link{WPSCapabilities}
+    #'@param version service version
+    #'@param logger logger
+    #'@param ... any additional parameter
     initialize = function(xml, capabilities = NULL, version, logger = NULL, ...){
       super$initialize(logger = logger)
       
@@ -87,22 +94,26 @@ WPSProcess <- R6Class("WPSProcess",
       private$processVersion = process$version
     },
     
-    #getIdentifier
+    #'@description Get identifier
+    #'@return object of class \code{character}
     getIdentifier = function(){
       return(private$identifier)
     },
     
-    #getTitle
+    #'@description Get title
+    #'@return object of class \code{character}
     getTitle = function(){
       return(private$title)
     },
     
-    #getVersion
+    #'@description Get version
+    #'@return object of class \code{character}
     getVersion = function(){
       return(private$processVersion)
     },
     
-    #getDescription
+    #'@description Get description
+    #'@return object of class \link{WPSProcessDescription}
     getDescription = function(){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
@@ -124,7 +135,14 @@ WPSProcess <- R6Class("WPSProcess",
       return(processDesc)
     },
     
-    #execute
+    #'@description  Execute process
+    #'@param dataInputs a named list of data inputs, objects of class \link{WPSLiteralData}, \link{WPSComplexData} or \link{WPSBoundingBoxData}
+    #'@param responseForm response form, object of class \link{WPSResponseDocument}
+    #'@param storeExecuteResponse store execute response? object of class \code{logical}. \code{FALSE} by default
+    #'@param lineage lineage, object of class \code{logical}
+    #'@param status status, object of class \code{logical}
+    #'@param update update, object of class \code{logical}. For asynchronous requests
+    #'@param updateInterval update interval, object of class \code{integer}. For asynchronous requests
     execute = function(dataInputs = list(), responseForm = NULL,
                        storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
                        update = FALSE, updateInterval = 1){

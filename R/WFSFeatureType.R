@@ -5,40 +5,8 @@
 #' @keywords OGC WFS FeatureType
 #' @return Object of \code{\link{R6Class}} modelling a WFS feature type
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
-#'    This method is used to instantiate a \code{WFSFeatureType} object
-#'  }
-#'  \item{\code{getName()}}{
-#'    Get feature type name
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get feature type title
-#'  }
-#'  \item{\code{getAbstract()}}{
-#'    Get feature type abstract
-#'  }
-#'  \item{\code{getKeywords()}}{
-#'    Get feature type keywords
-#'  }
-#'  \item{\code{getDefaultCRS()}}{
-#'    Get feature type default CRS
-#'  }
-#'  \item{\code{getBoundingBox()}}{
-#'    Get feature type bounding box
-#'  }
-#'  \item{\code{getDescription(pretty)}}{
-#'    Get feature type description. If \code{pretty} is TRUE,
-#'    the output will be an object of class \code{data.frame}
-#'  }
-#'  \item{\code{getFeatures()}}{
-#'    Get features.
-#'  }
-#' }
 #' 
-#' @note Abstract class used by \pkg{ows4R}
+#' @note Internal class used by \pkg{ows4R}
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -46,11 +14,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
   inherit = OGCAbstractObject,                       
   private = list(
     gmlIdAttributeName = "gml_id",
-    
     capabilities = NULL,
     url = NA,
     version = NA,
-    
     name = NA,
     title = NA,
     abstract = NA,
@@ -141,8 +107,16 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     
   ),
   public = list(
+    #'@field description description
     description = NULL,
+    #'@field features features
     features = NULL,
+    
+    #'@description Initializes an object of class \link{WFSFeatureType}
+    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param capabilities object of class \link{WFSCapabilities}
+    #'@param version service version
+    #'@param logger logger
     initialize = function(xmlObj, capabilities, version, logger = NULL){
       super$initialize(logger = logger)
       
@@ -160,37 +134,45 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
     },
     
-    #getName
+    #'@description Get feature type name
+    #'@param object of class \code{character}
     getName = function(){
       return(private$name)
     },
     
-    #getTitle
+    #'@description Get feature type title
+    #'@param object of class \code{character}
     getTitle = function(){
       return(private$title)
     },
     
-    #getAbstract
+    #'@description Get feature type abstract
+    #'@param object of class \code{character}
     getAbstract = function(){
       return(private$abstract)
     },
     
-    #getKeywords
+    #'@description Get feature type keywords
+    #'@param object of class \code{character}
     getKeywords = function(){
       return(private$keywords)
     },
     
-    #getDefaultCRS
+    #'@description Get feature type default CRS
+    #'@param object of class \code{character}
     getDefaultCRS = function(){
       return(private$defaultCRS)
     },
     
-    #getBoundingBox
+    #'@description Get feature type bounding box
+    #'@param object of class \code{matrix}
     getBoundingBox = function(){
       return(private$WGS84BoundingBox)
     },
     
-    #getDescription
+    #'@description Describes a feature type
+    #'@param pretty pretty whether to return a prettified \code{data.frame}. Default is \code{FALSE}
+    #'@return a \code{list} of \link{WFSFeatureTypeElement} or \code{data.frame}
     getDescription = function(pretty = FALSE){
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
@@ -229,7 +211,16 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       return(out)
     },
     
-    #getFeatures
+    #'@description Get features
+    #'@param typeName the name of the feature type
+    #'@param ... any other parameter to pass to the \link{WFSGetFeature} request
+    #'@param outputFormat output format
+    #'@param paging paging. Default is \code{FALSE}
+    #'@param paging_length number of features to request per page. Default is 1000
+    #'@param parallel whether to get features using parallel multicore strategy. Default is \code{FALSE}
+    #'@param parallel_handler Handler function to parallelize the code. eg \link{mclapply}
+    #'@param cl optional cluster object for parallel cluster approaches using eg. \code{parallel::makeCluster}
+    #'@return features as object of class \code{sf}
     getFeatures = function(..., 
                            outputFormat = NULL,
                            paging = FALSE, paging_length = 1000,

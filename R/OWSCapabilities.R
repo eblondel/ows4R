@@ -6,34 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an abstract
 #' OWS Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, service,  owsVersion, serviceVersion, logger, ...)}}{
-#'    This method is used to instantiate a OWSGetCapabilities object
-#'  }
-#'  \item{\code{setClient(client)}}{
-#'    Internal method to self-assign the parent client
-#'  }
-#'  \item{\code{getUrl()}}{
-#'    Get URL
-#'  }
-#'  \item{\code{getVersion()}}{
-#'    Get version
-#'  }
-#'  \item{\code{getRequest()}}{
-#'    Get request
-#'  }
-#'  \item{\code{getServiceIdentification()}}{
-#'    Get the service identification
-#'  }
-#'  \item{\code{getServiceProvider()}}{
-#'    Get the service provider
-#'  }
-#'  \item{\code{getOperationsMetadata()}}{
-#'    Get the service operations metadata
-#'  }
-#' }
 #' 
 #' @note abstract class used by \pkg{ows4R}
 #' 
@@ -57,7 +29,15 @@ OWSCapabilities <- R6Class("OWSCapabilities",
    
    public = list(
      
-     #initialize
+      #'@description Initializes a \link{OWSCapabilities} object
+      #'@param element element
+      #'@param namespacePrefix namespace prefix
+      #'@param url url
+      #'@param service service
+      #'@param owsVersion OWS version
+      #'@param serviceVersion service version
+      #'@param logger logger type \code{NULL}, "INFO" or "DEBUG"
+      #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
      initialize = function(element = NULL, namespacePrefix = NULL,
                            url, service, owsVersion, serviceVersion, 
                            logger = NULL, ...) {
@@ -84,54 +64,64 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
      },
      
-     #setClient
+     #'@description Sets the OGC client
+     #'@param client an object extending \link{OWSClient}
      setClient = function(client){
         private$client <- client
      },
      
-     #getUrl
+     #'@description Get client
+     #'@param an object extending \link{OWSClient}
+     getClient = function(){
+        return(private$client)
+     },
+     
+     #'@description Get URL
+     #'@return an object of class \code{character}
      getUrl = function(){
        return(private$url)
      },
      
-     #getService
+     #'@description Get service
+     #'@return an object of class \code{character}
      getService = function(){
        return(private$service)
      },
      
-     #getServiceVersion
+     #'@description Get service version
+     #'@return an object of class \code{character}
      getServiceVersion = function(){
        return(private$serviceVersion)
      },
      
-     #getOWSVersion
+     #'@description Get OWS version
+     #'@return an object of class \code{character}
      getOWSVersion = function(){
        return(private$owsVersion)
      },
      
-     #getRequest
+     #'@description Get request
+     #'@return an object of class \link{OWSGetCapabilities}
      getRequest = function(){
       return(private$request) 
      },
      
-     #getServiceIdentification
+     #'@description Get service identification
+     #'@return an object of class \link{OWSServiceIdentification}
      getServiceIdentification = function(){
        return(private$serviceIdentification)
      },
      
-     #getServiceProvider
+     #'@description Get service provider
+     #'@return an object of class \link{OWSServiceProvider}
      getServiceProvider = function(){
        return(private$serviceProvider)
      },
-     
-     #getOperationsMetadata
+
+     #'@description Get service operations metadata
+     #'@return an object of class \link{OWSOperationsMetadata}     
      getOperationsMetadata = function(){
        return(private$operationsMetadata)
-     },
-     
-     #getClient
-     getClient = function(){
-        return(private$client)
      }
    )
 )

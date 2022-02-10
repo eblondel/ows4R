@@ -4,15 +4,6 @@
 #' @keywords OGC Query
 #' @return Object of \code{\link{R6Class}} for modelling an CSW Query
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(elementSetName, constraint, typeNames, serviceVersion)}}{
-#'    This method is used to instantiate an CSWQUery object. The \code{elementSetName} can be 
-#'    either "full" (default), "brief" or "summary". A constraint \code{CSWConstraint} can be
-#'    defined for the query. The \code{typeNames} indicates to query (default "csw:Record").
-#'    The \code{serviceVersion} gives the CSW service version (default "2.0.2")
-#'  }
-#' }
 #' 
 #' @examples 
 #'   #CSWQuery - elementSetName
@@ -76,8 +67,19 @@ CSWQuery <-  R6Class("CSWQuery",
     typeNames = "csw:Record"
   ),
   public = list(
+    #'@field ElementSetName element set name property for request XML encoding
     ElementSetName = "full",
+    #'@field constraint property for request XML encoding
     constraint = NULL,
+    
+    #'@description This method is used to instantiate an CSWQUery object. The \code{elementSetName} can be 
+    #'    either "full" (default), "brief" or "summary". A constraint \code{CSWConstraint} can be
+    #'    defined for the query. The \code{typeNames} indicates to query (default "csw:Record").
+    #'    The \code{serviceVersion} gives the CSW service version (default "2.0.2")
+    #'@param elementSetName element set name. Default is "full"
+    #'@param constraint object of class \link{CSWConstraint}
+    #'@param typeNames type names
+    #'@param serviceVersion CSW service version
     initialize = function(elementSetName = "full", constraint = NULL,
                           typeNames = "csw:Record", serviceVersion = "2.0.2"){
       private$typeNames <- typeNames
@@ -96,7 +98,8 @@ CSWQuery <-  R6Class("CSWQuery",
       self$constraint = constraint
     },
     
-    #setServiceVersion
+    #'@description Set service version. The methods ensures propery naming of typeNames depending on the service version
+    #'@param serviceVersion service version
     setServiceVersion = function(serviceVersion){
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")

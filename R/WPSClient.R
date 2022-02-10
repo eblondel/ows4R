@@ -15,37 +15,6 @@
 #'    #get capabilities
 #'    caps <- wps$getCapabilities()
 #' }
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
-#'    This method is used to instantiate a WPSClient with the \code{url} of the
-#'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
-#'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
-#'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
-#'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
-#'  }
-#'  \item{\code{getCapabilities()}}{
-#'    Get service capabilities. Inherited from OWS Client
-#'  }
-#'  \item{\code{reloadCapabilities()}}{
-#'    Reload service capabilities
-#'  }
-#'  \item{\code{getProcesses(pretty, full)}}{
-#'    Return the list of processes offered by the service capabilities. \code{pretty} allows to control
-#'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
-#'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
-#'    case a the WPS client will request a process description (with more information about the process) for
-#'    each process listed in the capabilities.
-#'  }
-#'  \item{\code{describeProcess(identifier)}}{
-#'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
-#'  }
-#'  \item{\code{execute(identifier, dataInputs, responseForm, storeExecuteResponse, lineage, status,
-#'                      update, updateInterval)}}{
-#'    Execute a process, given its \code{identifier}
-#'  }
-#' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -55,8 +24,19 @@ WPSClient <- R6Class("WPSClient",
      serviceName = "WPS"
    ),
    public = list(
-     #initialize
-     initialize = function(url, serviceVersion = NULL, 
+      #'@description This method is used to instantiate a \link{WPSClient} with the \code{url} of the
+      #'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
+      #'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
+      #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
+      #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
+      #'@param url url
+      #'@param serviceVersion WFS service version
+      #'@param user user
+      #'@param pwd password
+      #'@param token token
+      #'@param headers headers
+      #'@param logger logger
+      initialize = function(url, serviceVersion = NULL, 
                            user = NULL, pwd = NULL, token = NULL, headers = c(),
                            logger = NULL) {
        super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, headers, logger)
@@ -66,12 +46,13 @@ WPSClient <- R6Class("WPSClient",
        self$capabilities$setClient(self)
      },
      
-     #getCapabilities
+     #'@description Get WPS capabilities
+     #'@return an object of class \link{WPSCapabilities}
      getCapabilities = function(){
        return(self$capabilities)
      },
      
-     #reloadCapabilities
+     #'@description Reloads WPS capabilities
      reloadCapabilities = function(){
        self$capabilities = WPSCapabilities$new(self$url, self$version, 
                                                user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
@@ -79,17 +60,34 @@ WPSClient <- R6Class("WPSClient",
        self$capabilities$setClient(self)
      },
      
-     #getProcesses
+     #'@description Get the list of processes offered by the service capabilities. \code{pretty} allows to control
+     #'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
+     #'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
+     #'    case a the WPS client will request a process description (with more information about the process) for
+     #'    each process listed in the capabilities.
+     #' @param pretty pretty
+     #' @param full full
+     #' @return a \code{list} of \link{WPSProcessDescription} or a \code{data.frame}
      getProcesses = function(pretty = FALSE, full = FALSE){
        return(self$capabilities$getProcesses(pretty = pretty, full = full))
      },
      
-     #describeProcess
+     #'@description Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
+     #'@param identifier process identifier
+     #'@return an object of class \link{WPSProcessDescription}
      describeProcess = function(identifier){
         return(self$capabilities$describeProcess(identifier = identifier))
      },
      
-     #execute
+     #'@description  Execute a process, given its \code{identifier}
+     #'@param identifier process identifier
+     #'@param dataInputs a named list of data inputs, objects of class \link{WPSLiteralData}, \link{WPSComplexData} or \link{WPSBoundingBoxData}
+     #'@param responseForm response form, object of class \link{WPSResponseDocument}
+     #'@param storeExecuteResponse store execute response? object of class \code{logical}. \code{FALSE} by default
+     #'@param lineage lineage, object of class \code{logical}
+     #'@param status status, object of class \code{logical}
+     #'@param update update, object of class \code{logical}. For asynchronous requests
+     #'@param updateInterval update interval, object of class \code{integer}. For asynchronous requests
      execute = function(identifier, dataInputs = list(), responseForm = NULL,
                         storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
                         update = FALSE, updateInterval = 1){

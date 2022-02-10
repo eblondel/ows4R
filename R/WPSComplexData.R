@@ -125,7 +125,16 @@ WPSComplexData <- R6Class("WPSComplexData",
     }
   ),
   public = list(
+    #'@field value value
     value = NULL,
+    
+    #'@description Initializes an object of class \link{WPSComplexData}
+    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param value value
+    #'@param schema schema
+    #'@param mimeType mime type
+    #'@param serviceVersion WPS service version
+    #'@param cdata whether value has to be wrapped in a XML CDATA. Default is \code{TRUE}
     initialize = function(xml = NULL, value = NULL, schema = NULL, mimeType = NULL,
                           serviceVersion = "1.0.0", cdata = TRUE) {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
@@ -141,7 +150,9 @@ WPSComplexData <- R6Class("WPSComplexData",
       }
       if(!is.null(mimeType)) self$value <- private$coerceToMimeType(value, mimeType)
     },
-    #decode
+    
+    #'@description Decodes an object of class \link{WPSComplexData} from XML
+    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
     decode = function(xml){
       self$value <- as(xmlChildren(xml)[[1]], "character")
       self$attrs <- as.list(xmlAttrs(xml))
@@ -153,7 +164,10 @@ WPSComplexData <- R6Class("WPSComplexData",
       }
     },
     
-    #checkValidity
+    #'@description Check the object against a parameter description inherited from a WPS process description,
+    #'    object of class \code{WPSComplexInputDescription}. If not valid, the function will raise an error.
+    #'@param parameterDescription object of class \link{WPSComplexInputDescription}
+    #'@return an error if not valid
     checkValidity = function(parameterDescription){
       valid <- self$attrs$mimeType %in% sapply(parameterDescription$getFormats(), function(x){x$getMimeType()})
       if(!valid){
@@ -164,7 +178,8 @@ WPSComplexData <- R6Class("WPSComplexData",
       }
     },
     
-    #getFeatures
+    #'@description Get features
+    #'@return object of class \code{sf}
     getFeatures = function(){
       return(private$features)
     }

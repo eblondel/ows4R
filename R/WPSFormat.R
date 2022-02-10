@@ -5,28 +5,6 @@
 #' @keywords OGC WPS Process input description
 #' @return Object of \code{\link{R6Class}} modelling a WPS process input description
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, version, logger)}}{
-#'    This method is used to instantiate a \code{WPSFormat} object
-#'  }
-#'  \item{\code{getMimeType()}}{
-#'    Get mimetype
-#'  }
-#'  \item{\code{getEncoding()}}{
-#'    Get encoding
-#'  }
-#'  \item{\code{getSchema()}}{
-#'    Get schema
-#'  }
-#'  \item{\code{setIsDefault(default)}}{
-#'    Set if default format or not
-#'  }
-#'  \item{\code{isDefault()}}{
-#'    Is default format
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 
@@ -65,6 +43,12 @@ WPSFormat <- R6Class("WPSFormat",
      
    ),
    public = list(
+      
+     #'@description Initializes an object of class \link{WPSFormat}
+     #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+     #'@param version WPS service version
+     #'@param logger logger
+     #'@param ... any additional parameter
      initialize = function(xml = NULL, version, logger = NULL, ...){
        super$initialize(logger = logger)
        private$version = version
@@ -77,27 +61,32 @@ WPSFormat <- R6Class("WPSFormat",
        }
      },
      
-     #getMimeType
+     #'@description Get mime type
+     #'@return object of class \code{character}
      getMimeType = function(){
        return(private$mimeType)
      },
      
-     #getEncoding
+     #'@description Get encoding
+     #'@return object of class \code{character}
      getEncoding = function(){
        return(private$encoding)
      },
      
-     #getSchema
+     #'@description Get schema
+     #'@return object of class \code{character}
      getSchema = function(){
        return(private$schema)
      },
      
-     #setIsDefault
+     #'@description set is default
+     #'@param default object of class \code{logical}
      setIsDefault = function(default){
        private$default = default
      },
      
-     #isDefault
+     #'@description is default
+     #'@return \code{TRUE} if default, \code{FALSE} otherwise
      isDefault = function(){
        return(private$default)
      }

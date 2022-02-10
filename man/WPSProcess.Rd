@@ -12,6 +12,8 @@ Object of \code{\link{R6Class}} modelling a WPS process
 }
 \description{
 WPSProcess
+
+WPSProcess
 }
 \note{
 Class used internally by \pkg{ows4R}
@@ -48,3 +50,165 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{OGC}
 \keyword{Process}
 \keyword{WPS}
+\section{Super class}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{WPSProcess}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WPSProcess$new()}}
+\item \href{#method-getIdentifier}{\code{WPSProcess$getIdentifier()}}
+\item \href{#method-getTitle}{\code{WPSProcess$getTitle()}}
+\item \href{#method-getVersion}{\code{WPSProcess$getVersion()}}
+\item \href{#method-getDescription}{\code{WPSProcess$getDescription()}}
+\item \href{#method-execute}{\code{WPSProcess$execute()}}
+\item \href{#method-clone}{\code{WPSProcess$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes a \link{WPSProcess}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$new(xml, capabilities = NULL, version, logger = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{capabilities}}{object of class \link{WPSCapabilities}}
+
+\item{\code{version}}{service version}
+
+\item{\code{logger}}{logger}
+
+\item{\code{...}}{any additional parameter}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getIdentifier"></a>}}
+\if{latex}{\out{\hypertarget{method-getIdentifier}{}}}
+\subsection{Method \code{getIdentifier()}}{
+Get identifier
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$getIdentifier()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\subsection{Method \code{getTitle()}}{
+Get title
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$getTitle()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-getVersion}{}}}
+\subsection{Method \code{getVersion()}}{
+Get version
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$getVersion()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-getDescription}{}}}
+\subsection{Method \code{getDescription()}}{
+Get description
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$getDescription()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \link{WPSProcessDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-execute}{}}}
+\subsection{Method \code{execute()}}{
+Execute process
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$execute(
+  dataInputs = list(),
+  responseForm = NULL,
+  storeExecuteResponse = FALSE,
+  lineage = NULL,
+  status = NULL,
+  update = FALSE,
+  updateInterval = 1
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{dataInputs}}{a named list of data inputs, objects of class \link{WPSLiteralData}, \link{WPSComplexData} or \link{WPSBoundingBoxData}}
+
+\item{\code{responseForm}}{response form, object of class \link{WPSResponseDocument}}
+
+\item{\code{storeExecuteResponse}}{store execute response? object of class \code{logical}. \code{FALSE} by default}
+
+\item{\code{lineage}}{lineage, object of class \code{logical}}
+
+\item{\code{status}}{status, object of class \code{logical}}
+
+\item{\code{update}}{update, object of class \code{logical}. For asynchronous requests}
+
+\item{\code{updateInterval}}{update interval, object of class \code{integer}. For asynchronous requests}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcess$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

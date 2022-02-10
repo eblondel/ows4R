@@ -6,27 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Processing Service (WPS) Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, version, logger, ...)}}{
-#'    This method is used to instantiate a WPSCapabilities object
-#'  }
-#'  \item{\code{getProcesses(pretty, full)}}{
-#'    Return the list of processes offered by the service capabilities. \code{pretty} allows to control
-#'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
-#'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
-#'    case a the WPS client will request a process description (with more information about the process) for
-#'    each process listed in the capabilities.
-#'  }
-#'  \item{\code{describeProcess(identifier)}}{
-#'    Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
-#'  }
-#'  \item{\code{execute(identifier, dataInputs, responseForm, storeExecuteResponse, lineage, status,
-#'                      update, updateInterval)}}{
-#'    Execute a process, given its \code{identifier}
-#'  }
-#' }
 #' 
 #' @note Class used to read a \code{WPSCapabilities} document. The use of \code{WPSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WPS server.
@@ -64,7 +43,12 @@ WPSCapabilities <- R6Class("WPSCapabilities",
    ),
    public = list(
      
-     #initialize
+     #'@description Initializes a \link{WPSCapabilities} object
+     #'@param url url
+     #'@param version version
+     #'@param client an object of class \link{WPSClient}
+     #'@param logger logger type \code{NULL}, "INFO" or "DEBUG"
+     #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
      initialize = function(url, version, client = NULL, logger = NULL, ...) {
        owsVersion <- switch(version,
                             "1.0.0" = "1.1",
@@ -77,7 +61,14 @@ WPSCapabilities <- R6Class("WPSCapabilities",
        private$processes <- private$fetchProcesses(xml, version)
      },
      
-     #getProcesses
+     #'@description Get the list of processes offered by the service capabilities. \code{pretty} allows to control
+     #'    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
+     #'    is also possible to get a 'full' description of the process by setting \code{full = TRUE} in which 
+     #'    case a the WPS client will request a process description (with more information about the process) for
+     #'    each process listed in the capabilities.
+     #' @param pretty pretty
+     #' @param full full
+     #' @return a \code{list} of \link{WPSProcessDescription} or a \code{data.frame}
      getProcesses = function(pretty = FALSE, full = FALSE){
        processes <- private$processes
        if(pretty){
@@ -95,7 +86,9 @@ WPSCapabilities <- R6Class("WPSCapabilities",
        return(processes)
      },
      
-     #describeProcess
+     #'@description Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
+     #'@param identifier process identifier
+     #'@return an object of class \link{WPSProcessDescription}
      describeProcess = function(identifier){
         processes <- self$getProcesses()
         processes <- processes[sapply(processes, function(process){process$getIdentifier() == identifier})]
@@ -108,7 +101,15 @@ WPSCapabilities <- R6Class("WPSCapabilities",
         return(process$getDescription())
      },
      
-     #execute
+     #'@description  Execute a process, given its \code{identifier}
+     #'@param identifier process identifier
+     #'@param dataInputs a named list of data inputs, objects of class \link{WPSLiteralData}, \link{WPSComplexData} or \link{WPSBoundingBoxData}
+     #'@param responseForm response form, object of class \link{WPSResponseDocument}
+     #'@param storeExecuteResponse store execute response? object of class \code{logical}. \code{FALSE} by default
+     #'@param lineage lineage, object of class \code{logical}
+     #'@param status status, object of class \code{logical}
+     #'@param update update, object of class \code{logical}. For asynchronous requests
+     #'@param updateInterval update interval, object of class \code{integer}. For asynchronous requests
      execute = function(identifier, dataInputs = list(), responseForm = NULL,
                         storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
                         update = FALSE, updateInterval = 1){

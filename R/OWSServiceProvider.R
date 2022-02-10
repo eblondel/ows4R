@@ -5,23 +5,6 @@
 #' @keywords OGC OWS Service Provider
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Service Provider
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
-#'    This method is used to instantiate a OWSServiceProvider object
-#'  }
-#'  \item{\code{getProviderName()}}{
-#'    Get the provider name
-#'  }
-#'  \item{\code{getProviderSite()}}{
-#'    Get the provide site
-#'  }
-#'  \item{\code{getServiceContact()}}{
-#'    Get the service contact, as object of class \code{ISOResponsibleParty}
-#'    from package \pkg{geometa}
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -133,6 +116,11 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      }
    ),
    public = list(
+      
+     #'@description Initializes an object of class \link{OWSServiceProvider}
+     #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param owsVersion OWS version
+     #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){
        serviceProvider <- private$fetchServiceProvider(xmlObj, owsVersion, serviceVersion)
        private$providerName <- serviceProvider$providerName
@@ -140,17 +128,20 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
        private$serviceContact <- serviceProvider$serviceContact
      },
      
-     #getProviderName
+     #'@description Get provider name
+     #'@param the provider name, object of class \code{character}
      getProviderName = function(){
        return(private$providerName)
      },
      
-     #getProviderSite
+     #'@description Get provider site
+     #'@param the provider site, object of class \code{character}
      getProviderSite = function(){
        return(private$providerSite)
      },
      
-     #getServiceContact
+     #'@description Get provider contact
+     #'@param the provider contact, object of class \link{ISOResponsibleParty} from \pkg{geometa}
      getServiceContact = function(){
        return(private$serviceContact)
      }

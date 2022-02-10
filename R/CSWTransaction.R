@@ -5,14 +5,6 @@
 #' @keywords OGC CSW Transaction
 #' @return Object of \code{\link{R6Class}} for modelling a CSW Transaction request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(capabilities, op, url, serviceVersion, type, user, pwd, token, headers,
-#'                  record, recordProperty, constraint, logger, ...)}}{
-#'    This method is used to instantiate a CSWTransaction object
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a CSW Transaction request
 #' 
@@ -26,6 +18,22 @@ CSWTransaction <- R6Class("CSWTransaction",
     xmlNamespacePrefix = "CSW"
   ),
   public = list(
+    
+    #'@description Initializes a \link{CSWTransaction} service request
+    #'@param capabilities an object of class \link{CSWCapabilities}
+    #'@param op object of class \link{OWSOperation} as retrieved from capabilities
+    #'@param url url
+    #'@param serviceVersion serviceVersion. Default is "2.0.2
+    #'@param type type of transaction, either "Insert", "Update", or "Delete"
+    #'@param user user
+    #'@param pwd password
+    #'@param token token
+    #'@param headers headers
+    #'@param record record
+    #'@param recordProperty record property
+    #'@param constraint constraint
+    #'@param logger logger
+    #'@param ... any parameter to pass to the service request
     initialize = function(capabilities, op, url, serviceVersion, type, 
                           user = NULL, pwd = NULL, token = NULL, headers = list(),
                           record = NULL, recordProperty = NULL, constraint = NULL,

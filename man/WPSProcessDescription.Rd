@@ -12,6 +12,8 @@ Object of \code{\link{R6Class}} modelling a WPS process description
 }
 \description{
 WPSProcessDescription
+
+WPSProcessDescription
 }
 \note{
 Class used internally by \pkg{ows4R}
@@ -59,3 +61,219 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{Process}
 \keyword{ProcessDescription}
 \keyword{WPS}
+\section{Super class}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{WPSProcessDescription}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WPSProcessDescription$new()}}
+\item \href{#method-getIdentifier}{\code{WPSProcessDescription$getIdentifier()}}
+\item \href{#method-getTitle}{\code{WPSProcessDescription$getTitle()}}
+\item \href{#method-getAbstract}{\code{WPSProcessDescription$getAbstract()}}
+\item \href{#method-getVersion}{\code{WPSProcessDescription$getVersion()}}
+\item \href{#method-isStatusSupported}{\code{WPSProcessDescription$isStatusSupported()}}
+\item \href{#method-isStoreSupported}{\code{WPSProcessDescription$isStoreSupported()}}
+\item \href{#method-getDataInputs}{\code{WPSProcessDescription$getDataInputs()}}
+\item \href{#method-getProcessOutputs}{\code{WPSProcessDescription$getProcessOutputs()}}
+\item \href{#method-asDataFrame}{\code{WPSProcessDescription$asDataFrame()}}
+\item \href{#method-clone}{\code{WPSProcessDescription$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object of class \link{WPSProcessDescription}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$new(xml, version, logger = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{version}}{version}
+
+\item{\code{logger}}{logger}
+
+\item{\code{...}}{any other parameter}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getIdentifier"></a>}}
+\if{latex}{\out{\hypertarget{method-getIdentifier}{}}}
+\subsection{Method \code{getIdentifier()}}{
+Get process identifier
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getIdentifier()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{identifier, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\subsection{Method \code{getTitle()}}{
+Get process title
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getTitle()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{title, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\subsection{Method \code{getAbstract()}}{
+Get process abstract
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getAbstract()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{abstract, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-getVersion}{}}}
+\subsection{Method \code{getVersion()}}{
+Get process version
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getVersion()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{version, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-isStatusSupported"></a>}}
+\if{latex}{\out{\hypertarget{method-isStatusSupported}{}}}
+\subsection{Method \code{isStatusSupported()}}{
+Indicates if the status is supported
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$isStatusSupported()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{\code{TRUE}}}{if supported, \code{FALSE} otherwise}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-isStoreSupported"></a>}}
+\if{latex}{\out{\hypertarget{method-isStoreSupported}{}}}
+\subsection{Method \code{isStoreSupported()}}{
+Indicates if the store is supported
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$isStoreSupported()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{\code{TRUE}}}{if supported, \code{FALSE} otherwise}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDataInputs"></a>}}
+\if{latex}{\out{\hypertarget{method-getDataInputs}{}}}
+\subsection{Method \code{getDataInputs()}}{
+Get data inputs
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getDataInputs()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a \code{list} of objects extending \link{WPSInputDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProcessOutputs"></a>}}
+\if{latex}{\out{\hypertarget{method-getProcessOutputs}{}}}
+\subsection{Method \code{getProcessOutputs()}}{
+Get process outputs
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getProcessOutputs()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a \code{list} of objects extending \link{WPSOutputDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-asDataFrame"></a>}}
+\if{latex}{\out{\hypertarget{method-asDataFrame}{}}}
+\subsection{Method \code{asDataFrame()}}{
+Convenience method to export a process description as \code{data.frame}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$asDataFrame()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a \code{data.frame} giving the process description
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

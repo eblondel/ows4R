@@ -12,29 +12,12 @@ Object of \code{\link{R6Class}} for modelling an OGC Service Provider
 }
 \description{
 OWSServiceProvider
+
+OWSServiceProvider
 }
 \note{
 Abstract class used internally by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
-   This method is used to instantiate a OWSServiceProvider object
- }
- \item{\code{getProviderName()}}{
-   Get the provider name
- }
- \item{\code{getProviderSite()}}{
-   Get the provide site
- }
- \item{\code{getServiceContact()}}{
-   Get the service contact, as object of class \code{ISOResponsibleParty}
-   from package \pkg{geometa}
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
@@ -42,3 +25,103 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{OWS}
 \keyword{Provider}
 \keyword{Service}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{OWSServiceProvider$new()}}
+\item \href{#method-getProviderName}{\code{OWSServiceProvider$getProviderName()}}
+\item \href{#method-getProviderSite}{\code{OWSServiceProvider$getProviderSite()}}
+\item \href{#method-getServiceContact}{\code{OWSServiceProvider$getServiceContact()}}
+\item \href{#method-clone}{\code{OWSServiceProvider$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object of class \link{OWSServiceProvider}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{owsVersion}}{OWS version}
+
+\item{\code{serviceVersion}}{service version}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProviderName"></a>}}
+\if{latex}{\out{\hypertarget{method-getProviderName}{}}}
+\subsection{Method \code{getProviderName()}}{
+Get provider name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceProvider$getProviderName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{provider name, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProviderSite"></a>}}
+\if{latex}{\out{\hypertarget{method-getProviderSite}{}}}
+\subsection{Method \code{getProviderSite()}}{
+Get provider site
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceProvider$getProviderSite()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{provider site, object of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getServiceContact"></a>}}
+\if{latex}{\out{\hypertarget{method-getServiceContact}{}}}
+\subsection{Method \code{getServiceContact()}}{
+Get provider contact
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceProvider$getServiceContact()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{the}}{provider contact, object of class \link{ISOResponsibleParty} from \pkg{geometa}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSServiceProvider$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

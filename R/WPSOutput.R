@@ -5,24 +5,6 @@
 #' @keywords OGC WPS Input
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Input
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, identifier, title, data, dataType)}}{
-#'    This method is used to instantiate a \code{WPSOutput} object
-#'  }
-#'  \item{\code{decode(xml)}}{
-#'    Decodes WPS output from XML
-#'  }
-#'  \item{\code{getData()}}{
-#'    Get data, as object of class \code{WPSLiteralData} or \code{WPSComplexData}
-#'  }
-#'  \item{\code{getDataValue()}}{
-#'    Get data value, as shortcut method to get value associated to \code{WPSLiteralData} 
-#'    or \code{WPSComplexData}
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -43,9 +25,20 @@ WPSOutput <- R6Class("WPSOutput",
     }
   ),
   public = list(
+    #'@field Identifier identifier
     Identifier = NULL,
+    #'@field Title tile
     Title = NULL,
+    #'@field Data data
     Data = NULL,
+    
+    #'@description Initializes a \link{WPSOutput}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param identifier identifier
+    #'@param title title
+    #'@param data data
+    #'@param dataType data type
+    #'@param serviceVersion WPS service version
     initialize = function(xml = NULL, identifier = NULL, title = NULL, 
                           data = NULL, dataType = NULL,
                           serviceVersion = "1.0.0") {
@@ -67,7 +60,8 @@ WPSOutput <- R6Class("WPSOutput",
       if(!is.null(dataType)) self$Data <- private$coerceToDataType(self$Data, dataType)
     },
     
-    #decode
+    #'@description Decodes an object of class \link{WPSOutput} from \pkg{XML}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
     decode = function(xml){
       children <- xmlChildren(xml)
       self$Identifier <- if(!is.null(children$Identifier)) xmlValue(children$Identifier) else NA
@@ -85,12 +79,14 @@ WPSOutput <- R6Class("WPSOutput",
       }
     },
     
-    #getData
+    #'@description Get data
+    #'@return data
     getData = function(){
       return(self$Data)
     },
     
-    #getDataValue
+    #'@description Get data value
+    #'@return data value
     getDataValue = function(){
       return(self$Data$value)
     }

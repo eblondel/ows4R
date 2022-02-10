@@ -5,13 +5,6 @@
 #' @keywords OGC CSW DescribeRecord
 #' @return Object of \code{\link{R6Class}} for modelling a CSW DescribeRecord request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(capabilities, op, url, version, namespace, logger, ...)}}{
-#'    This method is used to instantiate a CSWDescribeRecord object
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a CSW DescribeRecord request
 #' 
@@ -25,6 +18,15 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
      defaultNamespace = "csw:http://www.opengis.net/cat/csw/2.0.2"
    ),
    public = list(
+      
+     #'@description Initializes a \link{CSWDescribeRecord} service request
+     #'@param capabilities an object of class \link{CSWCapabilities}
+     #'@param op object of class \link{OWSOperation} as retrieved from capabilities
+     #'@param url url
+     #'@param version version
+     #'@param namespace namespace
+     #'@param logger logger
+     #'@param ... any parameter to pass to the service request
      initialize = function(capabilities, op, url, version, namespace = NULL, logger = NULL, ...) {
        namedParams <- list(service = "CSW", version = version)
        

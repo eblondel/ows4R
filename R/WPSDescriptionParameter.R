@@ -69,6 +69,11 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
      
    ),
    public = list(
+      #'@description Initializes a \link{WPSDescriptionParameter}
+      #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+      #'@param version WPS service version
+      #'@param logger logger
+      #'@param ... any other parameter
      initialize = function(xml = NULL, version, logger = NULL, ...){
        super$initialize(xml = xml, version = version, logger = logger, ...)
        private$version = version
@@ -77,12 +82,14 @@ WPSDescriptionParameter <- R6Class("WPSDescriptionParameter",
        }
      },
      
-     #getDataType
+     #'@description Get data type
+     #'@return object of class \code{character}
      getDataType = function(){
         return(private$dataType)
      },
      
-     #getFormats
+     #'@description get formats
+     #'@return the formats
      getFormats = function(){
        return(private$formats)
      }

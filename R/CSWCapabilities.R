@@ -6,13 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Catalogue Service for the Web (CSW) Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, version, client logger)}}{
-#'    This method is used to instantiate a \code{CSWCapabilities} object
-#'  }
-#' }
 #' 
 #' @note Class used to read a \code{CSWCapabilities} document. The use of \code{CSWClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a CSW server.
@@ -27,7 +20,12 @@ CSWCapabilities <- R6Class("CSWCapabilities",
    ),
    public = list(
      
-     #initialize
+     #'@description Initializes a \link{CSWCapabilities} object
+     #'@param url url
+     #'@param version version
+     #'@param client object of class \link{CSWClient}
+     #'@param logger logger type \code{NULL}, "INFO" or "DEBUG"
+     #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
      initialize = function(url, version, client = NULL, logger = NULL, ...) {
        owsVersion <- switch(version,
          "2.0.2" = "1.1",

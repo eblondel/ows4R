@@ -4,25 +4,7 @@
 #' @keywords OGC Abstract Object
 #' @return Object of \code{\link{R6Class}} for modelling an OGCAbstractObject
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, element, namespacePrefix, attrs, defaults, wrap, logger)}}{
-#'    This method is used to instantiate an OGCAbstractObject
-#'  }
-#'  \item{\code{getClassName()}}{
-#'    Get class name
-#'  }
-#'  \item{\code{getClass()}}{
-#'    Get class
-#'  }
-#'  \item{\code{encode(addNS, geometa_validate, geometa_inspire, geometa_inspireValidator)}}{
-#'    Encodes as XML. The \code{addNS} controls the addition of XML namespaces.
-#'    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
-#'    (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
-#'    \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
-#'    argument.
-#'  }
-#' }
+#'
 #' @note abstract class used by \pkg{ows4R}
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
@@ -127,25 +109,53 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     }
   ),
   public = list(
-    #logger
+    #'@field verbose.info \code{logical} property to indicate whether INFO logs have to be displayed
     verbose.info = FALSE,
+    #'@field verbose.debug \code{logical} property to indicate whether DEBUG logs have to be displayed
     verbose.debug = FALSE,
+    #'@field loggerType logger type, either \code{NULL}, "INFO", or "DEBUG"
     loggerType = NULL,
+    
+    #'@description A basic logger function
+    #'@param type type of logs message.
+    #'@param text log message text to be displayed
     logger = function(type, text){
       if(self$verbose.info){
         cat(sprintf("[ows4R][%s] %s - %s \n", type, self$getClassName(), text))
       }
     },
+    
+    #'@description a basic INFO logger function
+    #'@param text log message text to be displayed
     INFO = function(text){self$logger("INFO", text)},
+    
+    #'@description a basic WARN logger function
+    #'@param text log message text to be displayed
     WARN = function(text){self$logger("WARN", text)},
+    
+    #'@description a basic ERROR logger function
+    #'@param text log message text to be displayed
     ERROR = function(text){self$logger("ERROR", text)},
     
+    #'@field wrap internal property for XML encoding
     wrap = FALSE,
+    #'@field element element used for XML encoding
     element = NULL,
+    #'@field namespace namespace used for XML encoding
     namespace = NULL,
+    #'@field defaults default values to be used for XML encoding
     defaults = list(),
+    #'@field attrs attributes to be used for XML encoding
     attrs = list(),
     
+    #'@description Initializes an object extending \link{OGCAbstractObject}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param element element name
+    #'@param namespacePrefix namespace prefix for XML encoding
+    #'@param attrs list of attributes
+    #'@param defaults list of default values
+    #'@param wrap whether XML element has to be wrapped during XML encoding
+    #'@param logger logger
     initialize = function(xml = NULL, element = NULL, namespacePrefix = NULL,
                           attrs = list(), defaults = list(),
                           wrap = FALSE, logger = NULL){
@@ -174,18 +184,22 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
       }
     },
     
-    #getClassName
+    #'@description Get class name
+    #'@return an object of class \code{character}
     getClassName = function(){
       return(class(self)[1])
     },
     
-    #getClass
+    #'@description Get class
+    #'@return an object of class \code{R6Class}
     getClass = function(){
       class <- eval(parse(text=self$getClassName()))
       return(class)
     },
     
-    #isFieldInheritedFrom
+    #'@description Utility to return the parent class in which field is defined 
+    #'@param field field name
+    #'@return object of class \code{R6Class}
     isFieldInheritedFrom = function(field){
       parentClass <- NULL
       inherited <- !(field %in% names(self$getClass()$public_fields))
@@ -203,7 +217,9 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
       return(parentClass)
     },
     
-    #getNamespaceDefinition
+    #'@description Gets the namespace definition
+    #'@param recursive Get all namespace recursively
+    #'@return the namespace definitions as named \code{list}
     getNamespaceDefinition = function(recursive = FALSE){
       nsdefs <- NULL
       
@@ -307,7 +323,16 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
       return(nsdefs)
     },
     
-    #encode
+    #'@description Encodes as XML. The \code{addNS} .
+    #'    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
+    #'    (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
+    #'    \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
+    #'    argument.
+    #'@param addNS addNS controls the addition of XML namespaces
+    #'@param geometa_validate Relates to \pkg{geometa} object ISO validation. Default is \code{TRUE}
+    #'@param geometa_inspire Relates to \pkg{geometa} object INSPIRE validation. Default is \code{FALSE}
+    #'@param geometa_inspireValidator Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}
+    #'@return an object of class \link{XMLInternalNode-class} from \pkg{XML}
     encode = function(addNS = TRUE, geometa_validate = TRUE, 
                       geometa_inspire = FALSE, geometa_inspireValidator = NULL){
       

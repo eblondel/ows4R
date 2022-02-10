@@ -5,22 +5,6 @@
 #' @keywords OGC WPS LiteralData
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Literal Data
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, value, serviceVersion)}}{
-#'    This method is used to instantiate a \code{WPSLiteralData} object
-#'  }
-#'  \item{\code{decode(xml)}}{
-#'    Decodes WPS input from XML
-#'  }
-#'  \item{\code{checkValidity(parameterDescription)}}{
-#'    Check the object against a parameter description inherited from a WPS process description,
-#'    object of class \code{WPSLiteralInputDescription}. If not valid, the function will raise 
-#'    an error.
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -31,7 +15,13 @@ WPSLiteralData <- R6Class("WPSLiteralData",
     xmlNamespacePrefix = "WPS"
   ),
   public = list(
+    #'@field value value
     value = NULL,
+    
+    #'@description Initializes an object of class \link{WPSLiteralData}
+    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param value value
+    #'@param serviceVersion WPS service version
     initialize = function(xml = NULL, value = NULL, serviceVersion = "1.0.0") {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix)
@@ -51,9 +41,10 @@ WPSLiteralData <- R6Class("WPSLiteralData",
       }
     },
     
-    #decode
+    #'@description Decodes an object of class \link{WPSLiteralData} from XML
+    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
     decode = function(xml){
-      print(xml)
+
       dataType <- xmlGetAttr(xml, "dataType")
       if(is.null(dataType)) dataType <- "xs:string"
       self$attrs$dataType <- dataType
@@ -69,7 +60,10 @@ WPSLiteralData <- R6Class("WPSLiteralData",
       )
     },
     
-    #checkValidity
+    #'@description Check the object against a parameter description inherited from a WPS process description,
+    #'    object of class \code{WPSLiteralInputDescription}. If not valid, the function will raise an error.
+    #'@param parameterDescription object of class \link{WPSLiteralInputDescription}
+    #'@return an error if not valid
     checkValidity = function(parameterDescription){
       #datatype
       valid <- switch(self$attrs$dataType,

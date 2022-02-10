@@ -12,25 +12,144 @@ Object of \code{\link{R6Class}} for modelling a WPS Execute request
 }
 \description{
 WPSExecute
+
+WPSExecute
 }
 \note{
 Abstract class used by \pkg{ows4R} to trigger a WPS Execute request
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(capabilities, op, url, serviceVersion, identifier, logger, ...)}}{
-   This method is used to instantiate a WPSExecute object
- }
- \item{\code{getProcessDescription()}}{
-   Get process description
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
 \keyword{Execute}
 \keyword{OGC}
 \keyword{WPS}
+\section{Super classes}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{\link[ows4R:OWSHttpRequest]{ows4R::OWSHttpRequest}} -> \code{WPSExecute}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{Identifier}}{process identifier}
+
+\item{\code{DataInputs}}{list of \link{WPSInput}}
+
+\item{\code{ResponseForm}}{response form}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WPSExecute$new()}}
+\item \href{#method-getProcessDescription}{\code{WPSExecute$getProcessDescription()}}
+\item \href{#method-clone}{\code{WPSExecute$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="execute">}\href{../../ows4R/html/OWSHttpRequest.html#method-execute}{\code{ows4R::OWSHttpRequest$execute()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getCapabilities">}\href{../../ows4R/html/OWSHttpRequest.html#method-getCapabilities}{\code{ows4R::OWSHttpRequest$getCapabilities()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getException">}\href{../../ows4R/html/OWSHttpRequest.html#method-getException}{\code{ows4R::OWSHttpRequest$getException()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getRequest">}\href{../../ows4R/html/OWSHttpRequest.html#method-getRequest}{\code{ows4R::OWSHttpRequest$getRequest()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getRequestHeaders">}\href{../../ows4R/html/OWSHttpRequest.html#method-getRequestHeaders}{\code{ows4R::OWSHttpRequest$getRequestHeaders()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getResponse">}\href{../../ows4R/html/OWSHttpRequest.html#method-getResponse}{\code{ows4R::OWSHttpRequest$getResponse()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getResult">}\href{../../ows4R/html/OWSHttpRequest.html#method-getResult}{\code{ows4R::OWSHttpRequest$getResult()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getStatus">}\href{../../ows4R/html/OWSHttpRequest.html#method-getStatus}{\code{ows4R::OWSHttpRequest$getStatus()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="setResult">}\href{../../ows4R/html/OWSHttpRequest.html#method-setResult}{\code{ows4R::OWSHttpRequest$setResult()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes a \link{WPSExecute} service request
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSExecute$new(
+  capabilities,
+  op,
+  url,
+  serviceVersion,
+  identifier,
+  dataInputs = list(),
+  responseForm = NULL,
+  storeExecuteResponse = FALSE,
+  lineage = NULL,
+  status = NULL,
+  logger = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{capabilities}}{object of class \link{WPSCapabilities}}
+
+\item{\code{op}}{object of class \link{OWSOperation}}
+
+\item{\code{url}}{url}
+
+\item{\code{serviceVersion}}{WPS service version}
+
+\item{\code{identifier}}{process identifier}
+
+\item{\code{dataInputs}}{a named list of data inputs, objects of class \link{WPSLiteralData}, \link{WPSComplexData} or \link{WPSBoundingBoxData}}
+
+\item{\code{responseForm}}{response form, object of class \link{WPSResponseDocument}}
+
+\item{\code{storeExecuteResponse}}{store execute response? object of class \code{logical}. \code{FALSE} by default}
+
+\item{\code{lineage}}{lineage, object of class \code{logical}}
+
+\item{\code{status}}{status, object of class \code{logical}}
+
+\item{\code{logger}}{logger}
+
+\item{\code{...}}{any other parameter to pass to the request}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getProcessDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-getProcessDescription}{}}}
+\subsection{Method \code{getProcessDescription()}}{
+Get process description
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSExecute$getProcessDescription()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \link{WPSProcessDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WPSExecute$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

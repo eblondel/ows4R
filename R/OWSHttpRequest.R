@@ -5,35 +5,6 @@
 #' @keywords OGC OWS HTTP Request
 #' @return Object of \code{\link{R6Class}} for modelling a generic OWS http request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(capabilities, op, type, url, request, user, pwd, namedParams, attrs, 
-#'                  contentType, mimeType, logger)}}{
-#'    This method is used to instantiate a object for doing an OWS HTTP request
-#'  }
-#'  \item{\code{getCapabilities()}}{
-#'    Get the capabilities
-#'  }
-#'  \item{\code{getRequest()}}{
-#'    Get the request payload
-#'  }
-#'  \item{\code{getRequestHeaders()}}{
-#'    Get the request headers
-#'  }
-#'  \item{\code{getStatus()}}{
-#'    Get the request status code
-#'  }
-#'  \item{\code{getResponse()}}{
-#'    Get the request response
-#'  }
-#'  \item{\code{getException()}}{
-#'    Get the exception (in case of request failure)
-#'  }
-#'  \item{\code{getResult()}}{
-#'    Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -157,7 +128,25 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
   ),
   #public methods
   public = list(
-    #initialize
+    
+    #'@description Initializes an OWS HTTP request
+    #'@param element element
+    #'@param namespacePrefix namespace prefix
+    #'@param capabilities object of class or extending \link{OWSCapabilities}
+    #'@param op object of class \link{OWSOperation}
+    #'@param type type of request, eg. GET, POST
+    #'@param url url
+    #'@param request request name
+    #'@param user user
+    #'@param pwd password
+    #'@param token token
+    #'@param headers headers
+    #'@param namedParams a named \code{list}
+    #'@param attrs attributes
+    #'@param contentType content type. Default value is "text/xml"
+    #'@param mimeType mime type. Default value is "text/xml"
+    #'@param logger logger
+    #'@param ... any other parameter
     initialize = function(element, namespacePrefix,
                           capabilities, op, type, url, request,
                           user = NULL, pwd = NULL, token = NULL, headers = c(), 
@@ -212,7 +201,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       private$namedParams <- c(private$namedParams, vendorParams)
     },
     
-    #execute
+    #'@description Executes the request
     execute = function(){
       
       req <- switch(private$type,
@@ -243,42 +232,50 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       }
     },
     
-    #getCapabilities
+    #'@description Get capabilities
+    #'@return an object of class or extending \link{OWSCapabilities}
     getCapabilities = function(){
       return(private$capabilities)
     },
     
-    #getRequest
+    #'@description Get request
+    #'@return the request
     getRequest = function(){
       return(private$request)
     },
     
-    #getRequestHeaders
+    #'@description Get request headers
+    #'@return the request headers
     getRequestHeaders = function(){
       return(private$requestHeaders)
     },
     
-    #getStatus
+    #'@description get status code
+    #'@return the request status code
     getStatus = function(){
       return(private$status)
     },
     
-    #getResponse
+    #'@description get request response
+    #'@return the request response
     getResponse = function(){
       return(private$response)
     },
     
-    #getException
+    #'@description get request exception
+    #'@return the request exception
     getException = function(){
       return(private$exception)
     },
     
-    #getResult
+    #'@description Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
+    #'@return the result, object of class \code{logical}
     getResult = function(){
       return(private$result)
     },
     
-    #setResult
+    #'@description Set the result
+    #'@param result object of class \code{logical}
     setResult = function(result){
       private$result = result
     }

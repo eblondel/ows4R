@@ -5,19 +5,6 @@
 #' @keywords OGC Service Request
 #' @return Object of \code{\link{R6Class}} modelling a OWS Service Capability Request
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
-#'    This method is used to instantiate a \code{OWSRequest} object
-#'  }
-#'  \item{\code{getName()}}{
-#'    Get request name
-#'  }
-#'  \item{\code{getFormats()}}{
-#'    Get request formats
-#'  }
-#' }
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -26,11 +13,9 @@
 OWSRequest <- R6Class("OWSRequest",
   inherit = OGCAbstractObject,                       
   private = list(
-    
     capabilities = NULL,
     url = NA,
     version = NA,
-    
     name = NA,
     formats = list(),
     
@@ -47,6 +32,12 @@ OWSRequest <- R6Class("OWSRequest",
     
   ),
   public = list(
+    
+    #'@description Initializes an object of class \link{OWSRequest}
+    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param capabilities an object of class or extending \link{OWSCapabilities}
+    #'@param version version
+    #'@param logger logger
     initialize = function(xmlObj, capabilities, version, logger = NULL){
       super$initialize(logger = logger)
       
@@ -60,12 +51,14 @@ OWSRequest <- R6Class("OWSRequest",
       
     },
     
-    #getName
+    #'@description Get request name
+    #'@return the name, object of class \code{character}
     getName = function(){
       return(private$name)
     },
     
-    #getFormats
+    #'@description Get request formats
+    #'@return the formats, object (vector) of class \code{character}
     getFormats = function(){
       return(private$formats)
     }

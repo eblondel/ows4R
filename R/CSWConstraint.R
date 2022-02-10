@@ -4,12 +4,6 @@
 #' @keywords OGC Filter
 #' @return Object of \code{\link{R6Class}} for modelling an CSW Constraint
 #' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(cqlText, filter, serviceVersion)}}{
-#'    This method is used to instantiate an CSWConstraint object.
-#'  }
-#' }
 #' 
 #' @examples
 #'   filter <- OGCFilter$new( PropertyIsEqualTo$new("apiso:Identifier", "12345") )
@@ -25,9 +19,17 @@ CSWConstraint <-  R6Class("CSWConstraint",
     xmlNamespacePrefix = "CSW"
   ),
   public = list(
+    #'@field wrap internal property for object XML encoding
     wrap = TRUE,
+    #'@field CqlText text to use as CQL filter
     CqlText = NULL,
+    #'@field filter 
     filter = NULL,
+    
+    #'@description Initializes a \link{CSWConstraint} object to be used to constrain CSW operations.
+    #'@param cqlText cqlText, object of class \code{character}
+    #'@param filter filter, object extending \link{OGCFilter}
+    #'@param serviceVersion CSW service version. Default is "2.0.2"
     initialize = function(cqlText = NULL, filter = NULL, serviceVersion = "2.0.2"){
       self$setServiceVersion(serviceVersion)
       super$initialize(
@@ -44,7 +46,9 @@ CSWConstraint <-  R6Class("CSWConstraint",
       self$filter = filter
     },
     
-    #setServiceVersion
+    #'@description Set service version. This methods ensures that underlying filter property
+    #' is properly set with the right OGC filter version.
+    #'@param serviceVersion service version
     setServiceVersion = function(serviceVersion){
       nsVersion <- ifelse(serviceVersion=="3.0.0", "3.0", serviceVersion)
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")

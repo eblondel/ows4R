@@ -12,6 +12,8 @@ Object of \code{\link{R6Class}} modelling a WMS layer
 }
 \description{
 WMSLayer
+
+WMSLayer
 }
 \note{
 Abstract class used by \pkg{ows4R}
@@ -71,3 +73,328 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{Layer}
 \keyword{OGC}
 \keyword{WMS}
+\section{Super class}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{WMSLayer}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{description}}{description}
+
+\item{\code{features}}{features}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WMSLayer$new()}}
+\item \href{#method-getTitle}{\code{WMSLayer$getTitle()}}
+\item \href{#method-getAbstract}{\code{WMSLayer$getAbstract()}}
+\item \href{#method-getKeywords}{\code{WMSLayer$getKeywords()}}
+\item \href{#method-getDefaultCRS}{\code{WMSLayer$getDefaultCRS()}}
+\item \href{#method-getBoundingBox}{\code{WMSLayer$getBoundingBox()}}
+\item \href{#method-getBoundingBoxSRS}{\code{WMSLayer$getBoundingBoxSRS()}}
+\item \href{#method-getBoundingBoxCRS}{\code{WMSLayer$getBoundingBoxCRS()}}
+\item \href{#method-getStyle}{\code{WMSLayer$getStyle()}}
+\item \href{#method-getDimensions}{\code{WMSLayer$getDimensions()}}
+\item \href{#method-getTimeDimension}{\code{WMSLayer$getTimeDimension()}}
+\item \href{#method-getElevationDimension}{\code{WMSLayer$getElevationDimension()}}
+\item \href{#method-getFeatureInfo}{\code{WMSLayer$getFeatureInfo()}}
+\item \href{#method-clone}{\code{WMSLayer$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes an object of class \link{WMSLayer}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$new(xmlObj, capabilities, version, logger = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{xmlObj}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+
+\item{\code{capabilities}}{object of class \link{WMSCapabilities}}
+
+\item{\code{version}}{service version}
+
+\item{\code{logger}}{logger}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\subsection{Method \code{getTitle()}}{
+Get layer title
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getTitle()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\subsection{Method \code{getAbstract()}}{
+Get layer abstract
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getAbstract()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getKeywords"></a>}}
+\if{latex}{\out{\hypertarget{method-getKeywords}{}}}
+\subsection{Method \code{getKeywords()}}{
+Get layer keywords
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getKeywords()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDefaultCRS"></a>}}
+\if{latex}{\out{\hypertarget{method-getDefaultCRS}{}}}
+\subsection{Method \code{getDefaultCRS()}}{
+Get layer default CRS
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getDefaultCRS()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getBoundingBox"></a>}}
+\if{latex}{\out{\hypertarget{method-getBoundingBox}{}}}
+\subsection{Method \code{getBoundingBox()}}{
+Get layer bounding box
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBox()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{matrix}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getBoundingBoxSRS"></a>}}
+\if{latex}{\out{\hypertarget{method-getBoundingBoxSRS}{}}}
+\subsection{Method \code{getBoundingBoxSRS()}}{
+Get layer bounding box SRS
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBoxSRS()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getBoundingBoxCRS"></a>}}
+\if{latex}{\out{\hypertarget{method-getBoundingBoxCRS}{}}}
+\subsection{Method \code{getBoundingBoxCRS()}}{
+Get layer bounding box CRS
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBoxCRS()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getStyle"></a>}}
+\if{latex}{\out{\hypertarget{method-getStyle}{}}}
+\subsection{Method \code{getStyle()}}{
+Get layer style
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getStyle()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{object}}{of class \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDimensions"></a>}}
+\if{latex}{\out{\hypertarget{method-getDimensions}{}}}
+\subsection{Method \code{getDimensions()}}{
+Get layer dimensions
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getDimensions(time_format = "character")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{time_format}}{time format. Default is \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \code{list} including default value and listed possible values
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getTimeDimension"></a>}}
+\if{latex}{\out{\hypertarget{method-getTimeDimension}{}}}
+\subsection{Method \code{getTimeDimension()}}{
+Get layer TIME dimensions
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getTimeDimension(time_format = "character")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{time_format}}{time format. Default is \code{character}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \code{list} including default value and listed possible values
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getElevationDimension"></a>}}
+\if{latex}{\out{\hypertarget{method-getElevationDimension}{}}}
+\subsection{Method \code{getElevationDimension()}}{
+Get layer ELEVATION dimensions
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getElevationDimension()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+a \code{list} including default value and listed possible values
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getFeatureInfo"></a>}}
+\if{latex}{\out{\hypertarget{method-getFeatureInfo}{}}}
+\subsection{Method \code{getFeatureInfo()}}{
+Get feature info
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getFeatureInfo(
+  srs = NULL,
+  styles = NULL,
+  feature_count = 1,
+  x,
+  y,
+  width,
+  height,
+  bbox,
+  info_format = "text/xml",
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{srs}}{srs}
+
+\item{\code{styles}}{styles}
+
+\item{\code{feature_count}}{feature count. Default is 1}
+
+\item{\code{x}}{x}
+
+\item{\code{y}}{y}
+
+\item{\code{width}}{width}
+
+\item{\code{height}}{height}
+
+\item{\code{bbox}}{bbox}
+
+\item{\code{info_format}}{info format. Default is "text/xml"}
+
+\item{\code{...}}{any other parameter to pass to a \link{WMSGetFeatureInfo} request}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \code{sf} given the feature(s)
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

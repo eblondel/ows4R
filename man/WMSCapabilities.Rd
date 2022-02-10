@@ -13,6 +13,8 @@ Web Map Service Get Capabilities document.
 }
 \description{
 WMSCapabilities
+
+WMSCapabilities
 }
 \note{
 Class used to read a \code{WMSCapabilities} document. The use of \code{WMSClient} is
@@ -47,3 +49,157 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \keyword{GetCapabilities}
 \keyword{OGC}
 \keyword{WMS}
+\section{Super classes}{
+\code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{\link[ows4R:OWSCapabilities]{ows4R::OWSCapabilities}} -> \code{WMSCapabilities}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{WMSCapabilities$new()}}
+\item \href{#method-getRequests}{\code{WMSCapabilities$getRequests()}}
+\item \href{#method-getRequestNames}{\code{WMSCapabilities$getRequestNames()}}
+\item \href{#method-getLayers}{\code{WMSCapabilities$getLayers()}}
+\item \href{#method-findLayerByName}{\code{WMSCapabilities$findLayerByName()}}
+\item \href{#method-clone}{\code{WMSCapabilities$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getClient">}\href{../../ows4R/html/OWSCapabilities.html#method-getClient}{\code{ows4R::OWSCapabilities$getClient()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getOperationsMetadata">}\href{../../ows4R/html/OWSCapabilities.html#method-getOperationsMetadata}{\code{ows4R::OWSCapabilities$getOperationsMetadata()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getOWSVersion">}\href{../../ows4R/html/OWSCapabilities.html#method-getOWSVersion}{\code{ows4R::OWSCapabilities$getOWSVersion()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getRequest">}\href{../../ows4R/html/OWSCapabilities.html#method-getRequest}{\code{ows4R::OWSCapabilities$getRequest()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getService">}\href{../../ows4R/html/OWSCapabilities.html#method-getService}{\code{ows4R::OWSCapabilities$getService()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getServiceIdentification">}\href{../../ows4R/html/OWSCapabilities.html#method-getServiceIdentification}{\code{ows4R::OWSCapabilities$getServiceIdentification()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getServiceProvider">}\href{../../ows4R/html/OWSCapabilities.html#method-getServiceProvider}{\code{ows4R::OWSCapabilities$getServiceProvider()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getServiceVersion">}\href{../../ows4R/html/OWSCapabilities.html#method-getServiceVersion}{\code{ows4R::OWSCapabilities$getServiceVersion()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="getUrl">}\href{../../ows4R/html/OWSCapabilities.html#method-getUrl}{\code{ows4R::OWSCapabilities$getUrl()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSCapabilities" data-id="setClient">}\href{../../ows4R/html/OWSCapabilities.html#method-setClient}{\code{ows4R::OWSCapabilities$setClient()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes a \link{WMSCapabilities} object
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$new(url, version, logger = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{url}}{url}
+
+\item{\code{version}}{version}
+
+\item{\code{logger}}{logger type \code{NULL}, "INFO" or "DEBUG"}
+
+\item{\code{...}}{any other parameter to pass to \link{OWSGetCapabilities} service request}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getRequests"></a>}}
+\if{latex}{\out{\hypertarget{method-getRequests}{}}}
+\subsection{Method \code{getRequests()}}{
+List the requests available. If \code{pretty} is TRUE,
+   the output will be an object of class \code{data.frame}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$getRequests(pretty = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{pretty}}{pretty}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \code{list} of \link{OWSRequest} available, or a \code{data.frame}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getRequestNames"></a>}}
+\if{latex}{\out{\hypertarget{method-getRequestNames}{}}}
+\subsection{Method \code{getRequestNames()}}{
+List the names of requests available.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$getRequestNames()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getLayers"></a>}}
+\if{latex}{\out{\hypertarget{method-getLayers}{}}}
+\subsection{Method \code{getLayers()}}{
+List the layers available. If \code{pretty} is TRUE,
+   the output will be an object of class \code{data.frame}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$getLayers(pretty = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{pretty}}{pretty}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a \code{list} of \link{WMSLayer} available, or a \code{data.frame}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-findLayerByName"></a>}}
+\if{latex}{\out{\hypertarget{method-findLayerByName}{}}}
+\subsection{Method \code{findLayerByName()}}{
+Finds a layer by name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$findLayerByName(expr, exact = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{expr}}{expr}
+
+\item{\code{exact}}{exact matching? Default is \code{TRUE}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSCapabilities$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

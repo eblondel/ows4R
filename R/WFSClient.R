@@ -24,33 +24,6 @@
 #'    
 #'    #Advanced examples at https://github.com/eblondel/ows4R/wiki#wfs
 #' }
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, serviceVersion, user, pwd, logger)}}{
-#'    This method is used to instantiate a WFSClient with the \code{url} of the
-#'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
-#'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
-#'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
-#'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
-#'  }
-#'  \item{\code{getCapabilities()}}{
-#'    Get service capabilities. Inherited from OWS Client
-#'  }
-#'  \item{\code{reloadCapabilities()}}{
-#'    Reload service capabilities
-#'  }
-#'  \item{\code{describeFeatureType(typeName)}}{
-#'    Get the description of a given featureType
-#'  }
-#'  \item{\code{getFeatures(typeName, ...)}}{
-#'    Retrieves the features for a given feature type.
-#'  }
-#'  \item{\code{getFeatureTypes(pretty)}}{
-#'    List the feature types available. If \code{pretty} is TRUE,
-#'    the output will be an object of class \code{data.frame}
-#'  }
-#' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -60,7 +33,19 @@ WFSClient <- R6Class("WFSClient",
      serviceName = "WFS"
    ),
    public = list(
-     #initialize
+      
+      #'@description This method is used to instantiate a \link{WFSClient} with the \code{url} of the
+      #'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
+      #'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). By default, the \code{logger}
+      #'    argument will be set to \code{NULL} (no logger). This argument accepts two possible 
+      #'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
+      #'@param url url
+      #'@param serviceVersion WFS service version
+      #'@param user user
+      #'@param pwd password
+      #'@param token token
+      #'@param headers headers
+      #'@param logger logger
      initialize = function(url, serviceVersion = NULL, 
                            user = NULL, pwd = NULL, token = NULL, headers = c(),
                            logger = NULL) {
@@ -71,12 +56,13 @@ WFSClient <- R6Class("WFSClient",
        self$capabilities$setClient(self)
      },
      
-     #getCapabilities
+     #'@description Get WFS capabilities
+     #'@return an object of class \link{WFSCapabilities}
      getCapabilities = function(){
        return(self$capabilities)
      },
      
-     #reloadCapabilities
+     #'@description Reloads WFS capabilities
      reloadCapabilities = function(){
        self$capabilities = WFSCapabilities$new(self$url, self$version, 
                                                user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
@@ -84,7 +70,9 @@ WFSClient <- R6Class("WFSClient",
        self$capabilities$setClient(self)
      },
      
-     #describeFeatureType
+     #'@description Describes a feature type
+     #'@param typeName the name of the feature type
+     #'@return a \code{list} of \link{WFSFeatureTypeElement}
      describeFeatureType = function(typeName){
        self$INFO(sprintf("Fetching featureType description for '%s' ...", typeName))
        describeFeatureType <- NULL
@@ -97,7 +85,10 @@ WFSClient <- R6Class("WFSClient",
        return(describeFeatureType)
      },
      
-     #getFeatures
+     #'@description Get features
+     #'@param typeName the name of the feature type
+     #'@param ... any other parameter to pass to the \link{WFSGetFeature} request
+     #'@return features as object of class \code{sf}
      getFeatures = function(typeName, ...){
        self$INFO(sprintf("Fetching features for '%s' ...", typeName))
        features <- NULL
@@ -110,7 +101,10 @@ WFSClient <- R6Class("WFSClient",
        return(features)
      },
      
-     #getFeatureTypes
+     #'@description List the feature types available. If \code{pretty} is TRUE,
+     #'    the output will be an object of class \code{data.frame}
+     #'@param pretty whether the output should be summarized as \code{data.frame}
+     #'@return a \code{list} of \link{WFSFeatureType} or a \code{data.frame}
      getFeatureTypes = function(pretty = FALSE){
        return(self$capabilities$getFeatureTypes(pretty = pretty))
      }
