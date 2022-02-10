@@ -71,8 +71,7 @@ Initializes an object of class \link{OWSBoundingBox}
   namespacePrefix = NULL,
   owsVersion,
   serviceVersion,
-  logger = NULL,
-  ...
+  logger = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -90,8 +89,6 @@ Initializes an object of class \link{OWSBoundingBox}
 \item{\code{serviceVersion}}{service version}
 
 \item{\code{logger}}{logger}
-
-\item{\code{...}}{any other parameter}
 }
 \if{html}{\out{</div>}}
 }

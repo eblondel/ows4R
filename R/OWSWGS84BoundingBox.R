@@ -26,7 +26,7 @@ OWSWGS84BoundingBox <-  R6Class("OWSWGS84BoundingBox",
       initialize = function(xml = NULL, owsVersion, serviceVersion, logger = NULL){
          super$initialize(xml = xml, element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                           owsVersion = owsVersion, serviceVersion = serviceVersion, 
-                          logger = logger, ...)
+                          logger = logger)
       }
    )
 )

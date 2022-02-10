@@ -29,11 +29,10 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
      #'@param owsVersion OWS version
      #'@param serviceVersion service version
      #'@param logger logger
-     #'@param ... any other parameter
      initialize = function(xml = NULL, 
                            element = NULL, namespacePrefix = NULL,
                            owsVersion, serviceVersion, 
-                           logger = NULL, ...) {
+                           logger = NULL) {
       if(!is.null(element)) private$xmlElement <- element
       if(!is.null(namespacePrefix)){
          private$xmlNamespacePrefix <- namespacePrefix
