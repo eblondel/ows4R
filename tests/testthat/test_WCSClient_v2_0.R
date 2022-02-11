@@ -1,4 +1,4 @@
-# test_WCSClient_v1_0.R
+# test_WCSClient_v2_0.R
 # Author: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 #
 # Description: Integration tests for WCS Client version 1.0
