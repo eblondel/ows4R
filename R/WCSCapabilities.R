@@ -52,13 +52,18 @@ WCSCapabilities <- R6Class("WCSCapabilities",
      #'@param ... any other parameter to pass to \link{OWSGetCapabilities} service request
      initialize = function(url, version, client = NULL, logger = NULL, ...) {
        owsVersion <- switch(version,
-                            "1.0" = "1.1",
+                            "1.0"   = "1.1",
                             "1.0.0" = "1.1",
+                            "1.1"   = "1.1",
                             "1.1.0" = "1.1",
                             "1.1.1" = "1.1",
                             "2.0.0" = "2.0",
-                            "2.0.1" = "2.0"
+                            "2.0.1" = "2.0",
+                            NULL
        )
+       if(is.null(owsVersion)){
+         stop(sprintf("Unknown WCS service version '%s'", version))
+       }
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                         url, service = "WCS", owsVersion = owsVersion, serviceVersion = version, 
                         client = client, logger = logger, ...)
