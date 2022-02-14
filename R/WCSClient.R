@@ -47,6 +47,19 @@ WCSClient <- R6Class("WCSClient",
      #'@description Reloads WCS capabilities
      reloadCapabilities = function(){
        self$capabilities = WCSCapabilities$new(self$url, self$version, logger = self$loggerType)
+     },
+     
+     #'@description Describes coverage
+     #'@param identifier identifier
+     #'@return an object of class \link{WCSCoverageDescription}
+     describeCoverage = function(identifier){
+       self$INFO(sprintf("Fetching coverageSummary description for '%s' ...", identifier))
+       describeCoverage <- NULL
+       cov <- self$capabilities$findCoverageSummaryById(identifier, exact = TRUE)
+       if(is(cov, "WFSCoverageSummary")){
+         describeCoverage <- cov$getDescription()
+       }
+       return(describeCoverage)
      }
    )
 )

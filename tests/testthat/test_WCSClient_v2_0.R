@@ -18,12 +18,22 @@ test_that("WCS 2.0.1 - GeoServer",{
 })
 
 test_that("WCS 2.0.1 - Rasdaman",{
-  wcs <- WCSClient$new("http://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
+  wcs <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  cov <- caps$findCoverageSummaryById("AverageChloroColor")
-  expect_is(cov, "WCSCoverageSummary")
   expect_equal(length(caps$getCoverageSummaries()), 35L)
+  
+  cov1 <- caps$findCoverageSummaryById("AverageChloroColor")
+  expect_is(cov1, "WCSCoverageSummary")
+  cov1_desc <- cov1$getDescription()
+  expect_is(cov1_desc, "WCSCoverageDescription")
+  expect_is(cov1_desc$domainSet, "GMLReferenceableGridByVectors")
+  
+  temp4d <- caps$findCoverageSummaryById("Temperature4D")
+  expect_is(temp4d, "WCSCoverageSummary")
+  temp4d_desc <- temp4d$getDescription()
+  expect_is(temp4d_desc, "WCSCoverageDescription")
+  expect_is(temp4d_desc$domainSet, "GMLReferenceableGridByVectors")
 })
 

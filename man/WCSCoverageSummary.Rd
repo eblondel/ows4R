@@ -103,6 +103,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getSubtypeParent}{\code{WCSCoverageSummary$getSubtypeParent()}}
 \item \href{#method-getWGS84BoundingBox}{\code{WCSCoverageSummary$getWGS84BoundingBox()}}
 \item \href{#method-getBoundingBox}{\code{WCSCoverageSummary$getBoundingBox()}}
+\item \href{#method-getDescription}{\code{WCSCoverageSummary$getDescription()}}
 \item \href{#method-clone}{\code{WCSCoverageSummary$clone()}}
 }
 }
@@ -215,6 +216,19 @@ Get WGS84 bounding box
 
 \subsection{Returns}{
 an object of class \link{OWSBoundingBox}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-getDescription}{}}}
+\subsection{Method \code{getDescription()}}{
+Get description
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getDescription()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+an object of class \link{WCSCoverageDescription}
 }
 }
 \if{html}{\out{<hr>}}

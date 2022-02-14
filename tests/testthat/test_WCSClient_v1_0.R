@@ -8,13 +8,24 @@ require(testthat)
 context("WCS")
 
 test_that("WCS 1.0 - Thredds",{
-  wcs <- WCSClient$new("https://rsg.pml.ac.uk/thredds/wcs/CCI_ALL-v5.0-DAILY", "1.0", logger = "DEBUG")
+  wcs <- WCSClient$new("https://rsg.pml.ac.uk/thredds/wcs/CCI_ALL-v5.0-MONTHLY", "1.0", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  cov <- caps$findCoverageSummaryById("chlor_a")
-  expect_is(cov, "WCSCoverageSummary")
   expect_equal(length(caps$getCoverageSummaries()), 92L)
+  
+  chloroa <- caps$findCoverageSummaryById("chlor_a")
+  expect_is(chloroa, "WCSCoverageSummary")
+  chloroa_desc <- chloroa$getDescription()
+  expect_is(chloroa_desc, "WCSCoverageDescription")
+  domain <- chloroa_desc$getDomain()
+  expect_is(domain, "WCSCoverageDomain")
+  expect_is(domain$getSpatialDomain(), "WCSCoverageSpatialDomain")
+  expect_is(domain$getSpatialDomain()$getEnvelopes()[[1]], "GMLEnvelopeWithTimePeriod")
+  expect_is(domain$getSpatialDomain()$getGrids()[[1]], "GMLRectifiedGrid")
+  expect_is(domain$getTemporalDomain(), "WCSCoverageTemporalDomain")
+  expect_true(length(domain$getTemporalDomain()$getInstants())>0)
+  
 })
 
 test_that("WCS 1.0.0 - GeoServer",{
@@ -22,7 +33,12 @@ test_that("WCS 1.0.0 - GeoServer",{
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  cov <- caps$findCoverageSummaryById("sf:sfdem")
-  expect_is(cov, "WCSCoverageSummary")
   expect_equal(length(caps$getCoverageSummaries()), 5L)
+  
+  sfdem <- caps$findCoverageSummaryById("sf:sfdem")
+  expect_is(sfdem, "WCSCoverageSummary")
+  sfdem_desc <- sfdem$getDescription()
+  expect_is(sfdem_desc, "WCSCoverageDescription")
+  expect_is(domain, "WCSCoverageDomain")
+  expect_is(domain$getSpatialDomain(), "WCSCoverageSpatialDomain")
 })

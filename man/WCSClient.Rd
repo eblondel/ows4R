@@ -37,6 +37,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-new}{\code{WCSClient$new()}}
 \item \href{#method-getCapabilities}{\code{WCSClient$getCapabilities()}}
 \item \href{#method-reloadCapabilities}{\code{WCSClient$reloadCapabilities()}}
+\item \href{#method-describeCoverage}{\code{WCSClient$describeCoverage()}}
 \item \href{#method-clone}{\code{WCSClient$clone()}}
 }
 }
@@ -122,6 +123,26 @@ Reloads WCS capabilities
 \if{html}{\out{<div class="r">}}\preformatted{WCSClient$reloadCapabilities()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-describeCoverage"></a>}}
+\if{latex}{\out{\hypertarget{method-describeCoverage}{}}}
+\subsection{Method \code{describeCoverage()}}{
+Describes coverage
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSClient$describeCoverage(identifier)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{identifier}}{identifier}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \link{WCSCoverageDescription}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

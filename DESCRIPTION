@@ -1,6 +1,6 @@
 Package: ows4R
-Version: 0.2-1
-Date: 2022-01-26
+Version: 0.3
+Date: 2022-02-14
 Title: Interface to OGC Web-Services (OWS)
 Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
              person("Alexandre", "Bennici", role = c("ctb"), comment = c(ORCID = "0000-0003-2160-3487")),
@@ -10,9 +10,9 @@ Depends: R (>= 3.3.0), methods, geometa, keyring
 Imports: R6, httr, openssl, XML (>= 3.96-1.1), sf, rgdal, parallel
 Suggests: testthat
 Description: Provides an Interface to Web-Services defined as standards by the Open Geospatial Consortium (OGC), including Web Feature Service
- (WFS) for vector data, Catalogue Service (CSW) for ISO/OGC metadata, and associated standards such as the common web-service specification (OWS) and
- OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). The purpose is to add support for 
- additional OGC service standards such as Web Coverage Service (WCS), Web Coverage Processing Service (WCPS) or OGC API.
+ (WFS) for vector data, Web Coverage Service (WCS), Catalogue Service (CSW) for ISO/OGC metadata, and associated standards such as the common 
+ web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). 
+ The purpose is to add support for additional OGC service standards such as Web Coverage Processing Service (WCPS) or OGC API.
 License: MIT + file LICENSE
 URL: https://github.com/eblondel/ows4R, https://www.ogc.org/standards
 BugReports: https://github.com/eblondel/ows4R/issues

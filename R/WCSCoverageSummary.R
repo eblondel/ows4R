@@ -206,6 +206,43 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@return an object of class \link{OWSBoundingBox}
     getBoundingBox = function(){
       return(self$BoundingBox)
+    },
+    
+    #'@description Get description
+    #'@return an object of class \link{WCSCoverageDescription}
+    getDescription = function(){
+      if(!is.null(private$description)) return(private$description)
+      
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="DescribeCoverage"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'DescribeCoverage' not supported by this service")
+        }
+      }
+      covDescription <- WCSDescribeCoverage$new(capabilities = private$capabilities, op = op, url = private$url, 
+                                                serviceVersion = private$version, coverageId = self$CoverageId, 
+                                                logger = self$loggerType)
+      xmlObj <- covDescription$getResponse()
+      wcsNs <- NULL
+      if(all(class(xmlObj) == c("XMLInternalDocument","XMLAbstractDocument"))){
+        namespaces <- OWSUtils$getNamespaces(xmlObj)
+        wcsNs <- OWSUtils$findNamespace(namespaces, id = "wcs")
+      }
+      covDesXML <- list()
+      if(substr(private$version,1,3)=="1.0"){
+        covDesXML <- getNodeSet(xmlObj, "//ns:CoverageOffering", wcsNs)
+      }else{
+        covDesXML <- getNodeSet(xmlObj, "//ns:CoverageDescription", wcsNs)
+      }
+      if(length(covDesXML)>0) covDesXML <- covDesXML[[1]]
+      description <- WCSCoverageDescription$new(covDesXML, private$version, private$owsVersion,
+                                                logger = self$loggerType)
+      private$description = description
+      return(description)
     }
     
   )
