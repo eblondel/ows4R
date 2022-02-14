@@ -13,14 +13,8 @@ test_that("WCS 1.1 - GeoServer",{
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
   expect_equal(length(caps$getCoverageSummaries()), 5L)
-  
   sfdem <- caps$findCoverageSummaryById("sf:sfdem")
   expect_is(sfdem, "WCSCoverageSummary")
-  sfdem_desc <- sfdem$getDescription()
-  expect_is(sfdem_desc, "WCSCoverageDescription")
-  domain <- sfdem_desc$getDomain()
-  expect_is(domain, "WCSCoverageDomain")
-  expect_is(domain$getSpatialDomain(), "WCSCoverageSpatialDomain")
 })
 
 test_that("WCS 1.1.0 - GeoServer",{
