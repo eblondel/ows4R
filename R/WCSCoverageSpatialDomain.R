@@ -67,7 +67,7 @@ WCSCoverageSpatialDomain <- R6Class("WCSCoverageSpatialDomain",
       if(startsWith(serviceVersion, "1.1")){
         bboxXML <- getNodeSet(xmlDoc(xmlObj), "//ns:BoundingBox", ns)
         bboxes <- lapply(bboxXML, function(x){
-          return(OWSBoundingBox$new(xmlObj = x, owsVersion))
+          return(OWSBoundingBox$new(xmlObj = x, owsVersion = owsVersion, serviceVersion = serviceVersion))
         })
         gridcrs <- NULL
         gridcrsXML <- getNodeSet(xmlDoc(xmlObj), "//ns:GridCRS", wcsNs)

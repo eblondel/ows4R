@@ -127,12 +127,8 @@ Get process identifier
 \if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getIdentifier()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{the}}{identifier, object of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+the identifier, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -144,12 +140,8 @@ Get process title
 \if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getTitle()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{the}}{title, object of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+the title, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -161,12 +153,8 @@ Get process abstract
 \if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$getAbstract()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{the}}{abstract, object of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+the abstract, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}

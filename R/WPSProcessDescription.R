@@ -154,19 +154,19 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     },
     
     #'@description Get process identifier
-    #'@param the identifier, object of class \code{character}
+    #'@return the identifier, object of class \code{character}
     getIdentifier = function(){
       return(private$identifier)
     },
     
     #'@description Get process title
-    #'@param the title, object of class \code{character}
+    #'@return the title, object of class \code{character}
     getTitle = function(){
       return(private$title)
     },
     
     #'@description Get process abstract
-    #'@param the abstract, object of class \code{character}
+    #'@return the abstract, object of class \code{character}
     getAbstract = function(){
       return(private$abstract)
     },
