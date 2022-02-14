@@ -178,13 +178,13 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
     },
     
     #'@description Indicates if the status is supported
-    #'@param \code{TRUE} if supported, \code{FALSE} otherwise
+    #'@return \code{TRUE} if supported, \code{FALSE} otherwise
     isStatusSupported = function(){
       return(private$statusSupported)
     },
     
     #'@description Indicates if the store is supported
-    #'@param \code{TRUE} if supported, \code{FALSE} otherwise
+    #'@return \code{TRUE} if supported, \code{FALSE} otherwise
     isStoreSupported = function(){
       return(private$storeSupported)
     },

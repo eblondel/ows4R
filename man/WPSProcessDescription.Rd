@@ -183,12 +183,8 @@ Indicates if the status is supported
 \if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$isStatusSupported()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{\code{TRUE}}}{if supported, \code{FALSE} otherwise}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+\code{TRUE} if supported, \code{FALSE} otherwise
 }
 }
 \if{html}{\out{<hr>}}
@@ -200,12 +196,8 @@ Indicates if the store is supported
 \if{html}{\out{<div class="r">}}\preformatted{WPSProcessDescription$isStoreSupported()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{\code{TRUE}}}{if supported, \code{FALSE} otherwise}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+\code{TRUE} if supported, \code{FALSE} otherwise
 }
 }
 \if{html}{\out{<hr>}}
