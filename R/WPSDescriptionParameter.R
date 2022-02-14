@@ -5,19 +5,6 @@
 #' @keywords OGC WPS Process input description parameter
 #' @return Object of \code{\link{R6Class}} modelling a WPS process input description parameter
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, version, logger)}}{
-#'    This method is used to instantiate a \code{WPSDescriptionParameter} object
-#'  }
-#'  \item{\code{getDataType()}}{
-#'    Get data type
-#'  }
-#'  \item{\code{getFormats()}}{
-#'    Get formats
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 

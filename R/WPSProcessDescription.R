@@ -5,40 +5,6 @@
 #' @keywords OGC WPS Process ProcessDescription
 #' @return Object of \code{\link{R6Class}} modelling a WPS process description
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, version, logger)}}{
-#'    This method is used to instantiate a \code{WPSProcessDescription} object
-#'  }
-#'  \item{\code{getIdentifier()}}{
-#'    Get process identifier
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get process title
-#'  }
-#'  \item{\code{getAbstract()}}{
-#'    Get process abstract
-#'  }
-#'  \item{\code{getVersion()}}{
-#'    Get process version
-#'  }
-#'  \item{\code{isStatusSupported()}}{
-#'    Get whether status is supported
-#'  }
-#'  \item{\code{isStoreSupported()}}{
-#'    Get whether store is supported
-#'  }
-#'  \item{\code{getDataInputs()}}{
-#'    Get data inputs
-#'  }
-#'  \item{\code{getProcessOutputs()}}{
-#'    Get process outputs
-#'  }
-#'  \item{\code{asDataFrame()}}{
-#'    Get process description as data.frame
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 

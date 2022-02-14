@@ -5,30 +5,6 @@
 #' @keywords OGC WPS Process
 #' @return Object of \code{\link{R6Class}} modelling a WPS process
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, capabilities, version, logger)}}{
-#'    This method is used to instantiate a \code{WPSProcess} object
-#'  }
-#'  \item{\code{getIdentifier()}}{
-#'    Get process identifier
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get process title
-#'  }
-#'  \item{\code{getVersion()}}{
-#'    Get process version
-#'  }
-#'  \item{\code{getDescription()}}{
-#'    Get process description as object of class \code{WPSProcessDescription}
-#'  }
-#'  \item{\code{execute(dataInputs, responseForm,
-#'                      storeExecuteResponse, lineage, status,
-#'                      update, updateInterval)}}{
-#'    Executes the process.
-#'  }
-#' }
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 

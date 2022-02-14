@@ -6,27 +6,6 @@
 #' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
 #' Web Map Service Get Capabilities document.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, version, logger, ...)}}{
-#'    This method is used to instantiate a WMSCapabilities object
-#'  }
-#'  \item{\code{getRequests(pretty)}}{
-#'    List the requests available. If \code{pretty} is TRUE,
-#'    the output will be an object of class \code{data.frame}
-#'  }
-#'  \item{\code{getRequestNames()}}{
-#'    List the request names available.
-#'  }
-#'  \item{\code{getLayers(pretty)}}{
-#'    List the layers available. If \code{pretty} is TRUE,
-#'    the output will be an object of class \code{data.frame}
-#'  }
-#'  \item{\code{findLayerByName(name, exact)}}{
-#'    Find layer(s) by name.
-#'  }
-#' }
 #' 
 #' @note Class used to read a \code{WMSCapabilities} document. The use of \code{WMSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WMS server.

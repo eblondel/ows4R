@@ -15,38 +15,6 @@
 #' @keywords OGC Common OWS
 #' @return Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(url, service, serviceVersion, user, pwd, logger)}}{
-#'    This method is used to instantiate a OWSClient with the \code{url} of the
-#'    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
-#'    bearer token (using \code{token} argument), or custom (using \code{headers} argument). 
-#'    By default, the \code{logger} argument will be set to \code{NULL} (no logger). This argument accepts two possible 
-#'    values: \code{INFO}: to print only \pkg{ows4R} logs, \code{DEBUG}: to print more verbose logs
-#'  }
-#'  \item{\code{getUrl()}}{
-#'    Get the service URL
-#'  }
-#'  \item{\code{getVersion()}}{
-#'    Get the service version
-#'  }
-#'  \item{\code{getCapabilities()}}{
-#'    Get the service capabilities
-#'  }
-#'  \item{\code{getUser()}}{
-#'    Get user
-#'  }
-#'  \item{\code{getPwd()}}{
-#'    Get password
-#'  }
-#'  \item{\code{getToken()}}{
-#'    Get token
-#'  }
-#'  \item{\code{getHeaders()}}{
-#'    Get headers
-#'  }
-#' }
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 

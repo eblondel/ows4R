@@ -18,32 +18,6 @@ WPSProcess
 \note{
 Class used internally by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xml, capabilities, version, logger)}}{
-   This method is used to instantiate a \code{WPSProcess} object
- }
- \item{\code{getIdentifier()}}{
-   Get process identifier
- }
- \item{\code{getTitle()}}{
-   Get process title
- }
- \item{\code{getVersion()}}{
-   Get process version
- }
- \item{\code{getDescription()}}{
-   Get process description as object of class \code{WPSProcessDescription}
- }
- \item{\code{execute(dataInputs, responseForm,
-                     storeExecuteResponse, lineage, status,
-                     update, updateInterval)}}{
-   Executes the process.
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

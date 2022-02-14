@@ -5,25 +5,6 @@
 #' @keywords OGC WPS ComplexData
 #' @return Object of \code{\link{R6Class}} for modelling a WPS Complex Data
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xml, value, schema, mimeType)}}{
-#'    This method is used to instantiate a \code{WPSComplexData} object
-#'  }
-#'  \item{\code{decode(xml)}}{
-#'    Decodes from XML
-#'  }
-#'  \item{\code{checkValidity(parameterDescription)}}{
-#'    Check the object against a parameter description inherited from a WPS process description,
-#'    object of class \code{WPSComplexInputDescription}. If not valid, the function will raise an
-#'    error.
-#'  }
-#'  \item{\code{getFeatures()}}{
-#'    Returns features associates with output, if the output si made of a GML feature collection
-#'  }
-#' }
-#' 
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

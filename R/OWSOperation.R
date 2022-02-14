@@ -5,22 +5,6 @@
 #' @keywords OGC OWS operation
 #' @return Object of \code{\link{R6Class}} for modelling an OGC Operation
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
-#'    This method is used to instantiate an OWSOperation object
-#'  }
-#'  \item{\code{getName()}}{
-#'    Get name
-#'  }
-#'  \item{\code{getParameters()}}{
-#'    Get the list of parameters
-#'  }
-#'  \item{\code{getParameter(name)}}{
-#'    Get a given parameter
-#'  }
-#' }
 #' 
 #' @note Internal class used internally by \pkg{ows4R} when reading capabilities documents
 #' 

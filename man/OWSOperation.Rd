@@ -18,24 +18,6 @@ OWSOperation
 \note{
 Internal class used internally by \pkg{ows4R} when reading capabilities documents
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, owsVersion, serviceVersion)}}{
-   This method is used to instantiate an OWSOperation object
- }
- \item{\code{getName()}}{
-   Get name
- }
- \item{\code{getParameters()}}{
-   Get the list of parameters
- }
- \item{\code{getParameter(name)}}{
-   Get a given parameter
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
