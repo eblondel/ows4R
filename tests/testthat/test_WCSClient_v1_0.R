@@ -39,6 +39,7 @@ test_that("WCS 1.0.0 - GeoServer",{
   expect_is(sfdem, "WCSCoverageSummary")
   sfdem_desc <- sfdem$getDescription()
   expect_is(sfdem_desc, "WCSCoverageDescription")
+  domain <- sfdem_desc$getDomain()
   expect_is(domain, "WCSCoverageDomain")
   expect_is(domain$getSpatialDomain(), "WCSCoverageSpatialDomain")
 })
