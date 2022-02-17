@@ -18,58 +18,6 @@ WCSCoverageSummary
 \note{
 Class used internally by ows4R.
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, capabilities, serviceVersion, owsVersion, logger)}}{
-   This method is used to instantiate a \code{WCSCoverageSummary} object
- }
- \item{\code{getId()}}{
-   Get the identifier
- }
- \item{\code{getSubtype()}}{
-   Get the coverage subtype
- }
- \item{\code{getSubtypeParent()}}{
-   Get the coverage subtype parent type(s)
- }
- \item{\code{getWGS84BoundingBox()}}{
-   Get coverage WGS84 bounding box as list of \code{OWSWGS84BoundingBox}
- }
- \item{\code{getBoundingBox()}}{
-   Get coverage bounding box as list of \code{OWSBoundingBox}
- }
- \item{\code{getDescription()}}{
-   Get coverage description
- }
- \item{\code{getDimensions()}}{
-   Get the coverage dimensions, returned as\code{list}. Each element of this list
-   will reference the axis abbreviation/label used for coverage query based on this
-   dimension, the \pkg{geometa} GML object and classname, the type of dimension such as
-   'geographic', 'temporal' or 'vertical', and if applicable: the possible values 
-   (coefficients) that can be used for querying the coverage on the dimension. 
- }
- \item{\code{getCoverage(bbox, crs, time, elevation, format, rangesubset, 
-                         gridbaseCRS, gridtype, gridCS, gridorigin, gridoffsets)}}{
-   Get the coverage data as object of class \code{RasterLayer} from \pkg{raster}
- }
- \item{\code{getCoverageStack(time, elevation, bbox)}}{
-   Get a stack of coverages (also known as 'datacube') for time and/or elevation. Each parameter
-   can be specified a vector of values (coefficients) as filter. If no value is specified, the function will
-   consider all coefficients for the given dimension. An additional bbox parameter allows to restrain
-   the geographic extent of the overall coverage stack/datacube.
-   
-   For a spatio-temporal 3D coverage, in case that no time filter is specified, the full temporal coverage stack
-   will be downloaded. For a spatio/vertical 3D coverage, in case that no elevation filter is specified, the full
-   vertical coverage stack will be downloaded. Finally, in case of spatio-vertical-temporal 4D coverage, in case
-   no time/elevation filter is specified, the full coverage stack corressponding to the combinations of temporal
-   and vertical coefficients will be downloaded.
-   
-   This function returns an object of class \code{RasterStack} from \pkg{raster}
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
@@ -104,6 +52,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getWGS84BoundingBox}{\code{WCSCoverageSummary$getWGS84BoundingBox()}}
 \item \href{#method-getBoundingBox}{\code{WCSCoverageSummary$getBoundingBox()}}
 \item \href{#method-getDescription}{\code{WCSCoverageSummary$getDescription()}}
+\item \href{#method-getDimensions}{\code{WCSCoverageSummary$getDimensions()}}
 \item \href{#method-clone}{\code{WCSCoverageSummary$clone()}}
 }
 }
@@ -229,6 +178,19 @@ Get description
 
 \subsection{Returns}{
 an object of class \link{WCSCoverageDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDimensions"></a>}}
+\if{latex}{\out{\hypertarget{method-getDimensions}{}}}
+\subsection{Method \code{getDimensions()}}{
+Get dimensions
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getDimensions()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+
 }
 }
 \if{html}{\out{<hr>}}

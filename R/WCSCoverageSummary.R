@@ -7,56 +7,6 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @note Class used internally by ows4R.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, capabilities, serviceVersion, owsVersion, logger)}}{
-#'    This method is used to instantiate a \code{WCSCoverageSummary} object
-#'  }
-#'  \item{\code{getId()}}{
-#'    Get the identifier
-#'  }
-#'  \item{\code{getSubtype()}}{
-#'    Get the coverage subtype
-#'  }
-#'  \item{\code{getSubtypeParent()}}{
-#'    Get the coverage subtype parent type(s)
-#'  }
-#'  \item{\code{getWGS84BoundingBox()}}{
-#'    Get coverage WGS84 bounding box as list of \code{OWSWGS84BoundingBox}
-#'  }
-#'  \item{\code{getBoundingBox()}}{
-#'    Get coverage bounding box as list of \code{OWSBoundingBox}
-#'  }
-#'  \item{\code{getDescription()}}{
-#'    Get coverage description
-#'  }
-#'  \item{\code{getDimensions()}}{
-#'    Get the coverage dimensions, returned as\code{list}. Each element of this list
-#'    will reference the axis abbreviation/label used for coverage query based on this
-#'    dimension, the \pkg{geometa} GML object and classname, the type of dimension such as
-#'    'geographic', 'temporal' or 'vertical', and if applicable: the possible values 
-#'    (coefficients) that can be used for querying the coverage on the dimension. 
-#'  }
-#'  \item{\code{getCoverage(bbox, crs, time, elevation, format, rangesubset, 
-#'                          gridbaseCRS, gridtype, gridCS, gridorigin, gridoffsets)}}{
-#'    Get the coverage data as object of class \code{RasterLayer} from \pkg{raster}
-#'  }
-#'  \item{\code{getCoverageStack(time, elevation, bbox)}}{
-#'    Get a stack of coverages (also known as 'datacube') for time and/or elevation. Each parameter
-#'    can be specified a vector of values (coefficients) as filter. If no value is specified, the function will
-#'    consider all coefficients for the given dimension. An additional bbox parameter allows to restrain
-#'    the geographic extent of the overall coverage stack/datacube.
-#'    
-#'    For a spatio-temporal 3D coverage, in case that no time filter is specified, the full temporal coverage stack
-#'    will be downloaded. For a spatio/vertical 3D coverage, in case that no elevation filter is specified, the full
-#'    vertical coverage stack will be downloaded. Finally, in case of spatio-vertical-temporal 4D coverage, in case
-#'    no time/elevation filter is specified, the full coverage stack corressponding to the combinations of temporal
-#'    and vertical coefficients will be downloaded.
-#'    
-#'    This function returns an object of class \code{RasterStack} from \pkg{raster}
-#'  }
-#' }
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -243,6 +193,124 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                                                 logger = self$loggerType)
       private$description = description
       return(description)
+    },
+    
+    #'@description Get dimensions
+    #'@return
+    getDimensions = function(){
+      dimensions <- NULL
+      des <- self$getDescription()
+      if(!is.null(private$dimensions)) return(private$dimensions)
+      if(!is.null(des$boundedBy)){
+        self$INFO("Fetching Coverage envelope dimensions by CRS interpretation")
+        srsName <- des$boundedBy$attrs$srsName
+        if(is.null(srsName)){
+          self$ERROR("No 'srsName' envelope attribute for CRS interpretation")
+          return(NULL)
+        }
+        srsNameXML <- try(XML::xmlParse(srsName))
+        if(is(srsNameXML,"try-error")){
+          self$ERROR("Error during srsName CRS interpretation")
+          return(NULL)
+        }
+        gmlCRSClass <- geometa::ISOAbstractObject$getISOClassByNode(srsNameXML)
+        if(is.null(gmlCRSClass)){
+          self$ERROR(sprintf("No GML CRS class recognized for srsName '%s'", srsName))
+          return(NULL)
+        }else{
+          
+          #fetchRemoteCRS function
+          fetchRemoteCRS <- function(thecrs){
+            out_crs <- thecrs
+            crsHref <- thecrs$attrs[["xlink:href"]]
+            if(!is.null(crsHref)){
+              self$INFO(sprintf("Try to parse CRS from '%s'", crsHref))
+              crsXML <- try(XML::xmlParse(crsHref))
+              if(is(crsXML, "try-error")){
+                self$ERROR(sprintf("Error during parsing CRS '%s'", crsHref))
+                return(NULL)
+              }
+              outCrsClass <- geometa::ISOAbstractObject$getISOClassByNode(crsXML)
+              out_crs <- outCrsClass$new(xml = crsXML)
+            }
+            return(out_crs)
+          }
+          
+          crs <- gmlCRSClass$new(xml = srsNameXML)
+          if(gmlCRSClass$classname == "GMLCompoundCRS"){
+            comprs <- crs$componentReferenceSystem
+            crs <- lapply(comprs, fetchRemoteCRS)
+          }else{
+            crs <- fetchRemoteCRS(crs)
+            crs <- list(crs)
+          }
+          
+          axisLabels <- unlist(strsplit(des$boundedBy$attrs$axisLabels, " "))
+          uomLabels <- unlist(strsplit(des$boundedBy$attrs$uomLabels, " "))
+          dimensions <- lapply(1:length(axisLabels), function(i){
+            dimension <- list(label = axisLabels[i], uom = uomLabels[i])
+            dimension$type <- "geographic"
+            invisible(lapply(crs, function(singlecrs){
+              csp <- names(singlecrs)[sapply(names(singlecrs), function(x){inherits(singlecrs[[x]], "GMLAbstractCoordinateSystem")})]
+              if(length(csp)>0){
+                cs <- singlecrs[[csp]]
+                axis_match <- cs$axis[sapply(cs$axis, function(axis){
+                  axisValue <- axis$axisAbbrev$value
+                  if(axisValue == "Lon" & axisLabels[i] == "Long") axisValue <- "Long"
+                  axisValue == axisLabels[i]
+                })]
+                if(length(axis_match)>0){
+                  axis_match <- axis_match[[1]]
+                  dimension$identifier <<- axis_match$identifier$value
+                  dimension$direction <<- axis_match$axisDirection$value
+                  dimension$gmlclass <<- singlecrs$getClassName()
+                  dimension$type <<- switch(singlecrs$getClassName(),
+                                            "GMLTemporalCRS" = "temporal",
+                                            "GMLVerticalCRS" = "vertical",
+                                            "GMLImageCRS" = "vertical",
+                                            "geographic"
+                  )
+                  
+                  if(!is.null(des$domainSet$generalGridAxis)){
+                    coeffs <- des$domainSet$generalGridAxis[[i]]$coefficients
+                    if(is.matrix(coeffs)){
+                      dimension$coefficients <<- coeffs
+                    }else{
+                      dimension$coefficients <<- NA
+                    }
+                  }
+                }
+              }
+            }))
+            if(i==length(axisLabels) & is(des$boundedBy, "GMLEnvelopeWithTimePeriod")){
+              #resolve temporal diemnsion in case of GMLEnvelopeWithTimePeriod
+              dimension$type <- "temporal"
+            }
+            if(is.null(dimension$coefficients)){
+              if(!is.null(des$metadata)){
+                
+                if(dimension$type == "temporal"){
+                  timeDomain <- des$metadata$TimeDomain
+                  if(!is.null(timeDomain) & is(timeDomain, "WCSGSTimeDomain")){
+                    dimension$coefficients <- as.matrix(des$metadata$TimeDomain$TimeInstant)   
+                  }
+                }
+                if(dimension$type == "vertical"){
+                  elevationDomain <- des$metadata$ElevationDomain
+                  if(!is.null(elevationDomain) & is(elevationDomain, "WCSGSElevationDomain")){
+                    dimension$coefficients <- as.matrix(des$metadata$ElevationDomain$SingleValue)
+                  }
+                }
+              }
+            }
+            
+            return(dimension)
+          })
+        }
+      }
+      
+      private$dimensions <- dimensions
+      return(dimensions)
     }
     
   )
