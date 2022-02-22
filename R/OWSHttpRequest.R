@@ -66,7 +66,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
           text <- gsub("<!--.*?-->", "", text)
           responseContent <- xmlParse(text)
         }else{
-          responseContent <- content(r, type = "text", encoding = "UTF-8")
+          responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
       }
       response <- list(request = request, requestHeaders = httr::headers(r),

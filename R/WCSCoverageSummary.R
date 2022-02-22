@@ -409,7 +409,10 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
              if(is(env, "GMLEnvelopeWithTimePeriod")){
                beginPosition <- env$beginPosition
                endPosition <- env$endPosition
-               bbox <- matrix(c(env$lowerCorner,env$beginPosition$value, env$upperCorner, env$endPosition$value),length(env$lowerCorner)+1,2)
+               bbox <- matrix(c(
+                 env$lowerCorner, format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+                 env$upperCorner, format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+               ),length(env$lowerCorner)+1,2)
                env <- GMLEnvelope$new(bbox = bbox)
                env$attrs <- envattrs
                env <- OWSUtils$checkEnvelopeDatatypes(env)
@@ -432,8 +435,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             envelope$upperCorner <- cbind(envelope$upperCorner, refEnvelope$upperCorner[,3:length(refEnvelope$upperCorner)])
           }
           if(is(refEnvelope, "GMLEnvelopeWithTimePeriod")){
-            envelope$lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$beginPosition$value)
-            envelope$upperCorner <- cbind(envelope$upperCorner, refEnvelope$endPosition$value)
+            envelope$lowerCorner <- cbind(envelope$lowerCorner, format(refEnvelope$beginPosition$value, "%Y-%m-%dT%H:%M:%S"))
+            envelope$upperCorner <- cbind(envelope$upperCorner, format(refEnvelope$endPosition$value, "%Y-%m-%dT%H:%M:%S"))
           }
           envelope$attrs <- self$getDescription()$boundedBy$attrs
           envelope <- OWSUtils$checkEnvelopeDatatypes(envelope)
@@ -456,6 +459,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           if(is.null(time)){
             defaultTime <- timeDim$coefficients[[length(timeDim$coefficients)]]
             self$INFO(sprintf("Using default 'time' value '%s'", defaultTime)) 
+            time <- defaultTime
           }else{
             if(!(time %in% timeDim$coefficients)){
               error <- sprintf("The 'time' specified value is not valid. Allowed values for this coverage are [%s]",
@@ -477,6 +481,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           if(is.null(elevation)){
             defaultElevation <- vertDim$coefficients[[length(vertDim$coefficients)]]
             self$INFO(sprintf("Using default 'elevation' value '%s'", defaultElevation)) 
+            elevation <- defaultElevation
           }else{
             if(!(elevation %in% vertDim$coefficients)){
               errorMsg <- sprintf("The 'elevation' specified value is not valid. Allowed values for this coverage are [%s]",
@@ -500,9 +505,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                                                gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
                                                gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
       resp <- getCoverageRequest$getResponse()
-      return(resp)
       
-      if(!is(resp, "raw")) if(!is(resp, "character")){
+      if(!is(resp, "raw")){
         hasError <- xmlName(xmlRoot(resp)) == "ExceptionReport"
         if(hasError){
           errMsg <- sprintf("Error while getting coverage: %s", xpathSApply(resp, "//ows:ExceptionText", xmlValue))

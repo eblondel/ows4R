@@ -51,3 +51,48 @@ test_that("WCS 2.0.1 - Rasdaman",{
   expect_is(temp4d_desc$domainSet, "GMLReferenceableGridByVectors")
 })
 
+#DATASOURCES OF INTEREST
+
+test_that("WCS 2.0.1 - Emodnet Bathymetry",{
+  testthat::skip_on_cran()
+  emodnet <- WCSClient$new(url = "https://ows.emodnet-bathymetry.eu/wcs", serviceVersion = "2.0.1", logger = "DEBUG")
+  bathy <- emodnet$getCapabilities()$findCoverageSummaryById("emodnet__mean", exact = TRUE)
+  bathy_des <- bathy$getDescription()
+  bbox <- OWSUtils$toBBOX(-9.74885843385535,-6.40719176724215,46.57884310043864,48.46009310040854)
+  bathy_data <- bathy$getCoverage(bbox = bbox)
+  bathy_data_stack <- bathy$getCoverageStack(bbox = bbox)
+  expect_true(raster::compareRaster(bathy_data,bathy_data_stack))
+  
+  if(FALSE){
+    require(rasterVis)
+    r <- bathy_data
+    r <- raster::crop(r, area)
+    r <- raster::mask(r, area)
+    r[r>=0] <- NA
+    rasterVis::levelplot(r)
+  }
+  
+})
+
+test_that("WCS 2.0.1 - VLIZ",{
+  testthat::skip_on_cran()
+  vliz <- WCSClient$new(url = "https://geo.vliz.be/geoserver/wcs", serviceVersion = "2.0.1", logger = "DEBUG")
+  
+  cov <- vliz$getCapabilities()$findCoverageSummaryById("Emodnetbio__aca_spp_19582016_L1", exact = TRUE)
+  cov_des <- cov$getDescription()
+  cov_data <- cov$getCoverage(
+    bbox = OWSUtils$toBBOX(8.37,8.41,58.18,58.24),
+    time = cov$getDimensions()[[3]]$coefficients[1]
+  )
+  cov_data_stack <- cov$getCoverageStack(
+    bbox = OWSUtils$toBBOX(8.37,8.41,58.18,58.24),
+    time = cov$getDimensions()[[3]]$coefficients[1]
+  )
+  expect_true(raster::compareRaster(cov_data,cov_data_stack))
+  
+  if(FALSE){
+    require(rasterVis)
+    rasterVis::levelplot(cov_data)
+  }
+  
+})
