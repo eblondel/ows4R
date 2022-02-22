@@ -193,5 +193,21 @@ OWSUtils <- list(
     getAspectRatio = function(bbox){
       ratio <- (bbox[1,2]-bbox[1,1]) / (bbox[2,2]-bbox[2,1])
       return(ratio)
+    },
+    
+    #checkEnvelopeDatatypes
+    #---------------------------------------------------------------
+    checkEnvelopeDatatypes = function(env){
+      env$lowerCorner <- t(as.matrix(lapply(env$lowerCorner,function(x){
+        out <- x
+        if(!is.na(suppressWarnings(as.numeric(x)))) out<-as.numeric(x)
+        out
+      })))
+      env$upperCorner <- t(as.matrix(lapply(env$upperCorner,function(x){
+        out <- x
+        if(!is.na(suppressWarnings(as.numeric(x)))) out<-as.numeric(x)
+        out
+      })))
+      return(env)
     }
 )
