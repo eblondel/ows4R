@@ -56,10 +56,40 @@ WCSClient <- R6Class("WCSClient",
        self$INFO(sprintf("Fetching coverageSummary description for '%s' ...", identifier))
        describeCoverage <- NULL
        cov <- self$capabilities$findCoverageSummaryById(identifier, exact = TRUE)
-       if(is(cov, "WFSCoverageSummary")){
+       if(is(cov, "WCSCoverageSummary")){
          describeCoverage <- cov$getDescription()
        }
        return(describeCoverage)
+     },
+     
+     #'@description Get coverage
+     #'@param identifier identifier
+     #'@param bbox bbox. Default is \code{NULL}
+     #'@param crs crs. Default is \code{NULL}
+     #'@param time time. Default is \code{NULL}
+     #'@param elevation elevation. Default is \code{NULL}
+     #'@param format format. Default is "image/tiff"
+     #'@param rangesubset rangesubset. Default is \code{NULL}
+     #'@param gridbaseCRS grid base CRS. Default is \code{NULL}
+     #'@param gridtype grid type. Default is \code{NULL}
+     #'@param gridCS grid CS. Default is \code{NULL}
+     #'@param gridorigin grid origin. Default is \code{NULL}
+     #'@param gridoffsets grid offsets. Default is \code{NULL}
+     #'@param ... any other argument to pass to the WCS GetCoverage request
+     #'@return an object of class \link{raster} from \pkg{raster}
+     getCoverage = function(identifier,
+                            bbox = NULL, crs = NULL, time = NULL, format = NULL, rangesubset = NULL, 
+                            gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
+                            gridorigin = NULL, gridoffsets = NULL, ...){
+        self$INFO(sprintf("Fetching coverage for '%s'", identifier))
+        coverage <- NULL
+        cov <- self$capabilities$findCoverageSummaryById(identifier, exact = TRUE)
+        if(is(cov, "WCSCoverageSummary")){
+           coverage <- cov$getCoverage(bbox = bbox, crs = crs, time = time, format = format, rangesubset = rangesubset, 
+                                       gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
+                                       gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
+        }
+        return(coverage)
      }
    )
 )

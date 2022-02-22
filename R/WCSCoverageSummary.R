@@ -311,6 +311,311 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       
       private$dimensions <- dimensions
       return(dimensions)
+    },
+    
+    #'@description Get coverage data
+    #'@param bbox bbox. Default is \code{NULL}
+    #'@param crs crs. Default is \code{NULL}
+    #'@param time time. Default is \code{NULL}
+    #'@param elevation elevation. Default is \code{NULL}
+    #'@param format format. Default is "image/tiff"
+    #'@param rangesubset rangesubset. Default is \code{NULL}
+    #'@param gridbaseCRS grid base CRS. Default is \code{NULL}
+    #'@param gridtype grid type. Default is \code{NULL}
+    #'@param gridCS grid CS. Default is \code{NULL}
+    #'@param gridorigin grid origin. Default is \code{NULL}
+    #'@param gridoffsets grid offsets. Default is \code{NULL}
+    #'@param ... any other argument to \link{WCSGetCoverage}
+    #'@return an object of class \link{raster} from \pkg{raster}
+    getCoverage = function(bbox = NULL, crs = NULL, 
+                           time = NULL, elevation = NULL,
+                           format = "image/tiff", rangesubset = NULL, 
+                           gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
+                           gridorigin = NULL, gridoffsets = NULL, ...){
+      coverage_data <- NULL
+      op <- NULL
+      operations <- private$capabilities$getOperationsMetadata()$getOperations()
+      if(length(operations)>0){
+        op <- operations[sapply(operations,function(x){x$getName()=="GetCoverage"})]
+        if(length(op)>0){
+          op <- op[[1]]
+        }else{
+          stop("Operation 'GetCoverage' not supported by this service")
+        }
+      }
+      if(!is.null(format)){
+        if(substr(private$version,1,3)=="1.1"){
+          if(!(format %in% self$getDescription()$getSupportedFormats())){
+            stop(sprintf("Format should be one of the allowed values [%s]",
+                         paste0(self$getDescription()$getSupportedFormats())))
+          }
+        }else if(substr(private$version,1,3)=="2.0"){
+          #TODO check format in case of WCS2
+        }
+        
+      }
+      
+      #crs
+      if(!is.null(crs)){
+        if(substr(private$version,1,3)=="1.0"){
+          domainCRS <- self$getDescription()$getSupportedCRS()
+          if(!(crs %in% domainCRS)){
+            stop(sprintf("CRS should be one of the allowed domain CRS [%s]", paste(domainCRS, collapse=",")))
+          }
+        }else if(substr(private$version,1,3)=="1.1"){
+          domainCRS <- sapply(self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox, function(x){x$attrs$crs})
+          if(!(crs %in% domainCRS)){
+            stop(sprintf("CRS should be one of the allowed domain CRS [%s]", paste(domainCRS, collapse=",")))
+          }
+        }else if(substr(private$version,1,3)=="2.0"){
+          #TODO check crs in case of WCS2
+        }
+      }else{
+        if(substr(private$version,1,3)=="1.0"){
+          domainCRS <- self$getDescription()$getSupportedCRS()
+          crs <- domainCRS[1]
+        }else if(substr(private$version,1,3)=="1.1"){
+          domainCRS <- sapply(self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox, function(x){x$attrs$crs})
+          crs <- domainCRS[domainCRS == self$getDescription()$getSupportedCRS()[1]]
+        }else if(substr(private$version,1,3)=="2.0"){
+          srsName <- self$getDescription()$boundedBy$attrs[["srsName"]]
+          srs_elems <- unlist(strsplit(srsName,"/"))
+          srid <- srs_elems[length(srs_elems)]
+          crs <- paste0("urn:ogc:def:crs:EPSG::",srid)
+        }
+      }
+      
+      #envelope
+      envelope = NULL
+      if(is.null(bbox)){
+        envelope <- switch(substr(private$version,1,3),
+           "1.0" = {
+             owsbbox <- self$getWGS84BoundingBox()[[1]]
+             OWSUtils$toBBOX(owsbbox$LowerCorner[1], owsbbox$UpperCorner[1], owsbbox$LowerCorner[2], owsbbox$UpperCorner[2]) 
+           },
+           "1.1" = {
+             bboxes <- self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox
+             owsbbox <- bboxes[sapply(bboxes, function(x){return(x$attrs$crs == crs)})][[1]]
+             xorder <- 1; yorder <- 2;
+             if(endsWith(crs, "EPSG::4326")){
+               xorder <- 2; yorder <- 1;
+             }
+             OWSUtils$toBBOX(owsbbox$LowerCorner[xorder], owsbbox$UpperCorner[xorder], owsbbox$LowerCorner[yorder], owsbbox$UpperCorner[yorder]) 
+           },
+           "2.0" = {
+             env <- self$getDescription()$boundedBy
+             envattrs <- env$attrs
+             #normalize as Envelope based on bbox matrix
+             if(is(env, "GMLEnvelopeWithTimePeriod")){
+               beginPosition <- env$beginPosition
+               endPosition <- env$endPosition
+               bbox <- matrix(c(env$lowerCorner,env$beginPosition$value, env$upperCorner, env$endPosition$value),length(env$lowerCorner)+1,2)
+               env <- GMLEnvelope$new(bbox = bbox)
+               env$attrs <- envattrs
+               env <- OWSUtils$checkEnvelopeDatatypes(env)
+             }
+             env
+           }
+        )
+      }else{
+        if(substr(private$version,1,3) == "1.1"){
+          envelope <- GMLEnvelope$new(bbox = bbox)
+        }
+        if(substr(private$version,1,3)=="2.0"){
+          refEnvelope <- self$getDescription()$boundedBy
+          axisLabels <- unlist(strsplit(refEnvelope$attrs$axisLabels, " "))
+          if(axisLabels[1]=="Lat") bbox <- rbind(bbox[2,],bbox[1,])
+          envelope <- GMLEnvelope$new(bbox = bbox)
+          if(as.numeric(refEnvelope$attrs$srsDimension)>2){
+            #TODO and what if geo coordinates are not the first dims defined in envelope?
+            envelope$lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$lowerCorner[,3:length(refEnvelope$lowerCorner)])
+            envelope$upperCorner <- cbind(envelope$upperCorner, refEnvelope$upperCorner[,3:length(refEnvelope$upperCorner)])
+          }
+          if(is(refEnvelope, "GMLEnvelopeWithTimePeriod")){
+            envelope$lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$beginPosition$value)
+            envelope$upperCorner <- cbind(envelope$upperCorner, refEnvelope$endPosition$value)
+          }
+          envelope$attrs <- self$getDescription()$boundedBy$attrs
+          envelope <- OWSUtils$checkEnvelopeDatatypes(envelope)
+        }
+      }
+      
+      #dimensions
+      dims <- self$getDimensions() #TODO and for other versions of WCS?
+      if(!is.null(dims)){
+        
+        #TODO geographic dimension checks?
+        
+        #temporal dimension checks
+        timeDim <- dims[sapply(dims, function(x){x$type == "temporal"})]
+        hasTemporalDimension <- length(timeDim) > 0
+        if(!hasTemporalDimension){
+          self$WARN("Coverage without temporal dimension: 'time' argument is ignored")
+        }else{
+          timeDim <- timeDim[[1]]
+          if(is.null(time)){
+            defaultTime <- timeDim$coefficients[[length(timeDim$coefficients)]]
+            self$INFO(sprintf("Using default 'time' value '%s'", defaultTime)) 
+          }else{
+            if(!(time %in% timeDim$coefficients)){
+              error <- sprintf("The 'time' specified value is not valid. Allowed values for this coverage are [%s]",
+                               paste(timeDim$coefficients, collapse=","))
+              self$ERROR(error)
+              stop(errorMsg)
+            }
+          }
+        }
+        
+        #vertical dimension checks
+        vertDim <- dims[sapply(dims, function(x){x$type == "vertical"})]
+        hasVerticalDimension <- length(vertDim) > 0
+        
+        if(!hasVerticalDimension){
+          self$WARN("Coverage without vertical dimension: 'elevation' argument is ignored")
+        }else{
+          vertDim <- vertDim[[1]]
+          if(is.null(elevation)){
+            defaultElevation <- vertDim$coefficients[[length(vertDim$coefficients)]]
+            self$INFO(sprintf("Using default 'elevation' value '%s'", defaultElevation)) 
+          }else{
+            if(!(elevation %in% vertDim$coefficients)){
+              errorMsg <- sprintf("The 'elevation' specified value is not valid. Allowed values for this coverage are [%s]",
+                                  paste(vertDim$coefficients, collapse=","))
+              self$ERROR(error)
+              stop(errorMsg)
+            }
+          }
+        }
+        
+      }
+      
+      print(envelope)
+      
+      #GetCoverage request
+      getCoverageRequest <- WCSGetCoverage$new(op = op, private$url, 
+                                               private$version, private$owsVersion,
+                                               coverageId = self$CoverageId, logger = self$loggerType,
+                                               envelope = envelope, crs = crs, time = time, format = format, rangesubset = rangesubset, 
+                                               gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
+                                               gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
+      resp <- getCoverageRequest$getResponse()
+      
+      if(!is(resp, "raw")){
+        hasError <- xmlName(xmlRoot(resp)) == "ExceptionReport"
+        if(hasError){
+          errMsg <- sprintf("Error while getting coverage: %s", xpathSApply(resp, "//ows:ExceptionText", xmlValue))
+          self$ERROR(errMsg)
+          return(NULL)
+        }
+      }
+      
+      #response handling
+      if(substr(private$version,1,3)=="1.1"){
+        #for WFS 1.1, wrap with WCSCoverage object and get data
+        namespaces <- OWSUtils$getNamespaces(xmlRoot(resp))
+        namespaces <- as.data.frame(namespaces)
+        nsVersion <- ""
+        if(startsWith(private$owsVersion, "1.0")) nsVersion <- "1.0"
+        if(startsWith(private$owsVersion, "1.1")) nsVersion <- "1.1.1"
+        if(startsWith(private$owsVersion, "2.0")) nsVersion <- "2.0"
+        wcsNamespaceURI <- paste("http://www.opengis.net/wcs", nsVersion, sep ="/")
+        wcsNs <- OWSUtils$findNamespace(namespaces, uri = wcsNamespaceURI)
+        if(is.null(wcsNs)) wcsNs <- OWSUtils$findNamespace(namespaces, id = "wcs")
+        print(wcsNs)
+        xmlObj <- getNodeSet(resp, "//ns:Coverage", wcsNs)[[1]]
+        coverage <- WCSCoverage$new(xmlObj = xmlObj, private$version, private$owsVersion, logger = self$loggerType)
+        coverage_data <- coverage$getData()
+      }else if(substr(private$version,1,3)=="2.0"){
+        #for WCS 2.0.x take directly the data
+        tmp <- tempfile()
+        writeBin(resp, tmp)
+        coverage_data <- raster::raster(tmp)
+      }
+      
+      #add raster attributes
+      name <- self$getId()
+      if(!is.null(bbox)) name <- paste(name, "_bbox-", paste(as(bbox,"character"), collapse=","))
+      if(!is.null(time)) name <- paste(name, "_time-:", time)
+      names(coverage_data) <- name
+      title <- self$getId()
+      if(!is.null(bbox)) title <- paste(title, "| BBOX:", paste(as(bbox,"character"), collapse=","))
+      if(!is.null(time)) title <- paste(title," | TIME:", time)
+      attr(coverage_data,"title") <- title
+      cov_values <- raster::getValues(coverage_data)
+      if(!all(is.na(cov_values))){
+        slot(attr(coverage_data, "data"),"min") <- min(cov_values, na.rm = TRUE)
+        slot(attr(coverage_data, "data"),"max") <- max(cov_values, na.rm = TRUE)
+      }
+      
+      return(coverage_data)
+    },
+    
+    #'@description Get a spatio-temporal coverage data cubes as coverage \link{stack}
+    #'@param time time
+    #'@param elevation elevation
+    #'@param bbox bbox
+    #'@return an object of class \link{stack} from \pkg{raster}
+    getCoverageStack = function(time = NULL, elevation = NULL, bbox = NULL){
+      out <- NULL
+      dims <- self$getDimensions()
+      timeDim <- dims[sapply(dims, function(x){x$type == "temporal"})]
+      hasTemporalDimension <- length(timeDim) > 0
+      if(hasTemporalDimension){
+        timeDim <- timeDim[[1]]
+        if(is.null(time)){
+          time <- timeDim$coefficients
+        }
+      }
+      vertDim <- dims[sapply(dims, function(x){x$type == "vertical"})]
+      hasVerticalDimension <- length(vertDim) > 0
+      if(hasVerticalDimension){
+        vertDim <- vertDim[[1]]
+        if(is.null(elevation)){
+          elevation <- vertDim$coefficients
+        }
+      }
+      
+      stack_kvps <- list()
+      if(!is.null(time) & !is.null(elevation)){
+        self$INFO("Fetching coverage stack with both 'temporal' and 'vertical' dimensions")
+        cj <- expand.grid(time = time, elevation = elevation)
+        stack_kvps <- lapply(1:nrow(cj), function(i){
+          kvps <- list()
+          cj_kvps <- as.list(as.character(unlist(cj[i,])))
+          names(cj_kvps) <- names(cj)
+          kvps <- c(kvps, cj_kvps)
+          return(kvps)
+        })
+      }else{
+        if(!is.null(time)){
+          self$INFO("Fetching coverage stack with 'temporal' dimension")
+          stack_kvps <- lapply(time, function(x){
+            kvps <- list()
+            kvps$time <- x
+            return(kvps)
+          })
+        }else if(!is.null(elevation)){
+          self$INFO("Fetching coverage stack with 'vertical' dimension")
+          stack_kvps <- lapply(elevation, function(x){
+            kvps <- list()
+            kvps$elevation <- x
+            return(kvps)
+          })
+        }else{
+          self$WARN("No multi-dimensions. Returning a simple coverage")
+          return(self$getCoverage(bbox = bbox))
+        }
+      }
+      
+      if(length(stack_kvps)>0){
+        coverage_list <- lapply(stack_kvps, function(stack_kvp){
+          self$INFO(stack_kvp)
+          coverage <- self$getCoverage(bbox = bbox, time = stack_kvp$time, elevation = stack_kvp$elevation)
+          return(coverage)
+        })
+        out <- raster::stack(coverage_list)
+      }
+      return(out)
     }
     
   )

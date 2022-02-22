@@ -53,6 +53,8 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getBoundingBox}{\code{WCSCoverageSummary$getBoundingBox()}}
 \item \href{#method-getDescription}{\code{WCSCoverageSummary$getDescription()}}
 \item \href{#method-getDimensions}{\code{WCSCoverageSummary$getDimensions()}}
+\item \href{#method-getCoverage}{\code{WCSCoverageSummary$getCoverage()}}
+\item \href{#method-getCoverageStack}{\code{WCSCoverageSummary$getCoverageStack()}}
 \item \href{#method-clone}{\code{WCSCoverageSummary$clone()}}
 }
 }
@@ -191,6 +193,85 @@ Get dimensions
 
 \subsection{Returns}{
 
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getCoverage"></a>}}
+\if{latex}{\out{\hypertarget{method-getCoverage}{}}}
+\subsection{Method \code{getCoverage()}}{
+Get coverage data
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getCoverage(
+  bbox = NULL,
+  crs = NULL,
+  time = NULL,
+  elevation = NULL,
+  format = "image/tiff",
+  rangesubset = NULL,
+  gridbaseCRS = NULL,
+  gridtype = NULL,
+  gridCS = NULL,
+  gridorigin = NULL,
+  gridoffsets = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{bbox}}{bbox. Default is \code{NULL}}
+
+\item{\code{crs}}{crs. Default is \code{NULL}}
+
+\item{\code{time}}{time. Default is \code{NULL}}
+
+\item{\code{elevation}}{elevation. Default is \code{NULL}}
+
+\item{\code{format}}{format. Default is "image/tiff"}
+
+\item{\code{rangesubset}}{rangesubset. Default is \code{NULL}}
+
+\item{\code{gridbaseCRS}}{grid base CRS. Default is \code{NULL}}
+
+\item{\code{gridtype}}{grid type. Default is \code{NULL}}
+
+\item{\code{gridCS}}{grid CS. Default is \code{NULL}}
+
+\item{\code{gridorigin}}{grid origin. Default is \code{NULL}}
+
+\item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
+
+\item{\code{...}}{any other argument to \link{WCSGetCoverage}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \link{raster} from \pkg{raster}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getCoverageStack"></a>}}
+\if{latex}{\out{\hypertarget{method-getCoverageStack}{}}}
+\subsection{Method \code{getCoverageStack()}}{
+Get a spatio-temporal coverage data cubes as coverage \link{stack}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getCoverageStack(time = NULL, elevation = NULL, bbox = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{time}}{time}
+
+\item{\code{elevation}}{elevation}
+
+\item{\code{bbox}}{bbox}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \link{stack} from \pkg{raster}
 }
 }
 \if{html}{\out{<hr>}}

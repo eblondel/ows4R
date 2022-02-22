@@ -38,6 +38,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getCapabilities}{\code{WCSClient$getCapabilities()}}
 \item \href{#method-reloadCapabilities}{\code{WCSClient$reloadCapabilities()}}
 \item \href{#method-describeCoverage}{\code{WCSClient$describeCoverage()}}
+\item \href{#method-getCoverage}{\code{WCSClient$getCoverage()}}
 \item \href{#method-clone}{\code{WCSClient$clone()}}
 }
 }
@@ -142,6 +143,63 @@ Describes coverage
 }
 \subsection{Returns}{
 an object of class \link{WCSCoverageDescription}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getCoverage"></a>}}
+\if{latex}{\out{\hypertarget{method-getCoverage}{}}}
+\subsection{Method \code{getCoverage()}}{
+Get coverage
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WCSClient$getCoverage(
+  identifier,
+  bbox = NULL,
+  crs = NULL,
+  time = NULL,
+  format = NULL,
+  rangesubset = NULL,
+  gridbaseCRS = NULL,
+  gridtype = NULL,
+  gridCS = NULL,
+  gridorigin = NULL,
+  gridoffsets = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{identifier}}{identifier}
+
+\item{\code{bbox}}{bbox. Default is \code{NULL}}
+
+\item{\code{crs}}{crs. Default is \code{NULL}}
+
+\item{\code{time}}{time. Default is \code{NULL}}
+
+\item{\code{format}}{format. Default is "image/tiff"}
+
+\item{\code{rangesubset}}{rangesubset. Default is \code{NULL}}
+
+\item{\code{gridbaseCRS}}{grid base CRS. Default is \code{NULL}}
+
+\item{\code{gridtype}}{grid type. Default is \code{NULL}}
+
+\item{\code{gridCS}}{grid CS. Default is \code{NULL}}
+
+\item{\code{gridorigin}}{grid origin. Default is \code{NULL}}
+
+\item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
+
+\item{\code{...}}{any other argument to pass to the WCS GetCoverage request}
+
+\item{\code{elevation}}{elevation. Default is \code{NULL}}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+an object of class \link{raster} from \pkg{raster}
 }
 }
 \if{html}{\out{<hr>}}
