@@ -492,15 +492,17 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       print(envelope)
       
       #GetCoverage request
-      getCoverageRequest <- WCSGetCoverage$new(op = op, private$url, 
-                                               private$version, private$owsVersion,
+      getCoverageRequest <- WCSGetCoverage$new(capabilities = private$capabilities, op = op, 
+                                               url = private$url, 
+                                               serviceVersion = private$version,
                                                coverageId = self$CoverageId, logger = self$loggerType,
                                                envelope = envelope, crs = crs, time = time, format = format, rangesubset = rangesubset, 
                                                gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
                                                gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
       resp <- getCoverageRequest$getResponse()
+      return(resp)
       
-      if(!is(resp, "raw")){
+      if(!is(resp, "raw")) if(!is(resp, "character")){
         hasError <- xmlName(xmlRoot(resp)) == "ExceptionReport"
         if(hasError){
           errMsg <- sprintf("Error while getting coverage: %s", xpathSApply(resp, "//ows:ExceptionText", xmlValue))
