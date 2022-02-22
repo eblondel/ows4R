@@ -21,7 +21,7 @@ WCSGSTimeDomain <- R6Class("WCSGSTimeDomain",
      TimeInstant = list(),
      
      #'@description Decodes from XML
-     #'@param xml object of class \link{XMLInternalNode-Class} from \pkg{XML}
+     #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
      decode = function(xml){
        self$TimeInstant = as.list(as.character(sapply(xmlChildren(xml), function(x){
          xmlValue(xmlChildren(x)[[1]])

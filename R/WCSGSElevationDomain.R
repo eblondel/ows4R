@@ -19,7 +19,7 @@ WCSGSElevationDomain <- R6Class("WCSGSElevationDomain",
     SingleValue = list(),
     
     #'@description Decodes from XML
-    #'@param xml object of class \link{XMLInternalNode-Class} from \pkg{XML}
+    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
     decode = function(xml){
       print("decoding WCSGSElevationDomain")
       self$SingleValue = as.list(as.character(sapply(xmlChildren(xml), xmlValue)))
