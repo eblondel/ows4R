@@ -15,6 +15,20 @@ test_that("WCS 2.0.1 - GeoServer",{
   cov <- caps$findCoverageSummaryById("sf__sfdem")
   expect_is(cov, "WCSCoverageSummary")
   expect_equal(length(caps$getCoverageSummaries()), 5L)
+  
+  cov_summary <- caps$findCoverageSummaryById("sf__sfdem")
+  expect_is(cov_summary, "WCSCoverageSummary")
+  expect_equal(cov_summary$getId(), "sf__sfdem")
+  expect_equal(cov_summary$getSubtype(), "RectifiedGridCoverage")
+  expect_equal(length(cov_summary$getWGS84BoundingBox()), 1L)
+  expect_is(cov_summary$getWGS84BoundingBox()[[1]], "OWSWGS84BoundingBox")
+  expect_equal(length(cov_summary$getBoundingBox()), 1L)
+  expect_is(cov_summary$getBoundingBox()[[1]], "OWSBoundingBox")
+  
+  cov_summary_des <- cov_summary$getDescription()
+  expect_is(cov_summary_des, "WCSCoverageDescription")
+  expect_is(cov_summary_des, "GMLCOVAbstractCoverage")
+  
 })
 
 test_that("WCS 2.0.1 - Rasdaman",{
