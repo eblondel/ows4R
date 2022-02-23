@@ -8,6 +8,7 @@
 #' @import XML
 #' @import sf
 #' @import rgdal
+#' @import raster
 #' @import geometa
 #' @import keyring
 #' @import parallel
