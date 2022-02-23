@@ -494,8 +494,6 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         
       }
       
-      print(envelope)
-      
       #GetCoverage request
       getCoverageRequest <- WCSGetCoverage$new(capabilities = private$capabilities, op = op, 
                                                url = private$url, 
