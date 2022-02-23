@@ -407,7 +407,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
              if(endsWith(crs, "EPSG::4326")){
                xorder <- 2; yorder <- 1;
              }
-             OWSUtils$toBBOX(owsbbox$LowerCorner[xorder], owsbbox$UpperCorner[xorder], owsbbox$LowerCorner[yorder], owsbbox$UpperCorner[yorder]) 
+             GMLEnvelope$new(bbox = OWSUtils$toBBOX(owsbbox$LowerCorner[xorder], owsbbox$UpperCorner[xorder], owsbbox$LowerCorner[yorder], owsbbox$UpperCorner[yorder])) 
            },
            "2.0" = {
              env <- self$getDescription()$boundedBy
@@ -428,7 +428,9 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
            }
         )
       }else{
-        if(substr(private$version,1,3) == "1.1"){
+        if(substr(private$version,1,3) == "1.0"){
+          envelope <- bbox
+        }else if(substr(private$version,1,3) == "1.1"){
           envelope <- GMLEnvelope$new(bbox = bbox)
         }
         if(substr(private$version,1,3)=="2.0"){
