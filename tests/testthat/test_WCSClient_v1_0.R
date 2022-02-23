@@ -8,6 +8,8 @@ require(testthat)
 context("WCS")
 
 test_that("WCS 1.0 - Thredds",{
+  testthat::skip_on_cran()
+  #TODO replace with a local dockerized Thredds 
   wcs <- WCSClient$new("https://rsg.pml.ac.uk/thredds/wcs/CCI_ALL-v5.0-MONTHLY", "1.0", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
@@ -26,9 +28,12 @@ test_that("WCS 1.0 - Thredds",{
   expect_is(domain$getTemporalDomain(), "WCSCoverageTemporalDomain")
   expect_true(length(domain$getTemporalDomain()$getInstants())>0)
   
+  chloroa_data <- chloroa$getCoverage(time = chloroa_desc$Domain$temporalDomain$instants[296])
+  
 })
 
 test_that("WCS 1.0.0 - GeoServer",{
+  testthat::skip_on_cran()
   wcs <- WCSClient$new("http://localhost:8080/geoserver/wcs", "1.0.0", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
@@ -42,4 +47,24 @@ test_that("WCS 1.0.0 - GeoServer",{
   domain <- sfdem_desc$getDomain()
   expect_is(domain, "WCSCoverageDomain")
   expect_is(domain$getSpatialDomain(), "WCSCoverageSpatialDomain")
+})
+
+#DATASOURCES OF INTEREST
+
+test_that("WCS 1.0.0 - PML",{
+  testthat::skip_on_cran()
+  wcs <- WCSClient$new("https://rsg.pml.ac.uk/thredds/wcs/PML-HAB-Maps-Pseudo-nitzschia-eurohab-subset-olci", "1.0", logger = "DEBUG")
+  expect_is(wcs, "WCSClient")
+  caps <- wcs$getCapabilities()
+  expect_is(caps, "WCSCapabilities")
+  expect_equal(length(caps$getCoverageSummaries()), 3L)
+  
+  cov <- caps$findCoverageSummaryById("harmful_un")
+  expect_is(cov, "WCSCoverageSummary")
+  cov_desc <- cov$getDescription()
+  expect_is(cov_desc, "WCSCoverageDescription")
+  
+  cov_data <- cov$getCoverage(time = "2019-07-18T11:17:00Z")
+  cov_stack <- cov$getCoverageStack(time = tail(cov_desc$Domain$temporalDomain$instants, 5))
+  
 })

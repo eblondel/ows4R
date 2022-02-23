@@ -318,7 +318,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param crs crs. Default is \code{NULL}
     #'@param time time. Default is \code{NULL}
     #'@param elevation elevation. Default is \code{NULL}
-    #'@param format format. Default is "image/tiff"
+    #'@param format format. Default will be GeoTIFF, coded differently depending on the WCS version.
     #'@param rangesubset rangesubset. Default is \code{NULL}
     #'@param gridbaseCRS grid base CRS. Default is \code{NULL}
     #'@param gridtype grid type. Default is \code{NULL}
@@ -329,7 +329,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@return an object of class \link{raster} from \pkg{raster}
     getCoverage = function(bbox = NULL, crs = NULL, 
                            time = NULL, elevation = NULL,
-                           format = "image/tiff", rangesubset = NULL, 
+                           format = NULL, rangesubset = NULL, 
                            gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
                            gridorigin = NULL, gridoffsets = NULL, ...){
       coverage_data <- NULL
@@ -352,7 +352,14 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         }else if(substr(private$version,1,3)=="2.0"){
           #TODO check format in case of WCS2
         }
-        
+      }else{
+        if(substr(private$version,1,3)=="1.0"){
+          format <- "GeoTIFF"
+        }else if(substr(private$version,1,3)=="1.1"){
+          format <- "image/tiff"
+        }else if(substr(private$version,1,3)=="2.0"){
+          format <- "image/tiff"
+        }
       }
       
       #crs
@@ -391,7 +398,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         envelope <- switch(substr(private$version,1,3),
            "1.0" = {
              owsbbox <- self$getWGS84BoundingBox()[[1]]
-             OWSUtils$toBBOX(owsbbox$LowerCorner[1], owsbbox$UpperCorner[1], owsbbox$LowerCorner[2], owsbbox$UpperCorner[2]) 
+             OWSUtils$toBBOX(owsbbox$LowerCorner[[1]], owsbbox$UpperCorner[[1]], owsbbox$LowerCorner[[2]], owsbbox$UpperCorner[[2]]) 
            },
            "1.1" = {
              bboxes <- self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox
@@ -515,7 +522,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       
       #response handling
       if(substr(private$version,1,3)=="1.1"){
-        #for WFS 1.1, wrap with WCSCoverage object and get data
+        #for WCS 1.1, wrap with WCSCoverage object and get data
         namespaces <- OWSUtils$getNamespaces(xmlRoot(resp))
         namespaces <- as.data.frame(namespaces)
         nsVersion <- ""
@@ -525,12 +532,12 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         wcsNamespaceURI <- paste("http://www.opengis.net/wcs", nsVersion, sep ="/")
         wcsNs <- OWSUtils$findNamespace(namespaces, uri = wcsNamespaceURI)
         if(is.null(wcsNs)) wcsNs <- OWSUtils$findNamespace(namespaces, id = "wcs")
-        print(wcsNs)
         xmlObj <- getNodeSet(resp, "//ns:Coverage", wcsNs)[[1]]
         coverage <- WCSCoverage$new(xmlObj = xmlObj, private$version, private$owsVersion, logger = self$loggerType)
         coverage_data <- coverage$getData()
-      }else if(substr(private$version,1,3)=="2.0"){
-        #for WCS 2.0.x take directly the data
+      #}else if(substr(private$version,1,3)=="2.0"){
+      }else{
+        #for WCS 1.0.x / 2.0.x take directly the data
         tmp <- tempfile()
         writeBin(resp, tmp)
         coverage_data <- raster::raster(tmp)

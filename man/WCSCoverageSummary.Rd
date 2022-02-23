@@ -206,7 +206,7 @@ Get coverage data
   crs = NULL,
   time = NULL,
   elevation = NULL,
-  format = "image/tiff",
+  format = NULL,
   rangesubset = NULL,
   gridbaseCRS = NULL,
   gridtype = NULL,
@@ -228,7 +228,7 @@ Get coverage data
 
 \item{\code{elevation}}{elevation. Default is \code{NULL}}
 
-\item{\code{format}}{format. Default is "image/tiff"}
+\item{\code{format}}{format. Default will be GeoTIFF, coded differently depending on the WCS version.}
 
 \item{\code{rangesubset}}{rangesubset. Default is \code{NULL}}
 

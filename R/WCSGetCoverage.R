@@ -48,7 +48,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
       if(startsWith(serviceVersion,"1.0")){
         if(!is.null(envelope)) namedParams$BBOX <- paste0(as(envelope, "character"), collapse=",")
         if(!is.null(crs)) namedParams$CRS <- crs
-        if(!is.null(time)) namedParams$Timesequence <- paste0(time, collapse=",")
+        if(!is.null(time)) namedParams$time <- paste0(time, collapse=",")
       }
       if(startsWith(serviceVersion,"1.1")){
         #envelope object as matrix
