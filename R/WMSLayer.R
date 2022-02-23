@@ -5,53 +5,6 @@
 #' @keywords OGC WMS Layer
 #' @return Object of \code{\link{R6Class}} modelling a WMS layer
 #' @format \code{\link{R6Class}} object.
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(xmlObj, capabilities, version, logger)}}{
-#'    This method is used to instantiate a \code{WMSLayer} object
-#'  }
-#'  \item{\code{getName()}}{
-#'    Get layer name
-#'  }
-#'  \item{\code{getTitle()}}{
-#'    Get layer title
-#'  }
-#'  \item{\code{getAbstract()}}{
-#'    Get layer abstract
-#'  }
-#'  \item{\code{getKeywords()}}{
-#'    Get layer keywords
-#'  }
-#'  \item{\code{getDefaultCRS()}}{
-#'    Get layer default CRS
-#'  }
-#'  \item{\code{getBoundingBox()}}{
-#'    Get layer bounding box
-#'  }
-#'  \item{\code{getBoundingBoxSRS()}}{
-#'    Get layer bounding box SRS
-#'  }
-#'  \item{\code{getBoundingBoxCRS()}}{
-#'    Get layer bounding box CRS
-#'  }
-#'  \item{\code{getStyle()}}{
-#'    Get layer style
-#'  }
-#'  \item{\code{getDimensions()}}{
-#'    Get layer dimensions
-#'  }
-#'  \item{\code{getTimeDimension()}}{
-#'    Get layer time dimension
-#'  }
-#'  \item{\code{getElevationDimension()}}{
-#'    Get layer elevation dimension
-#'  }
-#'  \item{\code{getFeatureInfo(srs, styles, feature_count,
-#'              x, y, width, height, bbox, info_format)}}{
-#'    Get layer feature info                           
-#'  }
-#' }
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -206,50 +159,56 @@ WMSLayer <- R6Class("WMSLayer",
       
     },
     
+    #'@description Get layer name
+    #'@return object of class \code{character}
+    getName = function(){
+      return(private$name)
+    },
+    
     #'@description Get layer title
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getTitle = function(){
       return(private$title)
     },
     
     #'@description Get layer abstract
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getAbstract = function(){
       return(private$abstract)
     },
     
     #'@description Get layer keywords
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getKeywords = function(){
       return(private$keywords)
     },
     
     #'@description Get layer default CRS
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getDefaultCRS = function(){
       return(private$defaultCRS)
     },
     
     #'@description Get layer bounding box
-    #'@param object of class \code{matrix}
+    #'@return object of class \code{matrix}
     getBoundingBox = function(){
       return(private$boundingBox)
     },
      
     #'@description Get layer bounding box SRS
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getBoundingBoxSRS = function(){
       return(private$boundingBoxSRS)
     },
     
     #'@description Get layer bounding box CRS
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getBoundingBoxCRS = function(){
       return(private$boundingBoxCRS)
     },
     
     #'@description Get layer style
-    #'@param object of class \code{character}
+    #'@return object of class \code{character}
     getStyle = function(){
       return(private$style)
     },

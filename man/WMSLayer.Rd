@@ -18,55 +18,6 @@ WMSLayer
 \note{
 Abstract class used by \pkg{ows4R}
 }
-\section{Methods}{
-
-\describe{
- \item{\code{new(xmlObj, capabilities, version, logger)}}{
-   This method is used to instantiate a \code{WMSLayer} object
- }
- \item{\code{getName()}}{
-   Get layer name
- }
- \item{\code{getTitle()}}{
-   Get layer title
- }
- \item{\code{getAbstract()}}{
-   Get layer abstract
- }
- \item{\code{getKeywords()}}{
-   Get layer keywords
- }
- \item{\code{getDefaultCRS()}}{
-   Get layer default CRS
- }
- \item{\code{getBoundingBox()}}{
-   Get layer bounding box
- }
- \item{\code{getBoundingBoxSRS()}}{
-   Get layer bounding box SRS
- }
- \item{\code{getBoundingBoxCRS()}}{
-   Get layer bounding box CRS
- }
- \item{\code{getStyle()}}{
-   Get layer style
- }
- \item{\code{getDimensions()}}{
-   Get layer dimensions
- }
- \item{\code{getTimeDimension()}}{
-   Get layer time dimension
- }
- \item{\code{getElevationDimension()}}{
-   Get layer elevation dimension
- }
- \item{\code{getFeatureInfo(srs, styles, feature_count,
-             x, y, width, height, bbox, info_format)}}{
-   Get layer feature info                           
- }
-}
-}
-
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }
@@ -89,6 +40,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{WMSLayer$new()}}
+\item \href{#method-getName}{\code{WMSLayer$getName()}}
 \item \href{#method-getTitle}{\code{WMSLayer$getTitle()}}
 \item \href{#method-getAbstract}{\code{WMSLayer$getAbstract()}}
 \item \href{#method-getKeywords}{\code{WMSLayer$getKeywords()}}
@@ -143,6 +95,19 @@ Initializes an object of class \link{WMSLayer}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-getName}{}}}
+\subsection{Method \code{getName()}}{
+Get layer name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getTitle"></a>}}
 \if{latex}{\out{\hypertarget{method-getTitle}{}}}
 \subsection{Method \code{getTitle()}}{
@@ -151,12 +116,8 @@ Get layer title
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getTitle()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -168,12 +129,8 @@ Get layer abstract
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getAbstract()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -185,12 +142,8 @@ Get layer keywords
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getKeywords()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -202,12 +155,8 @@ Get layer default CRS
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getDefaultCRS()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -219,12 +168,8 @@ Get layer bounding box
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBox()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{matrix}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{matrix}
 }
 }
 \if{html}{\out{<hr>}}
@@ -236,12 +181,8 @@ Get layer bounding box SRS
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBoxSRS()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -253,12 +194,8 @@ Get layer bounding box CRS
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getBoundingBoxCRS()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -270,12 +207,8 @@ Get layer style
 \if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getStyle()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{object}}{of class \code{character}}
-}
-\if{html}{\out{</div>}}
+\subsection{Returns}{
+object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
