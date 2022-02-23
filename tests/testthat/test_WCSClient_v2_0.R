@@ -32,7 +32,7 @@ test_that("WCS 2.0.1 - GeoServer",{
 })
 
 test_that("WCS 2.0.1 - Rasdaman",{
-  wcs <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
+  wcs <- WCSClient$new("http://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
