@@ -90,6 +90,14 @@ test_that("WCS 2.0.1 - VLIZ",{
   )
   expect_true(raster::compareRaster(cov_data,cov_data_stack))
   
+  #compare with data returned by WMS GetFeatureInfo
+  vliz_wms <- WMSClient$new(url = "https://geo.vliz.be/geoserver/wms", service = "1.1.1", logger = "DEBUG")
+  gfi <- vliz_wms$getFeatureInfo(layer = "Emodnetbio:aca_spp_19582016_L1", feature_count = 1, 
+                                 x = 50, y = 50, srs = "EPSG:4326", 
+                                 width = 101, height = 101, 
+                                 bbox = OWSUtils$toBBOX(8.12713623046875,8.68194580078125,57.92266845703125,58.47747802734375))
+  expect_equal(getValues(cov_data), gfi$relative_abundance)
+  
   if(FALSE){
     require(rasterVis)
     rasterVis::levelplot(cov_data)
