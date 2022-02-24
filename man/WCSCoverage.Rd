@@ -142,9 +142,16 @@ an object of class \code{character}
 \subsection{Method \code{getData()}}{
 Get data
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{WCSCoverage$getData()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverage$getData(filename = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{filename}}{filename. Optional file name where to download the coverage}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 an object of class \code{RasterLayer}
 }

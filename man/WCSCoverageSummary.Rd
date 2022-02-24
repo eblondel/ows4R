@@ -213,6 +213,7 @@ Get coverage data
   gridCS = NULL,
   gridorigin = NULL,
   gridoffsets = NULL,
+  filename = NULL,
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -242,6 +243,8 @@ Get coverage data
 
 \item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
 
+\item{\code{filename}}{filename. Optional filename to download the coverage}
+
 \item{\code{...}}{any other argument to \link{WCSGetCoverage}}
 }
 \if{html}{\out{</div>}}
@@ -256,7 +259,13 @@ an object of class \link{raster} from \pkg{raster}
 \subsection{Method \code{getCoverageStack()}}{
 Get a spatio-temporal coverage data cubes as coverage \link{stack}
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getCoverageStack(time = NULL, elevation = NULL, bbox = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{WCSCoverageSummary$getCoverageStack(
+  time = NULL,
+  elevation = NULL,
+  bbox = NULL,
+  filename_handler = NULL,
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -267,6 +276,11 @@ Get a spatio-temporal coverage data cubes as coverage \link{stack}
 \item{\code{elevation}}{elevation}
 
 \item{\code{bbox}}{bbox}
+
+\item{\code{filename_handler}}{Optional filename handling function with arguments 'identifier', 'time', 'elevation', 'bbox', 'format'
+See \link{WCSCoverageFilenameHandler} as genric filename handler that can be used.}
+
+\item{\code{...}}{any other parameter to pass to \code{getCoverage} method}
 }
 \if{html}{\out{</div>}}
 }

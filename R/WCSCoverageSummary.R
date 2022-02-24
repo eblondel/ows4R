@@ -209,12 +209,11 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           list(label = "Long",uom = "Deg", type = "geographic")
         )
         if(!is.null(des$Domain$temporalDomain)){
-          dimensions <- c(dimensions,
-            list(
-              label = "time", uom = "s", type = "temporal",
-              coefficients = des$Domain$temporalDomain$instants
-            )                
-          )
+          dimensions[[length(dimensions)+1]] <- list(
+            label = "time", uom = "s", type = "temporal",
+            coefficients = des$Domain$temporalDomain$instants
+          )                
+          
         }
       }
       
@@ -343,13 +342,15 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param gridCS grid CS. Default is \code{NULL}
     #'@param gridorigin grid origin. Default is \code{NULL}
     #'@param gridoffsets grid offsets. Default is \code{NULL}
+    #'@param filename filename. Optional filename to download the coverage
     #'@param ... any other argument to \link{WCSGetCoverage}
     #'@return an object of class \link{raster} from \pkg{raster}
     getCoverage = function(bbox = NULL, crs = NULL, 
                            time = NULL, elevation = NULL,
                            format = NULL, rangesubset = NULL, 
                            gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
-                           gridorigin = NULL, gridoffsets = NULL, ...){
+                           gridorigin = NULL, gridoffsets = NULL, 
+                           filename = NULL, ...){
       coverage_data <- NULL
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
@@ -571,13 +572,14 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         if(is.null(wcsNs)) wcsNs <- OWSUtils$findNamespace(namespaces, id = "wcs")
         xmlObj <- getNodeSet(resp, "//ns:Coverage", wcsNs)[[1]]
         coverage <- WCSCoverage$new(xmlObj = xmlObj, private$version, private$owsVersion, logger = self$loggerType)
-        coverage_data <- coverage$getData()
+        coverage_data <- coverage$getData(filename = filename)
       #}else if(substr(private$version,1,3)=="2.0"){
       }else{
         #for WCS 1.0.x / 2.x take directly the data
-        tmp <- tempfile()
-        writeBin(resp, tmp)
-        coverage_data <- raster::raster(tmp)
+        covfile <- NULL
+        if(!is.null(filename)){ covfile <- filename }else{ covfile <- tempfile() }
+        writeBin(resp, covfile)
+        coverage_data <- raster::raster(covfile)
       }
       
       #add raster attributes
@@ -602,8 +604,12 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param time time
     #'@param elevation elevation
     #'@param bbox bbox
+    #'@param filename_handler Optional filename handling function with arguments 'identifier', 'time', 'elevation', 'bbox', 'format'
+    #'  See \link{WCSCoverageFilenameHandler} as genric filename handler that can be used.
+    #'@param ... any other parameter to pass to \code{getCoverage} method
     #'@return an object of class \link{stack} from \pkg{raster}
-    getCoverageStack = function(time = NULL, elevation = NULL, bbox = NULL){
+    getCoverageStack = function(time = NULL, elevation = NULL, bbox = NULL, 
+                                filename_handler = NULL, ...){
       out <- NULL
       dims <- self$getDimensions()
       timeDim <- dims[sapply(dims, function(x){x$type == "temporal"})]
@@ -651,14 +657,42 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           })
         }else{
           self$WARN("No multi-dimensions. Returning a simple coverage")
-          return(self$getCoverage(bbox = bbox))
+          filename <- NULL
+          if(!is.null(filename_handler)){
+            filename <- filename_handler(
+              identifier = self$getId(),
+              time = NULL,
+              elevation = NULL,
+              bbox = bbox,
+              format = list(...)$format
+            )
+          }
+          return(self$getCoverage(
+            bbox = bbox,
+            filename = filename,  
+            ...
+          ))
         }
       }
       
       if(length(stack_kvps)>0){
         coverage_list <- lapply(stack_kvps, function(stack_kvp){
           self$INFO(stack_kvp)
-          coverage <- self$getCoverage(bbox = bbox, time = stack_kvp$time, elevation = stack_kvp$elevation)
+          filename <- NULL
+          if(!is.null(filename_handler)){
+            filename <- filename_handler(
+              identifier = self$getId(),
+              time = stack_kvp$time,
+              elevation = stack_kvp$elevation,
+              bbox = bbox,
+              format = list(...)$format
+            )
+          }
+          coverage <- self$getCoverage(
+            bbox = bbox, time = stack_kvp$time, elevation = stack_kvp$elevation, 
+            filename = filename,  
+            ...
+          )
           return(coverage)
         })
         out <- raster::stack(coverage_list)
