@@ -192,7 +192,7 @@ Get dimensions
 }
 
 \subsection{Returns}{
-
+the list of dimensions
 }
 }
 \if{html}{\out{<hr>}}

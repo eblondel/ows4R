@@ -196,7 +196,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     },
     
     #'@description Get dimensions
-    #'@return
+    #'@return the list of dimensions
     getDimensions = function(){
       dimensions <- NULL
       des <- self$getDescription()
