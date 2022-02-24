@@ -65,6 +65,7 @@ test_that("WCS 1.0.0 - PML",{
   expect_is(cov_desc, "WCSCoverageDescription")
   
   cov_data <- cov$getCoverage(time = "2019-07-18T11:17:00Z")
-  cov_stack <- cov$getCoverageStack(time = tail(cov_desc$Domain$temporalDomain$instants, 5))
+  cov_stack <- cov$getCoverageStack(time = "2019-07-18T11:17:00Z")
+  expect_true(raster::compareRaster(cov_data,cov_stack))
   
 })
