@@ -201,6 +201,24 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       dimensions <- NULL
       des <- self$getDescription()
       if(!is.null(private$dimensions)) return(private$dimensions)
+      
+      #case of WCS 1.x
+      if(!is.null(des$Domain)){
+        dimensions <- list(
+          list(label = "Lat", uom = "Deg", type = "geographic"),
+          list(label = "Long",uom = "Deg", type = "geographic")
+        )
+        if(!is.null(des$Domain$temporalDomain)){
+          dimensions <- c(dimensions,
+            list(
+              label = "time", uom = "s", type = "temporal",
+              coefficients = des$Domain$temporalDomain$instants
+            )                
+          )
+        }
+      }
+      
+      #case of WCS 2.x
       if(!is.null(des$boundedBy)){
         self$INFO("Fetching Coverage envelope dimensions by CRS interpretation")
         srsName <- des$boundedBy$attrs$srsName
