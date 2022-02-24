@@ -30,7 +30,7 @@ WCSDescribeCoverage <- R6Class("WCSDescribeCoverage",
        namedParams <- list(service = "WCS", version = serviceVersion)
        if(startsWith(serviceVersion, "1.0")) namedParams <- c(namedParams, coverage = coverageId)
        if(startsWith(serviceVersion, "1.1")) namedParams <- c(namedParams, identifiers = coverageId)
-       if(startsWith(serviceVersion, "2.0")) namedParams <- c(namedParams, coverageId = coverageId)
+       if(startsWith(serviceVersion, "2")) namedParams <- c(namedParams, coverageId = coverageId)
        
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                         capabilities, op, "GET", url, request = "DescribeCoverage",

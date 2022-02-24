@@ -32,11 +32,11 @@ test_that("WCS 2.0.1 - GeoServer",{
 })
 
 test_that("WCS 2.0.1 - Rasdaman",{
-  wcs <- WCSClient$new("http://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
+  wcs <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  expect_equal(length(caps$getCoverageSummaries()), 35L)
+  expect_equal(length(caps$getCoverageSummaries()), 26L)
   
   cov1 <- caps$findCoverageSummaryById("AverageChloroColor")
   expect_is(cov1, "WCSCoverageSummary")

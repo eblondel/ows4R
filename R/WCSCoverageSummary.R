@@ -30,7 +30,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         covId <- xmlValue(children$name)
       }else if(substr(serviceVersion,1,3)=="1.1"){
         covId <- xmlValue(children$Identifier)
-      }else if(substr(serviceVersion,1,3)=="2.0"){
+      }else if(substr(serviceVersion,1,1)=="2"){
         covId <- xmlValue(children$CoverageId)
       }
       
@@ -349,7 +349,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             stop(sprintf("Format should be one of the allowed values [%s]",
                          paste0(self$getDescription()$getSupportedFormats())))
           }
-        }else if(substr(private$version,1,3)=="2.0"){
+        }else if(substr(private$version,1,1)=="2"){
           #TODO check format in case of WCS2
         }
       }else{
@@ -357,7 +357,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           format <- "GeoTIFF"
         }else if(substr(private$version,1,3)=="1.1"){
           format <- "image/tiff"
-        }else if(substr(private$version,1,3)=="2.0"){
+        }else if(substr(private$version,1,1)=="2"){
           format <- "image/tiff"
         }
       }
@@ -374,7 +374,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           if(!(crs %in% domainCRS)){
             stop(sprintf("CRS should be one of the allowed domain CRS [%s]", paste(domainCRS, collapse=",")))
           }
-        }else if(substr(private$version,1,3)=="2.0"){
+        }else if(substr(private$version,1,1)=="2"){
           #TODO check crs in case of WCS2
         }
       }else{
@@ -384,7 +384,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         }else if(substr(private$version,1,3)=="1.1"){
           domainCRS <- sapply(self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox, function(x){x$attrs$crs})
           crs <- domainCRS[domainCRS == self$getDescription()$getSupportedCRS()[1]]
-        }else if(substr(private$version,1,3)=="2.0"){
+        }else if(substr(private$version,1,1)=="2"){
           srsName <- self$getDescription()$boundedBy$attrs[["srsName"]]
           srs_elems <- unlist(strsplit(srsName,"/"))
           srid <- srs_elems[length(srs_elems)]
@@ -425,6 +425,23 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                env <- OWSUtils$checkEnvelopeDatatypes(env)
              }
              env
+           },
+           "2.1" = {
+             env <- self$getDescription()$boundedBy
+             envattrs <- env$attrs
+             #normalize as Envelope based on bbox matrix
+             if(is(env, "GMLEnvelopeWithTimePeriod")){
+               beginPosition <- env$beginPosition
+               endPosition <- env$endPosition
+               bbox <- matrix(c(
+                 env$lowerCorner, format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+                 env$upperCorner, format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+               ),length(env$lowerCorner)+1,2)
+               env <- GMLEnvelope$new(bbox = bbox)
+               env$attrs <- envattrs
+               env <- OWSUtils$checkEnvelopeDatatypes(env)
+             }
+             env
            }
         )
       }else{
@@ -433,7 +450,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         }else if(substr(private$version,1,3) == "1.1"){
           envelope <- GMLEnvelope$new(bbox = bbox)
         }
-        if(substr(private$version,1,3)=="2.0"){
+        if(substr(private$version,1,1)=="2"){
           refEnvelope <- self$getDescription()$boundedBy
           axisLabels <- unlist(strsplit(refEnvelope$attrs$axisLabels, " "))
           if(axisLabels[1]=="Lat") bbox <- rbind(bbox[2,],bbox[1,])
@@ -539,7 +556,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         coverage_data <- coverage$getData()
       #}else if(substr(private$version,1,3)=="2.0"){
       }else{
-        #for WCS 1.0.x / 2.0.x take directly the data
+        #for WCS 1.0.x / 2.x take directly the data
         tmp <- tempfile()
         writeBin(resp, tmp)
         coverage_data <- raster::raster(tmp)
