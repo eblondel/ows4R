@@ -210,7 +210,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         }
         srsNameXML <- try(XML::xmlParse(srsName))
         if(is(srsNameXML,"try-error")){
-          self$ERROR("Error during srsName CRS interpretation")
+          self$ERROR(sprintf("Error during CRS interpretation for srsName = '%s'", srsName))
           return(NULL)
         }
         gmlCRSClass <- geometa::ISOAbstractObject$getISOClassByNode(srsNameXML)
