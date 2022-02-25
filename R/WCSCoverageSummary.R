@@ -472,12 +472,23 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         if(substr(private$version,1,1)=="2"){
           refEnvelope <- self$getDescription()$boundedBy
           axisLabels <- unlist(strsplit(refEnvelope$attrs$axisLabels, " "))
-          if(axisLabels[1]=="Lat") bbox <- rbind(bbox[2,],bbox[1,])
+          axisLatIdx <- which(axisLabels == "Lat")
+          axisLonIdx <- which(axisLabels == "Lon")
+          if(axisLatIdx < axisLonIdx) bbox <- rbind(bbox[2,],bbox[1,])
           envelope <- GMLEnvelope$new(bbox = bbox)
           if(as.numeric(refEnvelope$attrs$srsDimension)>2){
-            #TODO and what if geo coordinates are not the first dims defined in envelope?
-            envelope$lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$lowerCorner[,3:length(refEnvelope$lowerCorner)])
-            envelope$upperCorner <- cbind(envelope$upperCorner, refEnvelope$upperCorner[,3:length(refEnvelope$upperCorner)])
+            lowerCorner <- NULL
+            upperCorner <- NULL
+            if(axisLatIdx == 1 || axisLonIdx == 1){
+              lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$lowerCorner[,3:length(refEnvelope$lowerCorner)])
+              upperCorner <- cbind(envelope$upperCorner, refEnvelope$upperCorner[,3:length(refEnvelope$upperCorner)])
+            }else{
+              lowerCorner <- cbind(refEnvelope$lowerCorner[,1:(length(refEnvelope$lowerCorner)-2)], envelope$lowerCorner)
+              upperCorner <- cbind(refEnvelope$upperCorner[,1:(length(refEnvelope$upperCorner)-2)], envelope$upperCorner)
+            }
+            
+            envelope$lowerCorner <- lowerCorner
+            envelope$upperCorner <- upperCorner
           }
           if(is(refEnvelope, "GMLEnvelopeWithTimePeriod")){
             envelope$lowerCorner <- cbind(envelope$lowerCorner, format(refEnvelope$beginPosition$value, "%Y-%m-%dT%H:%M:%S"))
@@ -489,7 +500,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       }
       
       #dimensions
-      dims <- self$getDimensions() #TODO and for other versions of WCS?
+      dims <- self$getDimensions()
       if(!is.null(dims)){
         
         #TODO geographic dimension checks?
