@@ -46,8 +46,6 @@ In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4
 ## Development perspectives
 
 Support for additional OGC web-service standard specifications including
-* Web Processing Service (WPS)
-* Web Coverage Service (WCS)
 * Web Coverage Processing Service (WCPS)
 * Filter Encoding (FES) version ``2.0``
 * Web Feature Service (WFS) ``Transaction`` operations
