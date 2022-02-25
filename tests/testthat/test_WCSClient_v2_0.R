@@ -51,6 +51,23 @@ test_that("WCS 2.0.1 - Rasdaman",{
   expect_is(temp4d_desc$domainSet, "GMLReferenceableGridByVectors")
 })
 
+test_that("WCS 2.0.1 - Rasdaman - Spatio-Temporal Coverages",{
+  testthat::skip_on_cran()
+  wcs <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.0.1", logger = "DEBUG")
+  
+  #AverageChlorophyllScaled
+  chla <- wcs$getCapabilities()$findCoverageSummaryById("AverageChloroColorScaled", T)
+  chla_des <- chla$getDescription()
+  expect_is(chla_des, "WCSCoverageDescription")
+  chla_dims <- chla$getDimensions()
+  expect_is(chla_dims, "list")
+  expect_equal(length(chla_dims), 3L)
+  chla_stack <- chla$getCoverageStack(
+    bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
+    time = tail(chla_dims[[1]]$coefficients,5)
+  )
+})
+
 #DATASOURCES OF INTEREST
 
 test_that("WCS 2.0.1 - Emodnet Bathymetry",{
