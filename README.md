@@ -12,7 +12,7 @@ R client for OGC Web-Services
 * the Common OGC Web-Services specifications, versions ``1.1`` and ``2.0``
 * the Catalogue Service for the Web (CSW), version ``2.0.2`` (including ``Transaction`` and ``Harvest`` operations)
 * the Web Feature Service (WFS), versions ``1.0.0``, ``1.1.0``, and ``2.0.0``
-* the Web Coverage Service (WCS), versions `1.0`, `1.1.0`, `1.1.1`, and `2.0.1`
+* the Web Coverage Service (WCS), versions `1.0`, `1.1.0`, `1.1.1`, `2.0.1` and `2.1.0`
 * the Web Map Service (WMS), versions ``1.1.0``, ``1.1.1``, and ``1.3.0``
 * the Web Processing service (WPS) version `1.0.0`
 
@@ -38,7 +38,7 @@ OGC Common|[Web Service Common](https://www.ogc.org/standards/common)|``1.1``,``
 OGC CSW   |[Catalogue Service](https://www.ogc.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking sponsors
 OGC WFS   |[Web Feature Service](https://www.ogc.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
 OGC WMS   |[Web Map Service](https://www.ogc.org/standards/wms)|``1.1.0``,``1.1.1``,``1.3.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation)|ongoing
-OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``|[raster](https://cran.r-project.org/package=raster)|under development (sponsoring/funding required)
+OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``, ``2.1.0``|[raster](https://cran.r-project.org/package=raster)|ongoing
 OGC WPS |[Web Processing Service](https://www.ogc.org/standards/wps)|`1.0.0`|`2.0`||under development (contribs welcome)
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
