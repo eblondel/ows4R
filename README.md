@@ -38,7 +38,7 @@ OGC Common|[Web Service Common](https://www.ogc.org/standards/common)|``1.1``,``
 OGC CSW   |[Catalogue Service](https://www.ogc.org/standards/cat)|``2.0.2``|``3.0.0``|[geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)|ongoing / seeking sponsors
 OGC WFS   |[Web Feature Service](https://www.ogc.org/standards/wfs)|``1.0.0``,``1.1.0``,``2.0.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature)|ongoing
 OGC WMS   |[Web Map Service](https://www.ogc.org/standards/wms)|``1.1.0``,``1.1.1``,``1.3.0``||[sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation)|ongoing
-OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)||``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``, ``2.1.0``|[raster](https://cran.r-project.org/package=raster)|ongoing
+OGC WCS |[Web Coverage Service](https://www.ogc.org/standards/wcs)|``1.0.0``, ``1.1.0``, ``1.1.1``, ``2.0.1``, ``2.1.0``||[raster](https://cran.r-project.org/package=raster)|ongoing
 OGC WPS |[Web Processing Service](https://www.ogc.org/standards/wps)|`1.0.0`|`2.0`||under development (contribs welcome)
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/ows4R/issues/new).
