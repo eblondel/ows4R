@@ -78,11 +78,15 @@ WFSCapabilities <- R6Class("WFSCapabilities",
      findFeatureTypeByName = function(expr, exact = TRUE){
        result <- lapply(private$featureTypes, function(x){
           ft <- NULL
-          if(attr(regexpr(expr, x$getName()), "match.length") != -1 
-             && endsWith(x$getName(), expr)){
-            ft <- x
+          if(exact){
+             if(expr == x$getName()) ft <- x
+          }else{
+             if(attr(regexpr(expr, x$getName()), "match.length") != -1 
+                && endsWith(x$getName(), expr)){
+                ft <- x
+             }
           }
-           return(ft)
+          return(ft)
        })
        result <- result[!sapply(result, is.null)]
        if(length(result) == 1) result <- result[[1]]
