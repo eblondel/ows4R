@@ -88,6 +88,11 @@ WCSClient <- R6Class("WCSClient",
            coverage <- cov$getCoverage(bbox = bbox, crs = crs, time = time, format = format, rangesubset = rangesubset, 
                                        gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
                                        gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
+        }else if(is(cov, "list")){
+          if(length(identifier)==0){
+            self$WARN(sprintf("No coverage for coverage name = '%s'", identifier))
+            return(NULL)
+          }
         }
         return(coverage)
      }

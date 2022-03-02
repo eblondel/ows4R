@@ -106,6 +106,10 @@ WMSClient <- R6Class("WMSClient",
              ...
           )
        }else if(is(wmsLayer, "list")){
+          if(length(wmsLayer)==0){
+             self$WARN(sprintf("No layer for layer name = '%s'", layer))
+             return(NULL)
+          }
           features <- wmsLayer[[1]]$getFeatureInfo(
              srs = srs, styles = styles, feature_count = feature_count,
              x = x, y = y, width = width, height = height, bbox = bbox,
