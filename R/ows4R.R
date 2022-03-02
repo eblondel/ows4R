@@ -16,7 +16,7 @@
 #'    Type: \tab Package\cr
 #'    Version
 #'    : \tab 0.3\cr
-#'    Date: \tab 2022-02-14\cr
+#'    Date: \tab 2022-03-02\cr
 #'    License: \tab MIT\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
