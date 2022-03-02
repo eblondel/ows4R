@@ -77,6 +77,10 @@ Initializes a \link{WCSGetCoverage} service request
   gridCS = NULL,
   gridorigin = NULL,
   gridoffsets = NULL,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -114,6 +118,14 @@ Initializes a \link{WCSGetCoverage} service request
 \item{\code{gridorigin}}{grid origin}
 
 \item{\code{gridoffsets}}{grid offsets}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

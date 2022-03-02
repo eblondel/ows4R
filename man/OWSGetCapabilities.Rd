@@ -69,6 +69,10 @@ Initializes an \link{OWSGetCapabilities} service request
   url,
   service,
   version,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -85,6 +89,14 @@ Initializes an \link{OWSGetCapabilities} service request
 \item{\code{service}}{service name}
 
 \item{\code{version}}{service version}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{...}}{any other parameter to pass to the request}
 }

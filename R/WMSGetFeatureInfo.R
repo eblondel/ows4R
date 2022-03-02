@@ -33,10 +33,15 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
     #'@param height height
     #'@param bbox bbox
     #'@param info_format info format
+    #'@param user user
+    #'@param pwd pwd
+    #'@param token token
+    #'@param headers headers
     #'@param logger logger
     #'@param ... any parameter to pass to the service request
    initialize = function(capabilities, op, url, version, layers, srs, styles, feature_count = 1,
                          x, y, width, height, bbox, info_format = "text/xml",
+                         user = NULL, pwd = NULL, token = NULL, headers = c(),
                          logger = NULL, ...) {
      
      mimeType <- switch(info_format,
@@ -75,7 +80,8 @@ WMSGetFeatureInfo <- R6Class("WMSGetFeatureInfo",
      if(length(vendorParams)>0) namedParams <- c(namedParams, vendorParams)
      namedParams <- namedParams[!sapply(namedParams, is.null)]
      super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
-                      capabilities, op, "GET", url, request = "GetFeatureInfo", 
+                      capabilities, op, "GET", url, request = "GetFeatureInfo",
+                      user = user, pwd = pwd, token = token, headers = headers,
                       namedParams = namedParams, mimeType = mimeType, 
                       logger = logger)
      self$execute()

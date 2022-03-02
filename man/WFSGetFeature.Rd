@@ -71,6 +71,10 @@ Initializes a \link{WFSGetFeature} service request
   version,
   typeName,
   outputFormat = NULL,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -90,6 +94,14 @@ Initializes a \link{WFSGetFeature} service request
 \item{\code{typeName}}{typeName}
 
 \item{\code{outputFormat}}{output format}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

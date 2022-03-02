@@ -22,10 +22,16 @@ WCSDescribeCoverage <- R6Class("WCSDescribeCoverage",
      #'@param url url
      #'@param serviceVersion serviceVersion
      #'@param coverageId coverage ID
+     #'@param user user
+     #'@param pwd password
+     #'@param token token
+     #'@param headers headers
      #'@param logger logger
      #'@param ... any parameter to pass to the service request
      initialize = function(capabilities, op, url, serviceVersion,
-                           coverageId, logger = NULL, ...) {
+                           coverageId, 
+                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           logger = NULL, ...) {
        
        namedParams <- list(service = "WCS", version = serviceVersion)
        if(startsWith(serviceVersion, "1.0")) namedParams <- c(namedParams, coverage = coverageId)
@@ -34,6 +40,7 @@ WCSDescribeCoverage <- R6Class("WCSDescribeCoverage",
        
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                         capabilities, op, "GET", url, request = "DescribeCoverage",
+                        user = user, pwd = pwd, token = token, headers = headers,
                         namedParams = namedParams, mimeType = "text/xml",
                         logger = logger, ...)
        self$execute()

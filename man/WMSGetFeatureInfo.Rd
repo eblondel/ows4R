@@ -79,6 +79,10 @@ Initializes a \link{WMSGetFeatureInfo} service request
   height,
   bbox,
   info_format = "text/xml",
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -114,6 +118,14 @@ Initializes a \link{WMSGetFeatureInfo} service request
 \item{\code{bbox}}{bbox}
 
 \item{\code{info_format}}{info format}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{pwd}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

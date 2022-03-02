@@ -70,6 +70,10 @@ Initializes a \link{WFSDescribeFeatureType} service request
   url,
   version,
   typeName,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -87,6 +91,14 @@ Initializes a \link{WFSDescribeFeatureType} service request
 \item{\code{version}}{service version}
 
 \item{\code{typeName}}{typeName}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{pwd}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

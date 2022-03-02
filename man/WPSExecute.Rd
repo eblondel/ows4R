@@ -87,6 +87,10 @@ Initializes a \link{WPSExecute} service request
   storeExecuteResponse = FALSE,
   lineage = NULL,
   status = NULL,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -114,6 +118,14 @@ Initializes a \link{WPSExecute} service request
 \item{\code{lineage}}{lineage, object of class \code{logical}}
 
 \item{\code{status}}{status, object of class \code{logical}}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

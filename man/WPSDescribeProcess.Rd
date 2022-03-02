@@ -70,6 +70,10 @@ Initializes a \link{WPSDescribeProcess} service request
   url,
   serviceVersion,
   identifier,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -87,6 +91,14 @@ Initializes a \link{WPSDescribeProcess} service request
 \item{\code{serviceVersion}}{WPS service version}
 
 \item{\code{identifier}}{process identifier}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

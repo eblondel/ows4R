@@ -67,6 +67,10 @@ Initializes a \link{WCSDescribeCoverage} service request
   url,
   serviceVersion,
   coverageId,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -84,6 +88,14 @@ Initializes a \link{WCSDescribeCoverage} service request
 \item{\code{serviceVersion}}{serviceVersion}
 
 \item{\code{coverageId}}{coverage ID}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

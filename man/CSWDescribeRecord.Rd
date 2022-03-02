@@ -70,6 +70,10 @@ Initializes a \link{CSWDescribeRecord} service request
   url,
   version,
   namespace = NULL,
+  user = NULL,
+  pwd = NULL,
+  token = NULL,
+  headers = c(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -87,6 +91,14 @@ Initializes a \link{CSWDescribeRecord} service request
 \item{\code{version}}{version}
 
 \item{\code{namespace}}{namespace}
+
+\item{\code{user}}{user}
+
+\item{\code{pwd}}{password}
+
+\item{\code{token}}{token}
+
+\item{\code{headers}}{headers}
 
 \item{\code{logger}}{logger}
 

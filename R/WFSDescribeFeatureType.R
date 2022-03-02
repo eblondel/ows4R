@@ -24,12 +24,19 @@ WFSDescribeFeatureType <- R6Class("WFSDescribeFeatureType",
     #'@param url url
     #'@param version service version
     #'@param typeName typeName
+    #'@param user user
+    #'@param pwd pwd
+    #'@param token token
+    #'@param headers headers
     #'@param logger logger
     #'@param ... any parameter to pass to the service request
-    initialize = function(capabilities, op, url, version, typeName, logger = NULL, ...) {
+    initialize = function(capabilities, op, url, version, typeName, 
+                          user = NULL, pwd = NULL, token = NULL, headers = c(),
+                          logger = NULL, ...) {
       namedParams <- list(service = "WFS", version = version, typeName = typeName)
       super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                        capabilities, op, "GET", url, request = "DescribeFeatureType",
+                       user = user, pwd = pwd, token = token, headers = headers,
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
       self$execute()
