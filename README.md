@@ -6,6 +6,8 @@
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.3-blue.svg)](https://github.com/eblondel/ows4R)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111)
 
+[![Gitter](https://img.shields.io/badge/chat%20room-for%20users-brown.svg?style=flat-square)](https://gitter.im/ows4R/community)
+
 R client for OGC Web-Services
 
 ``ows4R`` aims to set-up a pure R interface to OGC Web-Services. It currently targets:
