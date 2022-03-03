@@ -100,7 +100,6 @@ WFSClient <- R6Class("WFSClient",
              self$WARN(sprintf("No featuretype for type name = '%s'", typeName))
              return(NULL)
           }
-          features <- ft[[1]]$getFeatures(...)
        }
        return(features)
      },
