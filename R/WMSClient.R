@@ -40,11 +40,14 @@ WMSClient <- R6Class("WMSClient",
       #'@param pwd password
       #'@param token token
       #'@param headers headers
+      #'@param cas_url Central Authentication Service (CAS) URL
       #'@param logger logger
      initialize = function(url, serviceVersion = NULL, 
-                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
                            logger = NULL) {
-       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, token, headers, logger)
+       super$initialize(url, service = private$serviceName, serviceVersion = serviceVersion, 
+                        user = user, pwd = pwd, token = token, headers = headers, cas_url = cas_url, 
+                        logger = logger)
        self$capabilities = WMSCapabilities$new(self$url, self$version, 
                                                user = user, pwd = pwd, token = token, headers = headers,
                                                logger = logger)

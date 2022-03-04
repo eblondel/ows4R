@@ -103,6 +103,7 @@ This method is used to instantiate a CSWClient with the \code{url} of the
   pwd = NULL,
   token = NULL,
   headers = c(),
+  cas_url = NULL,
   logger = NULL
 )}\if{html}{\out{</div>}}
 }
@@ -121,6 +122,8 @@ This method is used to instantiate a CSWClient with the \code{url} of the
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{cas_url}}{Central Authentication Service (CAS) URL}
 
 \item{\code{logger}}{logger}
 }
