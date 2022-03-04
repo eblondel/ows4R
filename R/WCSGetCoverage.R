@@ -82,9 +82,16 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
             
             #time is not necessarily handled as character, need to identify with
             #srsName the crs if spatial or temporal
-            if(is.character(unlist(envelope$lowerCorner[,i])) & is.character(unlist(envelope$upperCorner[,i]))){
-              if(is.null(time)) time <- envelope$upperCorner[,i]
-              subsetKvp <- sprintf("%s(\"%s\")",subset, time) 
+            if(tolower(subset) %in% c("time", "elevation")){
+              value <- NULL
+              if(tolower(subset)=="time") value <- time
+              if(tolower(subset)=="elevation") value <- elevation
+              if(is.null(value)) value <- envelope$upperCorner[,i]
+              if(is(value, "character")){
+                subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+              }else{
+                subsetKvp <- sprintf("%s(%s,%s)",subset, value, value) 
+              }
             }
             URLencode(subsetKvp)
           })
