@@ -405,9 +405,13 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           crs <- domainCRS[domainCRS == self$getDescription()$getSupportedCRS()[1]]
         }else if(substr(private$version,1,1)=="2"){
           srsName <- self$getDescription()$boundedBy$attrs[["srsName"]]
-          srs_elems <- unlist(strsplit(srsName,"/"))
-          srid <- srs_elems[length(srs_elems)]
-          crs <- paste0("urn:ogc:def:crs:EPSG::",srid)
+          if(!is.null(srsName)){
+            srs_elems <- unlist(strsplit(srsName,"/"))
+            srid <- srs_elems[length(srs_elems)]
+            crs <- paste0("urn:ogc:def:crs:EPSG::",srid)
+          }else{
+            crs <- "urn:ogc:def:crs:EPSG::4326"
+          }
         }
       }
       
@@ -476,7 +480,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           axisLonIdx <- which(axisLabels %in% c("Lon", "Long"))
           if(axisLatIdx < axisLonIdx) bbox <- rbind(bbox[2,],bbox[1,])
           envelope <- GMLEnvelope$new(bbox = bbox)
-          if(as.numeric(refEnvelope$attrs$srsDimension)>2){
+          if(length(axisLabels)>2){
             lowerCorner <- NULL
             upperCorner <- NULL
             if(axisLatIdx == 1 || axisLonIdx == 1){
@@ -588,7 +592,9 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       }else{
         #for WCS 1.0.x / 2.x take directly the data
         covfile <- NULL
-        if(!is.null(filename)){ covfile <- filename }else{ covfile <- tempfile() }
+        if(!is.null(filename)){ covfile <- filename }else{ 
+          covfile <- WCSCoverageFilenameHandler(identifier = self$CoverageId, time = time, elevation = elevation, format = format, bbox = bbox)
+        }
         writeBin(resp, covfile)
         coverage_data <- raster::raster(covfile)
       }
