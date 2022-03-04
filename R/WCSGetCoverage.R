@@ -87,10 +87,10 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
               if(tolower(subset)=="time") value <- time
               if(tolower(subset)=="elevation") value <- elevation
               if(is.null(value)) value <- envelope$upperCorner[,i]
-              if(is(value, "character")){
-                subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
-              }else{
+              if(is(value, "numeric")){
                 subsetKvp <- sprintf("%s(%s,%s)",subset, value, value) 
+              }else{
+                subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
               }
             }
             URLencode(subsetKvp)
