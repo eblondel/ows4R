@@ -31,7 +31,8 @@ OWSClient <- R6Class("OWSClient",
     user = NULL,
     pwd = NULL,
     token = NULL,
-    headers = list()
+    headers = list(),
+    cas_url = NULL
   ),
 
   public = list(
@@ -54,9 +55,10 @@ OWSClient <- R6Class("OWSClient",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param cas_url Central Authentication Service (CAS) URL
     #'@param logger logger
     initialize = function(url, service, serviceVersion,
-                          user = NULL, pwd = NULL, token = NULL, headers = c(),
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
                           logger = NULL) {
       
       #logger
@@ -71,6 +73,19 @@ OWSClient <- R6Class("OWSClient",
       private$pwd <- pwd
       private$token <- token
       private$headers <- headers
+      private$cas_url <- cas_url
+      
+      #CAS authentication
+      if(!is.null(cas_url)){
+        cas <- CASClient$new(url = cas_url)
+        cas_logged_in <- cas$login(user = user, pwd = pwd)
+        if(cas_logged_in){
+          self$INFO(sprintf("User '%s' successfully logged in through CAS endpoint '%s'", user, cas_url))
+          self$url <- paste0(cas_url, "?service=", URLencode(self$url, reserved = TRUE))
+        }else{
+          self$WARNsprintf("Error during CAS login, check your user/password!")
+        }
+      }
     },
      
     #'@description Get URL
@@ -113,6 +128,12 @@ OWSClient <- R6Class("OWSClient",
     #'@return the headers, object of class \code{character}
     getHeaders = function(){
       return(private$headers)
+    },
+    
+    #'@description Get CAS URL
+    #'@return a CAS URL
+    getCASUrl = function(){
+      return(private$cas_url)
     }
     
   )

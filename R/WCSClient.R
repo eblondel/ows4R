@@ -32,10 +32,16 @@ WCSClient <- R6Class("WCSClient",
      #'@param pwd password
      #'@param token token
      #'@param headers headers
+     #'@param cas_url Central Authentication Service (CAS) URL
      #'@param logger logger
-     initialize = function(url, serviceVersion = NULL, user = NULL, pwd = NULL, logger = NULL) {
-       super$initialize(url, service = private$serviceName, serviceVersion, user, pwd, logger)
+     initialize = function(url, serviceVersion = NULL, 
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
+                           logger = NULL) {
+       super$initialize(url, service = private$serviceName, serviceVersion = serviceVersion, 
+                        user = user, pwd = pwd, token = token, headers = headers, cas_url = cas_url, 
+                        logger = logger)
        self$capabilities = WCSCapabilities$new(self$url, serviceVersion, logger = logger)
+       self$capabilities$setClient(self)
      },
      
      #'@description Get WCS capabilities

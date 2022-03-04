@@ -42,6 +42,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       params <- paste(names(namedParams), namedParams, sep = "=", collapse = "&")
       req <- url
       if(!endsWith(url,"?") && nzchar(params)) req <- paste0(req, "?")
+      if(regexpr("/cas?service=", url, fixed = T) > 0) params <- URLencode(params, reserved = TRUE)
       req <- paste0(req, params)
       self$INFO(sprintf("Fetching %s", req))
       
