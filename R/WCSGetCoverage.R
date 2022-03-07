@@ -21,10 +21,11 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
     #'@param op object of class \link{OWSOperation} as retrieved from capabilities
     #'@param url url
     #'@param serviceVersion serviceVersion
-    #'@param coverageId coverage ID
+    #'@param coverage coverage, object of class \link{WCSCoverageSummary}
     #'@param envelope envelope
     #'@param crs crs
     #'@param time time
+    #'@param elevation elevation
     #'@param format format
     #'@param rangesubset range subset
     #'@param gridbaseCRS grid base CRS
@@ -39,13 +40,16 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
     #'@param logger logger
     #'@param ... any parameter to pass to the service request
     initialize = function(capabilities, op, url, serviceVersion,
-                          coverageId, envelope = NULL, crs = NULL,
-                          time = NULL, format = NULL, rangesubset = NULL, 
+                          coverage, envelope = NULL, crs = NULL,
+                          time = NULL, elevation = NULL, format = NULL, rangesubset = NULL, 
                           gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
                           gridorigin = NULL, gridoffsets = NULL,
                           user = NULL, pwd = NULL, token = NULL, headers = c(),
                           logger = NULL, ...) {
       namedParams <- list(service = "WCS", version = serviceVersion)
+      
+      #coverageId
+      coverageId <- coverage$getId()
       if(startsWith(serviceVersion, "1.0")) namedParams <- c(namedParams, coverage = coverageId)
       if(startsWith(serviceVersion, "1.1")) namedParams <- c(namedParams, identifier = coverageId)
       if(startsWith(serviceVersion, "2")) namedParams <- c(namedParams, coverageId = coverageId)
@@ -72,29 +76,41 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
       }
       if(startsWith(serviceVersion, "2")){
         if(!is.null(envelope)){
+          dims <- coverage$getDimensions()
           subsetParams <- unlist(strsplit(envelope$attrs$axisLabels, " "))
-          #if(!is.null(crs)) if(endsWith(crs, "EPSG::4326")) {
-          #   subsetParams <- c(subsetParams[2:1], subsetParams[3:length(subsetParams)])
-          #}
           subsets <- lapply(subsetParams, function(subset){
             i <- which(subsetParams == subset)
-            subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
-            
-            #time is not necessarily handled as character, need to identify with
-            #srsName the crs if spatial or temporal
-            if(tolower(subset) %in% c("time", "elevation")){
-              value <- NULL
-              if(tolower(subset)=="time") value <- time
-              if(tolower(subset)=="elevation") value <- elevation
-              if(is.null(value)) value <- envelope$upperCorner[,i]
-              if(is(value, "numeric")){
-                subsetKvp <- sprintf("%s(%s,%s)",subset, value, value) 
-              }else{
-                subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+            dimension <- dims[sapply(dims, function(x){x$label == subset})][[1]]
+            subsetKvp <- NULL
+            if(dimension$type == "geographic"){
+              subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
+            }else{
+              value <- switch(dimension$type,
+                "temporal" = time,
+                "elevation" = elevation,
+                envelope$lowerCorner[,i]
+              )
+              if(!is.null(value)){
+                if(is(value, "numeric")){
+                  if(length(value)==1){
+                    subsetKvp <- sprintf("%s(%s)",subset, value) 
+                  }else if(length(value)==2){
+                    subsetKvp <- sprintf("%s(%s,%s)",subset, value, value)
+                  }
+                  
+                }else{
+                  if(length(value)==1){
+                    subsetKvp <- sprintf("%s(\"%s\")",subset, value)
+                  }else if(length(value)==2){
+                    subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+                  }
+                }
               }
             }
-            URLencode(subsetKvp)
+            if(!is.null(subsetKvp)) subsetKvp = URLencode(subsetKvp)
+            return(subsetKvp)
           })
+          subsets <- subsets[!sapply(subsets, is.null)]
           names(subsets) <- rep("subset", length(subsets))
           namedParams <- c(namedParams, subsets)
         }

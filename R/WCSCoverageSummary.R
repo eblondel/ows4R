@@ -558,8 +558,10 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       getCoverageRequest <- WCSGetCoverage$new(capabilities = private$capabilities, op = op, 
                                                url = private$url, 
                                                serviceVersion = private$version,
-                                               coverageId = self$CoverageId, logger = self$loggerType,
-                                               envelope = envelope, crs = crs, time = time, format = format, rangesubset = rangesubset, 
+                                               coverage = self, logger = self$loggerType,
+                                               envelope = envelope, crs = crs, 
+                                               time = time, elevation = elevation,
+                                               format = format, rangesubset = rangesubset, 
                                                gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
                                                gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
       resp <- getCoverageRequest$getResponse()
