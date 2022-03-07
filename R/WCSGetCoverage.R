@@ -82,31 +82,58 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
             i <- which(subsetParams == subset)
             dimension <- dims[sapply(dims, function(x){x$label == subset})][[1]]
             subsetKvp <- NULL
-            if(dimension$type == "geographic"){
-              subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
-            }else{
-              value <- switch(dimension$type,
-                "temporal" = time,
-                "elevation" = elevation,
-                envelope$lowerCorner[,i]
-              )
-              if(!is.null(value)){
-                if(is(value, "numeric")){
-                  if(length(value)==1){
-                    subsetKvp <- sprintf("%s(%s)",subset, value) 
-                  }else if(length(value)==2){
-                    subsetKvp <- sprintf("%s(%s,%s)",subset, value, value)
+            if(!is.null(dimension)){
+              if(dimension$type == "geographic"){
+                subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
+              }else{
+                value <- switch(dimension$type,
+                                "temporal" = time,
+                                "elevation" = elevation,
+                                envelope$lowerCorner[,i]
+                )
+                if(!is.null(value)){
+                  if(is(value, "numeric")){
+                    if(length(value)==1){
+                      subsetKvp <- sprintf("%s(%s)",subset, value) 
+                    }else if(length(value)==2){
+                      subsetKvp <- sprintf("%s(%s,%s)",subset, value, value)
+                    }
+                    
+                  }else{
+                    if(length(value)==1){
+                      subsetKvp <- sprintf("%s(\"%s\")",subset, value)
+                    }else if(length(value)==2){
+                      subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+                    }
                   }
-                  
-                }else{
-                  if(length(value)==1){
-                    subsetKvp <- sprintf("%s(\"%s\")",subset, value)
-                  }else if(length(value)==2){
-                    subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+                }
+              }
+            }else{
+              subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
+              if(tolower(subset) %in% c("time","elevation")){
+                value <- NULL
+                if(tolower(subset)=="time") value <- time
+                if(tolower(subset)=="elevation") value <- elevation
+                if(is.null(value)) value <- envelope$lowerCorner[,i]
+                if(!is.null(value)){
+                  if(is(value, "numeric")){
+                    if(length(value)==1){
+                      subsetKvp <- sprintf("%s(%s)",subset, value) 
+                    }else if(length(value)==2){
+                      subsetKvp <- sprintf("%s(%s,%s)",subset, value, value)
+                    }
+                    
+                  }else{
+                    if(length(value)==1){
+                      subsetKvp <- sprintf("%s(\"%s\")",subset, value)
+                    }else if(length(value)==2){
+                      subsetKvp <- sprintf("%s(\"%s\",\"%s\")",subset, value, value) 
+                    }
                   }
                 }
               }
             }
+            
             if(!is.null(subsetKvp)) subsetKvp = URLencode(subsetKvp)
             return(subsetKvp)
           })
