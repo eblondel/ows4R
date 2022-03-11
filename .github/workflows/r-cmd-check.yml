@@ -32,7 +32,7 @@ jobs:
       - name: Set up PyCSW (latest)
         run: |
           docker pull geopython/pycsw:latest
-          docker run --name pycsw -v $GITHUB_WORKSPACE/tests/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg -d -p 8000:8000 geopython/pycsw:latest
+          docker run --name pycsw -v $GITHUB_WORKSPACE/tests/pycsw/pycsw.cfg:/etc/pycsw/pycsw.cfg -d -p 8000:8000 geopython/pycsw:2.6.1
       #Docker GeoNetwork set-up
       #- name: Set up GeoNetwork (latest)
       #  run: |
