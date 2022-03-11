@@ -33,6 +33,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     pwd = NULL,
     token = NULL,
     headers = c(),
+    config = NULL,
     auth_scheme = NULL,
 
     #GET
