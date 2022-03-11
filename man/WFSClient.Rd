@@ -69,6 +69,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getCASUrl">}\href{../../ows4R/html/OWSClient.html#method-getCASUrl}{\code{ows4R::OWSClient$getCASUrl()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getConfig">}\href{../../ows4R/html/OWSClient.html#method-getConfig}{\code{ows4R::OWSClient$getConfig()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getHeaders">}\href{../../ows4R/html/OWSClient.html#method-getHeaders}{\code{ows4R::OWSClient$getHeaders()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getPwd">}\href{../../ows4R/html/OWSClient.html#method-getPwd}{\code{ows4R::OWSClient$getPwd()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getToken">}\href{../../ows4R/html/OWSClient.html#method-getToken}{\code{ows4R::OWSClient$getToken()}}\out{</span>}
@@ -95,6 +96,7 @@ This method is used to instantiate a \link{WFSClient} with the \code{url} of the
   pwd = NULL,
   token = NULL,
   headers = c(),
+  config = httr::config(),
   cas_url = NULL,
   logger = NULL
 )}\if{html}{\out{</div>}}
@@ -114,6 +116,8 @@ This method is used to instantiate a \link{WFSClient} with the \code{url} of the
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{config}}{config}
 
 \item{\code{cas_url}}{Central Authentication Service (CAS) URL}
 

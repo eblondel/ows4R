@@ -49,6 +49,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getPwd}{\code{OWSClient$getPwd()}}
 \item \href{#method-getToken}{\code{OWSClient$getToken()}}
 \item \href{#method-getHeaders}{\code{OWSClient$getHeaders()}}
+\item \href{#method-getConfig}{\code{OWSClient$getConfig()}}
 \item \href{#method-getCASUrl}{\code{OWSClient$getCASUrl()}}
 \item \href{#method-clone}{\code{OWSClient$clone()}}
 }
@@ -86,6 +87,7 @@ This method is used to instantiate a OWSClient with the \code{url} of the
   pwd = NULL,
   token = NULL,
   headers = c(),
+  config = httr::config(),
   cas_url = NULL,
   logger = NULL
 )}\if{html}{\out{</div>}}
@@ -107,6 +109,8 @@ This method is used to instantiate a OWSClient with the \code{url} of the
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{config}}{config}
 
 \item{\code{cas_url}}{Central Authentication Service (CAS) URL}
 
@@ -204,6 +208,19 @@ Get headers
 
 \subsection{Returns}{
 the headers, object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getConfig"></a>}}
+\if{latex}{\out{\hypertarget{method-getConfig}{}}}
+\subsection{Method \code{getConfig()}}{
+Get \pkg{httr} config
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSClient$getConfig()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the \pkg{httr} config, if any
 }
 }
 \if{html}{\out{<hr>}}

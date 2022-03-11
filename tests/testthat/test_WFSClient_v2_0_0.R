@@ -31,7 +31,8 @@ test_that("WFS 2.0.0 - VLIZ", {
 })
 
 test_that("WFS 2.0.0 - Emodnet Geology", {
-  wfs = WFSClient$new(url = "https://drive.emodnet-geology.eu/geoserver/wfs", serviceVersion = "2.0.0", logger = "DEBUG")
+  wfs = WFSClient$new(url = "https://drive.emodnet-geology.eu/geoserver/wfs", serviceVersion = "2.0.0", 
+                      config = httr::config(ssl_cipher_list='DEFAULT@SECLEVEL=1'), logger = "DEBUG")
   expect_is(wfs, "WFSClient")
   caps <- wfs$getCapabilities()
   expect_is(caps, "WFSCapabilities")

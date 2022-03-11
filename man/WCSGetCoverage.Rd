@@ -66,10 +66,11 @@ Initializes a \link{WCSGetCoverage} service request
   op,
   url,
   serviceVersion,
-  coverageId,
+  coverage,
   envelope = NULL,
   crs = NULL,
   time = NULL,
+  elevation = NULL,
   format = NULL,
   rangesubset = NULL,
   gridbaseCRS = NULL,
@@ -97,13 +98,15 @@ Initializes a \link{WCSGetCoverage} service request
 
 \item{\code{serviceVersion}}{serviceVersion}
 
-\item{\code{coverageId}}{coverage ID}
+\item{\code{coverage}}{coverage, object of class \link{WCSCoverageSummary}}
 
 \item{\code{envelope}}{envelope}
 
 \item{\code{crs}}{crs}
 
 \item{\code{time}}{time}
+
+\item{\code{elevation}}{elevation}
 
 \item{\code{format}}{format}
 

@@ -32,6 +32,7 @@ OWSClient <- R6Class("OWSClient",
     pwd = NULL,
     token = NULL,
     headers = list(),
+    config = NULL,
     cas_url = NULL
   ),
 
@@ -55,10 +56,11 @@ OWSClient <- R6Class("OWSClient",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param cas_url Central Authentication Service (CAS) URL
     #'@param logger logger
     initialize = function(url, service, serviceVersion,
-                          user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(), cas_url = NULL,
                           logger = NULL) {
       
       #logger
@@ -73,6 +75,7 @@ OWSClient <- R6Class("OWSClient",
       private$pwd <- pwd
       private$token <- token
       private$headers <- headers
+      private$config <- config
       private$cas_url <- cas_url
       
       #CAS authentication
@@ -128,6 +131,12 @@ OWSClient <- R6Class("OWSClient",
     #'@return the headers, object of class \code{character}
     getHeaders = function(){
       return(private$headers)
+    },
+    
+    #'@description Get \pkg{httr} config
+    #'@return the \pkg{httr} config, if any
+    getConfig = function(){
+      return(private$config)
     },
     
     #'@description Get CAS URL

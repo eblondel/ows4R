@@ -45,16 +45,17 @@ WFSClient <- R6Class("WFSClient",
       #'@param pwd password
       #'@param token token
       #'@param headers headers
+      #'@param config config
       #'@param cas_url Central Authentication Service (CAS) URL
       #'@param logger logger
      initialize = function(url, serviceVersion = NULL, 
-                           user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(), cas_url = NULL,
                            logger = NULL) {
        super$initialize(url, service = private$serviceName, serviceVersion = serviceVersion, 
-                        user = user, pwd = pwd, token = token, headers = headers, cas_url = cas_url, 
+                        user = user, pwd = pwd, token = token, headers = headers, config = config, cas_url = cas_url, 
                         logger = logger)
        self$capabilities = WFSCapabilities$new(self$url, self$version, 
-                                               user = user, pwd = pwd, token = token, headers = headers,
+                                               user = user, pwd = pwd, token = token, headers = headers, config = config,
                                                logger = logger)
        self$capabilities$setClient(self)
      },
@@ -68,7 +69,8 @@ WFSClient <- R6Class("WFSClient",
      #'@description Reloads WFS capabilities
      reloadCapabilities = function(){
        self$capabilities = WFSCapabilities$new(self$url, self$version, 
-                                               user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                               user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                               headers = self$getHeaders(), config = self$getConfig(),
                                                logger = self$loggerType)
        self$capabilities$setClient(self)
      },
