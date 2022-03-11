@@ -54,9 +54,9 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       
       r <- NULL
       if(self$verbose.debug){
-        r <- with_verbose(GET(req, add_headers(headers)))
+        r <- with_verbose(GET(req, add_headers(headers), set_config(private$config)))
       }else{
-        r <- GET(req, add_headers(headers))
+        r <- GET(req, add_headers(headers), set_config(private$config))
       }
       responseContent <- NULL
       if(is.null(mimeType)){
@@ -100,13 +100,15 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         r <- with_verbose(httr::POST(
           url = url,
           add_headers(headers),    
-          body = as(outXML, "character")
+          body = as(outXML, "character"),
+          set_config(private$config)
         ))
       }else{
         r <- httr::POST(
           url = url,
           add_headers(headers),    
-          body = as(outXML, "character")
+          body = as(outXML, "character"),
+          set_config(private$config)
         )
       }
       
@@ -142,6 +144,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param namedParams a named \code{list}
     #'@param attrs attributes
     #'@param contentType content type. Default value is "text/xml"
@@ -150,7 +153,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     #'@param ... any other parameter
     initialize = function(element, namespacePrefix,
                           capabilities, op, type, url, request,
-                          user = NULL, pwd = NULL, token = NULL, headers = c(), 
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                           namedParams = NULL, attrs = NULL,
                           contentType = "text/xml", mimeType = "text/xml",
                           logger = NULL, ...) {
@@ -177,6 +180,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         private$token = token
       }
       private$headers = headers
+      private$config = config
         
       vendorParams <- list(...)
       #if(!is.null(op)){
