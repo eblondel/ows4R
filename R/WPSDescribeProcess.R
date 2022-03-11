@@ -28,16 +28,17 @@ WPSDescribeProcess <- R6Class("WPSDescribeProcess",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param logger logger
     #'@param ... any other parameter to pass to the request
     initialize = function(capabilities, op, url, serviceVersion, identifier, 
-                          user = NULL, pwd = NULL, token = NULL, headers = c(),
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                           logger = NULL, ...) {
       namedParams <- list(service = "WPS", version = serviceVersion, identifier = identifier)
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                        capabilities, op, "GET", url, request = "DescribeProcess",
-                       user = user, pwd = pwd, token = token, headers = headers,
+                       user = user, pwd = pwd, token = token, headers = headers, config = config,
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
       self$execute()

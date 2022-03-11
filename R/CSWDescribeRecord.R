@@ -29,10 +29,11 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
      #'@param pwd password
      #'@param token token
      #'@param headers headers
+     #'@param config config
      #'@param logger logger
      #'@param ... any parameter to pass to the service request
      initialize = function(capabilities, op, url, version, namespace = NULL, 
-                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                            logger = NULL, ...) {
        namedParams <- list(service = "CSW", version = version)
        
@@ -53,7 +54,7 @@ CSWDescribeRecord <- R6Class("CSWDescribeRecord",
        
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                         capabilities, op, "GET", url, request = private$name,
-                        user = user, pwd = pwd, token = token, headers = headers,
+                        user = user, pwd = pwd, token = token, headers = headers, config = config,
                         namedParams = namedParams,
                         mimeType = "text/xml", logger = logger, ...)
        self$execute()

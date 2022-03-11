@@ -40,18 +40,19 @@ WPSExecute <- R6Class("WPSExecute",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param logger logger
     #'@param ... any other parameter to pass to the request
     initialize = function(capabilities, op, url, serviceVersion, identifier, 
                           dataInputs = list(), responseForm = NULL,
                           storeExecuteResponse = FALSE, lineage = NULL, status = NULL,
-                          user = NULL, pwd = NULL, token = NULL, headers = c(),
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                           logger = NULL, ...) {
       private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
       namedParams <- list(service = "WPS", version = serviceVersion)
       super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                        capabilities, op, "POST", sprintf("%s?service=WPS", url), request = "Execute",
-                       user = user, pwd = pwd, token = token, headers = headers,
+                       user = user, pwd = pwd, token = token, headers = headers, config = config,
                        namedParams = namedParams, mimeType = "text/xml", logger = logger,
                        ...)
       self$wrap <- TRUE

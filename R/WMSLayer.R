@@ -280,7 +280,8 @@ WMSLayer <- R6Class("WMSLayer",
         feature_count = feature_count,
         x = x, y = y, width = width, height = height, bbox = bbox,
         info_format = info_format,
-        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+        user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), 
+        headers = client$getHeaders(), config = client$getConfig(),
         logger = self$loggerType, ...)
       obj <- ftFeatures$getResponse()
       

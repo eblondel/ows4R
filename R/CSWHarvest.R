@@ -37,13 +37,14 @@ CSWHarvest <- R6Class("CSWHarvest",
      #'@param pwd password
      #'@param token token
      #'@param headers headers
+     #'@param config config
      #'@param source source
      #'@param resourceType resource type. Default is "http://www.isotc211.org/schemas/2005/gmd/"
      #'@param resourceFormat resource format. Default is "application/xml"
      #'@param logger logger
      #'@param ... any parameter to pass to the service request
      initialize = function(capabilities, op, url, serviceVersion = "2.0.2", 
-                           user = NULL, pwd = NULL, token = NULL, headers = list(),
+                           user = NULL, pwd = NULL, token = NULL, headers = list(), config = httr::config(),
                            source = NULL,
                            resourceType = "http://www.isotc211.org/schemas/2005/gmd/",
                            resourceFormat = "application/xml",
@@ -52,7 +53,7 @@ CSWHarvest <- R6Class("CSWHarvest",
        private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
        super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                         capabilities, op, "POST", url, request = private$xmlElement,
-                        user = user, pwd = pwd, token = token, headers = headers,
+                        user = user, pwd = pwd, token = token, headers = headers, config = config,
                         contentType = "text/xml", mimeType = "text/xml",
                         logger = logger, ...)
        

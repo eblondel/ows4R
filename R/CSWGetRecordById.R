@@ -36,12 +36,13 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
       #'@param pwd password
       #'@param token token
       #'@param headers headers
+      #'@param config config
       #'@param id record id
       #'@param elementSetName element set name. Default is "full"
       #'@param logger logger
       #'@param ... any parameter to pass to the service request
       initialize = function(capabilities, op, url, serviceVersion = "2.0.2",
-                            user = NULL, pwd = NULL, token = NULL, headers = headers,
+                            user = NULL, pwd = NULL, token = NULL, headers = headers, config = httr::config(),
                             id, elementSetName = "full", logger = NULL, ...) {
         self$Id = id
         allowedElementSetNames <- c("full", "brief", "summary")
@@ -56,7 +57,7 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
         
         super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                          capabilities, op, "POST", url, request = "GetRecordById",
-                         user = user, pwd = pwd, token = token, headers = headers,
+                         user = user, pwd = pwd, token = token, headers = headers, config = config,
                          contentType = "text/xml", mimeType = "text/xml",
                          logger = logger, ...)
         

@@ -68,7 +68,7 @@ WFSClient <- R6Class("WFSClient",
      
      #'@description Reloads WFS capabilities
      reloadCapabilities = function(){
-       self$capabilities = WFSCapabilities$new(self$url, self$version, 
+       self$capabilities = WFSCapabilities$new(self$url, self$version,
                                                user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
                                                headers = self$getHeaders(), config = self$getConfig(),
                                                logger = self$loggerType)

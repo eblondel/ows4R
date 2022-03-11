@@ -44,17 +44,18 @@ CSWClient <- R6Class("CSWClient",
       #'@param pwd password
       #'@param token token
       #'@param headers headers
+      #'@param config config
       #'@param cas_url Central Authentication Service (CAS) URL
       #'@param logger logger
      initialize = function(url, serviceVersion = NULL, 
-                           user = NULL, pwd = NULL, token = NULL, headers = c(), cas_url = NULL,
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(), cas_url = NULL,
                            logger = NULL) {
        if(startsWith(serviceVersion, "3.0")) serviceVersion <- "3.0.0"
        super$initialize(url, service = private$serviceName, serviceVersion = serviceVersion, 
-                        user = user, pwd = pwd, token = token, headers = headers, cas_url = cas_url, 
+                        user = user, pwd = pwd, token = token, headers = headers, config = config, cas_url = cas_url, 
                         logger = logger)
        self$capabilities = CSWCapabilities$new(self$url, self$version, 
-                                               user = user, pwd = pwd, token = token, headers = headers,
+                                               user = user, pwd = pwd, token = token, headers = headers, config = config,
                                                logger = logger)
        self$capabilities$setClient(self)
      },
@@ -68,7 +69,8 @@ CSWClient <- R6Class("CSWClient",
      #'@description Reloads CSW capabilities
      reloadCapabilities = function(){
       self$capabilities = CSWCapabilities$new(self$url, self$version, 
-                                              user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                              user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                              headers = self$getHeaders(), config = self$getConfig(),
                                               logger = self$loggerType)
       self$capabilities$setClient(self)
      },
@@ -91,7 +93,8 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWDescribeRecord$new(self$capabilities, op, self$getUrl(), self$getVersion(), 
-                                        user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                        user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                        headers = self$getHeaders(), config = self$getConfig(),
                                         namespace = namespace, logger = self$loggerType, ...)
        return(request$getResponse())
      },
@@ -118,7 +121,8 @@ CSWClient <- R6Class("CSWClient",
          stop(errorMsg)
        }
        request <- CSWGetRecordById$new(self$capabilities, op, self$getUrl(), self$getVersion(),
-                                       user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                       user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                       headers = self$getHeaders(), config = self$getConfig(),
                                        id = id, elementSetName = elementSetName,
                                        logger = self$loggerType, ...)
        return(request$getResponse())
@@ -153,7 +157,8 @@ CSWClient <- R6Class("CSWClient",
        if(hasMaxRecords) if(maxRecords < maxRecordsPerRequest) maxRecordsPerRequest <- maxRecords
        
        firstRequest <- CSWGetRecords$new(self$capabilities, op, self$getUrl(), self$getVersion(),
-                                    user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                    user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                    headers = self$getHeaders(), config = self$getConfig(),
                                     query = query, logger = self$loggerType, 
                                     maxRecords = maxRecordsPerRequest, ...)
        records <- firstRequest$getResponse()
@@ -180,7 +185,8 @@ CSWClient <- R6Class("CSWClient",
            }
          }
          nextRequest <- CSWGetRecords$new(self$capabilities, op, self$getUrl(), self$getVersion(),
-                                          user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                          user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                          headers = self$getHeaders(), config = self$getConfig(),
                                           query = query, logger = self$loggerType, 
                                           startPosition = nextRecord, 
                                           maxRecords = maxRecordsPerRequest, ...)
@@ -222,7 +228,8 @@ CSWClient <- R6Class("CSWClient",
        }
        #transation
        transaction <- CSWTransaction$new(self$capabilities, op, cswt_url, self$getVersion(), type = type,
-                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                         headers = self$getHeaders(), config = self$getConfig(),
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        
@@ -312,7 +319,8 @@ CSWClient <- R6Class("CSWClient",
        }
        self$INFO(sprintf("Harvesting '%s' ...", sourceUrl))
        harvest <- CSWHarvest$new(self$capabilities, op, self$getUrl(), self$getVersion(),
-                                 user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                                 user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                                 headers = self$getHeaders(), config = self$getConfig(),
                                  source = sourceUrl, resourceType = resourceType, resourceFormat = "application/xml",
                                  logger = self$loggerType)
        
@@ -349,7 +357,8 @@ CSWClient <- R6Class("CSWClient",
                             sourceBaseUrl){
        nodeHarvest <- NULL
        csw <- CSWClient$new(url = url, serviceVersion = self$getVersion(), 
-                            user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), headers = self$getHeaders(),
+                            user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
+                            headers = self$getHeaders(), config = self$getConfig(),
                             logger = self$loggerType)
        if(!is.null(csw)){
          records <- csw$getRecords(query = query)

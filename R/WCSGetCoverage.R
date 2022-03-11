@@ -37,6 +37,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param logger logger
     #'@param ... any parameter to pass to the service request
     initialize = function(capabilities, op, url, serviceVersion,
@@ -44,7 +45,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
                           time = NULL, elevation = NULL, format = NULL, rangesubset = NULL, 
                           gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
                           gridorigin = NULL, gridoffsets = NULL,
-                          user = NULL, pwd = NULL, token = NULL, headers = c(),
+                          user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                           logger = NULL, ...) {
       namedParams <- list(service = "WCS", version = serviceVersion)
       
@@ -162,7 +163,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
       
       super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
                        capabilities, op, "GET", url, request = "GetCoverage",
-                       user = user, pwd = pwd, token = token, headers = headers,
+                       user = user, pwd = pwd, token = token, headers = headers, config = config,
                        namedParams = namedParams, mimeType = mimeType,
                        logger = logger, ...)
       self$execute()

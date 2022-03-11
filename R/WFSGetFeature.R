@@ -29,10 +29,11 @@ WFSGetFeature <- R6Class("WFSGetFeature",
     #'@param pwd password
     #'@param token token
     #'@param headers headers
+    #'@param config config
     #'@param logger logger
     #'@param ... any parameter to pass to the service request
      initialize = function(capabilities, op, url, version, typeName, outputFormat = NULL,
-                           user = NULL, pwd = NULL, token = NULL, headers = c(),
+                           user = NULL, pwd = NULL, token = NULL, headers = c(), config = httr::config(),
                            logger = NULL, ...) {
        
        if(is.null(outputFormat)){
@@ -73,7 +74,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        namedParams <- namedParams[!sapply(namedParams, is.null)]
        super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                         capabilities, op, "GET", url, request = "GetFeature",
-                        user = user, pwd = pwd, token = token, headers = headers,
+                        user = user, pwd = pwd, token = token, headers = headers, config = config,
                         namedParams = namedParams, mimeType = mimeType, logger = logger)
        self$execute()
      }
