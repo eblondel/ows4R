@@ -20,3 +20,19 @@ test_that("WFS 2.0.0",{
   expect_is(ft.sp, "sf")
   expect_is(ft.sp, "data.frame")
 })
+
+#DATASOURCES OF INTEREST
+
+test_that("WFS 2.0.0 - VLIZ", {
+  wfs = WFSClient$new(url = "http://geo.vliz.be/geoserver/wfs", serviceVersion = "2.0.0", logger = "DEBUG")
+  expect_is(wfs, "WFSClient")
+  caps <- wfs$getCapabilities()
+  expect_is(caps, "WFSCapabilities")
+})
+
+test_that("WFS 2.0.0 - Emodnet Geology", {
+  wfs = WFSClient$new(url = "https://drive.emodnet-geology.eu/geoserver/wfs", serviceVersion = "2.0.0", logger = "DEBUG")
+  expect_is(wfs, "WFSClient")
+  caps <- wfs$getCapabilities()
+  expect_is(caps, "WFSCapabilities")
+})
