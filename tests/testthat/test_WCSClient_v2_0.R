@@ -122,6 +122,6 @@ test_that("WCS 2.0.1 - UN-FAO - ASIS",{
   wcs <- WCSClient$new(url = "https://io.apps.fao.org/geoserver/wcs/ASIS/HDF/v2", serviceVersion = "2.0.1", logger = "DEBUG")
   covnames <- sapply(wcs$capabilities$getCoverageSummaries(), function(x){x$getId()})
   cov <- wcs$capabilities$findCoverageSummaryById("ASIS__hdf", exact = TRUE)
-  cov_data <- cov$getCoverage( bbox = OWSUtils$toBBOX(-90.3159,12.8091,-87.4539,14.6022))
-  expect_is(cov_data, "RasterLayer")
+  cov_data <- cov$getCoverage(bbox = OWSUtils$toBBOX(-90.3159,12.8091,-87.4539,14.6022))
+  expect_is(cov_data, "SpatRaster")
 })
