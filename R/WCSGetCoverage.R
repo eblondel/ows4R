@@ -86,7 +86,9 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
             subsetKvp <- NULL
             if(!is.null(dimension)){
               if(dimension$type == "geographic"){
-                subsetKvp <- sprintf("%s(%s,%s)",subset, unlist(envelope$lowerCorner[,i]), unlist(envelope$upperCorner[,i]))
+                subsetKvp <- sprintf("%s(%s,%s)",subset,
+                                     format(unlist(envelope$lowerCorner[,i]), scientific = FALSE), 
+                                     format(unlist(envelope$upperCorner[,i]), scientific = FALSE))
               }else{
                 value <- switch(dimension$type,
                                 "temporal" = time,
@@ -96,9 +98,9 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
                 if(!is.null(value)){
                   if(is(value, "numeric")){
                     if(length(value)==1){
-                      subsetKvp <- sprintf("%s(%s)",subset, value) 
+                      subsetKvp <- sprintf("%s(%s)",subset, format(value, scientific = FALSE)) 
                     }else if(length(value)==2){
-                      subsetKvp <- sprintf("%s(%s,%s)",subset, value, value)
+                      subsetKvp <- sprintf("%s(%s,%s)",subset, format(value, scientific = FALSE), format(value, scientific = FALSE))
                     }
                     
                   }else{

@@ -476,8 +476,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         if(substr(private$version,1,1)=="2"){
           refEnvelope <- self$getDescription()$boundedBy
           axisLabels <- unlist(strsplit(refEnvelope$attrs$axisLabels, " "))
-          axisLatIdx <- which(axisLabels == "Lat")
-          axisLonIdx <- which(axisLabels %in% c("Lon", "Long"))
+          axisLatIdx <- which(axisLabels %in% c("Lat", "y", "Y"))
+          axisLonIdx <- which(axisLabels %in% c("Lon", "Long", "x", "X"))
           if(axisLatIdx < axisLonIdx) bbox <- rbind(bbox[2,],bbox[1,])
           envelope <- GMLEnvelope$new(bbox = bbox)
           
