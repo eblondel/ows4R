@@ -29,7 +29,7 @@ _Blue-Cloud has received funding from the European Union's Horizon programme cal
 
 ### Citation
 
-We thank in advance people that use ``ows4R`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111)
+We thank in advance people that use ``ows4R`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111) [![Join the chat at https://gitter.im/ows4R/WFS](https://badges.gitter.im/ows4R/WFS.svg)](https://gitter.im/ows4R/WFS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## OGC standards coverage status
 
