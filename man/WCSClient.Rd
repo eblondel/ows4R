@@ -209,7 +209,7 @@ Get coverage
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-an object of class \link{raster} from \pkg{raster}
+an object of class \link{SpatRaster} from \pkg{terra}
 }
 }
 \if{html}{\out{<hr>}}

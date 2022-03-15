@@ -7,7 +7,7 @@
 #' @import openssl
 #' @import XML
 #' @import sf
-#' @import rgdal
+#' @importFrom rgdal projInfo
 #' @import terra
 #' @import geometa
 #' @import keyring

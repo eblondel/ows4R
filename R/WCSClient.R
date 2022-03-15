@@ -88,7 +88,7 @@ WCSClient <- R6Class("WCSClient",
      #'@param gridorigin grid origin. Default is \code{NULL}
      #'@param gridoffsets grid offsets. Default is \code{NULL}
      #'@param ... any other argument to pass to the WCS GetCoverage request
-     #'@return an object of class \link{raster} from \pkg{raster}
+     #'@return an object of class \link{SpatRaster} from \pkg{terra}
      getCoverage = function(identifier,
                             bbox = NULL, crs = NULL, time = NULL, format = NULL, rangesubset = NULL, 
                             gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
