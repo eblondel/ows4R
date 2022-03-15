@@ -95,14 +95,14 @@ WCSCoverage <- R6Class("WCSCoverage",
      
      #'@description Get data
      #'@param filename filename. Optional file name where to download the coverage
-     #'@return an object of class \code{RasterLayer}
+     #'@return an object of class \code{SpatRaster} from \pkg{terra}
      getData = function(filename = NULL){
        covfile <- NULL
        if(!is.null(filename)){ covfile <- filename }else{ covfile <- tempfile() }
        req <- httr::GET(private$reference)
        bin <- content(req, "raw")
        writeBin(bin, covfile)
-       r <- raster::raster(covfile)
+       r <- terra::rast(covfile)
        return(r)
      }
    )

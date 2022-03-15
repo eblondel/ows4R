@@ -344,7 +344,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param gridoffsets grid offsets. Default is \code{NULL}
     #'@param filename filename. Optional filename to download the coverage
     #'@param ... any other argument to \link{WCSGetCoverage}
-    #'@return an object of class \link{raster} from \pkg{raster}
+    #'@return an object of class \code{SpatRaster} from \pkg{terra}
     getCoverage = function(bbox = NULL, crs = NULL, 
                            time = NULL, elevation = NULL,
                            format = NULL, rangesubset = NULL, 
@@ -604,22 +604,22 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           covfile <- WCSCoverageFilenameHandler(identifier = self$CoverageId, time = time, elevation = elevation, format = format, bbox = bbox)
         }
         writeBin(resp, covfile)
-        coverage_data <- raster::raster(covfile)
+        coverage_data <- terra::rast(covfile)
       }
       
       #add raster attributes
       name <- self$getId()
       if(!is.null(bbox)) name <- paste(name, "_bbox-", paste(as(bbox,"character"), collapse=","))
       if(!is.null(time)) name <- paste(name, "_time-:", time)
-      names(coverage_data) <- name
+      attr(coverage_data, "name") <- name
       title <- self$getId()
       if(!is.null(bbox)) title <- paste(title, "| BBOX:", paste(as(bbox,"character"), collapse=","))
       if(!is.null(time)) title <- paste(title," | TIME:", time)
       attr(coverage_data,"title") <- title
-      cov_values <- raster::getValues(coverage_data)
+      cov_values <- terra::values(coverage_data)
       if(!all(is.na(cov_values))){
-        slot(attr(coverage_data, "data"),"min") <- min(cov_values, na.rm = TRUE)
-        slot(attr(coverage_data, "data"),"max") <- max(cov_values, na.rm = TRUE)
+        attr(coverage_data, "min") <- min(cov_values, na.rm = TRUE)
+        attr(coverage_data, "max") <- max(cov_values, na.rm = TRUE)
       }
       
       return(coverage_data)
@@ -720,7 +720,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           )
           return(coverage)
         })
-        out <- raster::stack(coverage_list)
+        out <- terra::rast(coverage_list)
       }
       return(out)
     }
