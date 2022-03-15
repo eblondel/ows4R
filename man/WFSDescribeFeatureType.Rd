@@ -74,6 +74,7 @@ Initializes a \link{WFSDescribeFeatureType} service request
   pwd = NULL,
   token = NULL,
   headers = c(),
+  config = httr::config(),
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -99,6 +100,8 @@ Initializes a \link{WFSDescribeFeatureType} service request
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{config}}{config}
 
 \item{\code{logger}}{logger}
 

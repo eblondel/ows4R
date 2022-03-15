@@ -77,6 +77,7 @@ Initializes an OWS HTTP request
   pwd = NULL,
   token = NULL,
   headers = c(),
+  config = httr::config(),
   namedParams = NULL,
   attrs = NULL,
   contentType = "text/xml",
@@ -110,6 +111,8 @@ Initializes an OWS HTTP request
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{config}}{config}
 
 \item{\code{namedParams}}{a named \code{list}}
 

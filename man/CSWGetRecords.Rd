@@ -80,6 +80,7 @@ Initializes a \link{CSWGetRecordById} service request
   pwd = NULL,
   token = NULL,
   headers = list(),
+  config = httr::config(),
   query = NULL,
   logger = NULL,
   ...
@@ -104,6 +105,8 @@ Initializes a \link{CSWGetRecordById} service request
 \item{\code{token}}{token}
 
 \item{\code{headers}}{headers}
+
+\item{\code{config}}{config}
 
 \item{\code{query}}{object of class \link{CSWQuery}}
 

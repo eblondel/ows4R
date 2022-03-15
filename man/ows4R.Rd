@@ -17,7 +17,7 @@ The purpose is to add support for additional OGC service standards such as Web C
    Type: \tab Package\cr
    Version
    : \tab 0.3\cr
-   Date: \tab 2022-03-02\cr
+   Date: \tab 2022-03-15\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }

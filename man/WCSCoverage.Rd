@@ -153,7 +153,7 @@ Get data
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-an object of class \code{RasterLayer}
+an object of class \code{SpatRaster} from \pkg{terra}
 }
 }
 \if{html}{\out{<hr>}}
