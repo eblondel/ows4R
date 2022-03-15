@@ -6,9 +6,7 @@
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.3-blue.svg)](https://github.com/eblondel/ows4R)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111)
 
-[![Gitter](https://img.shields.io/badge/chat%20room-for%20users-brown.svg?style=flat-square)](https://gitter.im/ows4R/community)
-
-R client for OGC Web-Services
+**R client for OGC Web-Services**
 
 ``ows4R`` aims to set-up a pure R interface to OGC Web-Services. It currently targets:
 * the Common OGC Web-Services specifications, versions ``1.1`` and ``2.0``
@@ -17,6 +15,20 @@ R client for OGC Web-Services
 * the Web Coverage Service (WCS), versions `1.0`, `1.1.0`, `1.1.1`, `2.0.1` and `2.1.0`
 * the Web Map Service (WMS), versions ``1.1.0``, ``1.1.1``, and ``1.3.0``
 * the Web Processing service (WPS) version `1.0.0`
+
+Do you have a question? support request? Here's a general chat room available for you:
+
+[![Join chat at https://gitter.im/ows4R](https://img.shields.io/badge/chat%20room-for%20users-brown.svg?style=flat-square)](https://gitter.im/ows4R/community)
+
+A question about a specific OGC service usage in R? join a room here:
+
+[![Ask your CSW-related questions at https://gitter.im/ows4R/CSW](https://img.shields.io/badge/chat%20room-about%20CSW-brown.svg?style=flat-square)](https://gitter.im/ows4R/CSW?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Ask your WCS-related questions at https://gitter.im/ows4R/WCS](https://img.shields.io/badge/chat%20room-about%20WCS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WCS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Ask your WFS-related questions at https://gitter.im/ows4R/WFS](https://img.shields.io/badge/chat%20room-about%20WFS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WFS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Ask your WPS-related questions at https://gitter.im/ows4R/WPS](https://img.shields.io/badge/chat%20room-about%20WPS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WPS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
+## Sponsors
 
 The following projects have contributed to strenghten ``ows4R``:
 
