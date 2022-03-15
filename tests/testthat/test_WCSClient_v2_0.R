@@ -78,16 +78,7 @@ test_that("WCS 2.0.1 - Emodnet Bathymetry",{
   bbox <- OWSUtils$toBBOX(-9.74885843385535,-6.40719176724215,46.57884310043864,48.46009310040854)
   bathy_data <- bathy$getCoverage(bbox = bbox)
   bathy_data_stack <- bathy$getCoverageStack(bbox = bbox)
-  expect_true(raster::compareRaster(bathy_data,bathy_data_stack))
-  
-  if(FALSE){
-    require(rasterVis)
-    r <- bathy_data
-    r <- raster::crop(r, area)
-    r <- raster::mask(r, area)
-    r[r>=0] <- NA
-    rasterVis::levelplot(r)
-  }
+  expect_true(terra::compareGeom(bathy_data,bathy_data_stack))
   
 })
 
