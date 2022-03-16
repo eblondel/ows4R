@@ -342,6 +342,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param gridCS grid CS. Default is \code{NULL}
     #'@param gridorigin grid origin. Default is \code{NULL}
     #'@param gridoffsets grid offsets. Default is \code{NULL}
+    #'@param method method to get coverage, either 'GET' or 'POST' (experimental - under development)
     #'@param filename filename. Optional filename to download the coverage
     #'@param ... any other argument to \link{WCSGetCoverage}
     #'@return an object of class \code{SpatRaster} from \pkg{terra}
@@ -350,7 +351,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                            format = NULL, rangesubset = NULL, 
                            gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
                            gridorigin = NULL, gridoffsets = NULL, 
-                           filename = NULL, ...){
+                           method = "GET", filename = NULL, ...){
       coverage_data <- NULL
       op <- NULL
       operations <- private$capabilities$getOperationsMetadata()$getOperations()
@@ -564,6 +565,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       getCoverageRequest <- WCSGetCoverage$new(capabilities = private$capabilities, op = op, 
                                                url = private$url, 
                                                serviceVersion = private$version,
+                                               method = method,
                                                coverage = self, logger = self$loggerType,
                                                envelope = envelope, crs = crs, 
                                                time = time, elevation = elevation,
@@ -631,7 +633,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     #'@param bbox bbox
     #'@param filename_handler Optional filename handling function with arguments 'identifier', 'time', 'elevation', 'bbox', 'format'
     #'  See \link{WCSCoverageFilenameHandler} as genric filename handler that can be used.
-    #'@param ... any other parameter to pass to \code{getCoverage} method
+    #'@param ... any other parameter to pass to \code{getCoverage}
     #'@return an object of class \link{stack} from \pkg{raster}
     getCoverageStack = function(time = NULL, elevation = NULL, bbox = NULL, 
                                 filename_handler = NULL, ...){

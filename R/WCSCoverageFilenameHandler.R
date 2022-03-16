@@ -19,7 +19,7 @@ WCSCoverageFilenameHandler <- function(identifier, time, elevation, bbox, format
   filename <- identifier
   if(!is.null(time)) filename <- paste0(filename, "_", gsub(":", "_", time))
   if(!is.null(elevation)) filename <- paste0(filename, "_", elevation)
-  if(!is.null(bbox)) filename <- paste0(filename, "_", paste0(bbox, collapse=","))
+  if(!is.null(bbox)) filename <- paste0(filename, "_", gsub(":", "_",paste0(bbox, collapse=",")))
   file_ext <- "tif"
   if(!is.null(format)){
     file_ext <- switch(format,

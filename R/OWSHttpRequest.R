@@ -227,7 +227,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         }
       }
       if(private$type == "POST"){
-        if(!is.null(xmlNamespaces(req$response)$ows)){
+        if(endsWith(private$mimeType, "xml")) if(!is.null(xmlNamespaces(req$response)$ows)){
           exception <- getNodeSet(req$response, "//ows:ExceptionText", c(ows = xmlNamespaces(req$response)$ows$uri))
           if(length(exception)>0){
             exception <- exception[[1]]

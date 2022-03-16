@@ -43,6 +43,8 @@ OWSNamespace$FES = OWSNamespace$new("fes", "http://www.opengis.net/fes/2.0")
 OWSNamespace$OGC <- OWSNamespace$new("ogc", "http://www.opengis.net/ogc")
 OWSNamespace$OWS <- OWSNamespace$new("ows", "http://www.opengis.net/ows")
 OWSNamespace$OWS_1_1 = OWSNamespace$new("ows", "http://www.opengis.net/ows/1.1")
+OWSNamespace$WCS_2_0 = OWSNamespace$new("wcs", "http://www.opengis.net/wcs/2.0")
+OWSNamespace$WCS_2_1 = OWSNamespace$new("wcs", "http://www.opengis.net/wcs/2.1")
 OWSNamespace$WMS_1_0_0 = OWSNamespace$new("wms", "http://www.opengis.net/wms")
 OWSNamespace$WMS_1_1_0 = OWSNamespace$new("wms", "http://www.opengis.net/wms")
 OWSNamespace$WMS_1_1_1 = OWSNamespace$new("wms", "http://www.opengis.net/wms")
@@ -61,6 +63,8 @@ setOWSNamespaces <- function(){
     OWSNamespace$OGC,
     OWSNamespace$OWS,
     OWSNamespace$OWS_1_1,
+    OWSNamespace$WCS_2_0,
+    OWSNamespace$WCS_2_1,
     OWSNamespace$WMS_1_0_0,
     OWSNamespace$WMS_1_1_0,
     OWSNamespace$WMS_1_1_1,
