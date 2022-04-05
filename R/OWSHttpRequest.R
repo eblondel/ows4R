@@ -224,6 +224,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         if(private$status != 200){
           private$exception <- sprintf("Error while executing request '%s'", req$request)
           self$ERROR(private$exception)
+          stop(private$exception)
         }
       }
       if(private$type == "POST"){
@@ -233,6 +234,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
             exception <- exception[[1]]
             private$exception <- xmlValue(exception)
             self$ERROR(private$exception)
+            stop(private$exception)
           }
         }
       }
