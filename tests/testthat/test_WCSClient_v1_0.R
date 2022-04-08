@@ -28,7 +28,7 @@ test_that("WCS 1.0 - Thredds",{
   expect_is(domain$getTemporalDomain(), "WCSCoverageTemporalDomain")
   expect_true(length(domain$getTemporalDomain()$getInstants())>0)
   
-  chloroa_data <- chloroa$getCoverage(time = chloroa_desc$Domain$temporalDomain$instants[296])
+  chloroa_data <- chloroa$getCoverage(time = chloroa_desc$Domain$temporalDomain$instants[1])
   
 })
 

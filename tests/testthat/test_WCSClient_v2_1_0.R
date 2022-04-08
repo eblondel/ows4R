@@ -13,7 +13,7 @@ test_that("WCS 2.1.0 - Rasdaman",{
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  expect_equal(length(caps$getCoverageSummaries()), 1414L)
+  expect_equal(length(caps$getCoverageSummaries()), 274L)
   
   cov1 <- caps$findCoverageSummaryById("AverageChloroColor")
   expect_is(cov1, "WCSCoverageSummary")
