@@ -58,10 +58,15 @@ OWSCapabilities <- R6Class("OWSCapabilities",
        private$request <- OWSGetCapabilities$new(
           element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
           url, service, serviceVersion, logger = logger, ...)
-       xmlObj <- private$request$getResponse()
-       private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
-       private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
-       private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
+       if(private$request$getStatus()==200){
+          xmlObj <- private$request$getResponse()
+          private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
+          private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
+          private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
+       }else{
+          self$ERROR(private$request$getException())
+          stop(private$request$getException())
+       }
      },
      
      #'@description Sets the OGC client
