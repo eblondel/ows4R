@@ -22,7 +22,7 @@ test_that("WCS 1.1.0 - GeoServer",{
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  expect_equal(length(caps$getCoverageSummaries()), 5L)
+  expect_true(length(caps$getCoverageSummaries())>0)
   
   sfdem <- caps$findCoverageSummaryById("sf:sfdem")
   expect_is(sfdem, "WCSCoverageSummary")
@@ -38,7 +38,7 @@ test_that("WCS 1.1.1 - GeoServer",{
   expect_is(wcs, "WCSClient")
   caps <- wcs$getCapabilities()
   expect_is(caps, "WCSCapabilities")
-  expect_equal(length(caps$getCoverageSummaries()), 5L)
+  expect_true(length(caps$getCoverageSummaries())>0)
   
   sfdem <- caps$findCoverageSummaryById("sf:sfdem")
   expect_is(sfdem, "WCSCoverageSummary")
