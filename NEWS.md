@@ -1,7 +1,22 @@
+## [ows4R 0.3](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
 
-# **[ows4R 0.2](https://github.com/eblondel/ows4R/issues?milestone=2)**
 
-## **_0.2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+**New features**
+
+- [#9](https://github.com/eblondel/ows4R/issues/9) WCS client support
+- [#58](https://github.com/eblondel/ows4R/issues/58) Implement 'exact' find method for WMS layers
+- [#63](https://github.com/eblondel/ows4R/issues/63) CAS authentication client support
+- [#64](https://github.com/eblondel/ows4R/issues/64) Support httr config argument for OGC service clients
+
+**Enhancements**
+
+- [#61](https://github.com/eblondel/ows4R/issues/61) Generalize auth-related arguments in OWS Http requests
+
+**Corrections**
+
+- [#56](https://github.com/eblondel/ows4R/issues/56) Duplicate feature with findFeatureTypeByName
+
+## [ows4R 0.2](https://cran.r-project.org/package=ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 
 **Corrections**
 
@@ -20,10 +35,7 @@
 - [#15](https://github.com/eblondel/ows4R/issues/15) Generalize auth to clients/requests
 - [#43](https://github.com/eblondel/ows4R/issues/43) Support WMS GetCapabilities, GetFeatureInfo requests
 
-
-# **[ows4R 0.1](https://github.com/eblondel/ows4R/issues?milestone=1)**
-
-## **_0.1-5_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.1-5](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-5.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-5.tar.gz)
 
 **Enhancements**
 
@@ -34,13 +46,13 @@
 * [#38](https://github.com/eblondel/ows4R/issues/38) WFS – add pretty option for feature type description
 * [#39](https://github.com/eblondel/ows4R/issues/39) CSW – fix getRecordById for feature catalogue (ISO 19110) parsing
 
-## **_0.1-4_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.1-4](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-4.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-4.tar.gz)
 
 **Corrections**
 
 *[#32](https://github.com/eblondel/ows4R/issues/32) Regression with WFS getfeatures - issue when setting CQL_filter
 
-## **_0.1-3_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.1-3](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-3.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-3.tar.gz)
 
 **Corrections**
 
@@ -56,7 +68,7 @@ _No enhancements_
 * [#16](https://github.com/eblondel/ows4R/issues/26) Add support for Bearer (token) authentication
 * [#28](https://github.com/eblondel/ows4R/issues/28) Support geometa record validate/inspire options in CSW-T
 
-## **_0.1-2_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.1-2](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-2.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-2.tar.gz)
 
 **Corrections**
 
@@ -75,7 +87,7 @@ _No enhancements_
 
 * [#16](https://github.com/eblondel/ows4R/issues/16) add function to reload client capabilities
 
-## **_0.1-1_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-archived-brown.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-1.tar.gz)
+## [ows4R 0.1-1](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-1.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-1.tar.gz)
 
 **Corrections**
 
@@ -95,7 +107,7 @@ _No enhancements_
 
 _No new features at now_
 
-## **_0.1-0_** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-archived-brown.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-0.tar.gz)
+## [ows4R 0.1-0](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-0.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.1-0.tar.gz)
 
 **New features**
   
