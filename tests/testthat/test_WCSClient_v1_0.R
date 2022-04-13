@@ -64,8 +64,8 @@ test_that("WCS 1.0.0 - PML",{
   cov_desc <- cov$getDescription()
   expect_is(cov_desc, "WCSCoverageDescription")
   
-  cov_data <- cov$getCoverage(time = "2019-07-18T11:17:00Z")
-  cov_stack <- cov$getCoverageStack(time = "2019-07-18T11:17:00Z")
+  cov_data <- cov$getCoverage(time = "2019-07-18T11:17:00Z", filename = "test.tif")
+  cov_stack <- cov$getCoverageStack(time = "2019-07-18T11:17:00Z", filename_handler = function(identifier, time, elevation, bbox, format){"test.tif"})
   expect_true(terra::compareGeom(cov_data,cov_stack))
   
 })
