@@ -15,7 +15,10 @@ jobs:
     strategy:
       matrix:
         config:
-          - {os: ubuntu-20.04,   r: '4.1.3'}
+          - {os: macOS-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'devel'}
     steps:
       - uses: actions/checkout@v2
       #OGC WFS/WMS integration tests
