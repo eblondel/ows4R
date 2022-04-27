@@ -17,6 +17,7 @@ jobs:
         config:
           - {os: ubuntu-latest,  r: 'release'}
           - {os: ubuntu-latest,  r: 'devel'}
+          - {os: windows-latest, r: 'release'}
     steps:
       - uses: actions/checkout@v2
       #OGC WFS/WMS integration tests
