@@ -55,9 +55,9 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       
       r <- NULL
       if(self$verbose.debug){
-        r <- with_verbose(GET(req, add_headers(headers), set_config(private$config)))
+        r <- with_verbose(GET(req, add_headers(headers), set_config(private$config)), progress())
       }else{
-        r <- GET(req, add_headers(headers), set_config(private$config))
+        r <- GET(req, add_headers(headers), set_config(private$config), progress())
       }
       responseContent <- NULL
       if(is.null(mimeType)){
