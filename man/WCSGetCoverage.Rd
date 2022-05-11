@@ -24,6 +24,15 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Super classes}{
 \code{\link[ows4R:OGCAbstractObject]{ows4R::OGCAbstractObject}} -> \code{\link[ows4R:OWSHttpRequest]{ows4R::OWSHttpRequest}} -> \code{WCSGetCoverage}
 }
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{CoverageId}}{coverage identifier}
+
+\item{\code{format}}{coverage format}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -83,6 +92,7 @@ Initializes a \link{WCSGetCoverage} service request
   token = NULL,
   headers = c(),
   config = httr::config(),
+  method = "GET",
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -132,6 +142,8 @@ Initializes a \link{WCSGetCoverage} service request
 \item{\code{headers}}{headers}
 
 \item{\code{config}}{config}
+
+\item{\code{method}}{method}
 
 \item{\code{logger}}{logger}
 

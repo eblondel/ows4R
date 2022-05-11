@@ -213,6 +213,7 @@ Get coverage data
   gridCS = NULL,
   gridorigin = NULL,
   gridoffsets = NULL,
+  method = "GET",
   filename = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -242,6 +243,8 @@ Get coverage data
 \item{\code{gridorigin}}{grid origin. Default is \code{NULL}}
 
 \item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
+
+\item{\code{method}}{method to get coverage, either 'GET' or 'POST' (experimental - under development)}
 
 \item{\code{filename}}{filename. Optional filename to download the coverage}
 
@@ -280,7 +283,7 @@ Get a spatio-temporal coverage data cubes as coverage \link{stack}
 \item{\code{filename_handler}}{Optional filename handling function with arguments 'identifier', 'time', 'elevation', 'bbox', 'format'
 See \link{WCSCoverageFilenameHandler} as genric filename handler that can be used.}
 
-\item{\code{...}}{any other parameter to pass to \code{getCoverage} method}
+\item{\code{...}}{any other parameter to pass to \code{getCoverage}}
 }
 \if{html}{\out{</div>}}
 }
