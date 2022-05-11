@@ -276,7 +276,7 @@ WMSLayer <- R6Class("WMSLayer",
                               ...){
       
       if(is.null(styles)){
-        styles <- self$getStyle()
+        styles <- self$getStylenames()[1]
       }
       
       if(is.null(srs)){
