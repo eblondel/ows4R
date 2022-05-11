@@ -49,6 +49,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-getBoundingBoxSRS}{\code{WMSLayer$getBoundingBoxSRS()}}
 \item \href{#method-getBoundingBoxCRS}{\code{WMSLayer$getBoundingBoxCRS()}}
 \item \href{#method-getStyles}{\code{WMSLayer$getStyles()}}
+\item \href{#method-getStylenames}{\code{WMSLayer$getStylenames()}}
 \item \href{#method-getDimensions}{\code{WMSLayer$getDimensions()}}
 \item \href{#method-getTimeDimension}{\code{WMSLayer$getTimeDimension()}}
 \item \href{#method-getElevationDimension}{\code{WMSLayer$getElevationDimension()}}
@@ -208,7 +209,20 @@ Get layer styles
 }
 
 \subsection{Returns}{
-list of objects of class \code{character}
+an object of class \code{list}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getStylenames"></a>}}
+\if{latex}{\out{\hypertarget{method-getStylenames}{}}}
+\subsection{Method \code{getStylenames()}}{
+Get layer style names
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WMSLayer$getStylenames()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+list of object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}

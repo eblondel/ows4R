@@ -90,7 +90,16 @@ WMSLayer <- R6Class("WMSLayer",
       layerStyles <- list
       styleXML <- children[names(children)=="Style"]
       if(!is.null(styleXML)){
-        layerStyles <- as.character(sapply(styleXML, function(x){xmlValue(xmlChildren(x)$Name)}))
+        layerStylenames <- as.character(sapply(styleXML, function(x){xmlValue(xmlChildren(x)$Name)}))
+        layerStyles <- lapply(styleXML, function(x){
+          list(
+            name = xmlValue(xmlChildren(x)$Name),
+            title = xmlValue(xmlChildren(x)$Title),
+            abstract = xmlValue(xmlChildren(x)$Abstract),
+            legendUrl = xmlGetAttr(xmlChildren(xmlChildren(x)$LegendURL)$OnlineResource, "xlink:href")
+          )
+        })
+        names(layerStyles) <- layerStylenames
       }
       
       dimensions <- list()
@@ -208,9 +217,15 @@ WMSLayer <- R6Class("WMSLayer",
     },
     
     #'@description Get layer styles
-    #'@return list of objects of class \code{character}
+    #'@return an object of class \code{list}
     getStyles = function(){
       return(private$styles)
+    },
+    
+    #'@description Get layer style names
+    #'@return list of object of class \code{character}
+    getStylenames = function(){
+      return(names(private$styles))
     },
     
     #'@description Get layer dimensions
