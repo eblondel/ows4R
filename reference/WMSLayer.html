@@ -103,6 +103,7 @@ WMSLayer"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <li><p><a href="#method-getBoundingBoxSRS"><code>WMSLayer$getBoundingBoxSRS()</code></a></p></li>
 <li><p><a href="#method-getBoundingBoxCRS"><code>WMSLayer$getBoundingBoxCRS()</code></a></p></li>
 <li><p><a href="#method-getStyles"><code>WMSLayer$getStyles()</code></a></p></li>
+<li><p><a href="#method-getStylenames"><code>WMSLayer$getStylenames()</code></a></p></li>
 <li><p><a href="#method-getDimensions"><code>WMSLayer$getDimensions()</code></a></p></li>
 <li><p><a href="#method-getTimeDimension"><code>WMSLayer$getTimeDimension()</code></a></p></li>
 <li><p><a href="#method-getElevationDimension"><code>WMSLayer$getElevationDimension()</code></a></p></li>
@@ -250,13 +251,25 @@ WMSLayer"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 
 <div class="section">
 <h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
-<p>list of objects of class <code>character</code></p>
+<p>an object of class <code>list</code></p>
+</div>
+
+</div><p></p><hr><a id="method-getStylenames"></a><div class="section">
+<h3 id="method-getstylenames-">Method <code>getStylenames()</code><a class="anchor" aria-label="anchor" href="#method-getstylenames-"></a></h3>
+<p>Get layer style names</p><div class="section">
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">getStylenames</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
+<p>list of object of class <code>character</code></p>
 </div>
 
 </div><p></p><hr><a id="method-getDimensions"></a><div class="section">
 <h3 id="method-getdimensions-">Method <code>getDimensions()</code><a class="anchor" aria-label="anchor" href="#method-getdimensions-"></a></h3>
 <p>Get layer dimensions</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span>time_format <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -269,14 +282,14 @@ WMSLayer"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
+<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
 <p>a <code>list</code> including default value and listed possible values</p>
 </div>
 
 </div><p></p><hr><a id="method-getTimeDimension"></a><div class="section">
 <h3 id="method-gettimedimension-">Method <code>getTimeDimension()</code><a class="anchor" aria-label="anchor" href="#method-gettimedimension-"></a></h3>
 <p>Get layer TIME dimensions</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">getTimeDimension</span><span class="op">(</span>time_format <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -289,26 +302,26 @@ WMSLayer"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
+<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
 <p>a <code>list</code> including default value and listed possible values</p>
 </div>
 
 </div><p></p><hr><a id="method-getElevationDimension"></a><div class="section">
 <h3 id="method-getelevationdimension-">Method <code>getElevationDimension()</code><a class="anchor" aria-label="anchor" href="#method-getelevationdimension-"></a></h3>
 <p>Get layer ELEVATION dimensions</p><div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">getElevationDimension</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
+<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
 <p>a <code>list</code> including default value and listed possible values</p>
 </div>
 
 </div><p></p><hr><a id="method-getFeatureInfo"></a><div class="section">
 <h3 id="method-getfeatureinfo-">Method <code>getFeatureInfo()</code><a class="anchor" aria-label="anchor" href="#method-getfeatureinfo-"></a></h3>
 <p>Get feature info</p><div class="section">
-<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
+<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">getFeatureInfo</span><span class="op">(</span>
   srs <span class="op">=</span> <span class="cn">NULL</span>,
   styles <span class="op">=</span> <span class="cn">NULL</span>,
@@ -368,14 +381,14 @@ WMSLayer"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
+<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
 <p>an object of class <code>sf</code> given the feature(s)</p>
 </div>
 
 </div><p></p><hr><a id="method-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WMSLayer</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
