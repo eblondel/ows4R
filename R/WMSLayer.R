@@ -27,7 +27,7 @@ WMSLayer <- R6Class("WMSLayer",
     boundingBox = NA,
     boundingBoxSRS = NA,
     boundingBoxCRS = NA,
-    style = NA,
+    styles = list(),
     dimensions = list(),
     
     #fetchLayer
@@ -87,10 +87,10 @@ WMSLayer <- R6Class("WMSLayer",
         )
       }
       
-      layerStyle <- NULL
-      styleXML <- children$Style
+      layerStyles <- list
+      styleXML <- children[names(children)=="Style"]
       if(!is.null(styleXML)){
-        layerStyle <- xmlValue(xmlChildren(styleXML)$Name)
+        layerStyles <- as.character(sapply(styleXML, function(x){xmlValue(xmlChildren(x)$Name)}))
       }
       
       dimensions <- list()
@@ -118,7 +118,7 @@ WMSLayer <- R6Class("WMSLayer",
         boundingBox = layerBoundingBox,
         boundingBoxSRS = layerSRS,
         boundingBoxCRS = layerCRS,
-        style = layerStyle,
+        styles = layerStyles,
         dimensions = dimensions
       )
       
@@ -154,7 +154,7 @@ WMSLayer <- R6Class("WMSLayer",
       private$boundingBox = layer$boundingBox
       private$boundingBoxSRS = layer$boundingBoxSRS
       private$boundingBoxCRS = layer$boundingBoxCRS
-      private$style = layer$style
+      private$styles = layer$styles
       private$dimensions = layer$dimensions
       
     },
@@ -207,10 +207,10 @@ WMSLayer <- R6Class("WMSLayer",
       return(private$boundingBoxCRS)
     },
     
-    #'@description Get layer style
-    #'@return object of class \code{character}
-    getStyle = function(){
-      return(private$style)
+    #'@description Get layer styles
+    #'@return list of objects of class \code{character}
+    getStyles = function(){
+      return(private$styles)
     },
     
     #'@description Get layer dimensions
