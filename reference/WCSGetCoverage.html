@@ -71,6 +71,18 @@ WCSGetCoverage"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
     <h2>Super classes</h2>
     <p><code><a href="OGCAbstractObject.html">ows4R::OGCAbstractObject</a></code> -&gt; <code><a href="OWSHttpRequest.html">ows4R::OWSHttpRequest</a></code> -&gt; <code>WCSGetCoverage</code></p>
     </div>
+    <div id="public-fields">
+    <h2>Public fields</h2>
+    <p></p><div class="r6-fields"><dl><dt><code>CoverageId</code></dt>
+<dd><p>coverage identifier</p></dd>
+
+
+<dt><code>format</code></dt>
+<dd><p>coverage format</p></dd>
+
+
+</dl><p></p></div>
+    </div>
     <div id="methods">
     <h2>Methods</h2>
     
@@ -123,6 +135,7 @@ WCSGetCoverage"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
   token <span class="op">=</span> <span class="cn">NULL</span>,
   headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
   config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span>,
+  method <span class="op">=</span> <span class="st">"GET"</span>,
   logger <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div><p></p></div>
@@ -212,6 +225,10 @@ WCSGetCoverage"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 
 <dt><code>config</code></dt>
 <dd><p>config</p></dd>
+
+
+<dt><code>method</code></dt>
+<dd><p>method</p></dd>
 
 
 <dt><code>logger</code></dt>
