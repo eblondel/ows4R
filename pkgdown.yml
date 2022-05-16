@@ -1,6 +1,7 @@
 pandoc: 2.7.3
 pkgdown: 2.0.3
 pkgdown_sha: ~
-articles: {}
-last_built: 2022-05-16T12:59Z
+articles:
+  csw: csw.html
+last_built: 2022-05-16T22:57Z
 
