@@ -1,0 +1,187 @@
+---
+title: "Use with OGC CSW (Catalogue Service for the Web)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This vignette shows how to use [ows4R](https://github.com/eblondel/ows4R) with a Catalogue Service for the Web (OGC CSW).
+
+An overview of the Catalogue Service (CSW) can be found on the official OGC webpage: http://www.opengeospatial.org/standards/cat
+
+<a name="csw-client"/>
+
+## Create CSW Client
+
+In order to operate on a Catalogue Service, you need to create an interface in R to this XSW. This is done with the class ``CSWClient``, as follows:
+
+```R
+CSW <- CSWClient$new("http://localhost:8080/csw", "2.0.2", logger = "INFO")
+```
+
+You can define the level of logger: "INFO" to get ows4R logs, "DEBUG" for all internal logs (such as as Curl details).
+It is also possible to define a username and credentials in case operations would require an authentication to use the Catalogue Service.
+
+For operations that require authentication (e.g. CSW Transaction operations on GeoNetwork), you may need to specify the ``user`` and ``pwd`` parameters.
+
+## Get Capabilities (``GetCapabilities``)
+
+When create the ``CSWClient``, ``ows4R`` will run a ``GetCapabilities`` request. To access the CSW Capabilities and its sections, you can use the following code:
+
+```R
+caps <- CSW$getCapabilities()
+```
+
+## Describe a record (``DescribeRecord``)
+
+NOT YET SUPPORTED
+
+## Get a record (``GetRecordById``)
+
+The below example shows how to get a metadata record by ID, and bind it with [geometa](https://github.com/eblondel/geometa) ISO/OGC metadata classes.
+
+```R
+#supposing a metadata identified as "my-metadata-identifier"
+md <- CSW$getRecordById("my-metadata-identifier", outputSchema = "http://www.isotc211.org/2005/gmd")
+```
+
+## Get records (``GetRecords``)
+
+This section gives several examples how to get records with the ``ows4R`` CSW client.
+
+### Basic query
+
+A basic ``GetRecords`` request can be done with the following code:
+
+```R
+records <- CSW$getRecords()
+```
+
+By default, this request will return the 5 first metadata records. These records are returned in the [Dublin Core](http://dublincore.org/) metadata format, handled as ``list`` in R.
+
+### Query with ``maxRecords`` parameter
+
+To change the maximum number of records to be returned, use the ``maxRecords`` parameter
+
+```R
+records <- CSW$getRecords(maxRecords = 20L)
+```
+
+### Query with CQL filters
+
+To query records based on a filter, we introduce 2 notions inherited from the CSW specification: a ``query`` handled in ``ows4R`` that will accept as parameter a ``constraint`` (corresponding to a given filter).
+
+**Query with CQL Filter on metadata title**
+
+The example below shows you:
+
+* how to create a ``CSWConstraint`` specifying a CQL text filter on metadata title. Here the properties refer to the [Dublin Core](http://dublincore.org/) metadata format, hence the notation ``dc:title``.
+* how to set a ``CSWQuery`` based on this constraint/filter
+* how to get get metadata records based on the query
+
+```R
+cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%'")
+query <- CSWQuery$new(constraint = cons)
+records <- CSW$getRecords(query = query)
+```
+
+**Query with CQL Filter on metadata title and abstract**
+
+Another example of ``GetRecords`` query with a CQL filter based on two properties (title, abstract):
+
+```R
+cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%' and dct:abstract like '%pharetra%'")
+query <- CSWQuery$new(constraint = cons)
+records <- CSW$getRecords(query = query)
+```
+
+**Query with CQL Filter on metadata identifier**
+
+We may also try to perform a ``GetRecords``` based on a metadata identifier. In case there is an existing metadata record with such identifier, we expect to get a list of length 1.
+
+```R
+cons <- CSWConstraint$new(cqlText = "dc:identifier = 'my-metadata-identifier'")
+query <- CSWQuery$new(constraint = cons)
+records <- CSW$getRecords(query = query)
+```
+
+<a name="csw-getrecords-ogcfilters"/>
+
+### Query with OGC filters
+
+Instead of using a CQL text filter, ``ows4R`` allows to specify an OGC Filter as basis to build the ``CSWConstraint``. OGC Filters can be created with the class/function ``OGCFilter`` specifying an expression, among the following:
+
+* Simple OGC expressions
+    * ``PropertyIsEqualTo`` / ``PropertyIsNotEqualTo``
+    * ``PropertyIsLessThan`` / ``PropertyIsGreaterThan``
+    * ``PropertyIsLessThanOrEqualTo`` / ``PropertyIsGreaterThanOrEqualTo``
+    * ``PropertyIsLike``
+    * ``PropertyIsNull``
+    * ``PropertyIsBetween``
+    * ``BBOX``
+* Combinations of OGC expressions
+    * ``And``
+    * ``Or``
+    * ``Not``
+
+**Query with OGC filter - ``PropertyIsLike``**
+
+The below example constructs a constraint with an ``OGCFilter`` made of a ``PropertyIsLike`` predicate on CSW ``AnyText``. The result will be a list of records for which _any text is like '%Physio%' (all records for which the string 'Physio' is included):
+
+```R
+filter <- OGCFilter$new( PropertyIsLike$new("csw:AnyText", "%Physio%"))
+cons <- CSWConstraint$new(filter = filter)
+query <- CSWQuery$new(constraint = cons)
+records <- csw2$getRecords(query = query)
+```
+
+**Query with OGC filter - ``PropertyIsEqualTo``**
+
+```R
+filter <- OGCFilter$new( PropertyIsEqualTo$new("csw:AnyText", "species"))
+cons <- CSWConstraint$new(filter = filter)
+query <- CSWQuery$new(constraint = cons)
+records <- CSW$getRecords(query = query)
+```
+
+## Transaction - Insert,Update,Delete (``Transaction``)
+
+If the CSW server used supports Transaction operations (Insert, Update, Delete), ``ows4R`` allows you to perform these operations. The following examples highlight the different operations available:
+
+**Insert**
+
+```R
+mdfile <- system.file("extdata/data", "metadata.xml", package = "ows4R")
+md <- geometa::ISOMetadata$new(xml = XML::xmlParse(mdfile))
+insert <- CSW$insertRecord(record = md)
+insert$getResult() #TRUE if inserted, FALSE otherwise
+```
+
+**Update (Full)**
+
+```R
+md$identificationInfo[[1]]$citation$setTitle("a new title")
+update <- CSW$updateRecord(record = md)
+update$getResult() #TRUE if updated, FALSE otherwise
+```
+
+**Update (Partial)**
+
+```R
+recordProperty <- CSWRecordProperty$new("apiso:Title", "NEW_TITLE")
+filter = OGCFilter$new(PropertyIsEqualTo$new("apiso:Identifier", md$fileIdentifier))
+constraint <- CSWConstraint$new(filter = filter)
+update <- CSW$updateRecord(recordProperty = recordProperty, constraint = constraint)
+update$getResult() #TRUE if updated, FALSE otherwise
+```
+
+**Delete**
+
+```R
+delete <- CSW$deleteRecordById(md$fileIdentifier)
+delete$getResult() #TRUE if deleted, FALSE otherwise
+```
+
+The methods ``insertRecord`` and ``updateRecord`` also support options to deal with [geometa](https://github.com/eblondel/geometa) ``ISOMetadata`` objects. The option ``geometa_validate`` is set by default to ``TRUE`` and operates a validation vs. ISO/TC 19139 schemas. The option ``geometa_inspire`` can be enabled to test the metadata with INSPIRE. Records inserted/updated through CSW-T will then include a footer of XML comments containing the validation details. See the [geometa documentation](https://github.com/eblondel/geometa/wiki#423-validate-iso-19139-xml-metadata-documents)
