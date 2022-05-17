@@ -50,7 +50,8 @@ jobs:
       #Install dependencies
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
-        extra: any::XML
+        with:
+          extra-packages: any::XML
           
       #Check R Package
       - name: Check R package
