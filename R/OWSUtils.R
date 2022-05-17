@@ -118,7 +118,7 @@ OWSUtils <- list(
       #function to ask WKT representation
       getShowWkt <- function(x) {
         res <- try(showWKT(paste("+proj=", x[1], " +datum=", x[2], sep=""), morphToESRI=morphToESRI), silent=TRUE)
-        if (class(res) == "try-error") {
+        if (is(res, "try-error")) {
           return(NA)
         } else {
           return(res)

@@ -38,7 +38,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
          type <- try(xpathSApply(xmlDoc(xmlObj), "//xs:restriction",
                              namespaces = c(xs = "http://www.w3.org/2001/XMLSchema"),
                              xmlGetAttr, "base"))
-         if(class(type)=="try-error") type <- NULL
+         if(is(type,"try-error")) type <- NULL
        }
        if(is.null(type)){
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
