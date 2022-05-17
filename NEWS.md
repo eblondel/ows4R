@@ -7,6 +7,7 @@
 - [#58](https://github.com/eblondel/ows4R/issues/58) Implement 'exact' find method for WMS layers
 - [#63](https://github.com/eblondel/ows4R/issues/63) CAS authentication client support
 - [#64](https://github.com/eblondel/ows4R/issues/64) Support httr config argument for OGC service clients
+- [#73](https://github.com/eblondel/ows4R/issues/73) Implement progress bar in OWS GET data requests
 - [#74](https://github.com/eblondel/ows4R/issues/74) Get all styles of a WMS layer
 
 **Enhancements**
