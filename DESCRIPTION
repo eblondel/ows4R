@@ -8,7 +8,7 @@ Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emma
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 3.3.0), methods, geometa, keyring
 Imports: R6, httr, openssl, XML (>= 3.96-1.1), sf, rgdal, terra, parallel
-Suggests: testthat, knitr
+Suggests: testthat, knitr, rmarkdown
 Description: Provides an Interface to Web-Services defined as standards by the Open Geospatial Consortium (OGC), including Web Feature Service
  (WFS) for vector data, Web Coverage Service (WCS), Catalogue Service (CSW) for ISO/OGC metadata, and associated standards such as the common 
  web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). 
