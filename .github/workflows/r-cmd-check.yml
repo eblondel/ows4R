@@ -16,7 +16,7 @@ jobs:
       matrix:
         config:
           - {os: ubuntu-latest,  r: 'release'}
-          #- {os: ubuntu-latest,  r: 'devel'}
+          - {os: ubuntu-latest,  r: 'devel'}
     steps:
       - uses: actions/checkout@v2
       #OGC WFS/WMS integration tests
