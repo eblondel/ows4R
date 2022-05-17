@@ -1,4 +1,5 @@
 ---
+title: Use with OGC CSW (Catalogue Service for the Web)
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Use with OGC CSW (Catalogue Service for the Web)}
@@ -16,7 +17,7 @@ An overview of the Catalogue Service (CSW) can be found on the official OGC webp
 
 <a name="csw-client"/>
 
-## Create CSW Client
+### Create CSW Client
 
 In order to operate on a Catalogue Service, you need to create an interface in R to this XSW. This is done with the class ``CSWClient``, as follows:
 
@@ -29,7 +30,7 @@ It is also possible to define a username and credentials in case operations woul
 
 For operations that require authentication (e.g. CSW Transaction operations on GeoNetwork), you may need to specify the ``user`` and ``pwd`` parameters.
 
-## Get Capabilities (``GetCapabilities``)
+### Get Capabilities (``GetCapabilities``)
 
 When create the ``CSWClient``, ``ows4R`` will run a ``GetCapabilities`` request. To access the CSW Capabilities and its sections, you can use the following code:
 
@@ -37,11 +38,11 @@ When create the ``CSWClient``, ``ows4R`` will run a ``GetCapabilities`` request.
 caps <- CSW$getCapabilities()
 ```
 
-## Describe a record (``DescribeRecord``)
+### Describe a record (``DescribeRecord``)
 
 NOT YET SUPPORTED
 
-## Get a record (``GetRecordById``)
+### Get a record (``GetRecordById``)
 
 The below example shows how to get a metadata record by ID, and bind it with [geometa](https://github.com/eblondel/geometa) ISO/OGC metadata classes.
 
@@ -50,11 +51,11 @@ The below example shows how to get a metadata record by ID, and bind it with [ge
 md <- CSW$getRecordById("my-metadata-identifier", outputSchema = "http://www.isotc211.org/2005/gmd")
 ```
 
-## Get records (``GetRecords``)
+### Get records (``GetRecords``)
 
 This section gives several examples how to get records with the ``ows4R`` CSW client.
 
-### Basic query
+#### Basic query
 
 A basic ``GetRecords`` request can be done with the following code:
 
@@ -64,7 +65,7 @@ records <- CSW$getRecords()
 
 By default, this request will return the 5 first metadata records. These records are returned in the [Dublin Core](http://dublincore.org/) metadata format, handled as ``list`` in R.
 
-### Query with ``maxRecords`` parameter
+#### Query with ``maxRecords`` parameter
 
 To change the maximum number of records to be returned, use the ``maxRecords`` parameter
 
@@ -72,7 +73,7 @@ To change the maximum number of records to be returned, use the ``maxRecords`` p
 records <- CSW$getRecords(maxRecords = 20L)
 ```
 
-### Query with CQL filters
+#### Query with CQL filters
 
 To query records based on a filter, we introduce 2 notions inherited from the CSW specification: a ``query`` handled in ``ows4R`` that will accept as parameter a ``constraint`` (corresponding to a given filter).
 
@@ -112,7 +113,7 @@ records <- CSW$getRecords(query = query)
 
 <a name="csw-getrecords-ogcfilters"/>
 
-### Query with OGC filters
+#### Query with OGC filters
 
 Instead of using a CQL text filter, ``ows4R`` allows to specify an OGC Filter as basis to build the ``CSWConstraint``. OGC Filters can be created with the class/function ``OGCFilter`` specifying an expression, among the following:
 
@@ -149,7 +150,7 @@ query <- CSWQuery$new(constraint = cons)
 records <- CSW$getRecords(query = query)
 ```
 
-## Transaction - Insert,Update,Delete (``Transaction``)
+### Transaction - Insert,Update,Delete (``Transaction``)
 
 If the CSW server used supports Transaction operations (Insert, Update, Delete), ``ows4R`` allows you to perform these operations. The following examples highlight the different operations available:
 
