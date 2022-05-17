@@ -1,6 +1,9 @@
 ---
-title: "Use with OGC CSW (Catalogue Service for the Web)"
-output: html_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Use with OGC CSW (Catalogue Service for the Web)}
+  %\VignetteEngine{knitr::knitr}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
