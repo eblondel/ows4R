@@ -2,7 +2,7 @@
 title: Use ows4R with OGC WCS (Web Coverage Service)
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Use with OGC CSW (Catalogue Service for the Web)}
+  %\VignetteIndexEntry{Use ows4R with OGC WCS (Web Coverage Service)}
   %\VignetteEngine{knitr::knitr}
   \usepackage[utf8]{inputenc}
 ---
@@ -28,8 +28,6 @@ WCS <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.1.0", logger = 
 You can define the level of logger: "INFO" to get ows4R logs, "DEBUG" for all internal logs (such as as Curl details). It is also possible to define a username and password (``user`` and ``pwd`` parameters) in case operations would require an authentication to use the Web Coverage Service. 
 
 Note: It is also possible to connect ot a WCS by means of a Central Authentication System (CAS) with the [ows4R](https://github.com/eblondel/ows4R) `CASClient`. To do so, you can pass the CAS URL by means of the `cas_url` argument.
-
-For operations that require authentication (e.g. CSW Transaction operations on GeoNetwork), you may need to specify the .
 
 ### Get Capabilities (``GetCapabilities``)
 
