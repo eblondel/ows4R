@@ -1,5 +1,5 @@
 ---
-title: Use with OGC CSW (Catalogue Service for the Web)
+title: Use ows4R with OGC CSW (Catalogue Service for the Web)
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Use with OGC CSW (Catalogue Service for the Web)}
