@@ -52,6 +52,9 @@
 <li>
       <a href="../articles/csw.html">Use ows4R with OGC CSW (Catalogue Service for the Web)</a>
     </li>
+    <li>
+      <a href="../articles/wcs.html">Use ows4R with OGC WCS (Web Coverage Service)</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -89,12 +92,12 @@
     
     
 <p>This vignette shows how to use <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> with a Catalogue Service for the Web (OGC CSW).</p>
-<p>An overview of the Catalogue Service (CSW) can be found on the official OGC webpage: <a href="http://www.opengeospatial.org/standards/cat" class="external-link uri">http://www.opengeospatial.org/standards/cat</a></p>
+<p>An overview of the Catalogue Service (CSW) can be found on the official OGC webpage: <a href="https://www.ogc.org/standards/cat" class="external-link uri">https://www.ogc.org/standards/cat</a></p>
 <p><a name="csw-client"></a></p>
 <div class="section level3">
 <h3 id="create-csw-client">Create CSW Client<a class="anchor" aria-label="anchor" href="#create-csw-client"></a>
 </h3>
-<p>In order to operate on a Catalogue Service, you need to create an interface in R to this XSW. This is done with the class <code>CSWClient</code>, as follows:</p>
+<p>In order to operate on a Catalogue Service, you need to create an interface in R to this CSW. This is done with the class <code>CSWClient</code>, as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CSW</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWClient.html">CSWClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"http://localhost:8080/csw"</span>, <span class="st">"2.0.2"</span>, logger <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></code></pre></div>
 <p>You can define the level of logger: “INFO” to get ows4R logs, “DEBUG” for all internal logs (such as as Curl details). It is also possible to define a username and credentials in case operations would require an authentication to use the Catalogue Service.</p>
