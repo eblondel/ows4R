@@ -13,13 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This vignette shows how to use [ows4R](https://github.com/eblondel/ows4R) with a Catalogue Service for the Web (OGC CSW).
 
-An overview of the Catalogue Service (CSW) can be found on the official OGC webpage: http://www.opengeospatial.org/standards/cat
+An overview of the Catalogue Service (CSW) can be found on the official OGC webpage: https://www.ogc.org/standards/cat
 
 <a name="csw-client"/>
 
 ### Create CSW Client
 
-In order to operate on a Catalogue Service, you need to create an interface in R to this XSW. This is done with the class ``CSWClient``, as follows:
+In order to operate on a Catalogue Service, you need to create an interface in R to this CSW. This is done with the class ``CSWClient``, as follows:
 
 ```R
 CSW <- CSWClient$new("http://localhost:8080/csw", "2.0.2", logger = "INFO")
