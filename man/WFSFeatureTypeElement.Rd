@@ -27,18 +27,18 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WFSFeatureTypeElement$new()}}
-\item \href{#method-getMinOccurs}{\code{WFSFeatureTypeElement$getMinOccurs()}}
-\item \href{#method-getMaxOccurs}{\code{WFSFeatureTypeElement$getMaxOccurs()}}
-\item \href{#method-isNillable}{\code{WFSFeatureTypeElement$isNillable()}}
-\item \href{#method-getName}{\code{WFSFeatureTypeElement$getName()}}
-\item \href{#method-getType}{\code{WFSFeatureTypeElement$getType()}}
-\item \href{#method-clone}{\code{WFSFeatureTypeElement$clone()}}
+\item \href{#method-WFSFeatureTypeElement-new}{\code{WFSFeatureTypeElement$new()}}
+\item \href{#method-WFSFeatureTypeElement-getMinOccurs}{\code{WFSFeatureTypeElement$getMinOccurs()}}
+\item \href{#method-WFSFeatureTypeElement-getMaxOccurs}{\code{WFSFeatureTypeElement$getMaxOccurs()}}
+\item \href{#method-WFSFeatureTypeElement-isNillable}{\code{WFSFeatureTypeElement$isNillable()}}
+\item \href{#method-WFSFeatureTypeElement-getName}{\code{WFSFeatureTypeElement$getName()}}
+\item \href{#method-WFSFeatureTypeElement-getType}{\code{WFSFeatureTypeElement$getType()}}
+\item \href{#method-WFSFeatureTypeElement-clone}{\code{WFSFeatureTypeElement$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes a \link{WFSFeatureTypeElement}
 \subsection{Usage}{
@@ -54,8 +54,8 @@ Initializes a \link{WFSFeatureTypeElement}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMinOccurs"></a>}}
-\if{latex}{\out{\hypertarget{method-getMinOccurs}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-getMinOccurs"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-getMinOccurs}{}}}
 \subsection{Method \code{getMinOccurs()}}{
 get min occurs
 \subsection{Usage}{
@@ -67,8 +67,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMaxOccurs"></a>}}
-\if{latex}{\out{\hypertarget{method-getMaxOccurs}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-getMaxOccurs"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-getMaxOccurs}{}}}
 \subsection{Method \code{getMaxOccurs()}}{
 get max occurs
 \subsection{Usage}{
@@ -80,8 +80,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isNillable"></a>}}
-\if{latex}{\out{\hypertarget{method-isNillable}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-isNillable"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-isNillable}{}}}
 \subsection{Method \code{isNillable()}}{
 get if nillable
 \subsection{Usage}{
@@ -93,8 +93,8 @@ an object of class \code{logical}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-getName}{}}}
 \subsection{Method \code{getName()}}{
 get name
 \subsection{Usage}{
@@ -106,8 +106,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getType"></a>}}
-\if{latex}{\out{\hypertarget{method-getType}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-getType"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-getType}{}}}
 \subsection{Method \code{getType()}}{
 get type
 \subsection{Usage}{
@@ -119,8 +119,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

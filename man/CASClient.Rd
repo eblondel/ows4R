@@ -28,16 +28,16 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{CASClient$new()}}
-\item \href{#method-getUrl}{\code{CASClient$getUrl()}}
-\item \href{#method-login}{\code{CASClient$login()}}
-\item \href{#method-logout}{\code{CASClient$logout()}}
-\item \href{#method-clone}{\code{CASClient$clone()}}
+\item \href{#method-CASClient-new}{\code{CASClient$new()}}
+\item \href{#method-CASClient-getUrl}{\code{CASClient$getUrl()}}
+\item \href{#method-CASClient-login}{\code{CASClient$login()}}
+\item \href{#method-CASClient-logout}{\code{CASClient$logout()}}
+\item \href{#method-CASClient-clone}{\code{CASClient$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-CASClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-CASClient-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{CASClient}
 \subsection{Usage}{
@@ -53,8 +53,8 @@ Initializes an object of class \link{CASClient}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getUrl"></a>}}
-\if{latex}{\out{\hypertarget{method-getUrl}{}}}
+\if{html}{\out{<a id="method-CASClient-getUrl"></a>}}
+\if{latex}{\out{\hypertarget{method-CASClient-getUrl}{}}}
 \subsection{Method \code{getUrl()}}{
 Get CAS base URL
 \subsection{Usage}{
@@ -66,8 +66,8 @@ the base URL
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-login"></a>}}
-\if{latex}{\out{\hypertarget{method-login}{}}}
+\if{html}{\out{<a id="method-CASClient-login"></a>}}
+\if{latex}{\out{\hypertarget{method-CASClient-login}{}}}
 \subsection{Method \code{login()}}{
 Logs in the CAS
 \subsection{Usage}{
@@ -88,8 +88,8 @@ Logs in the CAS
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-logout"></a>}}
-\if{latex}{\out{\hypertarget{method-logout}{}}}
+\if{html}{\out{<a id="method-CASClient-logout"></a>}}
+\if{latex}{\out{\hypertarget{method-CASClient-logout}{}}}
 \subsection{Method \code{logout()}}{
 Logs out from the CAS
 \subsection{Usage}{
@@ -101,8 +101,8 @@ Logs out from the CAS
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-CASClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-CASClient-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

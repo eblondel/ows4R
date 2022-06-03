@@ -28,22 +28,22 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSServiceIdentification$new()}}
-\item \href{#method-getName}{\code{OWSServiceIdentification$getName()}}
-\item \href{#method-getTitle}{\code{OWSServiceIdentification$getTitle()}}
-\item \href{#method-getAbstract}{\code{OWSServiceIdentification$getAbstract()}}
-\item \href{#method-getKeywords}{\code{OWSServiceIdentification$getKeywords()}}
-\item \href{#method-getOnlineResource}{\code{OWSServiceIdentification$getOnlineResource()}}
-\item \href{#method-getServiceType}{\code{OWSServiceIdentification$getServiceType()}}
-\item \href{#method-getServiceTypeVersion}{\code{OWSServiceIdentification$getServiceTypeVersion()}}
-\item \href{#method-getFees}{\code{OWSServiceIdentification$getFees()}}
-\item \href{#method-getAccessConstraints}{\code{OWSServiceIdentification$getAccessConstraints()}}
-\item \href{#method-clone}{\code{OWSServiceIdentification$clone()}}
+\item \href{#method-OWSServiceIdentification-new}{\code{OWSServiceIdentification$new()}}
+\item \href{#method-OWSServiceIdentification-getName}{\code{OWSServiceIdentification$getName()}}
+\item \href{#method-OWSServiceIdentification-getTitle}{\code{OWSServiceIdentification$getTitle()}}
+\item \href{#method-OWSServiceIdentification-getAbstract}{\code{OWSServiceIdentification$getAbstract()}}
+\item \href{#method-OWSServiceIdentification-getKeywords}{\code{OWSServiceIdentification$getKeywords()}}
+\item \href{#method-OWSServiceIdentification-getOnlineResource}{\code{OWSServiceIdentification$getOnlineResource()}}
+\item \href{#method-OWSServiceIdentification-getServiceType}{\code{OWSServiceIdentification$getServiceType()}}
+\item \href{#method-OWSServiceIdentification-getServiceTypeVersion}{\code{OWSServiceIdentification$getServiceTypeVersion()}}
+\item \href{#method-OWSServiceIdentification-getFees}{\code{OWSServiceIdentification$getFees()}}
+\item \href{#method-OWSServiceIdentification-getAccessConstraints}{\code{OWSServiceIdentification$getAccessConstraints()}}
+\item \href{#method-OWSServiceIdentification-clone}{\code{OWSServiceIdentification$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{OWSServiceIdentification}
 \subsection{Usage}{
@@ -63,8 +63,8 @@ Initializes an object of class \link{OWSServiceIdentification}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getName}{}}}
 \subsection{Method \code{getName()}}{
 Get service identification - name
 \subsection{Usage}{
@@ -76,8 +76,8 @@ the name, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTitle"></a>}}
-\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getTitle}{}}}
 \subsection{Method \code{getTitle()}}{
 Get service identification - title
 \subsection{Usage}{
@@ -89,8 +89,8 @@ the title, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAbstract"></a>}}
-\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getAbstract}{}}}
 \subsection{Method \code{getAbstract()}}{
 Get service identification - abstract
 \subsection{Usage}{
@@ -102,8 +102,8 @@ the abstract, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getKeywords"></a>}}
-\if{latex}{\out{\hypertarget{method-getKeywords}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getKeywords"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getKeywords}{}}}
 \subsection{Method \code{getKeywords()}}{
 Get service identification - keywords
 \subsection{Usage}{
@@ -115,8 +115,8 @@ the keywords, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getOnlineResource"></a>}}
-\if{latex}{\out{\hypertarget{method-getOnlineResource}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getOnlineResource"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getOnlineResource}{}}}
 \subsection{Method \code{getOnlineResource()}}{
 Get service identification - online resource
 \subsection{Usage}{
@@ -128,8 +128,8 @@ the online resource, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceType"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceType}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getServiceType"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getServiceType}{}}}
 \subsection{Method \code{getServiceType()}}{
 Get service identification - service type
 \subsection{Usage}{
@@ -141,8 +141,8 @@ the service type, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceTypeVersion"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceTypeVersion}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getServiceTypeVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getServiceTypeVersion}{}}}
 \subsection{Method \code{getServiceTypeVersion()}}{
 Get service identification - service type version
 \subsection{Usage}{
@@ -154,8 +154,8 @@ the service type version, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFees"></a>}}
-\if{latex}{\out{\hypertarget{method-getFees}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getFees"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getFees}{}}}
 \subsection{Method \code{getFees()}}{
 Get service identification - fees
 \subsection{Usage}{
@@ -167,8 +167,8 @@ the fees, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAccessConstraints"></a>}}
-\if{latex}{\out{\hypertarget{method-getAccessConstraints}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-getAccessConstraints"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-getAccessConstraints}{}}}
 \subsection{Method \code{getAccessConstraints()}}{
 Get service identification - access constraints
 \subsection{Usage}{
@@ -180,8 +180,8 @@ the access constraints, object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSServiceIdentification-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceIdentification-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

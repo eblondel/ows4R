@@ -39,36 +39,36 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WFSFeatureType$new()}}
-\item \href{#method-getName}{\code{WFSFeatureType$getName()}}
-\item \href{#method-getTitle}{\code{WFSFeatureType$getTitle()}}
-\item \href{#method-getAbstract}{\code{WFSFeatureType$getAbstract()}}
-\item \href{#method-getKeywords}{\code{WFSFeatureType$getKeywords()}}
-\item \href{#method-getDefaultCRS}{\code{WFSFeatureType$getDefaultCRS()}}
-\item \href{#method-getBoundingBox}{\code{WFSFeatureType$getBoundingBox()}}
-\item \href{#method-getDescription}{\code{WFSFeatureType$getDescription()}}
-\item \href{#method-getFeatures}{\code{WFSFeatureType$getFeatures()}}
-\item \href{#method-clone}{\code{WFSFeatureType$clone()}}
+\item \href{#method-WFSFeatureType-new}{\code{WFSFeatureType$new()}}
+\item \href{#method-WFSFeatureType-getName}{\code{WFSFeatureType$getName()}}
+\item \href{#method-WFSFeatureType-getTitle}{\code{WFSFeatureType$getTitle()}}
+\item \href{#method-WFSFeatureType-getAbstract}{\code{WFSFeatureType$getAbstract()}}
+\item \href{#method-WFSFeatureType-getKeywords}{\code{WFSFeatureType$getKeywords()}}
+\item \href{#method-WFSFeatureType-getDefaultCRS}{\code{WFSFeatureType$getDefaultCRS()}}
+\item \href{#method-WFSFeatureType-getBoundingBox}{\code{WFSFeatureType$getBoundingBox()}}
+\item \href{#method-WFSFeatureType-getDescription}{\code{WFSFeatureType$getDescription()}}
+\item \href{#method-WFSFeatureType-getFeatures}{\code{WFSFeatureType$getFeatures()}}
+\item \href{#method-WFSFeatureType-clone}{\code{WFSFeatureType$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{WFSFeatureType}
 \subsection{Usage}{
@@ -90,8 +90,8 @@ Initializes an object of class \link{WFSFeatureType}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getName}{}}}
 \subsection{Method \code{getName()}}{
 Get feature type name
 \subsection{Usage}{
@@ -107,8 +107,8 @@ Get feature type name
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTitle"></a>}}
-\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getTitle}{}}}
 \subsection{Method \code{getTitle()}}{
 Get feature type title
 \subsection{Usage}{
@@ -124,8 +124,8 @@ Get feature type title
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAbstract"></a>}}
-\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getAbstract}{}}}
 \subsection{Method \code{getAbstract()}}{
 Get feature type abstract
 \subsection{Usage}{
@@ -141,8 +141,8 @@ Get feature type abstract
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getKeywords"></a>}}
-\if{latex}{\out{\hypertarget{method-getKeywords}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getKeywords"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getKeywords}{}}}
 \subsection{Method \code{getKeywords()}}{
 Get feature type keywords
 \subsection{Usage}{
@@ -158,8 +158,8 @@ Get feature type keywords
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDefaultCRS"></a>}}
-\if{latex}{\out{\hypertarget{method-getDefaultCRS}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getDefaultCRS"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getDefaultCRS}{}}}
 \subsection{Method \code{getDefaultCRS()}}{
 Get feature type default CRS
 \subsection{Usage}{
@@ -175,8 +175,8 @@ Get feature type default CRS
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getBoundingBox"></a>}}
-\if{latex}{\out{\hypertarget{method-getBoundingBox}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getBoundingBox"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getBoundingBox}{}}}
 \subsection{Method \code{getBoundingBox()}}{
 Get feature type bounding box
 \subsection{Usage}{
@@ -192,8 +192,8 @@ Get feature type bounding box
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDescription"></a>}}
-\if{latex}{\out{\hypertarget{method-getDescription}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getDescription"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getDescription}{}}}
 \subsection{Method \code{getDescription()}}{
 Describes a feature type
 \subsection{Usage}{
@@ -212,8 +212,8 @@ a \code{list} of \link{WFSFeatureTypeElement} or \code{data.frame}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFeatures"></a>}}
-\if{latex}{\out{\hypertarget{method-getFeatures}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-getFeatures"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getFeatures}{}}}
 \subsection{Method \code{getFeatures()}}{
 Get features
 \subsection{Usage}{
@@ -254,8 +254,8 @@ features as object of class \code{sf}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WFSFeatureType-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

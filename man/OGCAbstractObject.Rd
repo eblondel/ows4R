@@ -48,22 +48,22 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-logger}{\code{OGCAbstractObject$logger()}}
-\item \href{#method-INFO}{\code{OGCAbstractObject$INFO()}}
-\item \href{#method-WARN}{\code{OGCAbstractObject$WARN()}}
-\item \href{#method-ERROR}{\code{OGCAbstractObject$ERROR()}}
-\item \href{#method-new}{\code{OGCAbstractObject$new()}}
-\item \href{#method-getClassName}{\code{OGCAbstractObject$getClassName()}}
-\item \href{#method-getClass}{\code{OGCAbstractObject$getClass()}}
-\item \href{#method-isFieldInheritedFrom}{\code{OGCAbstractObject$isFieldInheritedFrom()}}
-\item \href{#method-getNamespaceDefinition}{\code{OGCAbstractObject$getNamespaceDefinition()}}
-\item \href{#method-encode}{\code{OGCAbstractObject$encode()}}
-\item \href{#method-clone}{\code{OGCAbstractObject$clone()}}
+\item \href{#method-OGCAbstractObject-logger}{\code{OGCAbstractObject$logger()}}
+\item \href{#method-OGCAbstractObject-INFO}{\code{OGCAbstractObject$INFO()}}
+\item \href{#method-OGCAbstractObject-WARN}{\code{OGCAbstractObject$WARN()}}
+\item \href{#method-OGCAbstractObject-ERROR}{\code{OGCAbstractObject$ERROR()}}
+\item \href{#method-OGCAbstractObject-new}{\code{OGCAbstractObject$new()}}
+\item \href{#method-OGCAbstractObject-getClassName}{\code{OGCAbstractObject$getClassName()}}
+\item \href{#method-OGCAbstractObject-getClass}{\code{OGCAbstractObject$getClass()}}
+\item \href{#method-OGCAbstractObject-isFieldInheritedFrom}{\code{OGCAbstractObject$isFieldInheritedFrom()}}
+\item \href{#method-OGCAbstractObject-getNamespaceDefinition}{\code{OGCAbstractObject$getNamespaceDefinition()}}
+\item \href{#method-OGCAbstractObject-encode}{\code{OGCAbstractObject$encode()}}
+\item \href{#method-OGCAbstractObject-clone}{\code{OGCAbstractObject$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-logger"></a>}}
-\if{latex}{\out{\hypertarget{method-logger}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-logger"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-logger}{}}}
 \subsection{Method \code{logger()}}{
 A basic logger function
 \subsection{Usage}{
@@ -81,8 +81,8 @@ A basic logger function
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-INFO"></a>}}
-\if{latex}{\out{\hypertarget{method-INFO}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-INFO"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-INFO}{}}}
 \subsection{Method \code{INFO()}}{
 a basic INFO logger function
 \subsection{Usage}{
@@ -98,8 +98,8 @@ a basic INFO logger function
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-WARN"></a>}}
-\if{latex}{\out{\hypertarget{method-WARN}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-WARN"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-WARN}{}}}
 \subsection{Method \code{WARN()}}{
 a basic WARN logger function
 \subsection{Usage}{
@@ -115,8 +115,8 @@ a basic WARN logger function
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ERROR"></a>}}
-\if{latex}{\out{\hypertarget{method-ERROR}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-ERROR"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-ERROR}{}}}
 \subsection{Method \code{ERROR()}}{
 a basic ERROR logger function
 \subsection{Usage}{
@@ -132,8 +132,8 @@ a basic ERROR logger function
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object extending \link{OGCAbstractObject}
 \subsection{Usage}{
@@ -169,8 +169,8 @@ Initializes an object extending \link{OGCAbstractObject}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClassName"></a>}}
-\if{latex}{\out{\hypertarget{method-getClassName}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-getClassName}{}}}
 \subsection{Method \code{getClassName()}}{
 Get class name
 \subsection{Usage}{
@@ -182,8 +182,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClass"></a>}}
-\if{latex}{\out{\hypertarget{method-getClass}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-getClass"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-getClass}{}}}
 \subsection{Method \code{getClass()}}{
 Get class
 \subsection{Usage}{
@@ -195,8 +195,8 @@ an object of class \code{R6Class}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isFieldInheritedFrom"></a>}}
-\if{latex}{\out{\hypertarget{method-isFieldInheritedFrom}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-isFieldInheritedFrom"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-isFieldInheritedFrom}{}}}
 \subsection{Method \code{isFieldInheritedFrom()}}{
 Utility to return the parent class in which field is defined
 \subsection{Usage}{
@@ -215,8 +215,8 @@ object of class \code{R6Class}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getNamespaceDefinition"></a>}}
-\if{latex}{\out{\hypertarget{method-getNamespaceDefinition}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-getNamespaceDefinition"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-getNamespaceDefinition}{}}}
 \subsection{Method \code{getNamespaceDefinition()}}{
 Gets the namespace definition
 \subsection{Usage}{
@@ -235,8 +235,8 @@ the namespace definitions as named \code{list}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-encode"></a>}}
-\if{latex}{\out{\hypertarget{method-encode}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-encode"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-encode}{}}}
 \subsection{Method \code{encode()}}{
 Encodes as XML. The \code{addNS} .
    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
@@ -270,8 +270,8 @@ an object of class \link{XMLInternalNode-class} from \pkg{XML}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OGCAbstractObject-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

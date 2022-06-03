@@ -48,48 +48,48 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{CSWClient$new()}}
-\item \href{#method-getCapabilities}{\code{CSWClient$getCapabilities()}}
-\item \href{#method-reloadCapabilities}{\code{CSWClient$reloadCapabilities()}}
-\item \href{#method-describeRecord}{\code{CSWClient$describeRecord()}}
-\item \href{#method-getRecordById}{\code{CSWClient$getRecordById()}}
-\item \href{#method-getRecords}{\code{CSWClient$getRecords()}}
-\item \href{#method-transaction}{\code{CSWClient$transaction()}}
-\item \href{#method-insertRecord}{\code{CSWClient$insertRecord()}}
-\item \href{#method-updateRecord}{\code{CSWClient$updateRecord()}}
-\item \href{#method-deleteRecord}{\code{CSWClient$deleteRecord()}}
-\item \href{#method-deleteRecordById}{\code{CSWClient$deleteRecordById()}}
-\item \href{#method-harvestRecord}{\code{CSWClient$harvestRecord()}}
-\item \href{#method-harvestNode}{\code{CSWClient$harvestNode()}}
-\item \href{#method-clone}{\code{CSWClient$clone()}}
+\item \href{#method-CSWClient-new}{\code{CSWClient$new()}}
+\item \href{#method-CSWClient-getCapabilities}{\code{CSWClient$getCapabilities()}}
+\item \href{#method-CSWClient-reloadCapabilities}{\code{CSWClient$reloadCapabilities()}}
+\item \href{#method-CSWClient-describeRecord}{\code{CSWClient$describeRecord()}}
+\item \href{#method-CSWClient-getRecordById}{\code{CSWClient$getRecordById()}}
+\item \href{#method-CSWClient-getRecords}{\code{CSWClient$getRecords()}}
+\item \href{#method-CSWClient-transaction}{\code{CSWClient$transaction()}}
+\item \href{#method-CSWClient-insertRecord}{\code{CSWClient$insertRecord()}}
+\item \href{#method-CSWClient-updateRecord}{\code{CSWClient$updateRecord()}}
+\item \href{#method-CSWClient-deleteRecord}{\code{CSWClient$deleteRecord()}}
+\item \href{#method-CSWClient-deleteRecordById}{\code{CSWClient$deleteRecordById()}}
+\item \href{#method-CSWClient-harvestRecord}{\code{CSWClient$harvestRecord()}}
+\item \href{#method-CSWClient-harvestNode}{\code{CSWClient$harvestNode()}}
+\item \href{#method-CSWClient-clone}{\code{CSWClient$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getCASUrl">}\href{../../ows4R/html/OWSClient.html#method-getCASUrl}{\code{ows4R::OWSClient$getCASUrl()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getConfig">}\href{../../ows4R/html/OWSClient.html#method-getConfig}{\code{ows4R::OWSClient$getConfig()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getHeaders">}\href{../../ows4R/html/OWSClient.html#method-getHeaders}{\code{ows4R::OWSClient$getHeaders()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getPwd">}\href{../../ows4R/html/OWSClient.html#method-getPwd}{\code{ows4R::OWSClient$getPwd()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getToken">}\href{../../ows4R/html/OWSClient.html#method-getToken}{\code{ows4R::OWSClient$getToken()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUrl">}\href{../../ows4R/html/OWSClient.html#method-getUrl}{\code{ows4R::OWSClient$getUrl()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUser">}\href{../../ows4R/html/OWSClient.html#method-getUser}{\code{ows4R::OWSClient$getUser()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getVersion">}\href{../../ows4R/html/OWSClient.html#method-getVersion}{\code{ows4R::OWSClient$getVersion()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getCASUrl"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getCASUrl'><code>ows4R::OWSClient$getCASUrl()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getConfig"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getConfig'><code>ows4R::OWSClient$getConfig()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getHeaders"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getHeaders'><code>ows4R::OWSClient$getHeaders()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getPwd"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getPwd'><code>ows4R::OWSClient$getPwd()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getToken"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getToken'><code>ows4R::OWSClient$getToken()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUrl"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getUrl'><code>ows4R::OWSClient$getUrl()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUser"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getUser'><code>ows4R::OWSClient$getUser()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getVersion"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getVersion'><code>ows4R::OWSClient$getVersion()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-CSWClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-new}{}}}
 \subsection{Method \code{new()}}{
 This method is used to instantiate a CSWClient with the \code{url} of the
    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
@@ -135,8 +135,8 @@ This method is used to instantiate a CSWClient with the \code{url} of the
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getCapabilities"></a>}}
-\if{latex}{\out{\hypertarget{method-getCapabilities}{}}}
+\if{html}{\out{<a id="method-CSWClient-getCapabilities"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-getCapabilities}{}}}
 \subsection{Method \code{getCapabilities()}}{
 Get CSW capabilities
 \subsection{Usage}{
@@ -148,8 +148,8 @@ an object of class \link{CSWCapabilities}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-reloadCapabilities"></a>}}
-\if{latex}{\out{\hypertarget{method-reloadCapabilities}{}}}
+\if{html}{\out{<a id="method-CSWClient-reloadCapabilities"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-reloadCapabilities}{}}}
 \subsection{Method \code{reloadCapabilities()}}{
 Reloads CSW capabilities
 \subsection{Usage}{
@@ -158,8 +158,8 @@ Reloads CSW capabilities
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-describeRecord"></a>}}
-\if{latex}{\out{\hypertarget{method-describeRecord}{}}}
+\if{html}{\out{<a id="method-CSWClient-describeRecord"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-describeRecord}{}}}
 \subsection{Method \code{describeRecord()}}{
 Describe records. Retrieves the XML schema for CSW records. By default, returns the XML schema 
    for the CSW records (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the
@@ -182,8 +182,8 @@ the service record description
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRecordById"></a>}}
-\if{latex}{\out{\hypertarget{method-getRecordById}{}}}
+\if{html}{\out{<a id="method-CSWClient-getRecordById"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-getRecordById}{}}}
 \subsection{Method \code{getRecordById()}}{
 Get a record by Id. By default, the record will be returned following the CSW schema 
    (http://www.opengis.net/cat/csw/2.0.2). For other schemas, specify the \code{outputSchema} 
@@ -211,8 +211,8 @@ the fetched record, \code{NULL} otherwise
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRecords"></a>}}
-\if{latex}{\out{\hypertarget{method-getRecords}{}}}
+\if{html}{\out{<a id="method-CSWClient-getRecords"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-getRecords}{}}}
 \subsection{Method \code{getRecords()}}{
 Get records based on a query, object of class \code{CSWQuery}. The maximum number of records can be
    set either for the full query (\code{maxRecords}) or per request (\code{maxRecordsPerRequest}, default set to 10 records)
@@ -248,8 +248,8 @@ the list of records. By default each record will be returned as Dublin Core \cod
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-transaction"></a>}}
-\if{latex}{\out{\hypertarget{method-transaction}{}}}
+\if{html}{\out{<a id="method-CSWClient-transaction"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-transaction}{}}}
 \subsection{Method \code{transaction()}}{
 Generic transaction method. Used for inserting, updating or deleting metadata using the transactional CSW service.
    The \code{type} gives the type of transaction (Insert, Update, or Delete). The record
@@ -283,8 +283,8 @@ Generic transaction method. Used for inserting, updating or deleting metadata us
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-insertRecord"></a>}}
-\if{latex}{\out{\hypertarget{method-insertRecord}{}}}
+\if{html}{\out{<a id="method-CSWClient-insertRecord"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-insertRecord}{}}}
 \subsection{Method \code{insertRecord()}}{
 Inserts a new record
 \subsection{Usage}{
@@ -305,8 +305,8 @@ Inserts a new record
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-updateRecord"></a>}}
-\if{latex}{\out{\hypertarget{method-updateRecord}{}}}
+\if{html}{\out{<a id="method-CSWClient-updateRecord"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-updateRecord}{}}}
 \subsection{Method \code{updateRecord()}}{
 Updates an existing record
 \subsection{Usage}{
@@ -336,8 +336,8 @@ Updates an existing record
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-deleteRecord"></a>}}
-\if{latex}{\out{\hypertarget{method-deleteRecord}{}}}
+\if{html}{\out{<a id="method-CSWClient-deleteRecord"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-deleteRecord}{}}}
 \subsection{Method \code{deleteRecord()}}{
 Deletes an existing (set of) record(s).  A constraint (object of class \code{CSWConstraint}) 
 can be specified to limit the deletion to some records.
@@ -361,8 +361,8 @@ can be specified to limit the deletion to some records.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-deleteRecordById"></a>}}
-\if{latex}{\out{\hypertarget{method-deleteRecordById}{}}}
+\if{html}{\out{<a id="method-CSWClient-deleteRecordById"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-deleteRecordById}{}}}
 \subsection{Method \code{deleteRecordById()}}{
 Deletes an existing record by identifier (constraint used to identify the record based on its identifier).
 \subsection{Usage}{
@@ -381,8 +381,8 @@ Deletes an existing record by identifier (constraint used to identify the record
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-harvestRecord"></a>}}
-\if{latex}{\out{\hypertarget{method-harvestRecord}{}}}
+\if{html}{\out{<a id="method-CSWClient-harvestRecord"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-harvestRecord}{}}}
 \subsection{Method \code{harvestRecord()}}{
 Harvests a single record from a \code{sourceUrl}, given a \code{resourceType} (by default "http://www.isotc211.org/2005/gmd").
 \subsection{Usage}{
@@ -406,8 +406,8 @@ Harvests a single record from a \code{sourceUrl}, given a \code{resourceType} (b
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-harvestNode"></a>}}
-\if{latex}{\out{\hypertarget{method-harvestNode}{}}}
+\if{html}{\out{<a id="method-CSWClient-harvestNode"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-harvestNode}{}}}
 \subsection{Method \code{harvestNode()}}{
 Harvests a CSW node (having its endpoint defined by an  \code{url}). A \code{query} (object of class \code{CSWQuery}) can be
    specificed if needed to restrain the harvesting to a subset. The \code{resourceType} defines the type of resources to be harvested
@@ -439,8 +439,8 @@ an object of class \code{list} giving the number of records \code{found} and tho
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-CSWClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-CSWClient-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

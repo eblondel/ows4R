@@ -44,36 +44,36 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WPSExecuteResponse$new()}}
-\item \href{#method-getProcess}{\code{WPSExecuteResponse$getProcess()}}
-\item \href{#method-getStatus}{\code{WPSExecuteResponse$getStatus()}}
-\item \href{#method-getStatusLocation}{\code{WPSExecuteResponse$getStatusLocation()}}
-\item \href{#method-getStatusHistory}{\code{WPSExecuteResponse$getStatusHistory()}}
-\item \href{#method-getProcessOutputs}{\code{WPSExecuteResponse$getProcessOutputs()}}
-\item \href{#method-getException}{\code{WPSExecuteResponse$getException()}}
-\item \href{#method-decode}{\code{WPSExecuteResponse$decode()}}
-\item \href{#method-update}{\code{WPSExecuteResponse$update()}}
-\item \href{#method-clone}{\code{WPSExecuteResponse$clone()}}
+\item \href{#method-WPSExecuteResponse-new}{\code{WPSExecuteResponse$new()}}
+\item \href{#method-WPSExecuteResponse-getProcess}{\code{WPSExecuteResponse$getProcess()}}
+\item \href{#method-WPSExecuteResponse-getStatus}{\code{WPSExecuteResponse$getStatus()}}
+\item \href{#method-WPSExecuteResponse-getStatusLocation}{\code{WPSExecuteResponse$getStatusLocation()}}
+\item \href{#method-WPSExecuteResponse-getStatusHistory}{\code{WPSExecuteResponse$getStatusHistory()}}
+\item \href{#method-WPSExecuteResponse-getProcessOutputs}{\code{WPSExecuteResponse$getProcessOutputs()}}
+\item \href{#method-WPSExecuteResponse-getException}{\code{WPSExecuteResponse$getException()}}
+\item \href{#method-WPSExecuteResponse-decode}{\code{WPSExecuteResponse$decode()}}
+\item \href{#method-WPSExecuteResponse-update}{\code{WPSExecuteResponse$update()}}
+\item \href{#method-WPSExecuteResponse-clone}{\code{WPSExecuteResponse$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes a \link{WPSExecuteResponse}
 \subsection{Usage}{
@@ -100,8 +100,8 @@ Initializes a \link{WPSExecuteResponse}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProcess"></a>}}
-\if{latex}{\out{\hypertarget{method-getProcess}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getProcess"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getProcess}{}}}
 \subsection{Method \code{getProcess()}}{
 Get process
 \subsection{Usage}{
@@ -113,8 +113,8 @@ an object of class \link{WPSProcess}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getStatus"></a>}}
-\if{latex}{\out{\hypertarget{method-getStatus}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getStatus"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getStatus}{}}}
 \subsection{Method \code{getStatus()}}{
 Get status
 \subsection{Usage}{
@@ -126,8 +126,8 @@ an object of class \link{WPSStatus}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getStatusLocation"></a>}}
-\if{latex}{\out{\hypertarget{method-getStatusLocation}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getStatusLocation"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getStatusLocation}{}}}
 \subsection{Method \code{getStatusLocation()}}{
 Get status location
 \subsection{Usage}{
@@ -139,8 +139,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getStatusHistory"></a>}}
-\if{latex}{\out{\hypertarget{method-getStatusHistory}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getStatusHistory"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getStatusHistory}{}}}
 \subsection{Method \code{getStatusHistory()}}{
 Get status history
 \subsection{Usage}{
@@ -152,8 +152,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProcessOutputs"></a>}}
-\if{latex}{\out{\hypertarget{method-getProcessOutputs}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getProcessOutputs"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getProcessOutputs}{}}}
 \subsection{Method \code{getProcessOutputs()}}{
 Get list of process outputs
 \subsection{Usage}{
@@ -165,8 +165,8 @@ a \code{list} of outputs
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getException"></a>}}
-\if{latex}{\out{\hypertarget{method-getException}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-getException"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-getException}{}}}
 \subsection{Method \code{getException()}}{
 Get exception
 \subsection{Usage}{
@@ -178,8 +178,8 @@ an object of class \link{WPSException}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-decode"></a>}}
-\if{latex}{\out{\hypertarget{method-decode}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-decode"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-decode}{}}}
 \subsection{Method \code{decode()}}{
 Decodes an object of class \link{WPSExecuteResponse} from XML
 \subsection{Usage}{
@@ -201,8 +201,8 @@ Decodes an object of class \link{WPSExecuteResponse} from XML
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update"></a>}}
-\if{latex}{\out{\hypertarget{method-update}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-update"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-update}{}}}
 \subsection{Method \code{update()}}{
 Updates status history
 \subsection{Usage}{
@@ -218,8 +218,8 @@ Updates status history
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WPSExecuteResponse-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSExecuteResponse-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

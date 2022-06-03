@@ -31,37 +31,37 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSHttpRequest$new()}}
-\item \href{#method-execute}{\code{OWSHttpRequest$execute()}}
-\item \href{#method-getCapabilities}{\code{OWSHttpRequest$getCapabilities()}}
-\item \href{#method-getRequest}{\code{OWSHttpRequest$getRequest()}}
-\item \href{#method-getRequestHeaders}{\code{OWSHttpRequest$getRequestHeaders()}}
-\item \href{#method-getStatus}{\code{OWSHttpRequest$getStatus()}}
-\item \href{#method-getResponse}{\code{OWSHttpRequest$getResponse()}}
-\item \href{#method-getException}{\code{OWSHttpRequest$getException()}}
-\item \href{#method-getResult}{\code{OWSHttpRequest$getResult()}}
-\item \href{#method-setResult}{\code{OWSHttpRequest$setResult()}}
-\item \href{#method-clone}{\code{OWSHttpRequest$clone()}}
+\item \href{#method-OWSHttpRequest-new}{\code{OWSHttpRequest$new()}}
+\item \href{#method-OWSHttpRequest-execute}{\code{OWSHttpRequest$execute()}}
+\item \href{#method-OWSHttpRequest-getCapabilities}{\code{OWSHttpRequest$getCapabilities()}}
+\item \href{#method-OWSHttpRequest-getRequest}{\code{OWSHttpRequest$getRequest()}}
+\item \href{#method-OWSHttpRequest-getRequestHeaders}{\code{OWSHttpRequest$getRequestHeaders()}}
+\item \href{#method-OWSHttpRequest-getStatus}{\code{OWSHttpRequest$getStatus()}}
+\item \href{#method-OWSHttpRequest-getResponse}{\code{OWSHttpRequest$getResponse()}}
+\item \href{#method-OWSHttpRequest-getException}{\code{OWSHttpRequest$getException()}}
+\item \href{#method-OWSHttpRequest-getResult}{\code{OWSHttpRequest$getResult()}}
+\item \href{#method-OWSHttpRequest-setResult}{\code{OWSHttpRequest$setResult()}}
+\item \href{#method-OWSHttpRequest-clone}{\code{OWSHttpRequest$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an OWS HTTP request
 \subsection{Usage}{
@@ -130,8 +130,8 @@ Initializes an OWS HTTP request
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-execute}{}}}
 \subsection{Method \code{execute()}}{
 Executes the request
 \subsection{Usage}{
@@ -140,8 +140,8 @@ Executes the request
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getCapabilities"></a>}}
-\if{latex}{\out{\hypertarget{method-getCapabilities}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getCapabilities"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getCapabilities}{}}}
 \subsection{Method \code{getCapabilities()}}{
 Get capabilities
 \subsection{Usage}{
@@ -153,8 +153,8 @@ an object of class or extending \link{OWSCapabilities}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRequest"></a>}}
-\if{latex}{\out{\hypertarget{method-getRequest}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getRequest"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getRequest}{}}}
 \subsection{Method \code{getRequest()}}{
 Get request
 \subsection{Usage}{
@@ -166,8 +166,8 @@ the request
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRequestHeaders"></a>}}
-\if{latex}{\out{\hypertarget{method-getRequestHeaders}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getRequestHeaders"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getRequestHeaders}{}}}
 \subsection{Method \code{getRequestHeaders()}}{
 Get request headers
 \subsection{Usage}{
@@ -179,8 +179,8 @@ the request headers
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getStatus"></a>}}
-\if{latex}{\out{\hypertarget{method-getStatus}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getStatus"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getStatus}{}}}
 \subsection{Method \code{getStatus()}}{
 get status code
 \subsection{Usage}{
@@ -192,8 +192,8 @@ the request status code
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getResponse"></a>}}
-\if{latex}{\out{\hypertarget{method-getResponse}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getResponse"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getResponse}{}}}
 \subsection{Method \code{getResponse()}}{
 get request response
 \subsection{Usage}{
@@ -205,8 +205,8 @@ the request response
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getException"></a>}}
-\if{latex}{\out{\hypertarget{method-getException}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getException"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getException}{}}}
 \subsection{Method \code{getException()}}{
 get request exception
 \subsection{Usage}{
@@ -218,8 +218,8 @@ the request exception
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getResult"></a>}}
-\if{latex}{\out{\hypertarget{method-getResult}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-getResult"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-getResult}{}}}
 \subsection{Method \code{getResult()}}{
 Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise
 \subsection{Usage}{
@@ -231,8 +231,8 @@ the result, object of class \code{logical}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setResult"></a>}}
-\if{latex}{\out{\hypertarget{method-setResult}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-setResult"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-setResult}{}}}
 \subsection{Method \code{setResult()}}{
 Set the result
 \subsection{Usage}{
@@ -248,8 +248,8 @@ Set the result
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSHttpRequest-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

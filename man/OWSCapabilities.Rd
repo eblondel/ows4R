@@ -31,38 +31,38 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSCapabilities$new()}}
-\item \href{#method-setClient}{\code{OWSCapabilities$setClient()}}
-\item \href{#method-getClient}{\code{OWSCapabilities$getClient()}}
-\item \href{#method-getUrl}{\code{OWSCapabilities$getUrl()}}
-\item \href{#method-getService}{\code{OWSCapabilities$getService()}}
-\item \href{#method-getServiceVersion}{\code{OWSCapabilities$getServiceVersion()}}
-\item \href{#method-getOWSVersion}{\code{OWSCapabilities$getOWSVersion()}}
-\item \href{#method-getRequest}{\code{OWSCapabilities$getRequest()}}
-\item \href{#method-getServiceIdentification}{\code{OWSCapabilities$getServiceIdentification()}}
-\item \href{#method-getServiceProvider}{\code{OWSCapabilities$getServiceProvider()}}
-\item \href{#method-getOperationsMetadata}{\code{OWSCapabilities$getOperationsMetadata()}}
-\item \href{#method-clone}{\code{OWSCapabilities$clone()}}
+\item \href{#method-OWSCapabilities-new}{\code{OWSCapabilities$new()}}
+\item \href{#method-OWSCapabilities-setClient}{\code{OWSCapabilities$setClient()}}
+\item \href{#method-OWSCapabilities-getClient}{\code{OWSCapabilities$getClient()}}
+\item \href{#method-OWSCapabilities-getUrl}{\code{OWSCapabilities$getUrl()}}
+\item \href{#method-OWSCapabilities-getService}{\code{OWSCapabilities$getService()}}
+\item \href{#method-OWSCapabilities-getServiceVersion}{\code{OWSCapabilities$getServiceVersion()}}
+\item \href{#method-OWSCapabilities-getOWSVersion}{\code{OWSCapabilities$getOWSVersion()}}
+\item \href{#method-OWSCapabilities-getRequest}{\code{OWSCapabilities$getRequest()}}
+\item \href{#method-OWSCapabilities-getServiceIdentification}{\code{OWSCapabilities$getServiceIdentification()}}
+\item \href{#method-OWSCapabilities-getServiceProvider}{\code{OWSCapabilities$getServiceProvider()}}
+\item \href{#method-OWSCapabilities-getOperationsMetadata}{\code{OWSCapabilities$getOperationsMetadata()}}
+\item \href{#method-OWSCapabilities-clone}{\code{OWSCapabilities$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes a \link{OWSCapabilities} object
 \subsection{Usage}{
@@ -101,8 +101,8 @@ Initializes a \link{OWSCapabilities} object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setClient"></a>}}
-\if{latex}{\out{\hypertarget{method-setClient}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-setClient"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-setClient}{}}}
 \subsection{Method \code{setClient()}}{
 Sets the OGC client
 \subsection{Usage}{
@@ -118,8 +118,8 @@ Sets the OGC client
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getClient"></a>}}
-\if{latex}{\out{\hypertarget{method-getClient}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getClient"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getClient}{}}}
 \subsection{Method \code{getClient()}}{
 Get client
 \subsection{Usage}{
@@ -135,8 +135,8 @@ Get client
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getUrl"></a>}}
-\if{latex}{\out{\hypertarget{method-getUrl}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getUrl"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getUrl}{}}}
 \subsection{Method \code{getUrl()}}{
 Get URL
 \subsection{Usage}{
@@ -148,8 +148,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getService"></a>}}
-\if{latex}{\out{\hypertarget{method-getService}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getService"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getService}{}}}
 \subsection{Method \code{getService()}}{
 Get service
 \subsection{Usage}{
@@ -161,8 +161,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceVersion"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceVersion}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getServiceVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getServiceVersion}{}}}
 \subsection{Method \code{getServiceVersion()}}{
 Get service version
 \subsection{Usage}{
@@ -174,8 +174,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getOWSVersion"></a>}}
-\if{latex}{\out{\hypertarget{method-getOWSVersion}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getOWSVersion"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getOWSVersion}{}}}
 \subsection{Method \code{getOWSVersion()}}{
 Get OWS version
 \subsection{Usage}{
@@ -187,8 +187,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getRequest"></a>}}
-\if{latex}{\out{\hypertarget{method-getRequest}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getRequest"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getRequest}{}}}
 \subsection{Method \code{getRequest()}}{
 Get request
 \subsection{Usage}{
@@ -200,8 +200,8 @@ an object of class \link{OWSGetCapabilities}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceIdentification"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceIdentification}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getServiceIdentification"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getServiceIdentification}{}}}
 \subsection{Method \code{getServiceIdentification()}}{
 Get service identification
 \subsection{Usage}{
@@ -213,8 +213,8 @@ an object of class \link{OWSServiceIdentification}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceProvider"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceProvider}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getServiceProvider"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getServiceProvider}{}}}
 \subsection{Method \code{getServiceProvider()}}{
 Get service provider
 \subsection{Usage}{
@@ -226,8 +226,8 @@ an object of class \link{OWSServiceProvider}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getOperationsMetadata"></a>}}
-\if{latex}{\out{\hypertarget{method-getOperationsMetadata}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-getOperationsMetadata"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-getOperationsMetadata}{}}}
 \subsection{Method \code{getOperationsMetadata()}}{
 Get service operations metadata
 \subsection{Usage}{
@@ -239,8 +239,8 @@ an object of class \link{OWSOperationsMetadata}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSCapabilities-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSCapabilities-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

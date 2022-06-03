@@ -37,33 +37,33 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WCSCoverage$new()}}
-\item \href{#method-getIdentifier}{\code{WCSCoverage$getIdentifier()}}
-\item \href{#method-getTitle}{\code{WCSCoverage$getTitle()}}
-\item \href{#method-getAbstract}{\code{WCSCoverage$getAbstract()}}
-\item \href{#method-getReference}{\code{WCSCoverage$getReference()}}
-\item \href{#method-getData}{\code{WCSCoverage$getData()}}
-\item \href{#method-clone}{\code{WCSCoverage$clone()}}
+\item \href{#method-WCSCoverage-new}{\code{WCSCoverage$new()}}
+\item \href{#method-WCSCoverage-getIdentifier}{\code{WCSCoverage$getIdentifier()}}
+\item \href{#method-WCSCoverage-getTitle}{\code{WCSCoverage$getTitle()}}
+\item \href{#method-WCSCoverage-getAbstract}{\code{WCSCoverage$getAbstract()}}
+\item \href{#method-WCSCoverage-getReference}{\code{WCSCoverage$getReference()}}
+\item \href{#method-WCSCoverage-getData}{\code{WCSCoverage$getData()}}
+\item \href{#method-WCSCoverage-clone}{\code{WCSCoverage$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{WCSCoverage}
 \subsection{Usage}{
@@ -85,8 +85,8 @@ Initializes an object of class \link{WCSCoverage}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getIdentifier"></a>}}
-\if{latex}{\out{\hypertarget{method-getIdentifier}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-getIdentifier"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-getIdentifier}{}}}
 \subsection{Method \code{getIdentifier()}}{
 Get identifier
 \subsection{Usage}{
@@ -98,8 +98,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getTitle"></a>}}
-\if{latex}{\out{\hypertarget{method-getTitle}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-getTitle"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-getTitle}{}}}
 \subsection{Method \code{getTitle()}}{
 Get title
 \subsection{Usage}{
@@ -111,8 +111,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getAbstract"></a>}}
-\if{latex}{\out{\hypertarget{method-getAbstract}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-getAbstract"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-getAbstract}{}}}
 \subsection{Method \code{getAbstract()}}{
 Get abstract
 \subsection{Usage}{
@@ -124,8 +124,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getReference"></a>}}
-\if{latex}{\out{\hypertarget{method-getReference}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-getReference"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-getReference}{}}}
 \subsection{Method \code{getReference()}}{
 Get reference
 \subsection{Usage}{
@@ -137,8 +137,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getData"></a>}}
-\if{latex}{\out{\hypertarget{method-getData}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-getData"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-getData}{}}}
 \subsection{Method \code{getData()}}{
 Get data
 \subsection{Usage}{
@@ -157,8 +157,8 @@ an object of class \code{SpatRaster} from \pkg{terra}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WCSCoverage-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSCoverage-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

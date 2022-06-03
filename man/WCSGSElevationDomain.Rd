@@ -35,46 +35,46 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-decode}{\code{WCSGSElevationDomain$decode()}}
-\item \href{#method-clone}{\code{WCSGSElevationDomain$clone()}}
+\item \href{#method-WCSGSElevationDomain-decode}{\code{WCSGSElevationDomain$decode()}}
+\item \href{#method-WCSGSElevationDomain-clone}{\code{WCSGSElevationDomain$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="ERROR">}\href{../../geometa/html/geometaLogger.html#method-ERROR}{\code{geometa::geometaLogger$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="INFO">}\href{../../geometa/html/geometaLogger.html#method-INFO}{\code{geometa::geometaLogger$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="WARN">}\href{../../geometa/html/geometaLogger.html#method-WARN}{\code{geometa::geometaLogger$WARN()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="addFieldAttrs">}\href{../../geometa/html/ISOAbstractObject.html#method-addFieldAttrs}{\code{geometa::ISOAbstractObject$addFieldAttrs()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="addListElement">}\href{../../geometa/html/ISOAbstractObject.html#method-addListElement}{\code{geometa::ISOAbstractObject$addListElement()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="contains">}\href{../../geometa/html/ISOAbstractObject.html#method-contains}{\code{geometa::ISOAbstractObject$contains()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="createLocalisedProperty">}\href{../../geometa/html/ISOAbstractObject.html#method-createLocalisedProperty}{\code{geometa::ISOAbstractObject$createLocalisedProperty()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="delListElement">}\href{../../geometa/html/ISOAbstractObject.html#method-delListElement}{\code{geometa::ISOAbstractObject$delListElement()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="encode">}\href{../../geometa/html/ISOAbstractObject.html#method-encode}{\code{geometa::ISOAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getClass">}\href{../../geometa/html/ISOAbstractObject.html#method-getClass}{\code{geometa::ISOAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getClassName">}\href{../../geometa/html/ISOAbstractObject.html#method-getClassName}{\code{geometa::ISOAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getNamespaceDefinition">}\href{../../geometa/html/ISOAbstractObject.html#method-getNamespaceDefinition}{\code{geometa::ISOAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="initialize">}\href{../../geometa/html/ISOAbstractObject.html#method-initialize}{\code{geometa::ISOAbstractObject$initialize()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="isDocument">}\href{../../geometa/html/ISOAbstractObject.html#method-isDocument}{\code{geometa::ISOAbstractObject$isDocument()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="isFieldInheritedFrom">}\href{../../geometa/html/ISOAbstractObject.html#method-isFieldInheritedFrom}{\code{geometa::ISOAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="print">}\href{../../geometa/html/ISOAbstractObject.html#method-print}{\code{geometa::ISOAbstractObject$print()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="save">}\href{../../geometa/html/ISOAbstractObject.html#method-save}{\code{geometa::ISOAbstractObject$save()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setAttr">}\href{../../geometa/html/ISOAbstractObject.html#method-setAttr}{\code{geometa::ISOAbstractObject$setAttr()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeList">}\href{../../geometa/html/ISOAbstractObject.html#method-setCodeList}{\code{geometa::ISOAbstractObject$setCodeList()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeListValue">}\href{../../geometa/html/ISOAbstractObject.html#method-setCodeListValue}{\code{geometa::ISOAbstractObject$setCodeListValue()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeSpace">}\href{../../geometa/html/ISOAbstractObject.html#method-setCodeSpace}{\code{geometa::ISOAbstractObject$setCodeSpace()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setHref">}\href{../../geometa/html/ISOAbstractObject.html#method-setHref}{\code{geometa::ISOAbstractObject$setHref()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setId">}\href{../../geometa/html/ISOAbstractObject.html#method-setId}{\code{geometa::ISOAbstractObject$setId()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setIsNull">}\href{../../geometa/html/ISOAbstractObject.html#method-setIsNull}{\code{geometa::ISOAbstractObject$setIsNull()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setValue">}\href{../../geometa/html/ISOAbstractObject.html#method-setValue}{\code{geometa::ISOAbstractObject$setValue()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="validate">}\href{../../geometa/html/ISOAbstractObject.html#method-validate}{\code{geometa::ISOAbstractObject$validate()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="wrapBaseElement">}\href{../../geometa/html/ISOAbstractObject.html#method-wrapBaseElement}{\code{geometa::ISOAbstractObject$wrapBaseElement()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="ERROR"><a href='../../geometa/html/geometaLogger.html#method-geometaLogger-ERROR'><code>geometa::geometaLogger$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="INFO"><a href='../../geometa/html/geometaLogger.html#method-geometaLogger-INFO'><code>geometa::geometaLogger$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="geometaLogger" data-id="WARN"><a href='../../geometa/html/geometaLogger.html#method-geometaLogger-WARN'><code>geometa::geometaLogger$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="addFieldAttrs"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-addFieldAttrs'><code>geometa::ISOAbstractObject$addFieldAttrs()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="addListElement"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-addListElement'><code>geometa::ISOAbstractObject$addListElement()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="contains"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-contains'><code>geometa::ISOAbstractObject$contains()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="createLocalisedProperty"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-createLocalisedProperty'><code>geometa::ISOAbstractObject$createLocalisedProperty()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="delListElement"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-delListElement'><code>geometa::ISOAbstractObject$delListElement()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="encode"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-encode'><code>geometa::ISOAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getClass"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-getClass'><code>geometa::ISOAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getClassName"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-getClassName'><code>geometa::ISOAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="getNamespaceDefinition"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-getNamespaceDefinition'><code>geometa::ISOAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="initialize"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-initialize'><code>geometa::ISOAbstractObject$initialize()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="isDocument"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-isDocument'><code>geometa::ISOAbstractObject$isDocument()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="isFieldInheritedFrom"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-isFieldInheritedFrom'><code>geometa::ISOAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="print"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-print'><code>geometa::ISOAbstractObject$print()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="save"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-save'><code>geometa::ISOAbstractObject$save()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setAttr"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setAttr'><code>geometa::ISOAbstractObject$setAttr()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeList"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setCodeList'><code>geometa::ISOAbstractObject$setCodeList()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeListValue"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setCodeListValue'><code>geometa::ISOAbstractObject$setCodeListValue()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setCodeSpace"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setCodeSpace'><code>geometa::ISOAbstractObject$setCodeSpace()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setHref"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setHref'><code>geometa::ISOAbstractObject$setHref()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setId"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setId'><code>geometa::ISOAbstractObject$setId()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setIsNull"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setIsNull'><code>geometa::ISOAbstractObject$setIsNull()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="setValue"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-setValue'><code>geometa::ISOAbstractObject$setValue()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="validate"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-validate'><code>geometa::ISOAbstractObject$validate()</code></a></li>
+<li><span class="pkg-link" data-pkg="geometa" data-topic="ISOAbstractObject" data-id="wrapBaseElement"><a href='../../geometa/html/ISOAbstractObject.html#method-ISOAbstractObject-wrapBaseElement'><code>geometa::ISOAbstractObject$wrapBaseElement()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-decode"></a>}}
-\if{latex}{\out{\hypertarget{method-decode}{}}}
+\if{html}{\out{<a id="method-WCSGSElevationDomain-decode"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSGSElevationDomain-decode}{}}}
 \subsection{Method \code{decode()}}{
 Decodes from XML
 \subsection{Usage}{
@@ -90,8 +90,8 @@ Decodes from XML
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WCSGSElevationDomain-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WCSGSElevationDomain-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

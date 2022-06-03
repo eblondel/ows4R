@@ -33,33 +33,33 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WPSDescriptionParameter$new()}}
-\item \href{#method-getDataType}{\code{WPSDescriptionParameter$getDataType()}}
-\item \href{#method-getFormats}{\code{WPSDescriptionParameter$getFormats()}}
-\item \href{#method-clone}{\code{WPSDescriptionParameter$clone()}}
+\item \href{#method-WPSDescriptionParameter-new}{\code{WPSDescriptionParameter$new()}}
+\item \href{#method-WPSDescriptionParameter-getDataType}{\code{WPSDescriptionParameter$getDataType()}}
+\item \href{#method-WPSDescriptionParameter-getFormats}{\code{WPSDescriptionParameter$getFormats()}}
+\item \href{#method-WPSDescriptionParameter-clone}{\code{WPSDescriptionParameter$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getAbstract">}\href{../../ows4R/html/WPSParameter.html#method-getAbstract}{\code{ows4R::WPSParameter$getAbstract()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getIdentifier">}\href{../../ows4R/html/WPSParameter.html#method-getIdentifier}{\code{ows4R::WPSParameter$getIdentifier()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getTitle">}\href{../../ows4R/html/WPSParameter.html#method-getTitle}{\code{ows4R::WPSParameter$getTitle()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getAbstract"><a href='../../ows4R/html/WPSParameter.html#method-WPSParameter-getAbstract'><code>ows4R::WPSParameter$getAbstract()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getIdentifier"><a href='../../ows4R/html/WPSParameter.html#method-WPSParameter-getIdentifier'><code>ows4R::WPSParameter$getIdentifier()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="WPSParameter" data-id="getTitle"><a href='../../ows4R/html/WPSParameter.html#method-WPSParameter-getTitle'><code>ows4R::WPSParameter$getTitle()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WPSDescriptionParameter-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSDescriptionParameter-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes a \link{WPSDescriptionParameter}
 \subsection{Usage}{
@@ -81,8 +81,8 @@ Initializes a \link{WPSDescriptionParameter}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDataType"></a>}}
-\if{latex}{\out{\hypertarget{method-getDataType}{}}}
+\if{html}{\out{<a id="method-WPSDescriptionParameter-getDataType"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSDescriptionParameter-getDataType}{}}}
 \subsection{Method \code{getDataType()}}{
 Get data type
 \subsection{Usage}{
@@ -94,8 +94,8 @@ object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFormats"></a>}}
-\if{latex}{\out{\hypertarget{method-getFormats}{}}}
+\if{html}{\out{<a id="method-WPSDescriptionParameter-getFormats"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSDescriptionParameter-getFormats}{}}}
 \subsection{Method \code{getFormats()}}{
 get formats
 \subsection{Usage}{
@@ -107,8 +107,8 @@ the formats
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WPSDescriptionParameter-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSDescriptionParameter-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -32,33 +32,33 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WPSFormat$new()}}
-\item \href{#method-getMimeType}{\code{WPSFormat$getMimeType()}}
-\item \href{#method-getEncoding}{\code{WPSFormat$getEncoding()}}
-\item \href{#method-getSchema}{\code{WPSFormat$getSchema()}}
-\item \href{#method-setIsDefault}{\code{WPSFormat$setIsDefault()}}
-\item \href{#method-isDefault}{\code{WPSFormat$isDefault()}}
-\item \href{#method-clone}{\code{WPSFormat$clone()}}
+\item \href{#method-WPSFormat-new}{\code{WPSFormat$new()}}
+\item \href{#method-WPSFormat-getMimeType}{\code{WPSFormat$getMimeType()}}
+\item \href{#method-WPSFormat-getEncoding}{\code{WPSFormat$getEncoding()}}
+\item \href{#method-WPSFormat-getSchema}{\code{WPSFormat$getSchema()}}
+\item \href{#method-WPSFormat-setIsDefault}{\code{WPSFormat$setIsDefault()}}
+\item \href{#method-WPSFormat-isDefault}{\code{WPSFormat$isDefault()}}
+\item \href{#method-WPSFormat-clone}{\code{WPSFormat$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WPSFormat-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{WPSFormat}
 \subsection{Usage}{
@@ -80,8 +80,8 @@ Initializes an object of class \link{WPSFormat}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMimeType"></a>}}
-\if{latex}{\out{\hypertarget{method-getMimeType}{}}}
+\if{html}{\out{<a id="method-WPSFormat-getMimeType"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-getMimeType}{}}}
 \subsection{Method \code{getMimeType()}}{
 Get mime type
 \subsection{Usage}{
@@ -93,8 +93,8 @@ object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getEncoding"></a>}}
-\if{latex}{\out{\hypertarget{method-getEncoding}{}}}
+\if{html}{\out{<a id="method-WPSFormat-getEncoding"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-getEncoding}{}}}
 \subsection{Method \code{getEncoding()}}{
 Get encoding
 \subsection{Usage}{
@@ -106,8 +106,8 @@ object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getSchema"></a>}}
-\if{latex}{\out{\hypertarget{method-getSchema}{}}}
+\if{html}{\out{<a id="method-WPSFormat-getSchema"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-getSchema}{}}}
 \subsection{Method \code{getSchema()}}{
 Get schema
 \subsection{Usage}{
@@ -119,8 +119,8 @@ object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setIsDefault"></a>}}
-\if{latex}{\out{\hypertarget{method-setIsDefault}{}}}
+\if{html}{\out{<a id="method-WPSFormat-setIsDefault"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-setIsDefault}{}}}
 \subsection{Method \code{setIsDefault()}}{
 set is default
 \subsection{Usage}{
@@ -136,8 +136,8 @@ set is default
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-isDefault"></a>}}
-\if{latex}{\out{\hypertarget{method-isDefault}{}}}
+\if{html}{\out{<a id="method-WPSFormat-isDefault"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-isDefault}{}}}
 \subsection{Method \code{isDefault()}}{
 is default
 \subsection{Usage}{
@@ -149,8 +149,8 @@ is default
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WPSFormat-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSFormat-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -28,14 +28,14 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSOperationsMetadata$new()}}
-\item \href{#method-getOperations}{\code{OWSOperationsMetadata$getOperations()}}
-\item \href{#method-clone}{\code{OWSOperationsMetadata$clone()}}
+\item \href{#method-OWSOperationsMetadata-new}{\code{OWSOperationsMetadata$new()}}
+\item \href{#method-OWSOperationsMetadata-getOperations}{\code{OWSOperationsMetadata$getOperations()}}
+\item \href{#method-OWSOperationsMetadata-clone}{\code{OWSOperationsMetadata$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSOperationsMetadata-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperationsMetadata-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an \link{OWSOperationsMetadata} object
 \subsection{Usage}{
@@ -55,8 +55,8 @@ Initializes an \link{OWSOperationsMetadata} object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getOperations"></a>}}
-\if{latex}{\out{\hypertarget{method-getOperations}{}}}
+\if{html}{\out{<a id="method-OWSOperationsMetadata-getOperations"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperationsMetadata-getOperations}{}}}
 \subsection{Method \code{getOperations()}}{
 Get operations
 \subsection{Usage}{
@@ -68,8 +68,8 @@ a list of \link{OWSOperation}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSOperationsMetadata-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperationsMetadata-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

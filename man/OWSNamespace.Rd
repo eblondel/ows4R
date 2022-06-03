@@ -35,14 +35,14 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSNamespace$new()}}
-\item \href{#method-getDefinition}{\code{OWSNamespace$getDefinition()}}
-\item \href{#method-clone}{\code{OWSNamespace$clone()}}
+\item \href{#method-OWSNamespace-new}{\code{OWSNamespace$new()}}
+\item \href{#method-OWSNamespace-getDefinition}{\code{OWSNamespace$getDefinition()}}
+\item \href{#method-OWSNamespace-clone}{\code{OWSNamespace$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSNamespace-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSNamespace-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an \link{OWSNamespace}
 \subsection{Usage}{
@@ -60,8 +60,8 @@ Initializes an \link{OWSNamespace}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDefinition"></a>}}
-\if{latex}{\out{\hypertarget{method-getDefinition}{}}}
+\if{html}{\out{<a id="method-OWSNamespace-getDefinition"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSNamespace-getDefinition}{}}}
 \subsection{Method \code{getDefinition()}}{
 Get namespace definition
 \subsection{Usage}{
@@ -73,8 +73,8 @@ a named \code{list} with id and uri
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSNamespace-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSNamespace-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

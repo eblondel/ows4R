@@ -27,16 +27,16 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSOperation$new()}}
-\item \href{#method-getName}{\code{OWSOperation$getName()}}
-\item \href{#method-getParameters}{\code{OWSOperation$getParameters()}}
-\item \href{#method-getParameter}{\code{OWSOperation$getParameter()}}
-\item \href{#method-clone}{\code{OWSOperation$clone()}}
+\item \href{#method-OWSOperation-new}{\code{OWSOperation$new()}}
+\item \href{#method-OWSOperation-getName}{\code{OWSOperation$getName()}}
+\item \href{#method-OWSOperation-getParameters}{\code{OWSOperation$getParameters()}}
+\item \href{#method-OWSOperation-getParameter}{\code{OWSOperation$getParameter()}}
+\item \href{#method-OWSOperation-clone}{\code{OWSOperation$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSOperation-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperation-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{OWSOperation}.
 \subsection{Usage}{
@@ -56,8 +56,8 @@ Initializes an object of class \link{OWSOperation}.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getName"></a>}}
-\if{latex}{\out{\hypertarget{method-getName}{}}}
+\if{html}{\out{<a id="method-OWSOperation-getName"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperation-getName}{}}}
 \subsection{Method \code{getName()}}{
 Get operation name
 \subsection{Usage}{
@@ -69,8 +69,8 @@ an object of class \code{character}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getParameters"></a>}}
-\if{latex}{\out{\hypertarget{method-getParameters}{}}}
+\if{html}{\out{<a id="method-OWSOperation-getParameters"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperation-getParameters}{}}}
 \subsection{Method \code{getParameters()}}{
 Get parameters
 \subsection{Usage}{
@@ -82,8 +82,8 @@ the parameters
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getParameter"></a>}}
-\if{latex}{\out{\hypertarget{method-getParameter}{}}}
+\if{html}{\out{<a id="method-OWSOperation-getParameter"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperation-getParameter}{}}}
 \subsection{Method \code{getParameter()}}{
 Get parameter
 \subsection{Usage}{
@@ -102,8 +102,8 @@ the parameter
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSOperation-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSOperation-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

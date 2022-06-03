@@ -39,41 +39,41 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WPSClient$new()}}
-\item \href{#method-getCapabilities}{\code{WPSClient$getCapabilities()}}
-\item \href{#method-reloadCapabilities}{\code{WPSClient$reloadCapabilities()}}
-\item \href{#method-getProcesses}{\code{WPSClient$getProcesses()}}
-\item \href{#method-describeProcess}{\code{WPSClient$describeProcess()}}
-\item \href{#method-execute}{\code{WPSClient$execute()}}
-\item \href{#method-clone}{\code{WPSClient$clone()}}
+\item \href{#method-WPSClient-new}{\code{WPSClient$new()}}
+\item \href{#method-WPSClient-getCapabilities}{\code{WPSClient$getCapabilities()}}
+\item \href{#method-WPSClient-reloadCapabilities}{\code{WPSClient$reloadCapabilities()}}
+\item \href{#method-WPSClient-getProcesses}{\code{WPSClient$getProcesses()}}
+\item \href{#method-WPSClient-describeProcess}{\code{WPSClient$describeProcess()}}
+\item \href{#method-WPSClient-execute}{\code{WPSClient$execute()}}
+\item \href{#method-WPSClient-clone}{\code{WPSClient$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode">}\href{../../ows4R/html/OGCAbstractObject.html#method-encode}{\code{ows4R::OGCAbstractObject$encode()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR">}\href{../../ows4R/html/OGCAbstractObject.html#method-ERROR}{\code{ows4R::OGCAbstractObject$ERROR()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClass}{\code{ows4R::OGCAbstractObject$getClass()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName">}\href{../../ows4R/html/OGCAbstractObject.html#method-getClassName}{\code{ows4R::OGCAbstractObject$getClassName()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition">}\href{../../ows4R/html/OGCAbstractObject.html#method-getNamespaceDefinition}{\code{ows4R::OGCAbstractObject$getNamespaceDefinition()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO">}\href{../../ows4R/html/OGCAbstractObject.html#method-INFO}{\code{ows4R::OGCAbstractObject$INFO()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom">}\href{../../ows4R/html/OGCAbstractObject.html#method-isFieldInheritedFrom}{\code{ows4R::OGCAbstractObject$isFieldInheritedFrom()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger">}\href{../../ows4R/html/OGCAbstractObject.html#method-logger}{\code{ows4R::OGCAbstractObject$logger()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN">}\href{../../ows4R/html/OGCAbstractObject.html#method-WARN}{\code{ows4R::OGCAbstractObject$WARN()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getCASUrl">}\href{../../ows4R/html/OWSClient.html#method-getCASUrl}{\code{ows4R::OWSClient$getCASUrl()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getConfig">}\href{../../ows4R/html/OWSClient.html#method-getConfig}{\code{ows4R::OWSClient$getConfig()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getHeaders">}\href{../../ows4R/html/OWSClient.html#method-getHeaders}{\code{ows4R::OWSClient$getHeaders()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getPwd">}\href{../../ows4R/html/OWSClient.html#method-getPwd}{\code{ows4R::OWSClient$getPwd()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getToken">}\href{../../ows4R/html/OWSClient.html#method-getToken}{\code{ows4R::OWSClient$getToken()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUrl">}\href{../../ows4R/html/OWSClient.html#method-getUrl}{\code{ows4R::OWSClient$getUrl()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUser">}\href{../../ows4R/html/OWSClient.html#method-getUser}{\code{ows4R::OWSClient$getUser()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getVersion">}\href{../../ows4R/html/OWSClient.html#method-getVersion}{\code{ows4R::OWSClient$getVersion()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-ERROR'><code>ows4R::OGCAbstractObject$ERROR()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="INFO"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-INFO'><code>ows4R::OGCAbstractObject$INFO()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="WARN"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-WARN'><code>ows4R::OGCAbstractObject$WARN()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="encode"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-encode'><code>ows4R::OGCAbstractObject$encode()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClass"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClass'><code>ows4R::OGCAbstractObject$getClass()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getClassName"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getClassName'><code>ows4R::OGCAbstractObject$getClassName()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="getNamespaceDefinition"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-getNamespaceDefinition'><code>ows4R::OGCAbstractObject$getNamespaceDefinition()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="isFieldInheritedFrom"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-isFieldInheritedFrom'><code>ows4R::OGCAbstractObject$isFieldInheritedFrom()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="logger"><a href='../../ows4R/html/OGCAbstractObject.html#method-OGCAbstractObject-logger'><code>ows4R::OGCAbstractObject$logger()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getCASUrl"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getCASUrl'><code>ows4R::OWSClient$getCASUrl()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getConfig"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getConfig'><code>ows4R::OWSClient$getConfig()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getHeaders"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getHeaders'><code>ows4R::OWSClient$getHeaders()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getPwd"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getPwd'><code>ows4R::OWSClient$getPwd()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getToken"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getToken'><code>ows4R::OWSClient$getToken()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUrl"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getUrl'><code>ows4R::OWSClient$getUrl()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getUser"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getUser'><code>ows4R::OWSClient$getUser()</code></a></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSClient" data-id="getVersion"><a href='../../ows4R/html/OWSClient.html#method-OWSClient-getVersion'><code>ows4R::OWSClient$getVersion()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WPSClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-new}{}}}
 \subsection{Method \code{new()}}{
 This method is used to instantiate a \link{WPSClient} with the \code{url} of the
    OGC service. Authentication is supported using basic auth (using \code{user}/\code{pwd} arguments), 
@@ -119,8 +119,8 @@ This method is used to instantiate a \link{WPSClient} with the \code{url} of the
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getCapabilities"></a>}}
-\if{latex}{\out{\hypertarget{method-getCapabilities}{}}}
+\if{html}{\out{<a id="method-WPSClient-getCapabilities"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-getCapabilities}{}}}
 \subsection{Method \code{getCapabilities()}}{
 Get WPS capabilities
 \subsection{Usage}{
@@ -132,8 +132,8 @@ an object of class \link{WPSCapabilities}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-reloadCapabilities"></a>}}
-\if{latex}{\out{\hypertarget{method-reloadCapabilities}{}}}
+\if{html}{\out{<a id="method-WPSClient-reloadCapabilities"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-reloadCapabilities}{}}}
 \subsection{Method \code{reloadCapabilities()}}{
 Reloads WPS capabilities
 \subsection{Usage}{
@@ -142,8 +142,8 @@ Reloads WPS capabilities
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProcesses"></a>}}
-\if{latex}{\out{\hypertarget{method-getProcesses}{}}}
+\if{html}{\out{<a id="method-WPSClient-getProcesses"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-getProcesses}{}}}
 \subsection{Method \code{getProcesses()}}{
 Get the list of processes offered by the service capabilities. \code{pretty} allows to control
    the type output. If \code{TRUE}, a \code{data.frame} will be returned. When prettified output, it
@@ -168,8 +168,8 @@ a \code{list} of \link{WPSProcessDescription} or a \code{data.frame}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-describeProcess"></a>}}
-\if{latex}{\out{\hypertarget{method-describeProcess}{}}}
+\if{html}{\out{<a id="method-WPSClient-describeProcess"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-describeProcess}{}}}
 \subsection{Method \code{describeProcess()}}{
 Get the description of a process, given its \code{identifier}, returning an object of class \code{WPSProcessDescription}
 \subsection{Usage}{
@@ -188,8 +188,8 @@ an object of class \link{WPSProcessDescription}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-execute"></a>}}
-\if{latex}{\out{\hypertarget{method-execute}{}}}
+\if{html}{\out{<a id="method-WPSClient-execute"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-execute}{}}}
 \subsection{Method \code{execute()}}{
 Execute a process, given its \code{identifier}
 \subsection{Usage}{
@@ -228,8 +228,8 @@ Execute a process, given its \code{identifier}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WPSClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WPSClient-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

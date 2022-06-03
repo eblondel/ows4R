@@ -28,16 +28,16 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{OWSServiceProvider$new()}}
-\item \href{#method-getProviderName}{\code{OWSServiceProvider$getProviderName()}}
-\item \href{#method-getProviderSite}{\code{OWSServiceProvider$getProviderSite()}}
-\item \href{#method-getServiceContact}{\code{OWSServiceProvider$getServiceContact()}}
-\item \href{#method-clone}{\code{OWSServiceProvider$clone()}}
+\item \href{#method-OWSServiceProvider-new}{\code{OWSServiceProvider$new()}}
+\item \href{#method-OWSServiceProvider-getProviderName}{\code{OWSServiceProvider$getProviderName()}}
+\item \href{#method-OWSServiceProvider-getProviderSite}{\code{OWSServiceProvider$getProviderSite()}}
+\item \href{#method-OWSServiceProvider-getServiceContact}{\code{OWSServiceProvider$getServiceContact()}}
+\item \href{#method-OWSServiceProvider-clone}{\code{OWSServiceProvider$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-OWSServiceProvider-new"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceProvider-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes an object of class \link{OWSServiceProvider}
 \subsection{Usage}{
@@ -57,8 +57,8 @@ Initializes an object of class \link{OWSServiceProvider}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProviderName"></a>}}
-\if{latex}{\out{\hypertarget{method-getProviderName}{}}}
+\if{html}{\out{<a id="method-OWSServiceProvider-getProviderName"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceProvider-getProviderName}{}}}
 \subsection{Method \code{getProviderName()}}{
 Get provider name
 \subsection{Usage}{
@@ -74,8 +74,8 @@ Get provider name
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getProviderSite"></a>}}
-\if{latex}{\out{\hypertarget{method-getProviderSite}{}}}
+\if{html}{\out{<a id="method-OWSServiceProvider-getProviderSite"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceProvider-getProviderSite}{}}}
 \subsection{Method \code{getProviderSite()}}{
 Get provider site
 \subsection{Usage}{
@@ -91,8 +91,8 @@ Get provider site
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getServiceContact"></a>}}
-\if{latex}{\out{\hypertarget{method-getServiceContact}{}}}
+\if{html}{\out{<a id="method-OWSServiceProvider-getServiceContact"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceProvider-getServiceContact}{}}}
 \subsection{Method \code{getServiceContact()}}{
 Get provider contact
 \subsection{Usage}{
@@ -108,8 +108,8 @@ Get provider contact
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-OWSServiceProvider-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSServiceProvider-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
