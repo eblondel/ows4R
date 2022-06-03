@@ -40,8 +40,8 @@ WFSGetFeature <- R6Class("WFSGetFeature",
          mimeType <- "text/xml"
        }else{
          mimeType <- switch(tolower(outputFormat),
-           "application/json" = "application/json",
-           "json" = "application/json", #for backward compatibility
+           "application/json" = "text",
+           "json" = "text", #for backward compatibility
            "csv" = "text/csv",
            "text/plain"
          )

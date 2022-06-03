@@ -312,11 +312,11 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           },
           "application/json" = {
             destfile = paste0(tempf,".json")
-            jsonlite::write_json(obj, destfile, auto_unbox = TRUE)
+            write(obj, destfile)
           },
           "json" = {
             destfile = paste0(tempf,".json")
-            jsonlite::write_json(obj, destfile, auto_unbox = TRUE)
+            write(obj, destfile)
           },
           "csv" = {
             destfile = paste0(tempf,".csv")
