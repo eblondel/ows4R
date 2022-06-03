@@ -17,6 +17,7 @@
 **Corrections**
 
 - [#56](https://github.com/eblondel/ows4R/issues/56) Duplicate feature with findFeatureTypeByName
+- [#76](https://github.com/eblondel/ows4R/issues/76) WFS getFeatures with json and csv do not work - bad writer
 
 ## [ows4R 0.2](https://cran.r-project.org/package=ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 

@@ -275,6 +275,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           stop("Operation 'GetFeature' not supported by this service")
         }
       }
+      
       client = private$capabilities$getClient()
       ftFeatures <- WFSGetFeature$new(private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
                                       user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
@@ -311,15 +312,15 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           },
           "application/json" = {
             destfile = paste0(tempf,".json")
-            write(obj, destfile)
+            jsonlite::write_json(obj, destfile, auto_unbox = TRUE)
           },
           "json" = {
             destfile = paste0(tempf,".json")
-            write(obj, destfile)
+            jsonlite::write_json(obj, destfile, auto_unbox = TRUE)
           },
           "csv" = {
             destfile = paste0(tempf,".csv")
-            write(obj, destfile)
+            sf::st_write(obj, destfile)
           }
         )
       }
