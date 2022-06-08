@@ -15,17 +15,7 @@
 * the Web Map Service (WMS), versions ``1.1.0``, ``1.1.1``, and ``1.3.0``
 * the Web Processing service (WPS) version `1.0.0`
 
-Do you have a question? support request? Here's a general chat room available for you:
-
-[![Join chat at https://gitter.im/ows4R](https://img.shields.io/badge/chat%20room-for%20users-brown.svg?style=flat-square)](https://gitter.im/ows4R/community)
-
-A question about a specific OGC service usage in R? join a room here:
-
-[![Ask your CSW-related questions at https://gitter.im/ows4R/CSW](https://img.shields.io/badge/chat%20room-about%20CSW-brown.svg?style=flat-square)](https://gitter.im/ows4R/CSW?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Ask your WCS-related questions at https://gitter.im/ows4R/WCS](https://img.shields.io/badge/chat%20room-about%20WCS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WCS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Ask your WFS-related questions at https://gitter.im/ows4R/WFS](https://img.shields.io/badge/chat%20room-about%20WFS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WFS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Ask your WPS-related questions at https://gitter.im/ows4R/WPS](https://img.shields.io/badge/chat%20room-about%20WPS-brown.svg?style=flat-square)](https://gitter.im/ows4R/WPS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+Do you have a question? support request? you can create a 'discussion' [here](https://github.com/eblondel/ows4R/discussions)
 
 ## Sponsors
 
