@@ -1,0 +1,7 @@
+url: "https://eblondel.github.io/ows4R/"
+
+home:
+  title: Interface to OGC Web-Services (OWS)
+
+template:
+  bootstrap: 5

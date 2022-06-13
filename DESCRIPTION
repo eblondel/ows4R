@@ -14,7 +14,7 @@ Description: Provides an Interface to Web-Services defined as standards by the O
  web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). 
  The purpose is to add support for additional OGC service standards such as Web Coverage Processing Service (WCPS) or OGC API.
 License: MIT + file LICENSE
-URL: https://github.com/eblondel/ows4R, https://www.ogc.org/standards
+URL: https://github.com/eblondel/ows4R, https://eblondel.github.io/ows4R/, https://www.ogc.org/standards
 BugReports: https://github.com/eblondel/ows4R/issues
 LazyLoad: yes
 RoxygenNote: 7.2.0
