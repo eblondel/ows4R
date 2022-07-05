@@ -99,29 +99,38 @@ OWSUtils <- list(
     
     #findP4s
     #---------------------------------------------------------------
-    findP4s = function(srsName, morphToESRI=FALSE) {
+    findP4s = function(srsName) {
       
       if (missing(srsName)) {
         stop("please provide a spatial reference system name")
       }
-      proj.lst <- as.character(rgdal::projInfo("proj")$name)
+      proj.lst <- as.character(sf::sf_proj_info("proj")$name)
       
       #we remove the latlong proj for compatibility with sp
       proj.lst <- proj.lst[proj.lst != "latlong" & proj.lst != "latlon"]
       
       #build combinations of know proj and datum
-      proj.datum.grd <- expand.grid(proj=proj.lst, datum=as.character(projInfo("datum")$name), stringsAsFactors=FALSE)
-      
-      #remove the carthage datum which make my system crash
-      proj.datum.grd <- proj.datum.grd[proj.datum.grd$datum != "carthage", ]
+      datum <- sf::sf_proj_info("datum")$name
+      proj.datum.grd <- NULL
+      if(!is.null(datum)){
+        proj.datum.grd <- expand.grid(proj=proj.lst, datum=as.character(datum), stringsAsFactors=FALSE)
+      }else{
+        proj.datum.grd <- expand.grid(proj=proj.lst, datum=NA, stringsAsFactors=FALSE)
+      }
       
       #function to ask WKT representation
       getShowWkt <- function(x) {
-        res <- try(showWKT(paste("+proj=", x[1], " +datum=", x[2], sep=""), morphToESRI=morphToESRI), silent=TRUE)
+        res <- NULL
+        if(is.na(x[2])){
+          res <- try(suppressWarnings(sf::st_crs(paste("+proj=", x[1], sep=""))), silent=TRUE)
+        }else{
+          res <- try(sf::st_crs(paste("+proj=", x[1], " +datum=", x[2], sep="")), silent=TRUE)
+        }
+        
         if (is(res, "try-error")) {
           return(NA)
         } else {
-          return(res)
+          return(res$wkt)
         }
       }
       
@@ -167,10 +176,10 @@ OWSUtils <- list(
         #search if srsName is a WKT PROJ name (PROJCS or GEOGCS)
         #if yes set srs with the corresponding proj4string
         #first search without any consideration of the ESRI representation
-        srsDef <- OWSUtils$findP4s(srsName, morphToESRI=FALSE)
+        srsDef <- OWSUtils$findP4s(srsName)
         if (is.na(srsDef)) {
           #if not found search with consideration of the ESRI representation
-          srsDef <- OWSUtils$findP4s(srsName, morphToESRI=TRUE)
+          srsDef <- OWSUtils$findP4s(srsName)
         }
         if (! is.na(srsDef) && ! length(srsDef) == 1) {
           srsDef <- NA
