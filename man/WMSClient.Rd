@@ -173,7 +173,7 @@ a \code{list} of \link{WMSLayer} available, or a \code{data.frame}
 \subsection{Method \code{getMap()}}{
 Get map. NOT YET IMPLEMENTED
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{WMSClient$getMap(layers, srs, styles = "", x, y, width, height, bbox)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{WMSClient$getMap()}\if{html}{\out{</div>}}
 }
 
 }

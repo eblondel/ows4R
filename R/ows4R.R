@@ -8,18 +8,6 @@
 #' (WFS) for vector data, Web Coverage Service (WCS), Catalogue Service (CSW) for ISO/OGC metadata, and associated standards such as the common 
 #' web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). 
 #' The purpose is to add support for additional OGC service standards such as Web Coverage Processing Service (WCPS) or OGC API.
-#'
-#' 
-#' @details
-#'  \tabular{ll}{
-#'    Package: \tab ows4R\cr
-#'    Type: \tab Package\cr
-#'    Version
-#'    : \tab 0.3\cr
-#'    Date: \tab 2022-03-15\cr
-#'    License: \tab MIT\cr
-#'    LazyLoad: \tab yes\cr
-#'  }
 #'  
 #'@author Emmanuel Blondel \email{emmanuel.blondel1@@gmail.com}
 #'
