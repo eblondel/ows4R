@@ -13,6 +13,7 @@
 **Enhancements**
 
 - [#61](https://github.com/eblondel/ows4R/issues/61) Generalize auth-related arguments in OWS Http requests
+- [#78](https://github.com/eblondel/ows4R/issues/78) Remove dependency with rgdal
 
 **Corrections**
 
