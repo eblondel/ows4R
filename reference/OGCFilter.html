@@ -108,7 +108,7 @@ OGCFilter"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Initializes an object of class OGCFilter.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">expr</span>, filterVersion <span class="op">=</span> <span class="st">"1.1.0"</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">expr</span>, filterVersion <span class="op">=</span> <span class="st">"1.1.0"</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -128,7 +128,7 @@ OGCFilter"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 <h3 id="method-setfilterversion-">Method <code>setFilterVersion()</code><a class="anchor" aria-label="anchor" href="#method-setfilterversion-"></a></h3>
 <p>Sets the OGC filter version</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">OGCFilter</span><span class="op">$</span><span class="fu">setFilterVersion</span><span class="op">(</span><span class="va">filterVersion</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OGCFilter</span><span class="op">$</span><span class="fu">setFilterVersion</span><span class="op">(</span><span class="va">filterVersion</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -144,7 +144,7 @@ OGCFilter"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">OGCFilter</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OGCFilter</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -162,10 +162,10 @@ OGCFilter"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="va">expr</span> <span class="op">&lt;-</span> <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>PropertyName <span class="op">=</span> <span class="st">"property"</span>, Literal <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">not</span> <span class="op">&lt;-</span> <span class="va"><a href="Not.html">Not</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">not_xml</span> <span class="op">&lt;-</span> <span class="va">not</span><span class="op">$</span><span class="fu">encode</span><span class="op">(</span><span class="op">)</span> <span class="co">#see how it looks like in XML</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">expr</span> <span class="op">&lt;-</span> <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>PropertyName <span class="op">=</span> <span class="st">"property"</span>, Literal <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">not</span> <span class="op">&lt;-</span> <span class="va"><a href="Not.html">Not</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">not_xml</span> <span class="op">&lt;-</span> <span class="va">not</span><span class="op">$</span><span class="fu">encode</span><span class="op">(</span><span class="op">)</span> <span class="co">#see how it looks like in XML</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -177,7 +177,7 @@ OGCFilter"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

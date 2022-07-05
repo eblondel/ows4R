@@ -115,12 +115,12 @@ CSWQuery"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
    defined for the query. The <code>typeNames</code> indicates to query (default "csw:Record").
    The <code>serviceVersion</code> gives the CSW service version (default "2.0.2")</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>
-  elementSetName <span class="op">=</span> <span class="st">"full"</span>,
-  constraint <span class="op">=</span> <span class="cn">NULL</span>,
-  typeNames <span class="op">=</span> <span class="st">"csw:Record"</span>,
-  serviceVersion <span class="op">=</span> <span class="st">"2.0.2"</span>
-<span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>  elementSetName <span class="op">=</span> <span class="st">"full"</span>,</span>
+<span>  constraint <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  typeNames <span class="op">=</span> <span class="st">"csw:Record"</span>,</span>
+<span>  serviceVersion <span class="op">=</span> <span class="st">"2.0.2"</span></span>
+<span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -148,7 +148,7 @@ CSWQuery"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <h3 id="method-setserviceversion-">Method <code>setServiceVersion()</code><a class="anchor" aria-label="anchor" href="#method-setserviceversion-"></a></h3>
 <p>Set service version. The methods ensures propery naming of typeNames depending on the service version</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">CSWQuery</span><span class="op">$</span><span class="fu">setServiceVersion</span><span class="op">(</span><span class="va">serviceVersion</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">CSWQuery</span><span class="op">$</span><span class="fu">setServiceVersion</span><span class="op">(</span><span class="va">serviceVersion</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -164,7 +164,7 @@ CSWQuery"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">CSWQuery</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">CSWQuery</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -182,57 +182,57 @@ CSWQuery"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co">#CSWQuery - elementSetName</span></span>
-<span class="r-in">  <span class="va">query_full</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query_brief</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query_summary</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#CSWQuery - cqlText with title</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%'"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText</span></span>
-<span class="r-in">  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%Physio%"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText Equal</span></span>
-<span class="r-in">  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"species"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText And Not</span></span>
-<span class="r-in">  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="And.html">And</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
-<span class="r-in">    <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%lorem%"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%ipsum%"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="va"><a href="Not.html">Not</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
-<span class="r-in">      <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%dolor%"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText And nested Or</span></span>
-<span class="r-in">  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="And.html">And</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
-<span class="r-in">    <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:title"</span>, <span class="st">"Aliquam fermentum purus quis arcu"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:format"</span>, <span class="st">"application/pdf"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="va"><a href="Or.html">Or</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
-<span class="r-in">      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Dataset"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Service"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Image"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Text"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span>, constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#CSW 2.0.2 - Query - Filter / BBOX</span></span>
-<span class="r-in">  <span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">180</span>,<span class="fl">180</span>,<span class="op">-</span><span class="fl">90</span>,<span class="fl">90</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">                 dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>,<span class="st">"max"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="BBOX.html">BBOX</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>bbox <span class="op">=</span> <span class="va">bbox</span><span class="op">)</span> <span class="op">)</span></span>
-<span class="r-in">  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span>, constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
-<span class="r-in">  </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co">#CSWQuery - elementSetName</span></span></span>
+<span class="r-in"><span>  <span class="va">query_full</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query_brief</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query_summary</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#CSWQuery - cqlText with title</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%'"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText</span></span></span>
+<span class="r-in"><span>  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%Physio%"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText Equal</span></span></span>
+<span class="r-in"><span>  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"species"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText And Not</span></span></span>
+<span class="r-in"><span>  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="And.html">And</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%lorem%"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%ipsum%"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="va"><a href="Not.html">Not</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va"><a href="PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%dolor%"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#CSW 2.0.2 - Query - Filter / AnyText And nested Or</span></span></span>
+<span class="r-in"><span>  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="And.html">And</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:title"</span>, <span class="st">"Aliquam fermentum purus quis arcu"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:format"</span>, <span class="st">"application/pdf"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="va"><a href="Or.html">Or</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Dataset"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Service"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Image"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va"><a href="PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"dc:type"</span>, <span class="st">"http://purl.org/dc/dcmitype/Text"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span>, constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#CSW 2.0.2 - Query - Filter / BBOX</span></span></span>
+<span class="r-in"><span>  <span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">180</span>,<span class="fl">180</span>,<span class="op">-</span><span class="fl">90</span>,<span class="fl">90</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>                 dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>,<span class="st">"max"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="BBOX.html">BBOX</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>bbox <span class="op">=</span> <span class="va">bbox</span><span class="op">)</span> <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">query</span> <span class="op">&lt;-</span> <span class="va">CSWQuery</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>elementSetName <span class="op">=</span> <span class="st">"brief"</span>, constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -244,7 +244,7 @@ CSWQuery"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

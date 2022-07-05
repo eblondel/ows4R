@@ -88,7 +88,7 @@
 </h3>
 <p>In order to operate on a Catalogue Service, you need to create an interface in R to this CSW. This is done with the class <code>CSWClient</code>, as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">CSW</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWClient.html">CSWClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"http://localhost:8080/csw"</span>, <span class="st">"2.0.2"</span>, logger <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">CSW</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWClient.html">CSWClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"http://localhost:8080/csw"</span>, <span class="st">"2.0.2"</span>, logger <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></span></code></pre></div>
 <p>You can define the level of logger: “INFO” to get ows4R logs, “DEBUG” for all internal logs (such as as Curl details). It is also possible to define a username and credentials in case operations would require an authentication to use the Catalogue Service.</p>
 <p>For operations that require authentication (e.g. CSW Transaction operations on GeoNetwork), you may need to specify the <code>user</code> and <code>pwd</code> parameters.</p>
 </div>
@@ -97,7 +97,7 @@
 </h3>
 <p>When create the <code>CSWClient</code>, <code>ows4R</code> will run a <code>GetCapabilities</code> request. To access the CSW Capabilities and its sections, you can use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">caps</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">caps</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="describe-a-record-describerecord">Describe a record (<code>DescribeRecord</code>)<a class="anchor" aria-label="anchor" href="#describe-a-record-describerecord"></a>
@@ -109,8 +109,8 @@
 </h3>
 <p>The below example shows how to get a metadata record by ID, and bind it with <a href="https://github.com/eblondel/geometa" class="external-link">geometa</a> ISO/OGC metadata classes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#supposing a metadata identified as "my-metadata-identifier"</span>
-<span class="va">md</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecordById</span><span class="op">(</span><span class="st">"my-metadata-identifier"</span>, outputSchema <span class="op">=</span> <span class="st">"http://www.isotc211.org/2005/gmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#supposing a metadata identified as "my-metadata-identifier"</span></span>
+<span><span class="va">md</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecordById</span><span class="op">(</span><span class="st">"my-metadata-identifier"</span>, outputSchema <span class="op">=</span> <span class="st">"http://www.isotc211.org/2005/gmd"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-records-getrecords">Get records (<code>GetRecords</code>)<a class="anchor" aria-label="anchor" href="#get-records-getrecords"></a>
@@ -121,7 +121,7 @@
 </h4>
 <p>A basic <code>GetRecords</code> request can be done with the following code:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>By default, this request will return the 5 first metadata records. These records are returned in the <a href="http://dublincore.org/" class="external-link">Dublin Core</a> metadata format, handled as <code>list</code> in R.</p>
 </div>
 <div class="section level4">
@@ -129,7 +129,7 @@
 </h4>
 <p>To change the maximum number of records to be returned, use the <code>maxRecords</code> parameter</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>maxRecords <span class="op">=</span> <span class="fl">20L</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>maxRecords <span class="op">=</span> <span class="fl">20L</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="query-with-cql-filters">Query with CQL filters<a class="anchor" aria-label="anchor" href="#query-with-cql-filters"></a>
@@ -143,21 +143,21 @@
 <li>how to get get metadata records based on the query</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%'"</span><span class="op">)</span>
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span>
-<span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%'"</span><span class="op">)</span></span>
+<span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
+<span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Query with CQL Filter on metadata title and abstract</strong></p>
 <p>Another example of <code>GetRecords</code> query with a CQL filter based on two properties (title, abstract):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%' and dct:abstract like '%pharetra%'"</span><span class="op">)</span>
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span>
-<span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:title like '%ips%' and dct:abstract like '%pharetra%'"</span><span class="op">)</span></span>
+<span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
+<span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Query with CQL Filter on metadata identifier</strong></p>
 <p>We may also try to perform a ``GetRecords``` based on a metadata identifier. In case there is an existing metadata record with such identifier, we expect to get a list of length 1.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:identifier = 'my-metadata-identifier'"</span><span class="op">)</span>
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span>
-<span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>cqlText <span class="op">=</span> <span class="st">"dc:identifier = 'my-metadata-identifier'"</span><span class="op">)</span></span>
+<span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
+<span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></span></code></pre></div>
 <p><a name="csw-getrecords-ogcfilters"></a></p>
 </div>
 <div class="section level4">
@@ -193,16 +193,16 @@
 <p><strong>Query with OGC filter - <code>PropertyIsLike</code></strong></p>
 <p>The below example constructs a constraint with an <code>OGCFilter</code> made of a <code>PropertyIsLike</code> predicate on CSW <code>AnyText</code>. The result will be a list of records for which _any text is like ‘%Physio%’ (all records for which the string ‘Physio’ is included):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="../reference/PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%Physio%"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span>
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span>
-<span class="va">records</span> <span class="op">&lt;-</span> <span class="va">csw2</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="../reference/PropertyIsLike.html">PropertyIsLike</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"%Physio%"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
+<span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
+<span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">csw2</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Query with OGC filter - <code>PropertyIsEqualTo</code></strong></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="../reference/PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"species"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span>
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span>
-<span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span> <span class="va"><a href="../reference/PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"csw:AnyText"</span>, <span class="st">"species"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cons</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
+<span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWQuery.html">CSWQuery</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>constraint <span class="op">=</span> <span class="va">cons</span><span class="op">)</span></span>
+<span><span class="va">records</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">getRecords</span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -211,26 +211,26 @@
 <p>If the CSW server used supports Transaction operations (Insert, Update, Delete), <code>ows4R</code> allows you to perform these operations. The following examples highlight the different operations available:</p>
 <p><strong>Insert</strong></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mdfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"metadata.xml"</span>, package <span class="op">=</span> <span class="st">"ows4R"</span><span class="op">)</span>
-<span class="va">md</span> <span class="op">&lt;-</span> <span class="fu">geometa</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/geometa/man/ISOMetadata.html" class="external-link">ISOMetadata</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>xml <span class="op">=</span> <span class="fu">XML</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/XML/man/xmlTreeParse.html" class="external-link">xmlParse</a></span><span class="op">(</span><span class="va">mdfile</span><span class="op">)</span><span class="op">)</span>
-<span class="va">insert</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">insertRecord</span><span class="op">(</span>record <span class="op">=</span> <span class="va">md</span><span class="op">)</span>
-<span class="va">insert</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if inserted, FALSE otherwise</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mdfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"metadata.xml"</span>, package <span class="op">=</span> <span class="st">"ows4R"</span><span class="op">)</span></span>
+<span><span class="va">md</span> <span class="op">&lt;-</span> <span class="fu">geometa</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/geometa/man/ISOMetadata.html" class="external-link">ISOMetadata</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>xml <span class="op">=</span> <span class="fu">XML</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/XML/man/xmlTreeParse.html" class="external-link">xmlParse</a></span><span class="op">(</span><span class="va">mdfile</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">insert</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">insertRecord</span><span class="op">(</span>record <span class="op">=</span> <span class="va">md</span><span class="op">)</span></span>
+<span><span class="va">insert</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if inserted, FALSE otherwise</span></span></code></pre></div>
 <p><strong>Update (Full)</strong></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">md</span><span class="op">$</span><span class="va">identificationInfo</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">citation</span><span class="op">$</span><span class="fu">setTitle</span><span class="op">(</span><span class="st">"a new title"</span><span class="op">)</span>
-<span class="va">update</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">updateRecord</span><span class="op">(</span>record <span class="op">=</span> <span class="va">md</span><span class="op">)</span>
-<span class="va">update</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if updated, FALSE otherwise</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">md</span><span class="op">$</span><span class="va">identificationInfo</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">citation</span><span class="op">$</span><span class="fu">setTitle</span><span class="op">(</span><span class="st">"a new title"</span><span class="op">)</span></span>
+<span><span class="va">update</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">updateRecord</span><span class="op">(</span>record <span class="op">=</span> <span class="va">md</span><span class="op">)</span></span>
+<span><span class="va">update</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if updated, FALSE otherwise</span></span></code></pre></div>
 <p><strong>Update (Partial)</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">recordProperty</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWRecordProperty.html">CSWRecordProperty</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"apiso:Title"</span>, <span class="st">"NEW_TITLE"</span><span class="op">)</span>
-<span class="va">filter</span> <span class="op">=</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="../reference/PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"apiso:Identifier"</span>, <span class="va">md</span><span class="op">$</span><span class="va">fileIdentifier</span><span class="op">)</span><span class="op">)</span>
-<span class="va">constraint</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span>
-<span class="va">update</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">updateRecord</span><span class="op">(</span>recordProperty <span class="op">=</span> <span class="va">recordProperty</span>, constraint <span class="op">=</span> <span class="va">constraint</span><span class="op">)</span>
-<span class="va">update</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if updated, FALSE otherwise</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">recordProperty</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWRecordProperty.html">CSWRecordProperty</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"apiso:Title"</span>, <span class="st">"NEW_TITLE"</span><span class="op">)</span></span>
+<span><span class="va">filter</span> <span class="op">=</span> <span class="va"><a href="../reference/OGCFilter.html">OGCFilter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va"><a href="../reference/PropertyIsEqualTo.html">PropertyIsEqualTo</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"apiso:Identifier"</span>, <span class="va">md</span><span class="op">$</span><span class="va">fileIdentifier</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">constraint</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/CSWConstraint.html">CSWConstraint</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>filter <span class="op">=</span> <span class="va">filter</span><span class="op">)</span></span>
+<span><span class="va">update</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">updateRecord</span><span class="op">(</span>recordProperty <span class="op">=</span> <span class="va">recordProperty</span>, constraint <span class="op">=</span> <span class="va">constraint</span><span class="op">)</span></span>
+<span><span class="va">update</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if updated, FALSE otherwise</span></span></code></pre></div>
 <p><strong>Delete</strong></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">delete</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">deleteRecordById</span><span class="op">(</span><span class="va">md</span><span class="op">$</span><span class="va">fileIdentifier</span><span class="op">)</span>
-<span class="va">delete</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if deleted, FALSE otherwise</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">delete</span> <span class="op">&lt;-</span> <span class="va">CSW</span><span class="op">$</span><span class="fu">deleteRecordById</span><span class="op">(</span><span class="va">md</span><span class="op">$</span><span class="va">fileIdentifier</span><span class="op">)</span></span>
+<span><span class="va">delete</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span> <span class="co">#TRUE if deleted, FALSE otherwise</span></span></code></pre></div>
 <p>The methods <code>insertRecord</code> and <code>updateRecord</code> also support options to deal with <a href="https://github.com/eblondel/geometa" class="external-link">geometa</a> <code>ISOMetadata</code> objects. The option <code>geometa_validate</code> is set by default to <code>TRUE</code> and operates a validation vs. ISO/TC 19139 schemas. The option <code>geometa_inspire</code> can be enabled to test the metadata with INSPIRE. Records inserted/updated through CSW-T will then include a footer of XML comments containing the validation details. See the <a href="https://github.com/eblondel/geometa/wiki#423-validate-iso-19139-xml-metadata-documents" class="external-link">geometa documentation</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -246,7 +246,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>

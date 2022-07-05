@@ -129,25 +129,25 @@ WPSExecute"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Initializes a WPSExecute service request</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/WPSExecute.html">WPSExecute</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>
-  <span class="va">capabilities</span>,
-  <span class="va">op</span>,
-  <span class="va">url</span>,
-  <span class="va">serviceVersion</span>,
-  <span class="va">identifier</span>,
-  dataInputs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
-  responseForm <span class="op">=</span> <span class="cn">NULL</span>,
-  storeExecuteResponse <span class="op">=</span> <span class="cn">FALSE</span>,
-  lineage <span class="op">=</span> <span class="cn">NULL</span>,
-  status <span class="op">=</span> <span class="cn">NULL</span>,
-  user <span class="op">=</span> <span class="cn">NULL</span>,
-  pwd <span class="op">=</span> <span class="cn">NULL</span>,
-  token <span class="op">=</span> <span class="cn">NULL</span>,
-  headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span>,
-  logger <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/WPSExecute.html">WPSExecute</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>  <span class="va">capabilities</span>,</span>
+<span>  <span class="va">op</span>,</span>
+<span>  <span class="va">url</span>,</span>
+<span>  <span class="va">serviceVersion</span>,</span>
+<span>  <span class="va">identifier</span>,</span>
+<span>  dataInputs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  responseForm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  storeExecuteResponse <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  lineage <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  status <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  user <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pwd <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  token <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  logger <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -227,7 +227,7 @@ WPSExecute"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
 <h3 id="method-getprocessdescription-">Method <code>getProcessDescription()</code><a class="anchor" aria-label="anchor" href="#method-getprocessdescription-"></a></h3>
 <p>Get process description</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WPSExecute</span><span class="op">$</span><span class="fu">getProcessDescription</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WPSExecute</span><span class="op">$</span><span class="fu">getProcessDescription</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -239,7 +239,7 @@ WPSExecute"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">WPSExecute</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WPSExecute</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -264,7 +264,7 @@ WPSExecute"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

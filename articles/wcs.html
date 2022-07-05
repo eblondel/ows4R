@@ -88,7 +88,7 @@
 </h3>
 <p>In order to operate on a Web Coverage Service, you need to create an interface in R to this WCS. This is done with the class <code>WCSClient</code>, as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">WCS</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WCSClient.html">WCSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"https://ows.rasdaman.org/rasdaman/ows"</span>, <span class="st">"2.1.0"</span>, logger <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">WCS</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WCSClient.html">WCSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"https://ows.rasdaman.org/rasdaman/ows"</span>, <span class="st">"2.1.0"</span>, logger <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></span></code></pre></div>
 <p>You can define the level of logger: “INFO” to get ows4R logs, “DEBUG” for all internal logs (such as as Curl details). It is also possible to define a username and password (<code>user</code> and <code>pwd</code> parameters) in case operations would require an authentication to use the Web Coverage Service.</p>
 <p>Note: It is also possible to connect ot a WCS by means of a Central Authentication System (CAS) with the <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> <code>CASClient</code>. To do so, you can pass the CAS URL by means of the <code>cas_url</code> argument.</p>
 </div>
@@ -97,7 +97,7 @@
 </h3>
 <p>When create the <code>WCSClient</code>, <code>ows4R</code> will run a <code>GetCapabilities</code> request. To access the WCS Capabilities and its sections, you can use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">caps</span> <span class="op">&lt;-</span> <span class="va">WCS</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">caps</span> <span class="op">&lt;-</span> <span class="va">WCS</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-coverage-summaries">Get coverage summaries<a class="anchor" aria-label="anchor" href="#get-coverage-summaries"></a>
@@ -105,7 +105,7 @@
 <p>From the capabilities, it is possible to get all coverage summaries by doing <code>caps$getCoverageSummaries()</code>. This method will return a list of objects of class <code>WCSCoverageSummary</code>.</p>
 <p>To get/find a specific coverage summary by name, you can run the following method:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chla</span> <span class="op">&lt;-</span> <span class="va">caps</span><span class="op">$</span><span class="fu">findCoverageSummaryById</span><span class="op">(</span><span class="st">"AverageChloroColorScaled"</span>, exact <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chla</span> <span class="op">&lt;-</span> <span class="va">caps</span><span class="op">$</span><span class="fu">findCoverageSummaryById</span><span class="op">(</span><span class="st">"AverageChloroColorScaled"</span>, exact <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="describe-a-coverage-describecoverage">Describe a coverage (<code>DescribeCoverage</code>)<a class="anchor" aria-label="anchor" href="#describe-a-coverage-describecoverage"></a>
@@ -115,22 +115,22 @@
 <li><em>Get description from a coverage summary</em></li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chla_des</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDescription</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chla_des</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDescription</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li><em>Get description from the WCS client</em></li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chla_des</span> <span class="op">&lt;-</span> <span class="va">WCS</span><span class="op">$</span><span class="fu">describeCoverage</span><span class="op">(</span><span class="st">"AverageChloroColorScaled"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chla_des</span> <span class="op">&lt;-</span> <span class="va">WCS</span><span class="op">$</span><span class="fu">describeCoverage</span><span class="op">(</span><span class="st">"AverageChloroColorScaled"</span><span class="op">)</span></span></code></pre></div>
 <p>A coverage description corresponds to an exhaustive metadata set describing the coverage characteristics such as the coverage limits in space and time. It is represented by an object of class <code>WCSCoverageDescription</code> including core GML metadata properties usable in R thanks to <a href="https://github.com/eblondel/geometa" class="external-link">geometa</a>.</p>
 <ul>
 <li><em>Get list of coverage dimensions</em></li>
 </ul>
 <p>Associated with the coverage description, <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> defined a convenient method to list the dimensions of the coverage:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chla_dims</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chla_dims</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This method is particularly useful for spatio-temporal coverage, allowing to retrieve the temporal extent (with time instants available for the given coverage). In the present example, the coverage is available for download for a certain number of time instants:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chla_time_instants</span> <span class="op">&lt;-</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chla_time_instants</span> <span class="op">&lt;-</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-coverage-data-getcoverage">Get coverage data (<code>GetCoverage</code>)<a class="anchor" aria-label="anchor" href="#get-coverage-data-getcoverage"></a>
@@ -147,20 +147,20 @@
 <em>trimming</em>: to specify min-max values range for a specific dimension, eg. lon/lat</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, 
-  time <span class="op">=</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, </span>
+<span>  time <span class="op">=</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>The result of the <code>getCoverage</code> method will be an object of class <code>SpatRaster</code> from <a href="https://cran.r-project.org/package=terra" class="external-link">terra</a> package.</p>
 <ul>
 <li><em>Get stack of coverages</em></li>
 </ul>
 <p><a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> extends on the WCS standard and allows users to download a coverage stack by means of the extra <code>getCoverageStack</code> method (only available from a coverage summary object). The below code shows to download a timeseries of coverages for the latest five time instants available:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cov_stack</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, 
-  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span>, <span class="fl">5</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cov_stack</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, </span>
+<span>  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="download-coverage-data-files">Download coverage data files<a class="anchor" aria-label="anchor" href="#download-coverage-data-files"></a>
@@ -171,55 +171,55 @@
 </ul>
 <p>The <code>getCoverage</code> method provides a <code>filename</code> argument that can be used to download the data files:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, 
-  time <span class="op">=</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
-  filename <span class="op">=</span> <span class="st">"myfile.tif"</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, </span>
+<span>  time <span class="op">=</span> <span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>  filename <span class="op">=</span> <span class="st">"myfile.tif"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li><em>from a coverage stack</em></li>
 </ul>
 <p>To download data files for a coverage stack, it is required to provide a function, handled with the argument <code>filename_handler</code> that will set for each coverage the target file name. Such function should have a set of mandatory arguments, namely: <code>identifier</code> (coverage identifier), <code>time</code> (time filter), <code>elevation</code> (elevation filter), <code>bbox</code> (bbox filter), <code>format</code> (target format); The output of this function will be filename to be used for the given coverage. To simplify the download <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> puts at disposal a ready-to-use filename handler named <code>WCSCoverageFilenameHandler</code> that is enough to add to trigger the data files download.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cov_stack</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, 
-  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span>, <span class="fl">5</span><span class="op">)</span>,
-  filename_handler <span class="op">=</span> <span class="va">WCSCoverageFilenameHandler</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cov_stack</span> <span class="op">&lt;-</span> <span class="va">chla</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">9</span>, <span class="fl">40</span>, <span class="fl">42</span><span class="op">)</span>, </span>
+<span>  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">chla_dims</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  filename_handler <span class="op">=</span> <span class="va">WCSCoverageFilenameHandler</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="comparing-data-get-from-wcs-getcoverage-vs--wms-getfeatureinfo">Comparing data get from WCS (<code>GetCoverage</code>) vs. WMS (<code>GetFeatureInfo</code>)<a class="anchor" aria-label="anchor" href="#comparing-data-get-from-wcs-getcoverage-vs--wms-getfeatureinfo"></a>
 </h3>
 <p>As matter of quality assurance, it is possible to compare raster data values get using the WCS/Getcoverage with the data values get from a WMS/GetFeatureInfo operation (emulating a map click). The below example illustrates this check:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org" class="external-link">testthat</a></span><span class="op">)</span>
-
-<span class="co">#Get data using WCS</span>
-<span class="va">vliz</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WCSClient.html">WCSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://geo.vliz.be/geoserver/wcs"</span>, serviceVersion <span class="op">=</span> <span class="st">"2.0.1"</span>, logger <span class="op">=</span> <span class="st">"DEBUG"</span><span class="op">)</span>
-<span class="va">cov</span> <span class="op">&lt;-</span> <span class="va">vliz</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">findCoverageSummaryById</span><span class="op">(</span><span class="st">"Emodnetbio__aca_spp_19582016_L1"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">cov_des</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDescription</span><span class="op">(</span><span class="op">)</span>
-<span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.37</span>,<span class="fl">8.41</span>,<span class="fl">58.18</span>,<span class="fl">58.24</span><span class="op">)</span>,
-  time <span class="op">=</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-<span class="op">)</span>
-<span class="va">cov_data_stack</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span>
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.37</span>,<span class="fl">8.41</span>,<span class="fl">58.18</span>,<span class="fl">58.24</span><span class="op">)</span>,
-  time <span class="op">=</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html" class="external-link">expect_true</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/compareGeom.html" class="external-link">compareGeom</a></span><span class="op">(</span><span class="va">cov_data</span>,<span class="va">cov_data_stack</span><span class="op">)</span><span class="op">)</span>
-  
-<span class="co">#compare with data returned by WMS GetFeatureInfo</span>
-<span class="va">vliz_wms</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WMSClient.html">WMSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://geo.vliz.be/geoserver/wms"</span>, service <span class="op">=</span> <span class="st">"1.1.1"</span>, logger <span class="op">=</span> <span class="st">"DEBUG"</span><span class="op">)</span>
-<span class="va">gfi</span> <span class="op">&lt;-</span> <span class="va">vliz_wms</span><span class="op">$</span><span class="fu">getFeatureInfo</span><span class="op">(</span>
-  layer <span class="op">=</span> <span class="st">"Emodnetbio:aca_spp_19582016_L1"</span>, feature_count <span class="op">=</span> <span class="fl">1</span>, 
-  x <span class="op">=</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">50</span>, srs <span class="op">=</span> <span class="st">"EPSG:4326"</span>, 
-  width <span class="op">=</span> <span class="fl">101</span>, height <span class="op">=</span> <span class="fl">101</span>, 
-  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.12713623046875</span>,<span class="fl">8.68194580078125</span>,<span class="fl">57.92266845703125</span>,<span class="fl">58.47747802734375</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co">#final check</span>
-<span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html" class="external-link">expect_equal</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">cov_data</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">gfi</span><span class="op">$</span><span class="va">relative_abundance</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org" class="external-link">testthat</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Get data using WCS</span></span>
+<span><span class="va">vliz</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WCSClient.html">WCSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://geo.vliz.be/geoserver/wcs"</span>, serviceVersion <span class="op">=</span> <span class="st">"2.0.1"</span>, logger <span class="op">=</span> <span class="st">"DEBUG"</span><span class="op">)</span></span>
+<span><span class="va">cov</span> <span class="op">&lt;-</span> <span class="va">vliz</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">findCoverageSummaryById</span><span class="op">(</span><span class="st">"Emodnetbio__aca_spp_19582016_L1"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">cov_des</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDescription</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">cov_data</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getCoverage</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.37</span>,<span class="fl">8.41</span>,<span class="fl">58.18</span>,<span class="fl">58.24</span><span class="op">)</span>,</span>
+<span>  time <span class="op">=</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">cov_data_stack</span> <span class="op">&lt;-</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getCoverageStack</span><span class="op">(</span></span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.37</span>,<span class="fl">8.41</span>,<span class="fl">58.18</span>,<span class="fl">58.24</span><span class="op">)</span>,</span>
+<span>  time <span class="op">=</span> <span class="va">cov</span><span class="op">$</span><span class="fu">getDimensions</span><span class="op">(</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html" class="external-link">expect_true</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/compareGeom.html" class="external-link">compareGeom</a></span><span class="op">(</span><span class="va">cov_data</span>,<span class="va">cov_data_stack</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="co">#compare with data returned by WMS GetFeatureInfo</span></span>
+<span><span class="va">vliz_wms</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/WMSClient.html">WMSClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://geo.vliz.be/geoserver/wms"</span>, service <span class="op">=</span> <span class="st">"1.1.1"</span>, logger <span class="op">=</span> <span class="st">"DEBUG"</span><span class="op">)</span></span>
+<span><span class="va">gfi</span> <span class="op">&lt;-</span> <span class="va">vliz_wms</span><span class="op">$</span><span class="fu">getFeatureInfo</span><span class="op">(</span></span>
+<span>  layer <span class="op">=</span> <span class="st">"Emodnetbio:aca_spp_19582016_L1"</span>, feature_count <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>  x <span class="op">=</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">50</span>, srs <span class="op">=</span> <span class="st">"EPSG:4326"</span>, </span>
+<span>  width <span class="op">=</span> <span class="fl">101</span>, height <span class="op">=</span> <span class="fl">101</span>, </span>
+<span>  bbox <span class="op">=</span> <span class="va">OWSUtils</span><span class="op">$</span><span class="fu">toBBOX</span><span class="op">(</span><span class="fl">8.12713623046875</span>,<span class="fl">8.68194580078125</span>,<span class="fl">57.92266845703125</span>,<span class="fl">58.47747802734375</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#final check</span></span>
+<span><span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html" class="external-link">expect_equal</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">cov_data</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">gfi</span><span class="op">$</span><span class="va">relative_abundance</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -234,7 +234,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>
