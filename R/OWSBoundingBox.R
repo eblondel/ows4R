@@ -81,12 +81,23 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
      #'@description Get BBOX as object of class \code{bbox} from \pkg{sf} package
      #'@return a numeric vector of length four, with xmin, ymin, xmax and ymax values
      getBBOX = function(){
+       
+       bbox_crs <- sf::st_crs(4326)
+       if(!is.null(self$attrs$crs)){
+         crs_parts <- unlist(strsplit(self$attrs$crs, "EPSG:"))
+         if(length(crs_parts)==2){
+           srid <- as.integer(crs_parts[2])
+           if(!is.na(srid)) bbox_crs <- sf::st_crs(srid)
+         }
+       }
+       
        sf::st_bbox(c(
          xmin = self$LowerCorner[[1]], 
          ymin = self$LowerCorner[[2]],
          xmax = self$UpperCorner[[1]], 
          ymax = self$UpperCorner[[2]] 
-       ), crs = sf::st_crs(4326))
+       ), crs = bbox_crs
+      )
      }
    )
 )
