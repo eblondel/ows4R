@@ -1,4 +1,10 @@
-## [ows4R 0.3](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-1](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+
+**Corrections**
+
+- [#87](https://github.com/eblondel/ows4R/issues/87) Upgrade roxygen2 7.2.1 to fix html issues
+
+## [ows4R 0.3](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 
 **New features**
@@ -20,7 +26,7 @@
 - [#56](https://github.com/eblondel/ows4R/issues/56) Duplicate feature with findFeatureTypeByName
 - [#76](https://github.com/eblondel/ows4R/issues/76) WFS getFeatures with json and csv do not work - bad writer
 
-## [ows4R 0.2](https://cran.r-project.org/package=ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.2](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.2.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.2.tar.gz)
 
 **Corrections**
 
