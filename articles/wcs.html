@@ -138,7 +138,8 @@
 <ul>
 <li><em>Get single coverage</em></li>
 </ul>
-<p>Having a coverage well-described and its dimensions well-known, it’s then possible to get the coverage data. Similarly to the coverage description, coverage data can be get either from the coverage summary, or directly through the WCS Client (specifying the coverage name as first argument). The below examples show how to get coverage from the coverage summary object.</p>
+<p>Having a coverage well-described and its dimensions well-known, it’s then possible to get the coverage data. Similarly to the coverage description, coverage data can be get either from the coverage summary, or directly through the WCS Client (specifying the coverage name as first argument). Note however that because getting data from the WCS, data is not DIRECTLY accessed into R through the web-service, data has to be downloaded as temporary file within the R session temp directory. This is done transparently by ows4R, without any action required by user.</p>
+<p>The below examples show how to get coverage from the coverage summary object.</p>
 <p>It is then possible to limit the spatial (or spatial-temporal) extent by doing:</p>
 <ul>
 <li>
@@ -165,7 +166,7 @@
 <div class="section level3">
 <h3 id="download-coverage-data-files">Download coverage data files<a class="anchor" aria-label="anchor" href="#download-coverage-data-files"></a>
 </h3>
-<p>The above methods described allow to directly read coverage data within R with <a href="https://cran.r-project.org/package=terra" class="external-link">terra</a> package. However it is sometimes required or wished to download coverage data files on the file system. <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> allows to download coverage data files both in <code>getCoverage</code> and <code>getCoverageStack</code>.</p>
+<p>The above methods described allow to read coverage data within R with <a href="https://cran.r-project.org/package=terra" class="external-link">terra</a> package without persisting data in specific files named by user, but as temporary file within the R session temp directory. However it is sometimes required or wished to download coverage data files on the file system. <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> allows to download coverage data files both in <code>getCoverage</code> and <code>getCoverageStack</code>.</p>
 <ul>
 <li><em>for a single coverage</em></li>
 </ul>
