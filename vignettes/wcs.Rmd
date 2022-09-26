@@ -83,7 +83,9 @@ chla_time_instants <- chla_dims[[1]]$coefficients
 
 * *Get single coverage*
 
-Having a coverage well-described and its dimensions well-known, it's then possible to get the coverage data. Similarly to the coverage description, coverage data can be get either from the coverage summary, or directly through the WCS Client (specifying the coverage name as first argument). The below examples show how to get coverage from the coverage summary object.
+Having a coverage well-described and its dimensions well-known, it's then possible to get the coverage data. Similarly to the coverage description, coverage data can be get either from the coverage summary, or directly through the WCS Client (specifying the coverage name as first argument). Note however that because getting data from the WCS, data is not DIRECTLY accessed into R through the web-service, data has to be downloaded as temporary file within the R session temp directory. This is done transparently by ows4R, without any action required by user.
+
+The below examples show how to get coverage from the coverage summary object.
 
 It is then possible to limit the spatial (or spatial-temporal) extent by doing:
 
@@ -112,7 +114,7 @@ cov_stack <- chla$getCoverageStack(
 
 ### Download coverage data files
 
-The above methods described allow to directly read coverage data within R with [terra](https://cran.r-project.org/package=terra) package. However it is sometimes required or wished to download coverage data files on the file system. [ows4R](https://github.com/eblondel/ows4R) allows to download coverage data files both in `getCoverage` and `getCoverageStack`.
+The above methods described allow to read coverage data within R with [terra](https://cran.r-project.org/package=terra) package without persisting data in specific files named by user, but as temporary file within the R session temp directory. However it is sometimes required or wished to download coverage data files on the file system. [ows4R](https://github.com/eblondel/ows4R) allows to download coverage data files both in `getCoverage` and `getCoverageStack`.
 
 * *for a single coverage*
 
