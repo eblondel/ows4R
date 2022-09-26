@@ -441,8 +441,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                beginPosition <- env$beginPosition
                endPosition <- env$endPosition
                bbox <- matrix(c(
-                 env$lowerCorner, format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
-                 env$upperCorner, format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+                 env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+                 env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
                ),length(env$lowerCorner)+1,2)
                env <- GMLEnvelope$new(bbox = bbox)
                env$attrs <- envattrs
@@ -458,8 +458,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                beginPosition <- env$beginPosition
                endPosition <- env$endPosition
                bbox <- matrix(c(
-                 env$lowerCorner, format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
-                 env$upperCorner, format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+                 env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+                 env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
                ),length(env$lowerCorner)+1,2)
                env <- GMLEnvelope$new(bbox = bbox)
                env$attrs <- envattrs
@@ -487,8 +487,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             upperCorner <- NULL
             
             if(is(refEnvelope, "GMLEnvelopeWithTimePeriod")){
-              lowerCorner <- cbind(envelope$lowerCorner, format(refEnvelope$beginPosition$value, "%Y-%m-%dT%H:%M:%S"))
-              upperCorner <- cbind(envelope$upperCorner, format(refEnvelope$endPosition$value, "%Y-%m-%dT%H:%M:%S"))
+              lowerCorner <- cbind(envelope$lowerCorner, base::format(refEnvelope$beginPosition$value, "%Y-%m-%dT%H:%M:%S"))
+              upperCorner <- cbind(envelope$upperCorner, base::format(refEnvelope$endPosition$value, "%Y-%m-%dT%H:%M:%S"))
             }else{
               if(axisLatIdx == 1 || axisLonIdx == 1){
                 lowerCorner <- cbind(envelope$lowerCorner, refEnvelope$lowerCorner[,3:length(refEnvelope$lowerCorner)])
@@ -529,9 +529,9 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             time <- defaultTime
           }else{
             if(!(time %in% timeDim$coefficients)){
-              error <- sprintf("The 'time' specified value is not valid. Allowed values for this coverage are [%s]",
+              errorMsg <- sprintf("The 'time' specified value is not valid. Allowed values for this coverage are [%s]",
                                paste(timeDim$coefficients, collapse=","))
-              self$ERROR(error)
+              self$ERROR(errorMsg)
               stop(errorMsg)
             }
           }
@@ -603,7 +603,10 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         #for WCS 1.0.x / 2.x take directly the data
         covfile <- NULL
         if(!is.null(filename)){ covfile <- filename }else{ 
-          covfile <- WCSCoverageFilenameHandler(identifier = self$CoverageId, time = time, elevation = elevation, format = format, bbox = bbox)
+          covfile <- file.path(
+            tempdir(),
+            WCSCoverageFilenameHandler(identifier = self$CoverageId, time = time, elevation = elevation, format = format, bbox = bbox)
+          )
         }
         writeBin(resp, covfile)
         coverage_data <- terra::rast(covfile)
