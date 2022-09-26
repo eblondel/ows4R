@@ -331,19 +331,19 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     },
     
     #'@description Get coverage data
-    #'@param bbox bbox. Default is \code{NULL}
-    #'@param crs crs. Default is \code{NULL}
-    #'@param time time. Default is \code{NULL}
-    #'@param elevation elevation. Default is \code{NULL}
-    #'@param format format. Default will be GeoTIFF, coded differently depending on the WCS version.
+    #'@param bbox bbox. Object of class \code{matrix}. Default is \code{NULL}. eg. \code{OWSUtils$toBBOX(-180,180,-90,90)}
+    #'@param crs crs. Object of class \code{character} giving the CRS identifier (EPSG prefixed code, or URI/URN). Default is \code{NULL}.
+    #'@param time time. Object of class \code{character} representing time instant/period. Default is \code{NULL}
+    #'@param elevation elevation. Object of class \code{character} or \code{numeric}. Default is \code{NULL}
+    #'@param format format. Object of class \code{character} Default will be GeoTIFF, coded differently depending on the WCS version.
     #'@param rangesubset rangesubset. Default is \code{NULL}
     #'@param gridbaseCRS grid base CRS. Default is \code{NULL}
     #'@param gridtype grid type. Default is \code{NULL}
     #'@param gridCS grid CS. Default is \code{NULL}
     #'@param gridorigin grid origin. Default is \code{NULL}
     #'@param gridoffsets grid offsets. Default is \code{NULL}
-    #'@param method method to get coverage, either 'GET' or 'POST' (experimental - under development)
-    #'@param filename filename. Optional filename to download the coverage
+    #'@param method method to get coverage, either 'GET' or 'POST' (experimental - under development). Object of class \code{character}.
+    #'@param filename filename. Object of class \code{character}. Optional filename to download the coverage
     #'@param ... any other argument to \link{WCSGetCoverage}
     #'@return an object of class \code{SpatRaster} from \pkg{terra}
     getCoverage = function(bbox = NULL, crs = NULL, 

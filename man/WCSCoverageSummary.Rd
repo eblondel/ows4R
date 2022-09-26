@@ -222,15 +222,15 @@ Get coverage data
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{bbox}}{bbox. Default is \code{NULL}}
+\item{\code{bbox}}{bbox. Object of class \code{matrix}. Default is \code{NULL}. eg. \code{OWSUtils$toBBOX(-180,180,-90,90)}}
 
-\item{\code{crs}}{crs. Default is \code{NULL}}
+\item{\code{crs}}{crs. Object of class \code{character} giving the CRS identifier (EPSG prefixed code, or URI/URN). Default is \code{NULL}.}
 
-\item{\code{time}}{time. Default is \code{NULL}}
+\item{\code{time}}{time. Object of class \code{character} representing time instant/period. Default is \code{NULL}}
 
-\item{\code{elevation}}{elevation. Default is \code{NULL}}
+\item{\code{elevation}}{elevation. Object of class \code{character} or \code{numeric}. Default is \code{NULL}}
 
-\item{\code{format}}{format. Default will be GeoTIFF, coded differently depending on the WCS version.}
+\item{\code{format}}{format. Object of class \code{character} Default will be GeoTIFF, coded differently depending on the WCS version.}
 
 \item{\code{rangesubset}}{rangesubset. Default is \code{NULL}}
 
@@ -244,9 +244,9 @@ Get coverage data
 
 \item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
 
-\item{\code{method}}{method to get coverage, either 'GET' or 'POST' (experimental - under development)}
+\item{\code{method}}{method to get coverage, either 'GET' or 'POST' (experimental - under development). Object of class \code{character}.}
 
-\item{\code{filename}}{filename. Optional filename to download the coverage}
+\item{\code{filename}}{filename. Object of class \code{character}. Optional filename to download the coverage}
 
 \item{\code{...}}{any other argument to \link{WCSGetCoverage}}
 }

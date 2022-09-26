@@ -6,6 +6,8 @@
 #' @return Object of \code{\link{R6Class}} for modelling a WCS DescribeCoverage request
 #' @format \code{\link{R6Class}} object.
 #' 
+#' @note Class used internally by \pkg{ows4R} to trigger a WCS DescribeCoverage request
+#' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WCSDescribeCoverage <- R6Class("WCSDescribeCoverage",

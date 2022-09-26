@@ -16,7 +16,7 @@ WPSDescribeProcess
 WPSDescribeProcess
 }
 \note{
-Abstract class used by \pkg{ows4R} to trigger a WPS DescribeProcess request
+Class used internally by \pkg{ows4R} to trigger a WPS DescribeProcess request
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

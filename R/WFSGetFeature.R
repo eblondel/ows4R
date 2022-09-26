@@ -6,7 +6,7 @@
 #' @return Object of \code{\link{R6Class}} for modelling a WFS GetFeature request
 #' @format \code{\link{R6Class}} object.
 #' 
-#' @note Abstract class used by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
+#' @note Class used internally by \pkg{ows4R} to trigger a WFS GetFeature request
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

@@ -16,7 +16,7 @@ WPSExecute
 WPSExecute
 }
 \note{
-Abstract class used by \pkg{ows4R} to trigger a WPS Execute request
+Class used internally by \pkg{ows4R} to trigger a WPS Execute request
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

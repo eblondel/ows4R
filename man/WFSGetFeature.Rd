@@ -16,7 +16,7 @@ WFSGetFeature
 WFSGetFeature
 }
 \note{
-Abstract class used by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
+Class used internally by \pkg{ows4R} to trigger a WFS GetFeature request
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

@@ -6,7 +6,7 @@
 #' @return Object of \code{\link{R6Class}} for modelling a WPS DescribeProcess request
 #' @format \code{\link{R6Class}} object.
 #' 
-#' @note Abstract class used by \pkg{ows4R} to trigger a WPS DescribeProcess request
+#' @note Class used internally by \pkg{ows4R} to trigger a WPS DescribeProcess request
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

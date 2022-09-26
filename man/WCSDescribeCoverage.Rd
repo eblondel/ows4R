@@ -15,6 +15,9 @@ WCSDescribeCoverage
 
 WCSDescribeCoverage
 }
+\note{
+Class used internally by \pkg{ows4R} to trigger a WCS DescribeCoverage request
+}
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 }

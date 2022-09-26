@@ -6,7 +6,7 @@
 #' @return Object of \code{\link{R6Class}} modelling a WFS feature type
 #' @format \code{\link{R6Class}} object.
 #' 
-#' @note Internal class used by \pkg{ows4R}
+#' @note Class used internally by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

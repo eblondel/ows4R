@@ -16,7 +16,7 @@ WFSFeatureType
 WFSFeatureType
 }
 \note{
-Internal class used by \pkg{ows4R}
+Class used internally by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

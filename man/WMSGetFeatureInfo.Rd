@@ -16,7 +16,7 @@ WMSGetFeatureInfo
 WMSGetFeatureInfo
 }
 \note{
-Abstract class used by \pkg{ows4R} to trigger a WMS GetFeatureInfo request
+Class used internally by \pkg{ows4R} to trigger a WMS GetFeatureInfo request
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

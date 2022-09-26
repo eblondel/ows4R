@@ -6,7 +6,7 @@
 #' @return Object of \code{\link{R6Class}} for modelling a GetCapabilities request
 #' @format \code{\link{R6Class}} object.
 #' 
-#' @note Abstract class used internally by \pkg{ows4R}
+#' @note Class used internally by \pkg{ows4R} to trigger a OWS GetCapabilities request
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
