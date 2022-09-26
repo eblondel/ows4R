@@ -104,8 +104,8 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
               if(!is.null(dimension)){
                 if(dimension$type == "geographic"){
                   subsetKvp <- sprintf("%s(%s,%s)",subset,
-                                       format(unlist(envelope$lowerCorner[,i]), scientific = FALSE), 
-                                       format(unlist(envelope$upperCorner[,i]), scientific = FALSE))
+                                       base::format(unlist(envelope$lowerCorner[,i]), scientific = FALSE), 
+                                       base::format(unlist(envelope$upperCorner[,i]), scientific = FALSE))
                 }else{
                   value <- switch(dimension$type,
                                   "temporal" = time,
@@ -115,9 +115,9 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
                   if(!is.null(value)){
                     if(is(value, "numeric")){
                       if(length(value)==1){
-                        subsetKvp <- sprintf("%s(%s)",subset, format(value, scientific = FALSE)) 
+                        subsetKvp <- sprintf("%s(%s)",subset, base::format(value, scientific = FALSE)) 
                       }else if(length(value)==2){
-                        subsetKvp <- sprintf("%s(%s,%s)",subset, format(value, scientific = FALSE), format(value, scientific = FALSE))
+                        subsetKvp <- sprintf("%s(%s,%s)",subset, base::format(value, scientific = FALSE), base::format(value, scientific = FALSE))
                       }
                       
                     }else{
@@ -181,7 +181,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         if(substr(serviceVersion,1,3)=="1.1") mimeType <- "text/xml"
         
         super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
-                         capabilities, op, "GET", url, request = private$xmlElement,
+                         capabilities = capabilities, op = op, type = "GET", url = url, request = private$xmlElement,
                          user = user, pwd = pwd, token = token, headers = headers, config = config,
                          namedParams = namedParams, mimeType = mimeType,
                          logger = logger, ...)
@@ -191,7 +191,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         nsVersion <- substr(serviceVersion,1,3)
         private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", nsVersion), sep="_")
         super$initialize(element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
-                         capabilities, op, "POST", url, request = private$xmlElement,
+                         capabilities = capabilities, op = op, type = "POST", url = url, request = private$xmlElement,
                          user = user, pwd = pwd, token = token, headers = headers, config = config,
                          contentType = "text/xml", mimeType = format,
                          logger = logger, ...)
