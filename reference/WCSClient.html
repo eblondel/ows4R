@@ -226,6 +226,8 @@ Web Coverage Service.</p>
 <span>  gridCS <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gridorigin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gridoffsets <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"GET"</span>,</span>
+<span>  filename <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -233,23 +235,23 @@ Web Coverage Service.</p>
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>identifier</code></dt>
-<dd><p>identifier</p></dd>
+<dd><p>Coverage identifier. Object of class <code>character</code></p></dd>
 
 
 <dt><code>bbox</code></dt>
-<dd><p>bbox. Default is <code>NULL</code></p></dd>
+<dd><p>bbox. Object of class <code>matrix</code>. Default is <code>NULL</code>. eg. <code>OWSUtils$toBBOX(-180,180,-90,90)</code></p></dd>
 
 
 <dt><code>crs</code></dt>
-<dd><p>crs. Default is <code>NULL</code></p></dd>
+<dd><p>crs. Object of class <code>character</code> giving the CRS identifier (EPSG prefixed code, or URI/URN). Default is <code>NULL</code>.</p></dd>
 
 
 <dt><code>time</code></dt>
-<dd><p>time. Default is <code>NULL</code></p></dd>
+<dd><p>time. Object of class <code>character</code> representing time instant/period. Default is <code>NULL</code></p></dd>
 
 
 <dt><code>format</code></dt>
-<dd><p>format. Default is "image/tiff"</p></dd>
+<dd><p>format. Object of class <code>character</code> Default will be GeoTIFF, coded differently depending on the WCS version.</p></dd>
 
 
 <dt><code>rangesubset</code></dt>
@@ -276,19 +278,27 @@ Web Coverage Service.</p>
 <dd><p>grid offsets. Default is <code>NULL</code></p></dd>
 
 
+<dt><code>method</code></dt>
+<dd><p>method to get coverage, either 'GET' or 'POST' (experimental - under development). Object of class <code>character</code>.</p></dd>
+
+
+<dt><code>filename</code></dt>
+<dd><p>filename. Object of class <code>character</code>. Optional filename to download the coverage</p></dd>
+
+
 <dt><code>...</code></dt>
-<dd><p>any other argument to pass to the WCS GetCoverage request</p></dd>
+<dd><p>any other argument to <a href="WCSGetCoverage.html">WCSGetCoverage</a></p></dd>
 
 
 <dt><code>elevation</code></dt>
-<dd><p>elevation. Default is <code>NULL</code></p></dd>
+<dd><p>elevation. Object of class <code>character</code> or <code>numeric</code>. Default is <code>NULL</code></p></dd>
 
 
 </dl><p></p></div>
 </div>
 <div class="section">
 <h4 id="returns-2">Returns<a class="anchor" aria-label="anchor" href="#returns-2"></a></h4>
-<p>an object of class SpatRaster from <span class="pkg">terra</span></p>
+<p>an object of class <code>SpatRaster</code> from <span class="pkg">terra</span></p>
 </div>
 
 </div><p></p><hr><a id="method-WCSClient-clone"></a><div class="section">
