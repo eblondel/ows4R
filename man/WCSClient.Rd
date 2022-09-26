@@ -173,6 +173,8 @@ Get coverage
   gridCS = NULL,
   gridorigin = NULL,
   gridoffsets = NULL,
+  method = "GET",
+  filename = NULL,
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -180,15 +182,15 @@ Get coverage
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{identifier}}{identifier}
+\item{\code{identifier}}{Coverage identifier. Object of class \code{character}}
 
-\item{\code{bbox}}{bbox. Default is \code{NULL}}
+\item{\code{bbox}}{bbox. Object of class \code{matrix}. Default is \code{NULL}. eg. \code{OWSUtils$toBBOX(-180,180,-90,90)}}
 
-\item{\code{crs}}{crs. Default is \code{NULL}}
+\item{\code{crs}}{crs. Object of class \code{character} giving the CRS identifier (EPSG prefixed code, or URI/URN). Default is \code{NULL}.}
 
-\item{\code{time}}{time. Default is \code{NULL}}
+\item{\code{time}}{time. Object of class \code{character} representing time instant/period. Default is \code{NULL}}
 
-\item{\code{format}}{format. Default is "image/tiff"}
+\item{\code{format}}{format. Object of class \code{character} Default will be GeoTIFF, coded differently depending on the WCS version.}
 
 \item{\code{rangesubset}}{rangesubset. Default is \code{NULL}}
 
@@ -202,14 +204,18 @@ Get coverage
 
 \item{\code{gridoffsets}}{grid offsets. Default is \code{NULL}}
 
-\item{\code{...}}{any other argument to pass to the WCS GetCoverage request}
+\item{\code{method}}{method to get coverage, either 'GET' or 'POST' (experimental - under development). Object of class \code{character}.}
 
-\item{\code{elevation}}{elevation. Default is \code{NULL}}
+\item{\code{filename}}{filename. Object of class \code{character}. Optional filename to download the coverage}
+
+\item{\code{...}}{any other argument to \link{WCSGetCoverage}}
+
+\item{\code{elevation}}{elevation. Object of class \code{character} or \code{numeric}. Default is \code{NULL}}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-an object of class \link{SpatRaster} from \pkg{terra}
+an object of class \code{SpatRaster} from \pkg{terra}
 }
 }
 \if{html}{\out{<hr>}}

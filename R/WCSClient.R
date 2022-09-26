@@ -75,31 +75,34 @@ WCSClient <- R6Class("WCSClient",
      },
      
      #'@description Get coverage
-     #'@param identifier identifier
-     #'@param bbox bbox. Default is \code{NULL}
-     #'@param crs crs. Default is \code{NULL}
-     #'@param time time. Default is \code{NULL}
-     #'@param elevation elevation. Default is \code{NULL}
-     #'@param format format. Default is "image/tiff"
+     #'@param identifier Coverage identifier. Object of class \code{character}
+     #'@param bbox bbox. Object of class \code{matrix}. Default is \code{NULL}. eg. \code{OWSUtils$toBBOX(-180,180,-90,90)}
+     #'@param crs crs. Object of class \code{character} giving the CRS identifier (EPSG prefixed code, or URI/URN). Default is \code{NULL}.
+     #'@param time time. Object of class \code{character} representing time instant/period. Default is \code{NULL}
+     #'@param elevation elevation. Object of class \code{character} or \code{numeric}. Default is \code{NULL}
+     #'@param format format. Object of class \code{character} Default will be GeoTIFF, coded differently depending on the WCS version.
      #'@param rangesubset rangesubset. Default is \code{NULL}
      #'@param gridbaseCRS grid base CRS. Default is \code{NULL}
      #'@param gridtype grid type. Default is \code{NULL}
      #'@param gridCS grid CS. Default is \code{NULL}
      #'@param gridorigin grid origin. Default is \code{NULL}
      #'@param gridoffsets grid offsets. Default is \code{NULL}
-     #'@param ... any other argument to pass to the WCS GetCoverage request
-     #'@return an object of class \link{SpatRaster} from \pkg{terra}
+     #'@param method method to get coverage, either 'GET' or 'POST' (experimental - under development). Object of class \code{character}.
+     #'@param filename filename. Object of class \code{character}. Optional filename to download the coverage
+     #'@param ... any other argument to \link{WCSGetCoverage}
+     #'@return an object of class \code{SpatRaster} from \pkg{terra}
      getCoverage = function(identifier,
                             bbox = NULL, crs = NULL, time = NULL, format = NULL, rangesubset = NULL, 
                             gridbaseCRS = NULL, gridtype = NULL, gridCS = NULL, 
-                            gridorigin = NULL, gridoffsets = NULL, ...){
+                            gridorigin = NULL, gridoffsets = NULL, 
+                            method = "GET", filename = NULL, ...){
         self$INFO(sprintf("Fetching coverage for '%s'", identifier))
         coverage <- NULL
         cov <- self$capabilities$findCoverageSummaryById(identifier, exact = TRUE)
         if(is(cov, "WCSCoverageSummary")){
            coverage <- cov$getCoverage(bbox = bbox, crs = crs, time = time, format = format, rangesubset = rangesubset, 
                                        gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
-                                       gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
+                                       gridorigin = gridorigin, gridoffsets = gridoffsets, method = method, filename = filename, ...)
         }else if(is(cov, "list")){
           if(length(identifier)==0){
             self$WARN(sprintf("No coverage for coverage name = '%s'", identifier))
