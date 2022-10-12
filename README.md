@@ -6,7 +6,9 @@
 
 **ows4R – R Interface to OGC Web-Services (OWS)**
 
-``ows4R`` aims to set-up a pure R interface to OGC Web-Services. It currently targets:
+[ows4R](https://doi.org/10.5281/zenodo.1345111) provides an Interface to Web-Services defined as open standards by the [Open Geospatial Consortium (OGC)](https://www.ogc.org/standards), including Web Feature Service (WFS) for vector data, Web Coverage Service (WCS), Catalogue Service (CSW) for ISO/OGC metadata, Web Processing Service (WPS) for data processes, and associated standards such as the common web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS). The purpose is to add support for additional OGC service standards such as Web Coverage Processing Service (WCPS), the Sensor Observation Service (SOS), or even new standard services emerging such OGC API or SensorThings. 
+
+It currently targets:
 
 * the Common OGC Web-Services specifications, versions ``1.1`` and ``2.0``
 * the Catalogue Service for the Web (CSW), version ``2.0.2`` (including ``Transaction`` and ``Harvest`` operations)
