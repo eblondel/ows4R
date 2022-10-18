@@ -193,7 +193,8 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     #'@description Get class
     #'@return an object of class \code{R6Class}
     getClass = function(){
-      class <- eval(parse(text=self$getClassName()))
+      class <- try(eval(parse(text = self$getClassName())), silent = TRUE)
+      if(is(class, "try-error")) class <- try(eval(parse(text = paste0("ows4R::",self$getClassName()))), silent = TRUE)
       return(class)
     },
     
