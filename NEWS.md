@@ -1,10 +1,22 @@
-## [ows4R 0.3-1](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-2](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+
+**Corrections**
+
+- [#89](https://github.com/eblondel/ows4R/commit/23f606c74da0f87f1043ffa8d5193dd634da4e37) Align WCS `getCoverage` arguments with wrapper
+- [#91](https://github.com/eblondel/ows4R/issues/91) `getCoverage` needs to download in tempdir instead of current wd, when no filename is provider
+
+**Enhancements**
+
+- [#88](https://github.com/eblondel/ows4R/issues/88) `describeCoverage` & `getCoverage` not returning all rangeType info for multiband coverages (supported through [geometa#187](https://github.com/eblondel/geometa/issues/187) - OGC SWE support -  [geometa#197](https://github.com/eblondel/geometa/issues/197) enhancement)
+- [#89](https://github.com/eblondel/ows4R/issues/89) Allow geometa classes inheritance using `ows4R::` (supported through [geometa#201](https://github.com/eblondel/geometa/issues/201) enhancement)
+
+## [ows4R 0.3-1](https://cran.r-project.org/package=ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
 
 **Corrections**
 
 - [#87](https://github.com/eblondel/ows4R/issues/87) Upgrade roxygen2 7.2.1 to fix html issues
 
-## [ows4R 0.3](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3.tar.gz)
 
 
 **New features**
