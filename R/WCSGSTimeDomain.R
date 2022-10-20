@@ -6,7 +6,7 @@
 #' @return Object of \code{\link{R6Class}} modelling a WCS geoserver time domain object
 #' @format \code{\link{R6Class}} object.
 #' 
-#' @note Class used internally by ows4R.
+#' @note Deprecated.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'

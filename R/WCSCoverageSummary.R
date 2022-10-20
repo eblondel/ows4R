@@ -308,12 +308,13 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
                 
                 if(dimension$type == "temporal"){
                   timeDomain <- des$metadata$TimeDomain
-                  if(!is.null(timeDomain) & is(timeDomain, "WCSGSTimeDomain")){
-                    dimension$coefficients <- as.matrix(des$metadata$TimeDomain$TimeInstant)   
+                  if(!is.null(timeDomain) & is(timeDomain, "ISOElementSequence")){
+                   dimension$coefficients <- as.matrix(lapply(timeDomain[["_internal_"]], function(x){x$toISOFormat()}))
                   }
                 }
                 if(dimension$type == "vertical"){
                   elevationDomain <- des$metadata$ElevationDomain
+                  #TODO test
                   if(!is.null(elevationDomain) & is(elevationDomain, "WCSGSElevationDomain")){
                     dimension$coefficients <- as.matrix(des$metadata$ElevationDomain$SingleValue)
                   }

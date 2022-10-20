@@ -16,7 +16,7 @@ WCSGSTimeDomain
 WCSGSTimeDomain
 }
 \note{
-Class used internally by ows4R.
+Deprecated.
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
