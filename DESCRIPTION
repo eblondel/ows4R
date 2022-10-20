@@ -7,7 +7,7 @@ Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emma
              person("Norbert", "Billet", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 3.3.0), methods, geometa, keyring
-Imports: R6, httr, openssl, XML (>= 3.96-1.1), jsonlite, sf, terra, parallel
+Imports: R6, httr, openssl, XML (>= 3.96-1.1), sf, terra, parallel
 Remotes: 
   eblondel/geometa
 Suggests: testthat, knitr, markdown
