@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   csw: csw.html
   wcs: wcs.html
-last_built: 2022-10-21T07:27Z
+last_built: 2022-10-21T07:30Z
 urls:
   reference: https://eblondel.github.io/ows4R/reference
   article: https://eblondel.github.io/ows4R/articles
