@@ -4,6 +4,7 @@
 
 - [#89](https://github.com/eblondel/ows4R/commit/23f606c74da0f87f1043ffa8d5193dd634da4e37) Align WCS `getCoverage` arguments with wrapper
 - [#91](https://github.com/eblondel/ows4R/issues/91) `getCoverage` needs to download in tempdir instead of current wd, when no filename is provider
+- [#96](https://github.com/eblondel/ows4R/issues/96) summary$getDimensions() not returning coefficients anymore
 
 **Enhancements**
 
