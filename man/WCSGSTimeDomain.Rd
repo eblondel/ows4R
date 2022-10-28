@@ -16,7 +16,7 @@ WCSGSTimeDomain
 WCSGSTimeDomain
 }
 \note{
-Deprecated.
+Experimental
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>

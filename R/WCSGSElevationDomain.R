@@ -1,10 +1,11 @@
 #' WCSGSElevationDomain
 #'
 #' @docType class
-#' @export
 #' @keywords WCS GeoServer elevation domain
 #' @return Object of \code{\link{R6Class}} modelling a WCS geoserver elevation domain object
 #' @format \code{\link{R6Class}} object.
+#' 
+#' @note Experimental
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
