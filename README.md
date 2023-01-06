@@ -1,6 +1,6 @@
 [![Build Status](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ows4R)](https://cran.r-project.org/package=ows4R)
-[![cran checks](https://cranchecks.info/badges/worst/ows4R)](https://cran.r-project.org/web/checks/check_results_ows4R.html)
+[![cran checks](https://badges.cranchecks.info/worst/ows4R.svg)](https://cran.r-project.org/web/checks/check_results_ows4R.html)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.3--3-blue.svg)](https://github.com/eblondel/ows4R)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345111.svg)](https://doi.org/10.5281/zenodo.1345111)
 
@@ -25,7 +25,7 @@ The following projects have contributed to strenghten ``ows4R``:
 
 * for the WMS and WPS support (ongoing)
 
-<a href="https://blue-cloud.org/"><img height=100 width=300 src="https://www.blue-cloud.org/sites/all/themes/arcadia/logo.png"/></a>
+<a href="https://blue-cloud.org/"><img height=100 width=300 src="https://www.trust-itservices.com/sites/default/files/styles/portfolio-thumbnail/public/portfolio/logo.png?itok=dinMLJCY"/></a>
 
 _Blue-Cloud has received funding from the European Union's Horizon programme call BG-07-2019-2020, topic: [A] 2019 - Blue Cloud services, Grant Agreement No.862409._
 
