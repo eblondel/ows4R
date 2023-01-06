@@ -1,3 +1,9 @@
+## [ows4R 0.3-3](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+
+**Corrections**
+
+- [#99](https://github.com/eblondel/ows4R/issues/99) CRS not inherited with WFS/GetFeatures
+
 ## [ows4R 0.3-2](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**

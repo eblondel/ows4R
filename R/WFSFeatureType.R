@@ -327,7 +327,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       #read features
       ftFeatures <- sf::st_read(destfile, quiet = TRUE)
-      if(is.null(st_crs(ftFeatures))){
+      if(is.na(st_crs(ftFeatures))){
         st_crs(ftFeatures) <- self$getDefaultCRS()
       }
       
