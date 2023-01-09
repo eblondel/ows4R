@@ -17,7 +17,7 @@ CSWClient
 CSWClient
 }
 \examples{
-\donttest{
+\dontrun{
    #example based on CSW endpoint responding at http://localhost:8000/csw
    csw <- CSWClient$new("http://localhost:8000/csw", serviceVersion = "2.0.2")
    
