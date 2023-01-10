@@ -314,7 +314,7 @@ Web Processing Service.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>   <span class="co">#example based on a WPS endpoint responding at http://localhost:8080/geoserver/wps</span></span></span>
 <span class="r-in"><span>   <span class="va">wps</span> <span class="op">&lt;-</span> <span class="va">WPSClient</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"http://localhost:8080/geoserver/wps"</span>, serviceVersion <span class="op">=</span> <span class="st">"1.0.0"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in curl::curl_fetch_memory(url, handle = handle):</span> Failed to connect to localhost port 8080 after 0 ms: Connection refused</span>
