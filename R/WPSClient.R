@@ -8,7 +8,7 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'    #example based on a WPS endpoint responding at http://localhost:8080/geoserver/wps
 #'    wps <- WPSClient$new("http://localhost:8080/geoserver/wps", serviceVersion = "1.0.0")
 #'    

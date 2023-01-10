@@ -8,7 +8,7 @@
 #' @format \code{\link{R6Class}} object.
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'    #example based on a WMS endpoint responding at http://localhost:8080/geoserver/wms
 #'    wms <- WMSClient$new("http://localhost:8080/geoserver/wms", serviceVersion = "1.1.1")
 #'    

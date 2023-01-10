@@ -17,7 +17,7 @@ WFSClient
 WFSClient
 }
 \examples{
-\donttest{
+\dontrun{
    #example based on a WFS endpoint responding at http://localhost:8080/geoserver/wfs
    wfs <- WFSClient$new("http://localhost:8080/geoserver/wfs", serviceVersion = "1.1.1")
    
