@@ -89,11 +89,11 @@ test_that("WCS 2.0.1 - VLIZ",{
   cov <- vliz$getCapabilities()$findCoverageSummaryById("Emodnetbio__aca_spp_19582016_L1", exact = TRUE)
   cov_des <- cov$getDescription()
   cov_data <- cov$getCoverage(
-    bbox = OWSUtils$toBBOX(8.37,8.41,58.18,58.24),
+    bbox = OWSUtils$toBBOX(8.36,8.41,58.18,58.24),
     time = cov$getDimensions()[[3]]$coefficients[1]
   )
   cov_data_stack <- cov$getCoverageStack(
-    bbox = OWSUtils$toBBOX(8.37,8.41,58.18,58.24),
+    bbox = OWSUtils$toBBOX(8.36,8.41,58.18,58.24),
     time = cov$getDimensions()[[3]]$coefficients[1]
   )
   expect_true(terra::compareGeom(cov_data,cov_data_stack))
