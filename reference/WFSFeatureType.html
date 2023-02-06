@@ -12,7 +12,7 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
     
     <a class="navbar-brand me-2" href="../index.html">ows4R</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,6 +108,9 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <li><p><a href="#method-WFSFeatureType-getDefaultCRS"><code>WFSFeatureType$getDefaultCRS()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureType-getBoundingBox"><code>WFSFeatureType$getBoundingBox()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureType-getDescription"><code>WFSFeatureType$getDescription()</code></a></p></li>
+<li><p><a href="#method-WFSFeatureType-hasGeometry"><code>WFSFeatureType$hasGeometry()</code></a></p></li>
+<li><p><a href="#method-WFSFeatureType-getGeometryType"><code>WFSFeatureType$getGeometryType()</code></a></p></li>
+<li><p><a href="#method-WFSFeatureType-getFeaturesCRS"><code>WFSFeatureType$getFeaturesCRS()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureType-getFeatures"><code>WFSFeatureType$getFeatures()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureType-clone"><code>WFSFeatureType$clone()</code></a></p></li>
 </ul></div><p><details><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="ows4R" data-topic="OGCAbstractObject" data-id="ERROR"><a href="OGCAbstractObject.html#method-ERROR"><code>ows4R::OGCAbstractObject$ERROR()</code></a></span></li>
@@ -263,10 +266,54 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <p>a <code>list</code> of <a href="WFSFeatureTypeElement.html">WFSFeatureTypeElement</a> or <code>data.frame</code></p>
 </div>
 
+</div><p></p><hr><a id="method-WFSFeatureType-hasGeometry"></a><div class="section">
+<h3 id="method-hasgeometry-">Method <code>hasGeometry()</code><a class="anchor" aria-label="anchor" href="#method-hasgeometry-"></a></h3>
+<p>Indicates with feature type has a geometry</p><div class="section">
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">hasGeometry</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-1">Returns<a class="anchor" aria-label="anchor" href="#returns-1"></a></h4>
+<p>object of class <a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a></p>
+</div>
+
+</div><p></p><hr><a id="method-WFSFeatureType-getGeometryType"></a><div class="section">
+<h3 id="method-getgeometrytype-">Method <code>getGeometryType()</code><a class="anchor" aria-label="anchor" href="#method-getgeometrytype-"></a></h3>
+<p>Get geometry type</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">getGeometryType</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-2">Returns<a class="anchor" aria-label="anchor" href="#returns-2"></a></h4>
+<p>object of class <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> representing the geometry tpe</p>
+</div>
+
+</div><p></p><hr><a id="method-WFSFeatureType-getFeaturesCRS"></a><div class="section">
+<h3 id="method-getfeaturescrs-">Method <code>getFeaturesCRS()</code><a class="anchor" aria-label="anchor" href="#method-getfeaturescrs-"></a></h3>
+<p>Inherits features CRS</p><div class="section">
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">getFeaturesCRS</span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>obj</code></dt>
+<dd><p>features object</p></dd>
+
+
+</dl><p></p></div>
+</div>
+<div class="section">
+<h4 id="returns-3">Returns<a class="anchor" aria-label="anchor" href="#returns-3"></a></h4>
+<p>object of class <a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></p>
+</div>
+
 </div><p></p><hr><a id="method-WFSFeatureType-getFeatures"></a><div class="section">
 <h3 id="method-getfeatures-">Method <code>getFeatures()</code><a class="anchor" aria-label="anchor" href="#method-getfeatures-"></a></h3>
 <p>Get features</p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">getFeatures</span><span class="op">(</span></span>
 <span>  <span class="va">...</span>,</span>
 <span>  outputFormat <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -279,7 +326,7 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 </div>
 
 <div class="section">
-<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
+<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>any other parameter to pass to the <a href="WFSGetFeature.html">WFSGetFeature</a> request</p></dd>
 
@@ -315,19 +362,19 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-1">Returns<a class="anchor" aria-label="anchor" href="#returns-1"></a></h4>
+<h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
 <p>features as object of class <code>sf</code></p>
 </div>
 
 </div><p></p><hr><a id="method-WFSFeatureType-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
+<h4 id="arguments-10">Arguments<a class="anchor" aria-label="anchor" href="#arguments-10"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 

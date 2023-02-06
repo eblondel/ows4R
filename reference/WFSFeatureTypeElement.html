@@ -12,7 +12,7 @@ WFSFeatureTypeElement"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     
     <a class="navbar-brand me-2" href="../index.html">ows4R</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,6 +90,7 @@ WFSFeatureTypeElement"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 <li><p><a href="#method-WFSFeatureTypeElement-isNillable"><code>WFSFeatureTypeElement$isNillable()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureTypeElement-getName"><code>WFSFeatureTypeElement$getName()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureTypeElement-getType"><code>WFSFeatureTypeElement$getType()</code></a></p></li>
+<li><p><a href="#method-WFSFeatureTypeElement-isGeometry"><code>WFSFeatureTypeElement$isGeometry()</code></a></p></li>
 <li><p><a href="#method-WFSFeatureTypeElement-clone"><code>WFSFeatureTypeElement$clone()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-WFSFeatureTypeElement-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
@@ -167,15 +168,31 @@ WFSFeatureTypeElement"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 <p>an object of class <code>character</code></p>
 </div>
 
-</div><p></p><hr><a id="method-WFSFeatureTypeElement-clone"></a><div class="section">
-<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
-<p>The objects of this class are cloneable with this method.</p><div class="section">
+</div><p></p><hr><a id="method-WFSFeatureTypeElement-isGeometry"></a><div class="section">
+<h3 id="method-isgeometry-">Method <code>isGeometry()</code><a class="anchor" aria-label="anchor" href="#method-isgeometry-"></a></h3>
+<p>Is geometry</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureTypeElement</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureTypeElement</span><span class="op">$</span><span class="fu">isGeometry</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>return</code></dt>
+<dd><p>object of class <code>logical</code></p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-WFSFeatureTypeElement-clone"></a><div class="section">
+<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
+<p>The objects of this class are cloneable with this method.</p><div class="section">
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureTypeElement</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
