@@ -47,6 +47,9 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-WFSFeatureType-getDefaultCRS}{\code{WFSFeatureType$getDefaultCRS()}}
 \item \href{#method-WFSFeatureType-getBoundingBox}{\code{WFSFeatureType$getBoundingBox()}}
 \item \href{#method-WFSFeatureType-getDescription}{\code{WFSFeatureType$getDescription()}}
+\item \href{#method-WFSFeatureType-hasGeometry}{\code{WFSFeatureType$hasGeometry()}}
+\item \href{#method-WFSFeatureType-getGeometryType}{\code{WFSFeatureType$getGeometryType()}}
+\item \href{#method-WFSFeatureType-getFeaturesCRS}{\code{WFSFeatureType$getFeaturesCRS()}}
 \item \href{#method-WFSFeatureType-getFeatures}{\code{WFSFeatureType$getFeatures()}}
 \item \href{#method-WFSFeatureType-clone}{\code{WFSFeatureType$clone()}}
 }
@@ -209,6 +212,52 @@ Describes a feature type
 }
 \subsection{Returns}{
 a \code{list} of \link{WFSFeatureTypeElement} or \code{data.frame}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WFSFeatureType-hasGeometry"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-hasGeometry}{}}}
+\subsection{Method \code{hasGeometry()}}{
+Indicates with feature type has a geometry
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureType$hasGeometry()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \link{logical}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WFSFeatureType-getGeometryType"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getGeometryType}{}}}
+\subsection{Method \code{getGeometryType()}}{
+Get geometry type
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureType$getGeometryType()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \link{character} representing the geometry tpe
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WFSFeatureType-getFeaturesCRS"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getFeaturesCRS}{}}}
+\subsection{Method \code{getFeaturesCRS()}}{
+Inherits features CRS
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureType$getFeaturesCRS(obj)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{obj}}{features object}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+object of class \link{integer}
 }
 }
 \if{html}{\out{<hr>}}

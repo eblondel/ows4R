@@ -203,12 +203,65 @@ WFSFeatureType <- R6Class("WFSFeatureType",
             minOccurs = ifelse(!is.null(element$getMinOccurs()), element$getMinOccurs(), NA),
             maxOccurs = ifelse(!is.null(element$getMaxOccurs()), element$getMaxOccurs(), NA),
             nillable = ifelse(!is.null(element$isNillable()), element$isNillable(), NA),
+            geometry = element$isGeometry(),
             stringsAsFactors = FALSE
           )
           return(out_element)
         }))
       }
       return(out)
+    },
+    
+    #'@description Indicates with feature type has a geometry
+    #'@return object of class \link{logical}
+    hasGeometry = function(){
+      if(is.null(self$description)) self$description = self$getDescription()
+      any(sapply(self$description, function(x){x$isGeometry()}))
+    },
+    
+    #'@description Get geometry type
+    #'@return object of class \link{character} representing the geometry tpe
+    getGeometryType = function(){
+      if(is.null(self$description)) self$description = self$getDescription()
+      geomType <- NULL
+      if(self$hasGeometry()){
+        geomType <- self$description[sapply(self$description, function(x){x$isGeometry()})][[1]]$getType() 
+      }
+      return(geomType)
+    },
+    
+    #'@description Inherits features CRS
+    #'@param obj features object
+    #'@return object of class \link{integer}
+    getFeaturesCRS = function(obj){
+      crs <- NA
+      if(is(obj, "XMLInternalDocument")){
+        geomType <- self$getGeometryType()
+        if(!is.null(geomType)){
+          geoms <- XML::getNodeSet(obj, paste0("//gml:", geomType))
+          if(length(geoms)>0){
+            srsName <- XML::xmlGetAttr(geoms[[1]], "srsName")
+            if(startsWith(srsName, "EPSG")){
+              crs <- as(unlist(strsplit(srsName, "EPSG:"))[2], "integer")
+            }else if(startsWith(srsName, "http://www.opengis.net/gml/srs/epsg.xml#")){
+              crs <- as(unlist(strsplit(srsName,"http://www.opengis.net/gml/srs/epsg.xml#"))[2],"integer")
+            }else if(startsWith(srsName, "urn:x-ogc:def:crs:EPSG:")){
+              crs <- as(unlist(strsplit(srsName,"urn:x-ogc:def:crs:EPSG:"))[2],"integer")
+            }else if(startsWith(srsName, "urn:ogc:def:crs:EPSG::")){
+              crs <- as(unlist(strsplit(srsName, "urn:ogc:def:crs:EPSG::"))[2],"integer")
+            }else{
+              if(regexpr(srsName, "/") > 0){
+                srsName_parts <- unlist(strsplit(srsName, "/"))
+                crs <- srsName_parts[length(srsName_parts)]
+              }
+            }
+          }
+        }
+      }
+      crs_obj <- suppressWarnings(try(sf::st_crs(paste0("EPSG:", crs)), silent = TRUE))
+      if(is(crs_obj, "try-error")) crs_obj <- suppressWarnings(try(sf::st_crs(paste0("ESRI:", crs)), silent = TRUE))
+      if(is(crs_obj, "try-error")) crs_obj <- NA
+      return(crs_obj)
     },
     
     #'@description Get features
@@ -327,14 +380,15 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       
       #read features
       ftFeatures <- sf::st_read(destfile, quiet = TRUE)
-      if(is.na(st_crs(ftFeatures))){
-        st_crs(ftFeatures) <- self$getDefaultCRS()
+      if(self$hasGeometry()){
+        if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getFeaturesCRS(obj)
+        if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getDefaultCRS()
       }
-      
+        
       #validating attributes vs. schema
       for(element in self$description){
         attrType <- element$getType()
-        if(!is.null(attrType) && attrType != "geometry"){
+        if(!is.null(attrType) && !element$isGeometry()){
           attrName = element$getName()
           if(!is.null(ftFeatures[[attrName]])){
             ftFeatures[[attrName]] <- switch(attrType,

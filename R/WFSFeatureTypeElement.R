@@ -17,6 +17,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
      nillable = NA,
      name = NA,
      type = NA,
+     geometry = FALSE,
      
      #fetchElement
      fetchElement = function(xmlObj){
@@ -31,7 +32,9 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        elementName <- xmlGetAttr(xmlObj, "name")
        #type
        elementType <- NULL
-       type <- tolower(xmlGetAttr(xmlObj, "type"))
+       type <- xmlGetAttr(xmlObj, "type")
+       #geometry
+       geometry <- FALSE
        if(length(type)==0){
          #try a basic parsing for types in type restriction
          #TODO study further WFS Schema (through GML geometa?) to propose generic solution
@@ -44,13 +47,14 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
        }
        if(attr(regexpr("gml", type), "match.length") > 0){
-         elementType <- "geometry"
+         elementType <- unlist(strsplit(unlist(strsplit(type, "gml:"))[2], "PropertyType"))[1]
+         geometry <- TRUE
        }else{
-         baseType <- type
+         baseType <- tolower(type)
          #detect namespace xs/xsd (normal behavior)
          #primitive types that are not prefixed with xsd (http://www.w3.org/2001/XMLSchema) schema are not handled well
          #ows4R is permissive and controls it, although it is an issue of XML compliance on service providers side
-         if(regexpr(":", type)>0) baseType <- unlist(strsplit(type,":"))[2] 
+         if(regexpr(":", baseType)>0) baseType <- unlist(strsplit(baseType,":"))[2] 
          elementType <- switch(baseType,
                              "string" = "character",
                              "long" = "numeric",
@@ -71,7 +75,8 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
          maxOccurs = elementMaxOccurs,
          nillable = elementNillable,
          name = elementName,
-         type = elementType
+         type = elementType,
+         geometry = geometry
        )
        return(element)
      } 
@@ -88,6 +93,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        private$nillable = element$nillable
        private$name = element$name
        private$type = element$type
+       private$geometry = element$geometry
      },
      
      #'@description get min occurs
@@ -118,6 +124,12 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
      #'@return an object of class \code{character}
      getType = function(){
        return(private$type)
+     },
+     
+     #'@description Is geometry
+     #'@param return object of class \code{logical}
+     isGeometry = function(){
+        return(private$geometry)
      }
    )
 )

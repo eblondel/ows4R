@@ -33,6 +33,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-WFSFeatureTypeElement-isNillable}{\code{WFSFeatureTypeElement$isNillable()}}
 \item \href{#method-WFSFeatureTypeElement-getName}{\code{WFSFeatureTypeElement$getName()}}
 \item \href{#method-WFSFeatureTypeElement-getType}{\code{WFSFeatureTypeElement$getType()}}
+\item \href{#method-WFSFeatureTypeElement-isGeometry}{\code{WFSFeatureTypeElement$isGeometry()}}
 \item \href{#method-WFSFeatureTypeElement-clone}{\code{WFSFeatureTypeElement$clone()}}
 }
 }
@@ -116,6 +117,23 @@ get type
 
 \subsection{Returns}{
 an object of class \code{character}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WFSFeatureTypeElement-isGeometry"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureTypeElement-isGeometry}{}}}
+\subsection{Method \code{isGeometry()}}{
+Is geometry
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$isGeometry()}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{return}}{object of class \code{logical}}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
