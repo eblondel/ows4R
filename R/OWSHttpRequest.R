@@ -69,6 +69,8 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
           text <- content(r, type = "text", encoding = "UTF-8")
           text <- gsub("<!--.*?-->", "", text)
           responseContent <- xmlParse(text)
+        }else if(regexpr("json", mimeType)>0){
+          responseContent <- content(r, type = "text", encoding = "UTF-8")
         }else{
           responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
@@ -123,6 +125,8 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
           text <- content(r, type = "text", encoding = "UTF-8")
           text <- gsub("<!--.*?-->", "", text)
           responseContent <- xmlParse(text)
+        }else if(regexpr("json", mimeType)>0){
+          responseContent <- content(r, type = "text", encoding = "UTF-8")
         }else{
           responseContent <- content(r, type = mimeType, encoding = "UTF-8")
         }
