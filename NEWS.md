@@ -1,5 +1,9 @@
 ## [ows4R 0.4](https://github.com/eblondel/ows4R) **IN DEV** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
 
+**Corrections**
+
+- [#102](https://github.com/eblondel/ows4R/issues/102) OWSHttpRequest - issue with json format not handled as text
+
 **Enhancements**
 
 - [#101](https://github.com/eblondel/ows4R/issues/101) WFS - Ensure features CRS are inherited
