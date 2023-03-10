@@ -23,13 +23,19 @@ Do you have a question? support request? you can create a 'discussion' [here](ht
 
 The following projects have contributed to strenghten ``ows4R``:
 
-* for the WMS and WPS support (ongoing)
+* for core, WFS and CSW support
+
+<div>
+  <a href="https://www.fao.org/home/en/"><img height=200 width=200 src="https://www.fao.org/fileadmin/templates/family-farming-decade/images/FAO-IFAD-Logos/FAO-Logo-EN.svg">
+</div>
+
+* for WMS and WPS support
 
 <a href="https://www.blue-cloud.org"><img height=100 width=300 src="https://hackathon.blue-cloud.org/wp-content/uploads/2021/11/Blue-cloud_extended_color.png"/></a>
 
 _Blue-Cloud has received funding from the European Union's Horizon programme call BG-07-2019-2020, topic: [A] 2019 - Blue Cloud services, Grant Agreement No.862409._
 
-* for the WCS support (ongoing)
+* for the WCS support
 
 <div>
 
