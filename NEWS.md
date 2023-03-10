@@ -1,4 +1,4 @@
-## [ows4R 0.4](https://github.com/eblondel/ows4R) **IN DEV** | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-4](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**
 
@@ -14,7 +14,7 @@
 
 - [#99](https://github.com/eblondel/ows4R/issues/99) CRS not inherited with WFS/GetFeatures
 
-## [ows4R 0.3-2](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-2](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-2.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-2.tar.gz)
 
 **Corrections**
 
@@ -27,7 +27,7 @@
 - [#88](https://github.com/eblondel/ows4R/issues/88) `describeCoverage` & `getCoverage` not returning all rangeType info for multiband coverages (supported through [geometa#187](https://github.com/eblondel/geometa/issues/187) - OGC SWE support -  [geometa#197](https://github.com/eblondel/geometa/issues/197) enhancement)
 - [#89](https://github.com/eblondel/ows4R/issues/89) Allow geometa classes inheritance using `ows4R::` (supported through [geometa#201](https://github.com/eblondel/geometa/issues/201) enhancement)
 
-## [ows4R 0.3-1](https://cran.r-project.org/package=ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=ows4R)
+## [ows4R 0.3-1](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-1.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-1.tar.gz)
 
 **Corrections**
 
