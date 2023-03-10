@@ -31,11 +31,12 @@ _Blue-Cloud has received funding from the European Union's Horizon programme cal
 
 * for the WCS support (ongoing)
 
-<a href="https://www.emodnet-biology.eu/" title="EMODnet Biology" style="float:left;"><img height=100 width=300 src="https://sextant.ifremer.fr/geonetwork/srv/api/records/73cd2a45-e0b3-4f70-96aa-c1b2639142d2/attachments/emodnet.png"/></a>
+<div>
 
+<a href="https://www.emodnet-biology.eu/" title="EMODnet Biology" style="float:left;"><img height=100 width=300 src="https://sextant.ifremer.fr/geonetwork/srv/api/records/73cd2a45-e0b3-4f70-96aa-c1b2639142d2/attachments/emodnet.png"/></a>
 <a href="https://www.vliz.be" title="VLIZ" style="float:left;"><img height=100 width=100 src="https://www.vliz.be/sites/vliz.be/themes/vliz/img/logo.png"/></a>
 
-<br><br><br><br><br>
+</div>
 
 ### Citation
 
