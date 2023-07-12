@@ -24,6 +24,10 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     defaultCRS = NA,
     WGS84BoundingBox = NA,
     
+    supportedGeomPossibleNames = c("the_geom", "geom", "wkt", "geom_wkt", "wkb", "geom_wkb"),
+    supportedXPossibleNames = c("x","lon","long","longitude","decimalLongitude"),
+    supportedYPossibleNames = c("y","lat","lati","latitude","decimalLatitude"),
+    
     #fetchFeatureType
     fetchFeatureType = function(xmlObj, version){
       
@@ -373,13 +377,23 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           },
           "csv" = {
             destfile = paste0(tempf,".csv")
-            sf::st_write(obj, destfile)
+            lcolnames = tolower(colnames(obj))
+            sf::st_write(obj[,!duplicated(lcolnames)], destfile)
           }
         )
       }
       
       #read features
-      ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+      ftFeatures <- switch(tolower(outputFormat),
+        "csv" = sf::st_read(destfile, quiet = TRUE,
+          options = c(
+            sprintf("GEOM_POSSIBLE_NAMES=%s", paste0(private$supportedGeomPossibleNames, collapse=",")),
+            sprintf("X_POSSIBLE_NAMES=%s", paste0(private$supportedXPossibleNames, collapse=",")),
+            sprintf("Y_POSSIBLE_NAMES=%s", paste0(private$supportedYPossibleNames, collapse=","))
+          )
+        ),      
+        sf::st_read(destfile, quiet = TRUE)
+      )
       if(self$hasGeometry()){
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getFeaturesCRS(obj)
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getDefaultCRS()
