@@ -394,7 +394,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         ),      
         sf::st_read(destfile, quiet = TRUE)
       )
-      if(self$hasGeometry()){
+      if(self$hasGeometry()) if(self$getGeometryType() %in% colnames(ftFeatures)){
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getFeaturesCRS(obj)
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getDefaultCRS()
       }
