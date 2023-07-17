@@ -384,16 +384,20 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       #read features
-      ftFeatures <- switch(tolower(outputFormat),
-        "csv" = sf::st_read(destfile, quiet = TRUE,
-          options = c(
-            sprintf("GEOM_POSSIBLE_NAMES=%s", paste0(private$supportedGeomPossibleNames, collapse=",")),
-            sprintf("X_POSSIBLE_NAMES=%s", paste0(private$supportedXPossibleNames, collapse=",")),
-            sprintf("Y_POSSIBLE_NAMES=%s", paste0(private$supportedYPossibleNames, collapse=","))
-          )
-        ),      
-        sf::st_read(destfile, quiet = TRUE)
-      )
+      if(!is.null(outputFormat)){
+        ftFeatures <- switch(tolower(outputFormat),
+          "csv" = sf::st_read(destfile, quiet = TRUE,
+            options = c(
+              sprintf("GEOM_POSSIBLE_NAMES=%s", paste0(private$supportedGeomPossibleNames, collapse=",")),
+              sprintf("X_POSSIBLE_NAMES=%s", paste0(private$supportedXPossibleNames, collapse=",")),
+              sprintf("Y_POSSIBLE_NAMES=%s", paste0(private$supportedYPossibleNames, collapse=","))
+            )
+          ),      
+          sf::st_read(destfile, quiet = TRUE)
+        )
+      }else{
+        ftFeatures <- sf::st_read(destfile, quiet = TRUE)
+      }
       if(self$hasGeometry()) if(self$getGeometryType() %in% colnames(ftFeatures)){
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getFeaturesCRS(obj)
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getDefaultCRS()
