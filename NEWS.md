@@ -1,3 +1,14 @@
+## [ows4R 0.3.-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+
+
+**Corrections**
+
+- [#110](https://github.com/eblondel/ows4R/issues/110) 'hasGeometry' based on FeatureType description is not enough in case propertyNames is used with geom
+
+**Enhancements**
+
+- [#109](https://github.com/eblondel/ows4R/issues/109) Improve CSV support for WFS
+
 ## [ows4R 0.3-5](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Enhancements**
