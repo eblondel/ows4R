@@ -622,11 +622,6 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
       if(!is.null(bbox)) title <- paste(title, "| BBOX:", paste(as(bbox,"character"), collapse=","))
       if(!is.null(time)) title <- paste(title," | TIME:", time)
       attr(coverage_data,"title") <- title
-      cov_values <- terra::values(coverage_data)
-      if(!all(is.na(cov_values))){
-        attr(coverage_data, "min") <- min(cov_values, na.rm = TRUE)
-        attr(coverage_data, "max") <- max(cov_values, na.rm = TRUE)
-      }
       
       return(coverage_data)
     },
