@@ -85,7 +85,7 @@ OWSClient <- R6Class("OWSClient",
           self$INFO(sprintf("User '%s' successfully logged in through CAS endpoint '%s'", user, cas_url))
           self$url <- paste0(cas_url, "?service=", URLencode(self$url, reserved = TRUE))
         }else{
-          self$WARNsprintf("Error during CAS login, check your user/password!")
+          self$WARN("Error during CAS login, check your user/password!")
         }
       }
     },
