@@ -1,5 +1,11 @@
-## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-7](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
 
+**Corrections**
+
+- [#112](https://github.com/eblondel/ows4R/issues/112) OWSHttpRequest GET doesn't detect existing params and make GetCapabilities fail
+
+
+## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**
 
@@ -9,7 +15,7 @@
 
 - [#109](https://github.com/eblondel/ows4R/issues/109) Improve CSV support for WFS
 
-## [ows4R 0.3-5](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.3-5](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-5.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/ows4R/ows4R_0.3-5.tar.gz)
 
 **Enhancements**
 
