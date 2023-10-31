@@ -172,10 +172,10 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         if(!is.null(gridorigin)) namedParams$gridorigin <- gridorigin
         if(!is.null(gridoffsets)) namedParams$gridoffsets <- gridoffsets
         
-        vendorParams <- list(...)
-        if(length(vendorParams)>0){
-          namedParams <- c(namedParams, vendorParams)
-        }
+        #vendorParams <- list(...)
+        #if(length(vendorParams)>0){
+        #  namedParams <- c(namedParams, vendorParams)
+        #}
         
         mimeType <- format
         if(substr(serviceVersion,1,3)=="1.1") mimeType <- "text/xml"
