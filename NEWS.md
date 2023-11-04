@@ -2,6 +2,7 @@
 
 **Corrections**
 
+- [#111](https://github.com/eblondel/ows4R/pull/111) WCSCoverageSummary - Fix download failure due to min/max handling
 - [#112](https://github.com/eblondel/ows4R/issues/112) OWSHttpRequest GET doesn't detect existing params and make GetCapabilities fail
 - [#113](https://github.com/eblondel/ows4R/issues/113) WCSGetCoverage- Fix vendor params handling 
 
