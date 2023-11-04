@@ -3,7 +3,7 @@
 **Corrections**
 
 - [#112](https://github.com/eblondel/ows4R/issues/112) OWSHttpRequest GET doesn't detect existing params and make GetCapabilities fail
-
+- [#113](https://github.com/eblondel/ows4R/issues/113) WCSGetCoverage- Fix vendor params handling 
 
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
