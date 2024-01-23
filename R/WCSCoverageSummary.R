@@ -225,7 +225,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           self$ERROR("No 'srsName' envelope attribute for CRS interpretation")
           return(NULL)
         }
-        srsNameXML <- try(XML::xmlParse(srsName))
+        srsNameXML <- try(XML::xmlParse(srsName), silent = TRUE)
         if(is(srsNameXML,"try-error")){
           self$ERROR(sprintf("Error during CRS interpretation for srsName = '%s'", srsName))
           return(NULL)
