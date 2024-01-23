@@ -54,7 +54,7 @@ The description of coverage can be fetched either from a coverage summary or dir
 * *Get description from a coverage summary*
 
 ```R
-chla_des <- cov$getDescription()
+chla_des <- chla$getDescription()
 ```
 
 * *Get description from the WCS client*
