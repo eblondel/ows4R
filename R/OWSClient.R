@@ -11,6 +11,7 @@
 #' @import geometa
 #' @import keyring
 #' @import parallel
+#' @import crayon
 #' @export
 #' @keywords OGC Common OWS
 #' @return Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.

@@ -58,6 +58,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-OGCAbstractObject-isFieldInheritedFrom}{\code{OGCAbstractObject$isFieldInheritedFrom()}}
 \item \href{#method-OGCAbstractObject-getNamespaceDefinition}{\code{OGCAbstractObject$getNamespaceDefinition()}}
 \item \href{#method-OGCAbstractObject-encode}{\code{OGCAbstractObject$encode()}}
+\item \href{#method-OGCAbstractObject-print}{\code{OGCAbstractObject$print()}}
 \item \href{#method-OGCAbstractObject-clone}{\code{OGCAbstractObject$clone()}}
 }
 }
@@ -267,6 +268,25 @@ Encodes as XML. The \code{addNS} .
 }
 \subsection{Returns}{
 an object of class \link{XMLInternalNode-class} from \pkg{XML}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-OGCAbstractObject-print"></a>}}
+\if{latex}{\out{\hypertarget{method-OGCAbstractObject-print}{}}}
+\subsection{Method \code{print()}}{
+Provides a custom print output (as tree) of the current class
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$print(..., depth = 1)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{args}
+
+\item{\code{depth}}{class nesting depth}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
