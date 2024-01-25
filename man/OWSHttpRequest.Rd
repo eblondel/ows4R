@@ -39,6 +39,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-OWSHttpRequest-getStatus}{\code{OWSHttpRequest$getStatus()}}
 \item \href{#method-OWSHttpRequest-getResponse}{\code{OWSHttpRequest$getResponse()}}
 \item \href{#method-OWSHttpRequest-getException}{\code{OWSHttpRequest$getException()}}
+\item \href{#method-OWSHttpRequest-hasException}{\code{OWSHttpRequest$hasException()}}
 \item \href{#method-OWSHttpRequest-getResult}{\code{OWSHttpRequest$getResult()}}
 \item \href{#method-OWSHttpRequest-setResult}{\code{OWSHttpRequest$setResult()}}
 \item \href{#method-OWSHttpRequest-clone}{\code{OWSHttpRequest$clone()}}
@@ -215,6 +216,19 @@ get request exception
 
 \subsection{Returns}{
 the request exception
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-OWSHttpRequest-hasException"></a>}}
+\if{latex}{\out{\hypertarget{method-OWSHttpRequest-hasException}{}}}
+\subsection{Method \code{hasException()}}{
+Indicates if it has an exception
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OWSHttpRequest$hasException()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{TRUE} if it has an exception, \code{FALSE} otherwise
 }
 }
 \if{html}{\out{<hr>}}

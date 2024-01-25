@@ -66,6 +66,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 <li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getResponse"><a href='../../ows4R/html/OWSHttpRequest.html#method-OWSHttpRequest-getResponse'><code>ows4R::OWSHttpRequest$getResponse()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getResult"><a href='../../ows4R/html/OWSHttpRequest.html#method-OWSHttpRequest-getResult'><code>ows4R::OWSHttpRequest$getResult()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="getStatus"><a href='../../ows4R/html/OWSHttpRequest.html#method-OWSHttpRequest-getStatus'><code>ows4R::OWSHttpRequest$getStatus()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="hasException"><a href='../../ows4R/html/OWSHttpRequest.html#method-OWSHttpRequest-hasException'><code>ows4R::OWSHttpRequest$hasException()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="ows4R" data-topic="OWSHttpRequest" data-id="setResult"><a href='../../ows4R/html/OWSHttpRequest.html#method-OWSHttpRequest-setResult'><code>ows4R::OWSHttpRequest$setResult()</code></a></span></li>
 </ul>
 </details>

@@ -298,6 +298,13 @@ WMSLayer <- R6Class("WMSLayer",
         user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), 
         headers = client$getHeaders(), config = client$getConfig(),
         logger = self$loggerType, ...)
+      
+      #exception handling
+      if(ftFeatures$hasException()){
+        return(ftFeatures$getException())
+      }
+      
+      #response handling
       obj <- ftFeatures$getResponse()
       
       #write the file to disk

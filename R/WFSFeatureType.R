@@ -192,6 +192,12 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftDescription <- WFSDescribeFeatureType$new(private$capabilities, op = op, private$url, private$version, private$name, 
                                                   user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                                   logger = self$loggerType)
+      #exception handling
+      if(ftDescription$hasException()){
+        return(ftDescription$getException())
+      }
+
+      #response handling
       xmlObj <- ftDescription$getResponse()
       namespaces <- OWSUtils$getNamespaces(xmlObj)
       xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
@@ -287,7 +293,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       if(is.null(self$description)){
         self$description = self$getDescription()
       }
-      
+      if(is(self$description, "OWSException")){
+        stop("Feature type could not be described, aborting getting features...")
+      }
       vendorParams <- list(...)
       
       if(paging){
@@ -337,6 +345,12 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftFeatures <- WFSGetFeature$new(private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
                                       user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
                                       logger = self$loggerType, ...)
+      #exception handling
+      if(ftFeatures$hasException()){
+        return(ftFeatures$getException())
+      }
+      
+      #response handling
       obj <- ftFeatures$getResponse()
       
       if(length(vendorParams)>0){

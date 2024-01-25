@@ -24,10 +24,10 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     namedParams = list(),
     contentType = "text/xml",
     mimeType = "text/xml",
-    status = NA,
-    response = NA,
-    exception = NA,
-    result = NA,
+    status = NULL,
+    response = NULL,
+    exception = NULL,
+    result = NULL,
     
     user = NULL,
     pwd = NULL,
@@ -234,21 +234,23 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       private$status <- req$status
       private$response <- req$response
       
-      if(private$type == "GET"){
-        if(private$status != 200){
-          private$exception <- sprintf("Error while executing request '%s'", req$request)
-          self$ERROR(private$exception)
-        }
-      }
-      if(private$type == "POST"){
-        if(endsWith(private$mimeType, "xml")) if(!is.null(xmlNamespaces(req$response)$ows)){
-          exception <- getNodeSet(req$response, "//ows:ExceptionText", c(ows = xmlNamespaces(req$response)$ows$uri))
+      #exception handling
+      if(private$status != 200){ #usually a status code 400
+        exception_tmp_file = tempfile(fileext = ".xml")
+        writeBin(req$response, exception_tmp_file)
+        xmlObj = try(XML::xmlParse(exception_tmp_file), silent = TRUE)
+        if(!is(xmlObj, "try-error")) if(!is.null(xmlNamespaces(xmlObj)$ows)){
+          exception <- getNodeSet(xmlObj, "//ows:Exception", c(ows = xmlNamespaces(xmlObj)$ows$uri))
           if(length(exception)>0){
-            exception <- exception[[1]]
-            private$exception <- xmlValue(exception)
-            self$ERROR(private$exception)
+            exception <- OWSException$new(xmlObj = exception[[1]])
+            self$ERROR(sprintf("Exception [locator:'%s' code:'%s']: %s", exception$getLocator(), exception$getCode(), exception$getText()))
+            private$exception <- exception
+            private$response <- NULL
+            self$setResult(FALSE)
           }
         }
+      }else{
+        self$setResult(TRUE)
       }
     },
     
@@ -286,6 +288,12 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
     #'@return the request exception
     getException = function(){
       return(private$exception)
+    },
+    
+    #'@description Indicates if it has an exception
+    #'@return \code{TRUE} if it has an exception, \code{FALSE} otherwise
+    hasException = function(){
+      return(!is.null(private$exception))
     },
     
     #'@description Get the result \code{TRUE} if the request is successful, \code{FALSE} otherwise

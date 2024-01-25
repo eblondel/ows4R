@@ -59,13 +59,15 @@ OWSCapabilities <- R6Class("OWSCapabilities",
           element = private$xmlElement, namespacePrefix = private$xmlNamespacePrefix,
           url, service, serviceVersion, logger = logger, ...)
        if(private$request$getStatus()==200){
-          xmlObj <- private$request$getResponse()
-          private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
-          private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
-          private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
+        xmlObj <- private$request$getResponse()
+        if(tolower(xmlName(xmlRoot(xmlObj)))=="html"){
+          stop(sprintf("No OGC service found at URL %s", url))
+        }
+        private$serviceIdentification <- OWSServiceIdentification$new(xmlObj, owsVersion, serviceVersion)
+        private$serviceProvider <- OWSServiceProvider$new(xmlObj, owsVersion, serviceVersion)
+        private$operationsMetadata <- OWSOperationsMetadata$new(xmlObj, owsVersion, serviceVersion)
        }else{
-          self$ERROR(private$request$getException())
-          stop(private$request$getException())
+          return(private$request$getException())
        }
      },
      

@@ -96,6 +96,12 @@ CSWClient <- R6Class("CSWClient",
                                         user = self$getUser(), pwd = self$getPwd(), token = self$getToken(), 
                                         headers = self$getHeaders(), config = self$getConfig(),
                                         namespace = namespace, logger = self$loggerType, ...)
+       #exception handling
+       if(request$hasException()){
+         return(request$getException())
+       }
+       
+       #response handling
        return(request$getResponse())
      },
      
@@ -125,6 +131,12 @@ CSWClient <- R6Class("CSWClient",
                                        headers = self$getHeaders(), config = self$getConfig(),
                                        id = id, elementSetName = elementSetName,
                                        logger = self$loggerType, ...)
+       #exception handling
+       if(request$hasException()){
+         return(request$getException())
+       }
+       
+       #response handling
        return(request$getResponse())
      },
      
@@ -161,6 +173,12 @@ CSWClient <- R6Class("CSWClient",
                                     headers = self$getHeaders(), config = self$getConfig(),
                                     query = query, logger = self$loggerType, 
                                     maxRecords = maxRecordsPerRequest, ...)
+       #exception handling
+       if(firstRequest$hasException()){
+         return(firstRequest$getException())
+       }
+       
+       #response handling
        records <- firstRequest$getResponse()
        
        numberOfRecordsMatched <- attr(records, "numberOfRecordsMatched")
@@ -190,6 +208,13 @@ CSWClient <- R6Class("CSWClient",
                                           query = query, logger = self$loggerType, 
                                           startPosition = nextRecord, 
                                           maxRecords = maxRecordsPerRequest, ...)
+         
+         #exception handling
+         if(nextRequest$hasException()){
+           return(nextRequest$getException())
+         }
+         
+         #response handling
          nextRecords <- nextRequest$getResponse()
          records <- c(records, nextRecords)
          if(length(records) == numberOfRecordsMatched) break
@@ -233,6 +258,12 @@ CSWClient <- R6Class("CSWClient",
                                          record = record, recordProperty = recordProperty, constraint = constraint, 
                                          logger = self$loggerType, ...)
        
+       #exception handling
+       if(transaction$hasException()){
+         return(transaction$getException())
+       }
+       
+       #response handling
        summaryKey <- switch(type,
          "Insert" = "Inserted",
          "Update" = "Updated",
@@ -324,6 +355,12 @@ CSWClient <- R6Class("CSWClient",
                                  source = sourceUrl, resourceType = resourceType, resourceFormat = "application/xml",
                                  logger = self$loggerType)
        
+       #exception handling
+       if(harvest$hasException()){
+         return(harvest$getException())
+       }
+       
+       #response handling
        harvest$setResult(FALSE)
        if(is.null(xmlNamespaces(harvest$getResponse())$csw)){
          return(harvest)
