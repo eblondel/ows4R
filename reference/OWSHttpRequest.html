@@ -12,7 +12,7 @@ OWSHttpRequest"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
     
     <a class="navbar-brand me-2" href="../index.html">ows4R</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3-7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,6 +96,7 @@ OWSHttpRequest"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <li><p><a href="#method-OWSHttpRequest-getStatus"><code>OWSHttpRequest$getStatus()</code></a></p></li>
 <li><p><a href="#method-OWSHttpRequest-getResponse"><code>OWSHttpRequest$getResponse()</code></a></p></li>
 <li><p><a href="#method-OWSHttpRequest-getException"><code>OWSHttpRequest$getException()</code></a></p></li>
+<li><p><a href="#method-OWSHttpRequest-hasException"><code>OWSHttpRequest$hasException()</code></a></p></li>
 <li><p><a href="#method-OWSHttpRequest-getResult"><code>OWSHttpRequest$getResult()</code></a></p></li>
 <li><p><a href="#method-OWSHttpRequest-setResult"><code>OWSHttpRequest$setResult()</code></a></p></li>
 <li><p><a href="#method-OWSHttpRequest-clone"><code>OWSHttpRequest$clone()</code></a></p></li>
@@ -291,22 +292,34 @@ OWSHttpRequest"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <p>the request exception</p>
 </div>
 
-</div><p></p><hr><a id="method-OWSHttpRequest-getResult"></a><div class="section">
-<h3 id="method-getresult-">Method <code>getResult()</code><a class="anchor" aria-label="anchor" href="#method-getresult-"></a></h3>
-<p>Get the result <code>TRUE</code> if the request is successful, <code>FALSE</code> otherwise</p><div class="section">
+</div><p></p><hr><a id="method-OWSHttpRequest-hasException"></a><div class="section">
+<h3 id="method-hasexception-">Method <code>hasException()</code><a class="anchor" aria-label="anchor" href="#method-hasexception-"></a></h3>
+<p>Indicates if it has an exception</p><div class="section">
 <h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OWSHttpRequest</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OWSHttpRequest</span><span class="op">$</span><span class="fu">hasException</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<p><code>TRUE</code> if it has an exception, <code>FALSE</code> otherwise</p>
+</div>
+
+</div><p></p><hr><a id="method-OWSHttpRequest-getResult"></a><div class="section">
+<h3 id="method-getresult-">Method <code>getResult()</code><a class="anchor" aria-label="anchor" href="#method-getresult-"></a></h3>
+<p>Get the result <code>TRUE</code> if the request is successful, <code>FALSE</code> otherwise</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OWSHttpRequest</span><span class="op">$</span><span class="fu">getResult</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
 <p>the result, object of class <code>logical</code></p>
 </div>
 
 </div><p></p><hr><a id="method-OWSHttpRequest-setResult"></a><div class="section">
 <h3 id="method-setresult-">Method <code>setResult()</code><a class="anchor" aria-label="anchor" href="#method-setresult-"></a></h3>
 <p>Set the result</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OWSHttpRequest</span><span class="op">$</span><span class="fu">setResult</span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -322,7 +335,7 @@ OWSHttpRequest"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 </div><p></p><hr><a id="method-OWSHttpRequest-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OWSHttpRequest</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
