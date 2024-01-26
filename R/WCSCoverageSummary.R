@@ -219,7 +219,6 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             label = "time", uom = "s", type = "temporal",
             coefficients = des$Domain$temporalDomain$instants
           )                
-          
         }
       }
       
@@ -231,7 +230,8 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           self$ERROR("No 'srsName' envelope attribute for CRS interpretation")
           return(NULL)
         }
-        srsNameXML <- try(XML::xmlParse(srsName), silent = TRUE)
+        srsName = gsub("http://", "https://", srsName) #attempt to rewrite http to https
+        srsNameXML <- try(XML::xmlParse(httr::content(httr::GET(srsName),"text")), silent = TRUE)
         if(is(srsNameXML,"try-error")){
           self$ERROR(sprintf("Error during CRS interpretation for srsName = '%s'", srsName))
           return(NULL)
@@ -247,8 +247,9 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             out_crs <- thecrs
             crsHref <- thecrs$attrs[["xlink:href"]]
             if(!is.null(crsHref)){
+              crsHref = gsub("http://", "https://", crsHref) #attempt to rewrite http to https
               self$INFO(sprintf("Try to parse CRS from '%s'", crsHref))
-              crsXML <- try(XML::xmlParse(crsHref))
+              crsXML <- try(XML::xmlParse(httr::content(httr::GET(crsHref),"text")), silent = TRUE)
               if(is(crsXML, "try-error")){
                 self$ERROR(sprintf("Error during parsing CRS '%s'", crsHref))
                 return(NULL)
