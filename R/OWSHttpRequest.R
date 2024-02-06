@@ -44,7 +44,7 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       req <- url
       if(nzchar(params)){
         if(!endsWith(url,"?")){
-          if(regexpr("\\?", url)>0){
+          if(regexpr("\\?", url)>0 & regexpr("/cas?service=", url, fixed = T)<0){
             req <- paste0(req, "&")
           }else{
             req <- paste0(req, "?")
