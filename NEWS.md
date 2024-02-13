@@ -14,6 +14,10 @@
 - [#117](https://github.com/eblondel/ows4R/issues/117) Support pretty print of R6 objects
 
 
+**Enhancements**
+
+- [#121](https://github.com/eblondel/ows4R/issues/121) Service exceptions are not always handled in status code 400
+
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**

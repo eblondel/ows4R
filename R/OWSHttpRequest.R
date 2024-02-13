@@ -235,19 +235,27 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
       private$response <- req$response
       
       #exception handling
-      if(private$status != 200){ #usually a status code 400
+      xmlObj = req$response
+      #service exception is usually returned with a status code 400 but not always!
+      if(is.vector(req$response)){
         exception_tmp_file = tempfile(fileext = ".xml")
         writeBin(req$response, exception_tmp_file)
         xmlObj = try(XML::xmlParse(exception_tmp_file), silent = TRUE)
-        if(!is(xmlObj, "try-error")) if(!is.null(xmlNamespaces(xmlObj)$ows)){
-          exception <- getNodeSet(xmlObj, "//ows:Exception", c(ows = xmlNamespaces(xmlObj)$ows$uri))
-          if(length(exception)>0){
-            exception <- OWSException$new(xmlObj = exception[[1]])
+      }
+      if(!is(xmlObj, "try-error")) if(!is.null(xmlNamespaces(xmlObj)$ows)){
+        exception <- getNodeSet(xmlObj, "//ows:Exception", c(ows = xmlNamespaces(xmlObj)$ows$uri))
+        if(length(exception)>0){
+          exception <- OWSException$new(xmlObj = exception[[1]])
+          if(!is.null(exception$getLocator()) & !is.null(exception$getCode())){
             self$ERROR(sprintf("Exception [locator:'%s' code:'%s']: %s", exception$getLocator(), exception$getCode(), exception$getText()))
-            private$exception <- exception
-            private$response <- NULL
-            self$setResult(FALSE)
+          }else{
+            self$ERROR(sprintf("Exception: %s", exception$getText()))
           }
+          private$exception <- exception
+          private$response <- NULL
+          self$setResult(FALSE)
+        }else{
+          self$setResult(TRUE)
         }
       }else{
         self$setResult(TRUE)
