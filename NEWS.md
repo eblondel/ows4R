@@ -7,16 +7,16 @@
 - [#113](https://github.com/eblondel/ows4R/issues/113) WCSGetCoverage- Fix vendor params handling 
 - [#119](https://github.com/eblondel/ows4R/issues/119) WCS Coverage descriptions - patch to rewrite CRS online resources to https
 - [#120](https://github.com/eblondel/ows4R/issues/120) Service requests under CAS do not work anymore
+- [#123](https://github.com/eblondel/ows4R/issues/123) Missing axis labels handling for WCS coverage envelope
 
 **New features**
 
 - [#116](https://github.com/eblondel/ows4R/issues/116) Support Service exceptions handling
 - [#117](https://github.com/eblondel/ows4R/issues/117) Support pretty print of R6 objects
 
-
 **Enhancements**
 
-- [#121](https://github.com/eblondel/ows4R/issues/121) Service exceptions are not always handled in status code 400
+- [#122](https://github.com/eblondel/ows4R/issues/122) Service exceptions are not always handled in status code 400
 
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
