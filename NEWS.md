@@ -1,10 +1,18 @@
-## [ows4R 0.3-7](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+## [ows4R 0.4](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**
 
 - [#111](https://github.com/eblondel/ows4R/pull/111) WCSCoverageSummary - Fix download failure due to min/max handling
 - [#112](https://github.com/eblondel/ows4R/issues/112) OWSHttpRequest GET doesn't detect existing params and make GetCapabilities fail
 - [#113](https://github.com/eblondel/ows4R/issues/113) WCSGetCoverage- Fix vendor params handling 
+- [#119](https://github.com/eblondel/ows4R/issues/119) WCS Coverage descriptions - patch to rewrite CRS online resources to https
+- [#120](https://github.com/eblondel/ows4R/issues/120) Service requests under CAS do not work anymore
+
+**New features**
+
+- [#116](https://github.com/eblondel/ows4R/issues/116) Support Service exceptions handling
+- [#117](https://github.com/eblondel/ows4R/issues/117) Support pretty print of R6 objects
+
 
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
