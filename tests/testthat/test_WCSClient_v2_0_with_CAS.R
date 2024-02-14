@@ -12,7 +12,7 @@ test_that("WCS 2.0.1 - CMEMS",{
   if(FALSE){
     wcs <- WCSClient$new(
       url = "https://nrt.cmems-du.eu/motu-web/wcs",
-      user = "user", pwd = "*****", cas_url = "https://cmems-cas.cls.fr/cas",
+      user = Sys.getenv("CMEMS_USER"), pwd = Sys.getenv("CMEMS_PWD"), cas_url = "https://cmems-cas.cls.fr/cas",
       serviceVersion = "2.0.1",
       logger = "INFO"
     )
