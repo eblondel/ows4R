@@ -17,6 +17,7 @@
 
 - [#122](https://github.com/eblondel/ows4R/issues/122) Service exceptions are not always handled in status code 400
 - [#123](https://github.com/eblondel/ows4R/issues/123) Missing axis labels handling for WCS coverage envelope
+- [#124](https://github.com/eblondel/ows4R/issues/124) Optimize WFS getFeatures depending on the outputFormat
 
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 

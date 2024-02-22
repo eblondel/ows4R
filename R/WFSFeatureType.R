@@ -366,6 +366,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         }
       }
       
+      read_features = TRUE
+      validate_features = TRUE
+      
       #write the file to disk
       tempf = tempfile()
       if(is.null(outputFormat)){
@@ -384,17 +387,30 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           "application/json" = {
             destfile = paste0(tempf,".json")
             write(obj, destfile)
+            validate_features = FALSE
           },
           "json" = {
             destfile = paste0(tempf,".json")
             write(obj, destfile)
+            validate_features = FALSE
           },
           "csv" = {
             destfile = paste0(tempf,".csv")
             lcolnames = tolower(colnames(obj))
-            sf::st_write(obj[,!duplicated(lcolnames)], destfile)
+            if(self$getGeometryType() %in% colnames(obj)){
+              sf::st_write(obj[,!duplicated(lcolnames)], destfile)
+              validate_features = FALSE
+            }else{
+              readr::write_csv(obj[,!duplicated(lcolnames)], destfile)
+              read_features = FALSE
+            }
           }
         )
+      }
+      
+      if(!read_features){
+        self$features = obj
+        return(self$features)
       }
       
       #read features
@@ -418,7 +434,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
         
       #validating attributes vs. schema
-      for(element in self$description){
+      if(validate_features) for(element in self$description){
         attrType <- element$getType()
         if(!is.null(attrType) && !element$isGeometry()){
           attrName = element$getName()
