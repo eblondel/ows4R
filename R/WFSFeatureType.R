@@ -202,7 +202,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       namespaces <- OWSUtils$getNamespaces(xmlObj)
       xsdNs <- OWSUtils$findNamespace(namespaces, "XMLSchema")
       elementXML <- getNodeSet(xmlObj, "//ns:sequence/ns:element", xsdNs)
-      elements <- lapply(elementXML, WFSFeatureTypeElement$new)
+      elements <- lapply(elementXML, WFSFeatureTypeElement$new, namespaces)
       self$description <- elements
       out <- self$description
       if(pretty){

@@ -20,7 +20,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
      geometry = FALSE,
      
      #fetchElement
-     fetchElement = function(xmlObj){
+     fetchElement = function(xmlObj, namespaces){
        
        #minOccurs
        elementMinOccurs <- xmlGetAttr(xmlObj, "minOccurs")
@@ -46,8 +46,10 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        if(is.null(type)){
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
        }
-       if(attr(regexpr("gml", type), "match.length") > 0){
-         elementType <- unlist(strsplit(unlist(strsplit(type, "gml:"))[2], "PropertyType"))[1]
+       
+       gml_xmlns = namespaces[namespaces$uri =="http://www.opengis.net/gml",]$id
+       if(attr(regexpr(gml_xmlns, type), "match.length") > 0){
+         elementType <- unlist(strsplit(unlist(strsplit(type, paste0(gml_xmlns,":")))[2], "PropertyType"))[1]
          geometry <- TRUE
        }else{
          baseType <- tolower(type)
@@ -86,8 +88,9 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
       
      #'@description Initializes a \link{WFSFeatureTypeElement}
      #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
-     initialize = function(xmlObj){
-       element = private$fetchElement(xmlObj)
+     #'@param namespaces namespaces definitions inherited from parent XML, as \code{data.frame}
+     initialize = function(xmlObj, namespaces){
+       element = private$fetchElement(xmlObj, namespaces)
        private$minOccurs = element$minOccurs
        private$maxOccurs = element$maxOccurs
        private$nillable = element$nillable
