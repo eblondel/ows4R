@@ -46,9 +46,10 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        if(is.null(type)){
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
        }
-       
-       if(attr(regexpr("gml", type), "match.length") > 0){
-         elementType <- unlist(strsplit(unlist(strsplit(type, paste0("gml",":")))[2], "PropertyType"))[1]
+       gml_xmlns = namespaces[regexpr("gml", namespaces$uri)>0,] #may include app-schema GML secondary namespace
+       if(any(startsWith(type, gml_xmlns$id))){
+         gml_xmlns = gml_xmlns[startsWith(type, gml_xmlns$id),]
+         elementType <- unlist(strsplit(unlist(strsplit(type, paste0(gml_xmlns$id,":")))[2], "PropertyType"))[1]
          geometry <- TRUE
        }else{
          baseType <- tolower(type)
