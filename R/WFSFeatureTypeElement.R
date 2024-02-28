@@ -47,9 +47,8 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
        }
        
-       gml_xmlns = namespaces[namespaces$uri =="http://www.opengis.net/gml",]$id
-       if(attr(regexpr(gml_xmlns, type), "match.length") > 0){
-         elementType <- unlist(strsplit(unlist(strsplit(type, paste0(gml_xmlns,":")))[2], "PropertyType"))[1]
+       if(attr(regexpr("gml", type), "match.length") > 0){
+         elementType <- unlist(strsplit(unlist(strsplit(type, paste0("gml",":")))[2], "PropertyType"))[1]
          geometry <- TRUE
        }else{
          baseType <- tolower(type)
