@@ -43,13 +43,15 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \subsection{Method \code{new()}}{
 Initializes a \link{WFSFeatureTypeElement}
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$new(xmlObj)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureTypeElement$new(xmlObj, namespaces)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+
+\item{\code{namespaces}}{namespaces definitions inherited from parent XML, as \code{data.frame}}
 }
 \if{html}{\out{</div>}}
 }
