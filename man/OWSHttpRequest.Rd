@@ -84,6 +84,7 @@ Initializes an OWS HTTP request
   attrs = NULL,
   contentType = "text/xml",
   mimeType = "text/xml",
+  skipXmlComments = TRUE,
   logger = NULL,
   ...
 )}\if{html}{\out{</div>}}
@@ -123,6 +124,8 @@ Initializes an OWS HTTP request
 \item{\code{contentType}}{content type. Default value is "text/xml"}
 
 \item{\code{mimeType}}{mime type. Default value is "text/xml"}
+
+\item{\code{skipXmlComments}}{Skip XML comments from response}
 
 \item{\code{logger}}{logger}
 

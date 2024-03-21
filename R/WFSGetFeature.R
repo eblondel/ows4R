@@ -75,7 +75,7 @@ WFSGetFeature <- R6Class("WFSGetFeature",
        super$initialize(element = private$xmlElement, namespacePrefix = private$namespacePrefix,
                         capabilities, op, "GET", url, request = "GetFeature",
                         user = user, pwd = pwd, token = token, headers = headers, config = config,
-                        namedParams = namedParams, mimeType = mimeType, logger = logger)
+                        namedParams = namedParams, mimeType = mimeType, skipXmlComments = FALSE, logger = logger)
        self$execute()
      }
    )
