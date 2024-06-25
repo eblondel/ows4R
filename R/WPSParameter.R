@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Parameter
-#' @return Object of \code{\link{R6Class}} modelling a WPS parameter
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WPS parameter
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -51,7 +51,7 @@ WPSParameter <- R6Class("WPSParameter",
    public = list(
       
      #'@description Initializes an object of class \link{WPSParameter}
-     #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+     #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
      #'@param version WPS service version
      #'@param logger logger
      #'@param ... any additional parameter

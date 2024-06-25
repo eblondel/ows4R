@@ -5,10 +5,10 @@
 \alias{OWSException}
 \title{OWSException}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a OWS Service exception
+Object of \code{\link[R6]{R6Class}} modelling a OWS Service exception
 }
 \description{
 OWSException
@@ -71,7 +71,7 @@ Initializes an object of class \link{OWSException}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{logger}}{logger}
 }

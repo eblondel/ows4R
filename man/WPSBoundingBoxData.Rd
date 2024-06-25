@@ -5,10 +5,10 @@
 \alias{WPSBoundingBoxData}
 \title{WPSBoundingBoxData}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC WPS BoundingBox data
+Object of \code{\link[R6]{R6Class}} for modelling an OGC WPS BoundingBox data
 }
 \description{
 WPSBoundingBoxData
@@ -69,7 +69,7 @@ Initializes an object of class \link{WPSBoundingBoxData}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{owsVersion}}{OWS version}
 

@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Capabilities
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 #' Web Processing Service (WPS) Get Capabilities document.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used to read a \code{WPSCapabilities} document. The use of \code{WPSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WPS server.

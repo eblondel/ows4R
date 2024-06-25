@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WFS FeatureType
-#' @return Object of \code{\link{R6Class}} modelling a WFS feature type element
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WFS feature type element
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -87,7 +87,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
    public = list(
       
      #'@description Initializes a \link{WFSFeatureTypeElement}
-     #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
      #'@param namespaces namespaces definitions inherited from parent XML, as \code{data.frame}
      initialize = function(xmlObj, namespaces){
        element = private$fetchElement(xmlObj, namespaces)

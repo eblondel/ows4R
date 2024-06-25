@@ -5,10 +5,10 @@
 \alias{OWSClient}
 \title{OWSClient}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.
+Object of \code{\link[R6]{R6Class}} with methods for interfacing a Common OGC web-service.
 }
 \description{
 OWSClient

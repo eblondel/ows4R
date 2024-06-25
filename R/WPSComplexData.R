@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS ComplexData
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Complex Data
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Complex Data
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -110,7 +110,7 @@ WPSComplexData <- R6Class("WPSComplexData",
     value = NULL,
     
     #'@description Initializes an object of class \link{WPSComplexData}
-    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param value value
     #'@param schema schema
     #'@param mimeType mime type
@@ -133,7 +133,7 @@ WPSComplexData <- R6Class("WPSComplexData",
     },
     
     #'@description Decodes an object of class \link{WPSComplexData} from XML
-    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     decode = function(xml){
       self$value <- as(xmlChildren(xml)[[1]], "character")
       self$attrs <- as.list(xmlAttrs(xml))

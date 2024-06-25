@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC WFS GetCapabilities
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 #' Web Feature Service Get Capabilities document.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used to read a \code{WFSCapabilities} document. The use of \code{WFSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WFS server.

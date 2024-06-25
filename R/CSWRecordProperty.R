@@ -2,8 +2,8 @@
 #' @docType class
 #' @export
 #' @keywords CSW RecordProperty
-#' @return Object of \code{\link{R6Class}} for modelling an CSW RecordProperty
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an CSW RecordProperty
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples 
 #'    rp <- CSWRecordProperty$new(name = "NAME", value = "VALUE")

@@ -5,10 +5,10 @@
 \alias{OWSServiceProvider}
 \title{OWSServiceProvider}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC Service Provider
+Object of \code{\link[R6]{R6Class}} for modelling an OGC Service Provider
 }
 \description{
 OWSServiceProvider
@@ -47,7 +47,7 @@ Initializes an object of class \link{OWSServiceProvider}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{owsVersion}}{OWS version}
 
@@ -102,7 +102,7 @@ Get provider contact
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{the}}{provider contact, object of class \link{ISOResponsibleParty} from \pkg{geometa}}
+\item{\code{the}}{provider contact, object of class \link[geometa]{ISOResponsibleParty} from \pkg{geometa}}
 }
 \if{html}{\out{</div>}}
 }

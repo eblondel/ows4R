@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC exception
-#' @return Object of \code{\link{R6Class}} modelling a OWS Service exception
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a OWS Service exception
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -32,7 +32,7 @@ OWSException <- R6Class("OWSException",
     ExceptionText = NULL,
     
     #'@description Initializes an object of class \link{OWSException}
-    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param logger logger
     initialize = function(xmlObj, logger = NULL){
       super$initialize(logger = logger)

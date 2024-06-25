@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC WMS GetCapabilities
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 #' Web Map Service Get Capabilities document.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used to read a \code{WMSCapabilities} document. The use of \code{WMSClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a WMS server.

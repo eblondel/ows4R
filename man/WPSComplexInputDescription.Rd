@@ -5,10 +5,10 @@
 \alias{WPSComplexInputDescription}
 \title{WPSComplexInputDescription}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WPS process complex input description
+Object of \code{\link[R6]{R6Class}} modelling a WPS process complex input description
 }
 \description{
 WPSComplexInputDescription
@@ -73,7 +73,7 @@ Initializes a \link{WPSComplexInputDescription}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{version}}{WPS service version}
 

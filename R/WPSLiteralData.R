@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS LiteralData
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Literal Data
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Literal Data
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -19,7 +19,7 @@ WPSLiteralData <- R6Class("WPSLiteralData",
     value = NULL,
     
     #'@description Initializes an object of class \link{WPSLiteralData}
-    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param value value
     #'@param serviceVersion WPS service version
     initialize = function(xml = NULL, value = NULL, serviceVersion = "1.0.0") {
@@ -42,7 +42,7 @@ WPSLiteralData <- R6Class("WPSLiteralData",
     },
     
     #'@description Decodes an object of class \link{WPSLiteralData} from XML
-    #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     decode = function(xml){
 
       dataType <- xmlGetAttr(xml, "dataType")

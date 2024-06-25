@@ -14,8 +14,8 @@
 #' @import crayon
 #' @export
 #' @keywords OGC Common OWS
-#' @return Object of \code{\link{R6Class}} with methods for interfacing a Common OGC web-service.
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing a Common OGC web-service.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 

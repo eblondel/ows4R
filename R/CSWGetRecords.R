@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC CSW GetRecords
-#' @return Object of \code{\link{R6Class}} for modelling a CSW GetRecords request
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a CSW GetRecords request
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a CSW GetRecords request
 #' 

@@ -5,10 +5,10 @@
 \alias{WCSCapabilities}
 \title{WCSCapabilities}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} with methods for interfacing an OGC
+Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 Web Coverage Service Get Capabilities document.
 }
 \description{

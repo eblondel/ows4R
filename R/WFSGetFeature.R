@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WFS GetFeature
-#' @return Object of \code{\link{R6Class}} for modelling a WFS GetFeature request
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WFS GetFeature request
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a WFS GetFeature request
 #' 

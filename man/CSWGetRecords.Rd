@@ -5,10 +5,10 @@
 \alias{CSWGetRecords}
 \title{CSWGetRecords}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a CSW GetRecords request
+Object of \code{\link[R6]{R6Class}} for modelling a CSW GetRecords request
 }
 \description{
 CSWGetRecords

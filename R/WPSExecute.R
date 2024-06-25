@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Execute
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Execute request
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Execute request
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a WPS Execute request
 #' 

@@ -2,8 +2,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC Expression
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Expression
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Expression
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note abstract class
 #' 
@@ -51,8 +51,8 @@ OGCExpression <-  R6Class("OGCExpression",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType
-#' @return Object of \code{\link{R6Class}} for modelling an BinaryComparisonOpType
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an BinaryComparisonOpType
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note abstract super class of all the property operation classes
 #' 
@@ -87,8 +87,8 @@ BinaryComparisonOpType <-  R6Class("BinaryComparisonOpType",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsEqualTo
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsEqualTo
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsEqualTo
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")
@@ -121,8 +121,8 @@ PropertyIsEqualTo <-R6Class("PropertyIsEqualTo",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsNotEqualTo
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsNotEqualTo
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsNotEqualTo
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsNotEqualTo$new(PropertyName = "property", Literal = "value")
@@ -155,8 +155,8 @@ PropertyIsNotEqualTo <-R6Class("PropertyIsNotEqualTo",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsLessThan
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLessThan
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsLessThan
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsLessThan$new(PropertyName = "property", Literal = "value")
@@ -189,8 +189,8 @@ PropertyIsLessThan <-R6Class("PropertyIsLessThan",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsGreaterThan
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsGreaterThan
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsGreaterThan
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsGreaterThan$new(PropertyName = "property", Literal = "value")
@@ -223,8 +223,8 @@ PropertyIsGreaterThan <-R6Class("PropertyIsGreaterThan",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsLesserThanOrEqualTo
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLesserThanOrEqualTo
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsLesserThanOrEqualTo
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsLessThanOrEqualTo$new(PropertyName = "property", Literal = "value")
@@ -257,8 +257,8 @@ PropertyIsLessThanOrEqualTo <-R6Class("PropertyIsLessThanOrEqualTo",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryComparisonOpType PropertyIsGreaterThanOrEqualTo
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsGreaterThanOrEqualTo
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsGreaterThanOrEqualTo
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsGreaterThanOrEqualTo$new(PropertyName = "property", Literal = "value")
@@ -291,8 +291,8 @@ PropertyIsGreaterThanOrEqualTo <-R6Class("PropertyIsGreaterThanOrEqualTo",
 #' @docType class
 #' @export
 #' @keywords OGC Expression PropertyIsLike
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsLike
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsLike
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsLike$new(PropertyName = "property", Literal = "value")
@@ -345,8 +345,8 @@ PropertyIsLike <-  R6Class("PropertyIsLike",
 #' @docType class
 #' @export
 #' @keywords OGC Expression PropertyIsNull
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsNull
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsNull
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsNull$new(PropertyName = "property")
@@ -377,8 +377,8 @@ PropertyIsNull <-  R6Class("PropertyIsNull",
 #' @docType class
 #' @export
 #' @keywords OGC Expression PropertyIsBetween
-#' @return Object of \code{\link{R6Class}} for modelling an PropertyIsBetween
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an PropertyIsBetween
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsBetween$new(PropertyName = "property", lower = 1, upper = 10)
@@ -417,8 +417,8 @@ PropertyIsBetween <-  R6Class("PropertyIsBetween",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BBOX
-#' @return Object of \code{\link{R6Class}} for modelling an BBOX
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an BBOX
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   bbox <- OWSUtils$toBBOX(-180,-90,180,90)
@@ -436,7 +436,7 @@ BBOX <-  R6Class("BBOX",
   public = list(
     #'@field PropertyName property name field for XML encoding
     PropertyName = "ows:BoundingBox",
-    #'@field Envelope envelope as object of class \link{GMLEnvelope} from \pkg{geometa}
+    #'@field Envelope envelope as object of class \link[geometa]{GMLEnvelope} from \pkg{geometa}
     Envelope = NULL,
     
     #'@description Initializes a \link{BBOX} expression
@@ -460,8 +460,8 @@ BBOX <-  R6Class("BBOX",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryLogicOpType
-#' @return Object of \code{\link{R6Class}} for modelling an BinaryLogicOpType
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an BinaryLogicOpType
+#' @format \code{\link[R6]{R6Class}} object.
 #' @note abstract super class of all the binary logical operation classes
 BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
    inherit = OGCExpression,
@@ -500,8 +500,8 @@ BinaryLogicOpType <-  R6Class("BinaryLogicOpType",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryLogicOpType And
-#' @return Object of \code{\link{R6Class}} for modelling an And operator
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an And operator
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
@@ -531,8 +531,8 @@ And <-  R6Class("And",
 #' @docType class
 #' @export
 #' @keywords OGC Expression BinaryLogicOpType Or
-#' @return Object of \code{\link{R6Class}} for modelling an Or operator
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an Or operator
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr1 <- PropertyIsEqualTo$new(PropertyName = "property1", Literal = "value1")
@@ -564,8 +564,8 @@ Or <-  R6Class("Or",
 #' @docType class
 #' @export
 #' @keywords OGC Expression UnaryLogicOpType
-#' @return Object of \code{\link{R6Class}} for modelling an UnaryLogicOpType
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an UnaryLogicOpType
+#' @format \code{\link[R6]{R6Class}} object.
 #' @note abstract super class of all the unary logical operation classes
 UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
   inherit = OGCExpression,
@@ -600,8 +600,8 @@ UnaryLogicOpType <-  R6Class("UnaryLogicOpType",
 #' @docType class
 #' @export
 #' @keywords OGC Expression UnaryLogicOpType Not
-#' @return Object of \code{\link{R6Class}} for modelling an Not
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an Not
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")

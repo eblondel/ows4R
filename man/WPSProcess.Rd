@@ -5,10 +5,10 @@
 \alias{WPSProcess}
 \title{WPSProcess}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WPS process
+Object of \code{\link[R6]{R6Class}} modelling a WPS process
 }
 \description{
 WPSProcess
@@ -67,7 +67,7 @@ Initializes a \link{WPSProcess}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{capabilities}}{object of class \link{WPSCapabilities}}
 

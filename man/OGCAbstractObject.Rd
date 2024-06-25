@@ -5,10 +5,10 @@
 \alias{OGCAbstractObject}
 \title{OGCAbstractObject}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGCAbstractObject
+Object of \code{\link[R6]{R6Class}} for modelling an OGCAbstractObject
 }
 \description{
 OGCAbstractObject
@@ -152,7 +152,7 @@ Initializes an object extending \link{OGCAbstractObject}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{element}}{element name}
 
@@ -267,7 +267,7 @@ Encodes as XML. The \code{addNS} .
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-an object of class \link{XMLInternalNode-class} from \pkg{XML}
+an object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
 }
 }
 \if{html}{\out{<hr>}}

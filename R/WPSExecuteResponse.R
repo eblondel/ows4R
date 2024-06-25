@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS ExecuteResponse
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Execute response
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Execute response
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -32,7 +32,7 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     exception = NULL,
     
     #'@description Initializes a \link{WPSExecuteResponse}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param capabilities object of class \link{WPSCapabilities}
     #'@param processDescription process description
     #'@param logger logger
@@ -83,7 +83,7 @@ WPSExecuteResponse <- R6Class("WPSExecuteResponse",
     },
     
     #'@description Decodes an object of class \link{WPSExecuteResponse} from XML
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param capabilities object of class \link{WPSCapabilities}
     #'@param processDescription process description
     #'@param logger logger

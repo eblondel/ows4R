@@ -5,3 +5,4 @@ tests/pycsw
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+.REnviron

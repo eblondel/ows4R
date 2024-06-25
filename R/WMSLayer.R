@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WMS Layer
-#' @return Object of \code{\link{R6Class}} modelling a WMS layer
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WMS layer
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -143,7 +143,7 @@ WMSLayer <- R6Class("WMSLayer",
     features = NULL,
     
     #'@description Initializes an object of class \link{WMSLayer}
-    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xmlObj an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param capabilities object of class \link{WMSCapabilities}
     #'@param version service version
     #'@param logger logger

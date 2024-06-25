@@ -5,10 +5,10 @@
 \alias{WPSLiteralData}
 \title{WPSLiteralData}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a WPS Literal Data
+Object of \code{\link[R6]{R6Class}} for modelling a WPS Literal Data
 }
 \description{
 WPSLiteralData
@@ -68,7 +68,7 @@ Initializes an object of class \link{WPSLiteralData}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{value}}{value}
 
@@ -89,7 +89,7 @@ Decodes an object of class \link{WPSLiteralData} from XML
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 }
 \if{html}{\out{</div>}}
 }

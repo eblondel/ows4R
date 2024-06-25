@@ -5,10 +5,10 @@
 \alias{OWSOperation}
 \title{OWSOperation}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC Operation
+Object of \code{\link[R6]{R6Class}} for modelling an OGC Operation
 }
 \description{
 OWSOperation
@@ -46,7 +46,7 @@ Initializes an object of class \link{OWSOperation}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{owsVersion}}{OWS version}
 

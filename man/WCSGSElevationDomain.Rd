@@ -5,10 +5,10 @@
 \alias{WCSGSElevationDomain}
 \title{WCSGSElevationDomain}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS geoserver elevation domain object
+Object of \code{\link[R6]{R6Class}} modelling a WCS geoserver elevation domain object
 }
 \description{
 WCSGSElevationDomain
@@ -87,7 +87,7 @@ Decodes from XML
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 }
 \if{html}{\out{</div>}}
 }

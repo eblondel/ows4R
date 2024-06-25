@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC OWS GetCapabilities
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an abstract
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an abstract
 #' OWS Get Capabilities document.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note abstract class used by \pkg{ows4R}
 #' 

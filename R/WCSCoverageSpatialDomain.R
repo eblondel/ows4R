@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WCS Coverage spatial domain
-#' @return Object of \code{\link{R6Class}} modelling a WCS coverage spatial domain
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WCS coverage spatial domain
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by ows4R.
 #' 
@@ -97,7 +97,7 @@ WCSCoverageSpatialDomain <- R6Class("WCSCoverageSpatialDomain",
     GridCRS = list(),
     
     #'@description Initializes an object of class \link{WCSCoverageDomain}
-    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xmlObj an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param serviceVersion service version
     #'@param owsVersion OWS version
     #'@param logger logger
@@ -113,7 +113,7 @@ WCSCoverageSpatialDomain <- R6Class("WCSCoverageSpatialDomain",
     },
     
     #'@description Get envelopes. Method that applies to WCS 1.0 only
-    #'@return a list of objects of class \link{GMLEnvelope} or \link{GMLEnvelopeWithTimePeriod}
+    #'@return a list of objects of class \link[geometa]{GMLEnvelope} or \link[geometa]{GMLEnvelopeWithTimePeriod}
     getEnvelopes = function(){
       return(self$envelopes)
     },
@@ -125,7 +125,7 @@ WCSCoverageSpatialDomain <- R6Class("WCSCoverageSpatialDomain",
     },
     
     #'@description Get grids. Method that applies to WCS 1.0 only
-    #'@return a list of of objects of class \link{GMLGrid} or \link{GMLRectifiedGrid}
+    #'@return a list of of objects of class \link[geometa]{GMLGrid} or \link[geometa]{GMLRectifiedGrid}
     getGrids = function(){
       return(self$grids)
     },

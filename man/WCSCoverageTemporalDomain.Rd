@@ -5,10 +5,10 @@
 \alias{WCSCoverageTemporalDomain}
 \title{WCSCoverageTemporalDomain}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS coverage temporal domain
+Object of \code{\link[R6]{R6Class}} modelling a WCS coverage temporal domain
 }
 \description{
 WCSCoverageTemporalDomain
@@ -80,7 +80,7 @@ Initializes an object of class \link{WCSCoverageTemporalDomain}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xmlObj}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{serviceVersion}}{service version}
 
@@ -114,7 +114,7 @@ Get time periods
 }
 
 \subsection{Returns}{
-a list of objects of class \link{GMLTimePeriod}
+a list of objects of class \link[geometa]{GMLTimePeriod}
 }
 }
 \if{html}{\out{<hr>}}

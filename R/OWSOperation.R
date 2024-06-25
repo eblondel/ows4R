@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC OWS operation
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Operation
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Operation
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Internal class used internally by \pkg{ows4R} when reading capabilities documents
 #' 
@@ -18,7 +18,7 @@ OWSOperation <-  R6Class("OWSOperation",
   public = list(
     
     #'@description Initializes an object of class \link{OWSOperation}. 
-    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param owsVersion OWS version
     #'@param serviceVersion service version
     initialize = function(xmlObj, owsVersion, serviceVersion){

@@ -5,10 +5,10 @@
 \alias{OWSRequest}
 \title{OWSRequest}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a OWS Service Capability Request
+Object of \code{\link[R6]{R6Class}} modelling a OWS Service Capability Request
 }
 \description{
 OWSRequest
@@ -64,7 +64,7 @@ Initializes an object of class \link{OWSRequest}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{capabilities}}{an object of class or extending \link{OWSCapabilities}}
 

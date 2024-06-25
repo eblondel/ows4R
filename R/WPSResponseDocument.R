@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS ResponseDocument
-#' @return Object of \code{\link{R6Class}} for modelling an OGC WPS response document
-#' @format \link{R6Class} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC WPS response document
+#' @format \link[R6]{R6Class} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -19,7 +19,7 @@ WPSResponseDocument <- R6Class("WPSResponseDocument",
     Output = NULL,
     
     #'@description Initializes a \link{WPSResponseDocument}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param storeExecuteResponse store execute response, object of class \code{logical}
     #'@param lineage lineage, object of class \code{logical}
     #'@param status status, object of class \code{logical}

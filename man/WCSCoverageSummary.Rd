@@ -5,10 +5,10 @@
 \alias{WCSCoverageSummary}
 \title{WCSCoverageSummary}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS coverage summary
+Object of \code{\link[R6]{R6Class}} modelling a WCS coverage summary
 }
 \description{
 WCSCoverageSummary
@@ -92,7 +92,7 @@ Initializes a \link{WCSCoverageSummary} object
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{capabilities}}{object of class \link{WCSCapabilities}}
 

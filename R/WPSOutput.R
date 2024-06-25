@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Input
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Input
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Input
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -33,7 +33,7 @@ WPSOutput <- R6Class("WPSOutput",
     Data = NULL,
     
     #'@description Initializes a \link{WPSOutput}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param identifier identifier
     #'@param title title
     #'@param data data
@@ -61,7 +61,7 @@ WPSOutput <- R6Class("WPSOutput",
     },
     
     #'@description Decodes an object of class \link{WPSOutput} from \pkg{XML}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     decode = function(xml){
       children <- xmlChildren(xml)
       self$Identifier <- if(!is.null(children$Identifier)) xmlValue(children$Identifier) else NA

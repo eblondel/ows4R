@@ -5,10 +5,10 @@
 \alias{BBOX}
 \title{BBOX}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an BBOX
+Object of \code{\link[R6]{R6Class}} for modelling an BBOX
 }
 \description{
 BBOX
@@ -35,7 +35,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \describe{
 \item{\code{PropertyName}}{property name field for XML encoding}
 
-\item{\code{Envelope}}{envelope as object of class \link{GMLEnvelope} from \pkg{geometa}}
+\item{\code{Envelope}}{envelope as object of class \link[geometa]{GMLEnvelope} from \pkg{geometa}}
 }
 \if{html}{\out{</div>}}
 }

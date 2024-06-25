@@ -5,10 +5,10 @@
 \alias{OWSServiceIdentification}
 \title{OWSServiceIdentification}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC Service Identification
+Object of \code{\link[R6]{R6Class}} for modelling an OGC Service Identification
 }
 \description{
 OWSServiceIdentification
@@ -53,7 +53,7 @@ Initializes an object of class \link{OWSServiceIdentification}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{owsVersion}}{OWS version}
 

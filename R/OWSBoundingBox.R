@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC OWS boundingbox
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Bounding Box
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Bounding Box
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -23,7 +23,7 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
      UpperCorner = matrix(NA,1,2),
      
      #'@description Initializes an object of class \link{OWSBoundingBox}
-     #'@param xml an object of class \link{XMLInternalNode-class} to initialize from XML
+     #'@param xml an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
      #'@param element element name
      #'@param namespacePrefix namespace prefix
      #'@param owsVersion OWS version
@@ -49,7 +49,7 @@ OWSBoundingBox <-  R6Class("OWSBoundingBox",
      },
      
      #'@description Decodes an object of class \link{OWSBoundingBox} from XML
-     #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
      decode = function(xml){
         self$attrs$crs <- xmlGetAttr(xml, "crs")
         params <- xmlChildren(xml)

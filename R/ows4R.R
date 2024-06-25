@@ -1,7 +1,6 @@
 #' @name ows4R
 #' @aliases ows4R-package
 #' @aliases ows4R
-#' @docType package
 #' 
 #' @title Interface to OGC Web-Services
 #' @description Provides an Interface to Web-Services defined as standards by the Open Geospatial Consortium (OGC), including Web Feature Service
@@ -11,4 +10,4 @@
 #'  
 #'@author Emmanuel Blondel \email{emmanuel.blondel1@@gmail.com}
 #'
-NULL
+"_PACKAGE"

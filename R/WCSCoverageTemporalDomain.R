@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WCS Coverage temporal domain
-#' @return Object of \code{\link{R6Class}} modelling a WCS coverage temporal domain
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WCS coverage temporal domain
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by ows4R.
 #' 
@@ -67,7 +67,7 @@ WCSCoverageTemporalDomain <- R6Class("WCSCoverageTemporalDomain",
     periods = list(),
     
     #'@description Initializes an object of class \link{WCSCoverageTemporalDomain}
-    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xmlObj an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param serviceVersion service version
     #'@param owsVersion OWS version
     #'@param logger logger
@@ -85,7 +85,7 @@ WCSCoverageTemporalDomain <- R6Class("WCSCoverageTemporalDomain",
     },
     
     #'@description Get time periods
-    #'@return a list of objects of class \link{GMLTimePeriod}
+    #'@return a list of objects of class \link[geometa]{GMLTimePeriod}
     getPeriods = function(){
       return(self$periods)
     }

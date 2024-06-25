@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords CAS Central Authentication Service
-#' @return Object of \code{\link{R6Class}} with methods for interfacing a Central Authentication Service (CAS).
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing a Central Authentication Service (CAS).
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 

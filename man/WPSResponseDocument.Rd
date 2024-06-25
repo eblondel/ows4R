@@ -5,10 +5,10 @@
 \alias{WPSResponseDocument}
 \title{WPSResponseDocument}
 \format{
-\link{R6Class} object.
+\link[R6]{R6Class} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC WPS response document
+Object of \code{\link[R6]{R6Class}} for modelling an OGC WPS response document
 }
 \description{
 WPSResponseDocument
@@ -73,7 +73,7 @@ Initializes a \link{WPSResponseDocument}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 
 \item{\code{storeExecuteResponse}}{store execute response, object of class \code{logical}}
 

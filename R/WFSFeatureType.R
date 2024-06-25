@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WFS FeatureType
-#' @return Object of \code{\link{R6Class}} modelling a WFS feature type
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WFS feature type
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R} to trigger a WFS DescribeFeatureType request
 #' 
@@ -117,7 +117,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     features = NULL,
     
     #'@description Initializes an object of class \link{WFSFeatureType}
-    #'@param xmlObj an object of class \link{XMLInternalNode-class} to initialize from XML
+    #'@param xmlObj an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
     #'@param capabilities object of class \link{WFSCapabilities}
     #'@param version service version
     #'@param logger logger

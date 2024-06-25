@@ -5,10 +5,10 @@
 \alias{WPSFormat}
 \title{WPSFormat}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WPS process input description
+Object of \code{\link[R6]{R6Class}} modelling a WPS process input description
 }
 \description{
 WPSFormat
@@ -69,7 +69,7 @@ Initializes an object of class \link{WPSFormat}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{version}}{WPS service version}
 

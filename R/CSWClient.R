@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC CSW catalogue service web
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 #' Catalogue Service for the Web.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #' \dontrun{

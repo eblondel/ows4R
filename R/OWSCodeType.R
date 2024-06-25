@@ -2,8 +2,8 @@
 #' @docType class
 #' @export
 #' @keywords OWS CodeType
-#' @return Object of \code{\link{R6Class}} for modelling an OWS CodeType
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OWS CodeType
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #' 
@@ -18,7 +18,7 @@ OWSCodeType <-  R6Class("OWSCodeType",
     value = NULL,
     
     #'@description Initializes an object of class \link{OWSCodeType}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param owsVersion OWS version. Default is "1.1"
     #'@param value the code type
     initialize = function(xml = NULL, owsVersion = "1.1", value){

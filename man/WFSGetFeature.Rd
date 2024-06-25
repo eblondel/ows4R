@@ -5,10 +5,10 @@
 \alias{WFSGetFeature}
 \title{WFSGetFeature}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a WFS GetFeature request
+Object of \code{\link[R6]{R6Class}} for modelling a WFS GetFeature request
 }
 \description{
 WFSGetFeature

@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC OWS Service Identification
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Service Identification
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Service Identification
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -130,7 +130,7 @@ OWSServiceIdentification <-  R6Class("OWSServiceIdentification",
    public = list(
       
      #'@description Initializes an object of class \link{OWSServiceIdentification}
-      #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+      #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
       #'@param owsVersion OWS version
       #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){

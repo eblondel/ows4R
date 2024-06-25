@@ -5,10 +5,10 @@
 \alias{WCSCoverage}
 \title{WCSCoverage}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS coverage
+Object of \code{\link[R6]{R6Class}} modelling a WCS coverage
 }
 \description{
 WCSCoverage
@@ -74,7 +74,7 @@ Initializes an object of class \link{WCSCoverage}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{object of class \link{XMLInternalNode-class}}
+\item{\code{xmlObj}}{object of class \link[XML]{XMLInternalNode-class}}
 
 \item{\code{serviceVersion}}{WCS service version}
 

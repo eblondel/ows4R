@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Process ProcessDescription
-#' @return Object of \code{\link{R6Class}} modelling a WPS process description
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WPS process description
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by \pkg{ows4R}
 #' 
@@ -100,7 +100,7 @@ WPSProcessDescription <- R6Class("WPSProcessDescription",
   ),
   public = list(
     #'@description Initializes an object of class \link{WPSProcessDescription}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param version version
     #'@param logger logger
     #'@param ... any other parameter

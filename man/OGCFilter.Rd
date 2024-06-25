@@ -5,10 +5,10 @@
 \alias{OGCFilter}
 \title{OGCFilter}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC Filter
+Object of \code{\link[R6]{R6Class}} for modelling an OGC Filter
 }
 \description{
 OGCFilter

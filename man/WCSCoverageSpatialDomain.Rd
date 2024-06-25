@@ -5,10 +5,10 @@
 \alias{WCSCoverageSpatialDomain}
 \title{WCSCoverageSpatialDomain}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS coverage spatial domain
+Object of \code{\link[R6]{R6Class}} modelling a WCS coverage spatial domain
 }
 \description{
 WCSCoverageSpatialDomain
@@ -81,7 +81,7 @@ Initializes an object of class \link{WCSCoverageDomain}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xmlObj}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{serviceVersion}}{service version}
 
@@ -102,7 +102,7 @@ Get envelopes. Method that applies to WCS 1.0 only
 }
 
 \subsection{Returns}{
-a list of objects of class \link{GMLEnvelope} or \link{GMLEnvelopeWithTimePeriod}
+a list of objects of class \link[geometa]{GMLEnvelope} or \link[geometa]{GMLEnvelopeWithTimePeriod}
 }
 }
 \if{html}{\out{<hr>}}
@@ -128,7 +128,7 @@ Get grids. Method that applies to WCS 1.0 only
 }
 
 \subsection{Returns}{
-a list of of objects of class \link{GMLGrid} or \link{GMLRectifiedGrid}
+a list of of objects of class \link[geometa]{GMLGrid} or \link[geometa]{GMLRectifiedGrid}
 }
 }
 \if{html}{\out{<hr>}}

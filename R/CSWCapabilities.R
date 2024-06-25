@@ -3,9 +3,9 @@
 #' @docType class
 #' @export
 #' @keywords OGC CSW Capabilities
-#' @return Object of \code{\link{R6Class}} with methods for interfacing an OGC
+#' @return Object of \code{\link[R6]{R6Class}} with methods for interfacing an OGC
 #' Catalogue Service for the Web (CSW) Get Capabilities document.
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used to read a \code{CSWCapabilities} document. The use of \code{CSWClient} is
 #' recommended instead to benefit from the full set of capabilities associated to a CSW server.

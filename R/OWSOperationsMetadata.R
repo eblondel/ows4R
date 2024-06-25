@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC OWS operation metadata
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Operations Metadata
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Operations Metadata
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used internally by \pkg{ows4R}
 #' 
@@ -55,7 +55,7 @@ OWSOperationsMetadata <-  R6Class("OWSOperationsMetadata",
    public = list(
       
      #'@description Initializes an \link{OWSOperationsMetadata} object
-     #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+     #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
      #'@param owsVersion OWS version
      #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){

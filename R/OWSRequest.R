@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC Service Request
-#' @return Object of \code{\link{R6Class}} modelling a OWS Service Capability Request
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a OWS Service Capability Request
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Abstract class used by \pkg{ows4R}
 #' 
@@ -34,7 +34,7 @@ OWSRequest <- R6Class("OWSRequest",
   public = list(
     
     #'@description Initializes an object of class \link{OWSRequest}
-    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param capabilities an object of class or extending \link{OWSCapabilities}
     #'@param version version
     #'@param logger logger

@@ -3,7 +3,7 @@
 #' @export
 #' @keywords OGC OWS Utils
 #' @return set of OWS Utilities
-#' @format \code{\link{R6Class}} object.
+#' @format \code{\link[R6]{R6Class}} object.
 #'
 #' @section Static methods:
 #' \describe{

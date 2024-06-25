@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WCS Coverage
-#' @return Object of \code{\link{R6Class}} modelling a WCS coverage summary
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} modelling a WCS coverage summary
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @note Class used internally by ows4R.
 #' 
@@ -107,7 +107,7 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
     BoundingBox = list(),
     
     #'@description Initializes a \link{WCSCoverageSummary} object
-    #'@param xmlObj object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param capabilities object of class \link{WCSCapabilities}
     #'@param serviceVersion WCS service version
     #'@param owsVersion version

@@ -5,10 +5,10 @@
 \alias{WPSComplexData}
 \title{WPSComplexData}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a WPS Complex Data
+Object of \code{\link[R6]{R6Class}} for modelling a WPS Complex Data
 }
 \description{
 WPSComplexData
@@ -76,7 +76,7 @@ Initializes an object of class \link{WPSComplexData}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{value}}{value}
 
@@ -103,7 +103,7 @@ Decodes an object of class \link{WPSComplexData} from XML
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 }
 \if{html}{\out{</div>}}
 }

@@ -3,8 +3,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC WPS Status
-#' @return Object of \code{\link{R6Class}} for modelling a WPS Status
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a WPS Status
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
@@ -21,7 +21,7 @@ WPSStatus <- R6Class("WPSStatus",
       percentCompleted = 0L,
       
       #'@description Initalizes a \link{WPSStatus} object
-      #'@param xml an object of class \link{XMLInternalNode-class} from \pkg{XML}
+      #'@param xml an object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
       #'@param serviceVersion WPS service version. Default is "1.0.0"
       initialize = function(xml = NULL, serviceVersion = "1.0.0") {
         private$xmlNamespacePrefix = paste(private$xmlNamespacePrefix, gsub("\\.", "_", serviceVersion), sep="_")
@@ -33,7 +33,7 @@ WPSStatus <- R6Class("WPSStatus",
       },
       
       #'@description Decodes WPS status from XML
-      #'@param xml an object of class \link{XMLInternalNode-class} from \pkg{XML}
+      #'@param xml an object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
       decode = function(xml){
         self$value <- xmlName(xmlChildren(xml)[[1]])
         percentCompleted = xmlGetAttr(xmlChildren(xml)[[1]], "percentCompleted")

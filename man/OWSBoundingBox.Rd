@@ -5,10 +5,10 @@
 \alias{OWSBoundingBox}
 \title{OWSBoundingBox}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an OGC Bounding Box
+Object of \code{\link[R6]{R6Class}} for modelling an OGC Bounding Box
 }
 \description{
 OWSBoundingBox
@@ -79,7 +79,7 @@ Initializes an object of class \link{OWSBoundingBox}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xml}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{element}}{element name}
 
@@ -106,7 +106,7 @@ Decodes an object of class \link{OWSBoundingBox} from XML
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xml}}{object of class \link{XMLInternalNode-class} from \pkg{XML}}
+\item{\code{xml}}{object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}}
 }
 \if{html}{\out{</div>}}
 }

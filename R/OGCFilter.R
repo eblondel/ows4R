@@ -2,8 +2,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC Filter
-#' @return Object of \code{\link{R6Class}} for modelling an OGC Filter
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGC Filter
+#' @format \code{\link[R6]{R6Class}} object.
 #' 
 #' @examples
 #'   expr <- PropertyIsEqualTo$new(PropertyName = "property", Literal = "value")

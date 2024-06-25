@@ -5,10 +5,10 @@
 \alias{WCSGridCRS}
 \title{WCSGridCRS}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} modelling a WCS grid CRS
+Object of \code{\link[R6]{R6Class}} modelling a WCS grid CRS
 }
 \description{
 WCSGridCRS
@@ -79,7 +79,7 @@ Initializes an object of class \link{WCSGridCRS}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{xmlObj}}{an object of class \link{XMLInternalNode-class} to initialize from XML}
+\item{\code{xmlObj}}{an object of class \link[XML]{XMLInternalNode-class} to initialize from XML}
 
 \item{\code{serviceVersion}}{service version}
 

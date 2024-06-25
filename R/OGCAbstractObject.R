@@ -2,8 +2,8 @@
 #' @docType class
 #' @export
 #' @keywords OGC Abstract Object
-#' @return Object of \code{\link{R6Class}} for modelling an OGCAbstractObject
-#' @format \code{\link{R6Class}} object.
+#' @return Object of \code{\link[R6]{R6Class}} for modelling an OGCAbstractObject
+#' @format \code{\link[R6]{R6Class}} object.
 #'
 #' @note abstract class used by \pkg{ows4R}
 #' 
@@ -149,7 +149,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     attrs = list(),
     
     #'@description Initializes an object extending \link{OGCAbstractObject}
-    #'@param xml object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@param xml object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     #'@param element element name
     #'@param namespacePrefix namespace prefix for XML encoding
     #'@param attrs list of attributes
@@ -333,7 +333,7 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     #'@param geometa_validate Relates to \pkg{geometa} object ISO validation. Default is \code{TRUE}
     #'@param geometa_inspire Relates to \pkg{geometa} object INSPIRE validation. Default is \code{FALSE}
     #'@param geometa_inspireValidator Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}
-    #'@return an object of class \link{XMLInternalNode-class} from \pkg{XML}
+    #'@return an object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
     encode = function(addNS = TRUE, geometa_validate = TRUE, 
                       geometa_inspire = FALSE, geometa_inspireValidator = NULL){
       

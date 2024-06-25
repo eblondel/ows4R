@@ -11,6 +11,16 @@ Provides an Interface to Web-Services defined as standards by the Open Geospatia
 web-service specification (OWS) and OGC Filter Encoding. Partial support is provided for the Web Map Service (WMS) and Web Processing Service (WPS). 
 The purpose is to add support for additional OGC service standards such as Web Coverage Processing Service (WCPS) or OGC API.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/eblondel/ows4R}
+  \item \url{https://eblondel.github.io/ows4R/}
+  \item \url{https://www.ogc.org/standards/}
+  \item Report bugs at \url{https://github.com/eblondel/ows4R/issues}
+}
+
+}
 \author{
 Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
 }

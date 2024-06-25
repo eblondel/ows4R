@@ -5,10 +5,10 @@
 \alias{UnaryLogicOpType}
 \title{UnaryLogicOpType}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an UnaryLogicOpType
+Object of \code{\link[R6]{R6Class}} for modelling an UnaryLogicOpType
 }
 \description{
 UnaryLogicOpType
