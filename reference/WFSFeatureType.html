@@ -317,6 +317,7 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">WFSFeatureType</span><span class="op">$</span><span class="fu">getFeatures</span><span class="op">(</span></span>
 <span>  <span class="va">...</span>,</span>
+<span>  validate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  outputFormat <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  paging <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  paging_length <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -330,6 +331,10 @@ WFSFeatureType"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>any other parameter to pass to the <a href="WFSGetFeature.html">WFSGetFeature</a> request</p></dd>
+
+
+<dt><code>validate</code></dt>
+<dd><p>Whether features have to be validated vs. the feature type description. Default is <code>TRUE</code></p></dd>
 
 
 <dt><code>outputFormat</code></dt>
