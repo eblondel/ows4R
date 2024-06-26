@@ -277,6 +277,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@description Get features
     #'@param typeName the name of the feature type
     #'@param ... any other parameter to pass to the \link{WFSGetFeature} request
+    #'@param validate Whether features have to be validated vs. the feature type description. Default is \code{TRUE}
     #'@param outputFormat output format
     #'@param paging paging. Default is \code{FALSE}
     #'@param paging_length number of features to request per page. Default is 1000
@@ -285,6 +286,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@param cl optional cluster object for parallel cluster approaches using eg. \code{parallel::makeCluster}
     #'@return features as object of class \code{sf}
     getFeatures = function(..., 
+                           validate = TRUE,
                            outputFormat = NULL,
                            paging = FALSE, paging_length = 1000,
                            parallel = FALSE, parallel_handler = NULL, cl = NULL){
@@ -367,7 +369,6 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       read_features = TRUE
-      validate_features = TRUE
       
       #write the file to disk
       tempf = tempfile()
@@ -387,19 +388,16 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           "application/json" = {
             destfile = paste0(tempf,".json")
             write(obj, destfile)
-            validate_features = FALSE
           },
           "json" = {
             destfile = paste0(tempf,".json")
             write(obj, destfile)
-            validate_features = FALSE
           },
           "csv" = {
             destfile = paste0(tempf,".csv")
             lcolnames = tolower(colnames(obj))
             if(self$getGeometryType() %in% colnames(obj)){
               sf::st_write(obj[,!duplicated(lcolnames)], destfile)
-              validate_features = FALSE
             }else{
               readr::write_csv(obj[,!duplicated(lcolnames)], destfile)
               read_features = FALSE
@@ -434,7 +432,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
         
       #validating attributes vs. schema
-      if(validate_features) for(element in self$description){
+      if(validate) for(element in self$description){
         attrType <- element$getType()
         if(!is.null(attrType) && !element$isGeometry()){
           attrName = element$getName()

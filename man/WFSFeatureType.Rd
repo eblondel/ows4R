@@ -269,6 +269,7 @@ Get features
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{WFSFeatureType$getFeatures(
   ...,
+  validate = TRUE,
   outputFormat = NULL,
   paging = FALSE,
   paging_length = 1000,
@@ -282,6 +283,8 @@ Get features
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{...}}{any other parameter to pass to the \link{WFSGetFeature} request}
+
+\item{\code{validate}}{Whether features have to be validated vs. the feature type description. Default is \code{TRUE}}
 
 \item{\code{outputFormat}}{output format}
 

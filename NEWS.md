@@ -19,6 +19,7 @@
 - [#123](https://github.com/eblondel/ows4R/issues/123) Missing axis labels handling for WCS coverage envelope
 - [#124](https://github.com/eblondel/ows4R/issues/124) Optimize WFS getFeatures depending on the outputFormat
 - [#126](https://github.com/eblondel/ows4R/issues/126) Add skipXmlComments as internal arg for OWS http XML requests
+- [#128](https://github.com/eblondel/ows4R/issues/128) Make feature validation as arg, and default to TRUE for backward compatibility
 
 ## [ows4R 0.3-6](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
