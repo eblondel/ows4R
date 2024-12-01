@@ -1,324 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://eblondel.github.io/ows4R/404.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/articles/csw.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/articles/wcs.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/index.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/And.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/BBOX.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/BinaryComparisonOpType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/BinaryLogicOpType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CASClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWConstraint.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWDescribeRecord.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWGetRecordById.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWGetRecords.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWHarvest.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWQuery.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWRecordProperty.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/CSWTransaction.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/Not.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OGCAbstractObject.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OGCExpression.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OGCFilter.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSBoundingBox.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSCodeType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSException.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSGetCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSHttpRequest.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSNamespace.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSOperation.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSOperationsMetadata.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSRequest.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSServiceIdentification.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSServiceProvider.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSUtils.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/OWSWGS84BoundingBox.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/Or.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsBetween.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsEqualTo.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThan.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThanOrEqualTo.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsLessThan.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsLessThanOrEqualTo.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsLike.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsNotEqualTo.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/PropertyIsNull.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/UnaryLogicOpType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverage.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageDomain.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageFilenameHandler.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageSpatialDomain.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageSummary.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSCoverageTemporalDomain.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSDescribeCoverage.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSGSElevationDomain.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSGSTimeDomain.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSGetCoverage.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WCSGridCRS.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSDescribeFeatureType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSFeatureType.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSFeatureTypeElement.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WFSGetFeature.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WMSCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WMSClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WMSGetFeatureInfo.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WMSLayer.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSBoundingBoxData.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSCapabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSClient.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSComplexData.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSComplexInputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSComplexOutputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSDescribeProcess.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSDescriptionParameter.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSException.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSExecute.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSExecuteResponse.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSFormat.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSInput.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSInputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSLiteralData.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSLiteralInputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSLiteralOutputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSOutput.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSOutputDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSParameter.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSProcess.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSProcessDescription.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSResponseDocument.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/WPSStatus.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/getOWSNamespace.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/getOWSNamespaces.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/ows4R.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/registerOWSNamespace.html</loc>
-  </url>
-  <url>
-    <loc>https://eblondel.github.io/ows4R/reference/setOWSNamespaces.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://eblondel.github.io/ows4R/404.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/LICENSE-text.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/articles/csw.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/articles/index.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/articles/wcs.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/authors.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/index.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/news/index.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/And.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/BBOX.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/BinaryComparisonOpType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/BinaryLogicOpType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CASClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWConstraint.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWDescribeRecord.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWGetRecordById.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWGetRecords.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWHarvest.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWQuery.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWRecordProperty.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/CSWTransaction.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/Not.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OGCAbstractObject.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OGCExpression.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OGCFilter.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSBoundingBox.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSCodeType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSException.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSGetCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSHttpRequest.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSNamespace.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSOperation.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSOperationsMetadata.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSRequest.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSServiceIdentification.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSServiceProvider.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSUtils.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/OWSWGS84BoundingBox.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/Or.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsBetween.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsEqualTo.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThan.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThanOrEqualTo.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsLessThan.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsLessThanOrEqualTo.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsLike.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsNotEqualTo.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/PropertyIsNull.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/UnaryLogicOpType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverage.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageDomain.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageFilenameHandler.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageSpatialDomain.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageSummary.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSCoverageTemporalDomain.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSDescribeCoverage.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSGSElevationDomain.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSGSTimeDomain.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSGetCoverage.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WCSGridCRS.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSDescribeFeatureType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSFeatureType.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSFeatureTypeElement.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WFSGetFeature.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WMSCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WMSClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WMSGetFeatureInfo.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WMSLayer.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSBoundingBoxData.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSCapabilities.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSClient.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSComplexData.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSComplexInputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSComplexOutputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSDescribeProcess.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSDescriptionParameter.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSException.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSExecute.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSExecuteResponse.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSFormat.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSInput.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSInputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSLiteralData.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSLiteralInputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSLiteralOutputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSOutput.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSOutputDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSParameter.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSProcess.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSProcessDescription.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSResponseDocument.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/WPSStatus.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/getOWSNamespace.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/getOWSNamespaces.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/index.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/ows4R.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/registerOWSNamespace.html</loc></url>
+<url><loc>https://eblondel.github.io/ows4R/reference/setOWSNamespaces.html</loc></url>
 </urlset>
+
