@@ -31,7 +31,7 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
        #name
        elementName <- xmlGetAttr(xmlObj, "name")
        #type
-       elementType <- NULL
+       elementType <- "character"
        type <- xmlGetAttr(xmlObj, "type")
        #geometry
        geometry <- FALSE
@@ -47,29 +47,31 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
          stop(sprintf("Unknown data type for type '%s' while parsing FeatureType description!", type))
        }
        gml_xmlns = namespaces[regexpr("gml", namespaces$uri)>0,] #may include app-schema GML secondary namespace
-       if(any(startsWith(type, gml_xmlns$id))){
-         gml_xmlns = gml_xmlns[startsWith(type, gml_xmlns$id),]
-         elementType <- unlist(strsplit(unlist(strsplit(type, paste0(gml_xmlns$id,":")))[2], "PropertyType"))[1]
-         geometry <- TRUE
-       }else{
-         baseType <- tolower(type)
-         #detect namespace xs/xsd (normal behavior)
-         #primitive types that are not prefixed with xsd (http://www.w3.org/2001/XMLSchema) schema are not handled well
-         #ows4R is permissive and controls it, although it is an issue of XML compliance on service providers side
-         if(regexpr(":", baseType)>0) baseType <- unlist(strsplit(baseType,":"))[2] 
-         elementType <- switch(baseType,
-                             "string" = "character",
-                             "long" = "numeric",
-                             "int" = "integer",
-                             "short" = "integer",
-                             "decimal" = "double",
-                             "double" = "double",
-                             "float" = "double",
-                             "boolean" = "logical",
-                             "date" = "Date",
-                             "datetime" = "POSIXct",
-                             NULL
-        )
+       if(length(type)>0){
+         if(any(startsWith(type, gml_xmlns$id))){
+           gml_xmlns = gml_xmlns[startsWith(type, gml_xmlns$id),]
+           elementType <- unlist(strsplit(unlist(strsplit(type, paste0(gml_xmlns$id,":")))[2], "PropertyType"))[1]
+           geometry <- TRUE
+         }else{
+           baseType <- tolower(type)
+           #detect namespace xs/xsd (normal behavior)
+           #primitive types that are not prefixed with xsd (http://www.w3.org/2001/XMLSchema) schema are not handled well
+           #ows4R is permissive and controls it, although it is an issue of XML compliance on service providers side
+           if(regexpr(":", baseType)>0) baseType <- unlist(strsplit(baseType,":"))[2] 
+           elementType <- switch(baseType,
+                               "string" = "character",
+                               "long" = "numeric",
+                               "int" = "integer",
+                               "short" = "integer",
+                               "decimal" = "double",
+                               "double" = "double",
+                               "float" = "double",
+                               "boolean" = "logical",
+                               "date" = "Date",
+                               "datetime" = "POSIXct",
+                               NULL
+          )
+         }
        }
        
        element <- list(
