@@ -299,6 +299,9 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         stop("Feature type could not be described, aborting getting features...")
       }
       vendorParams <- list(...)
+      if(startsWith(private$version, "2.0")) if("maxfeatures" %in% tolower(names(vendorParams))){
+        names(vendorParams)[tolower(names(vendorParams)) == "maxfeatures"] <- "count"
+      }
       
       if(paging){
         hitParams <- vendorParams
@@ -344,9 +347,15 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       client = private$capabilities$getClient()
-      ftFeatures <- WFSGetFeature$new(private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
-                                      user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
-                                      logger = self$loggerType, ...)
+      ftFeatures <- do.call(
+        WFSGetFeature$new,
+        c(
+          private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
+          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+          logger = self$loggerType,
+          vendorParams
+        )
+      )
       #exception handling
       if(ftFeatures$hasException()){
         return(ftFeatures$getException())

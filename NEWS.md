@@ -4,6 +4,10 @@
 
 - [#129](https://github.com/eblondel/ows4R/issues/129) WFS FeatureType missing control to inherit element type
 
+**Enhancements**
+
+- [#130](https://github.com/eblondel/ows4R/issues/130) WFS 2.0 - Support count parameter in case maxFeatures is used
+
 ## [ows4R 0.4](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**
