@@ -1,3 +1,9 @@
+## [ows4R 0.4-1](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/ows4R)
+
+**Corrections**
+
+- [#129](https://github.com/eblondel/ows4R/issues/129) WFS FeatureType missing control to inherit element type
+
 ## [ows4R 0.4](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**
