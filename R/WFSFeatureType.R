@@ -23,6 +23,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     keywords = NA,
     defaultCRS = NA,
     WGS84BoundingBox = NA,
+    features = NULL,
     
     supportedGeomPossibleNames = c("the_geom", "geom", "wkt", "geom_wkt", "wkb", "geom_wkb"),
     supportedXPossibleNames = c("x","lon","long","longitude","decimalLongitude"),
@@ -112,9 +113,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
   ),
   public = list(
     #'@field description description
-    description = NULL,
-    #'@field features features
-    features = NULL,
+    description = list(),
     
     #'@description Initializes an object of class \link{WFSFeatureType}
     #'@param xmlObj an object of class \link[XML]{XMLInternalNode-class} to initialize from XML
@@ -416,8 +415,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       
       if(!read_features){
-        self$features = obj
-        return(self$features)
+        private$features = obj
+        return(private$features)
       }
       
       #read features
@@ -457,8 +456,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           }
         }
       }
-      self$features <- ftFeatures
-      return(self$features)
+      private$features <- ftFeatures
+      return(private$features)
     }
   )
 )

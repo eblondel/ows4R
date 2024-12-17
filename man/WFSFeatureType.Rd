@@ -31,8 +31,6 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{description}}{description}
-
-\item{\code{features}}{features}
 }
 \if{html}{\out{</div>}}
 }

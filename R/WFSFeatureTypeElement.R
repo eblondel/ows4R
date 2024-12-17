@@ -11,13 +11,8 @@
 #' @author Emmanuel Blondel <emmanuel.blondel1@@gmail.com>
 #'
 WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
+   inherit = OGCAbstractObject,
    private = list(
-     minOccurs = NA,
-     maxOccurs = NA,
-     nillable = NA,
-     name = NA,
-     type = NA,
-     geometry = FALSE,
      
      #fetchElement
      fetchElement = function(xmlObj, namespaces){
@@ -87,54 +82,67 @@ WFSFeatureTypeElement <- R6Class("WFSFeatureTypeElement",
    ),                                 
                                  
    public = list(
+     
+     #'@field minOccurs minOccurs
+     minOccurs = NA,
+     #'@field maxOccurs maxOccurs
+     maxOccurs = NA,
+     #'@field nillable nillable
+     nillable = NA,
+     #'@field name name
+     name = NA,
+     #'@field type type
+     type = NA,
+     #'@field geometry geometry
+     geometry = FALSE,
       
      #'@description Initializes a \link{WFSFeatureTypeElement}
      #'@param xmlObj object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
      #'@param namespaces namespaces definitions inherited from parent XML, as \code{data.frame}
      initialize = function(xmlObj, namespaces){
        element = private$fetchElement(xmlObj, namespaces)
-       private$minOccurs = element$minOccurs
-       private$maxOccurs = element$maxOccurs
-       private$nillable = element$nillable
-       private$name = element$name
-       private$type = element$type
-       private$geometry = element$geometry
+       self$minOccurs = element$minOccurs
+       self$maxOccurs = element$maxOccurs
+       self$nillable = element$nillable
+       self$name = element$name
+       self$type = element$type
+       self$geometry = element$geometry
      },
      
      #'@description get min occurs
      #'@return an object of class \code{character}
      getMinOccurs = function(){
-       return(private$minOccurs)
+       return(self$minOccurs)
      },
      
      #'@description get max occurs
      #'@return an object of class \code{character}
      getMaxOccurs = function(){
-       return(private$maxOccurs)
+       return(self$maxOccurs)
      },
      
      #'@description get if nillable
      #'@return an object of class \code{logical}
      isNillable = function(){
-       return(private$nillable)
+       return(self$nillable)
      },
      
      #'@description get name
      #'@return an object of class \code{character}
      getName = function(){
-       return(private$name)
+       return(self$name)
      },
      
      #'@description get type
      #'@return an object of class \code{character}
      getType = function(){
-       return(private$type)
+       return(self$type)
      },
      
      #'@description Is geometry
      #'@param return object of class \code{logical}
      isGeometry = function(){
-        return(private$geometry)
+        return(self$geometry)
      }
    )
 )
