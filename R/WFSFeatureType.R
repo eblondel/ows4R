@@ -208,8 +208,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       if(pretty){
         out <- do.call("rbind", lapply(elements, function(element){
           out_element <- data.frame(
-            name = element$getName(),
-            type = element$getType(),
+            name = ifelse(!is.null(element$getName()), element$getName(), NA),
+            type = ifelse(!is.null(element$getType()), element$getType(), NA),
             minOccurs = ifelse(!is.null(element$getMinOccurs()), element$getMinOccurs(), NA),
             maxOccurs = ifelse(!is.null(element$getMaxOccurs()), element$getMaxOccurs(), NA),
             nillable = ifelse(!is.null(element$isNillable()), element$isNillable(), NA),
