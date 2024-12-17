@@ -7,6 +7,7 @@
 **Enhancements**
 
 - [#130](https://github.com/eblondel/ows4R/issues/130) WFS 2.0 - Support count parameter in case maxFeatures is used
+- [#131](https://github.com/eblondel/ows4R/issues/131) WFS Add additional controls for WFS feature type validation 
 
 ## [ows4R 0.4](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 

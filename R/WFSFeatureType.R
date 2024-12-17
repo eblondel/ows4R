@@ -442,15 +442,18 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         
       #validating attributes vs. schema
       if(validate) for(element in self$description){
+        attrName = element$getName()
         attrType <- element$getType()
-        if(!is.null(attrType) && !element$isGeometry()){
-          attrName = element$getName()
+        if(!is.null(attrName) & !is.null(attrType) & !element$isGeometry()){
+          test = ftFeatures[[attrName]]
           if(!is.null(ftFeatures[[attrName]])){
-            ftFeatures[[attrName]] <- switch(attrType,
-              "Date" = as.Date(ftFeatures[[attrName]]),
-              "POSIXct" = as.POSIXct(ftFeatures[[attrName]]),
-              as(ftFeatures[[attrName]], attrType)
-            )
+            if(attrType != "character"){
+              ftFeatures[[attrName]] <- switch(attrType,
+                "Date" = as.Date(ftFeatures[[attrName]]),
+                "POSIXct" = as.POSIXct(ftFeatures[[attrName]]),
+                as(ftFeatures[[attrName]], attrType)
+              )
+            }
           }
         }
       }
