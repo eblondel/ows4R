@@ -349,7 +349,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftFeatures <- do.call(
         WFSGetFeature$new,
         c(
-          private$capabilities, op = op, private$url, private$version, private$name, outputFormat = outputFormat, 
+          capabilities = private$capabilities, op = op, url = private$url, version = private$version, typeName = private$name, outputFormat = outputFormat, 
           user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
           logger = self$loggerType,
           vendorParams
