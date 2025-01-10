@@ -72,6 +72,7 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         if(startsWith(serviceVersion, "1.1")) namedParams <- c(namedParams, identifier = coverageId)
         if(startsWith(serviceVersion, "2")) namedParams <- c(namedParams, coverageId = coverageId)
         
+        #envelope/boundingbox
         if(startsWith(serviceVersion,"1.0")){
           if(!is.null(envelope)) namedParams$BBOX <- paste0(as(envelope, "character"), collapse=",")
           if(!is.null(crs)) namedParams$CRS <- crs

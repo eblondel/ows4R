@@ -424,65 +424,66 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         }
       }
       
+      #max envelope
+      max_envelope <- switch(substr(private$version,1,3),
+         "1.0" = {
+           owsbbox <- self$getWGS84BoundingBox()[[1]]
+           OWSUtils$toBBOX(owsbbox$LowerCorner[[1]], owsbbox$UpperCorner[[1]], owsbbox$LowerCorner[[2]], owsbbox$UpperCorner[[2]]) 
+         },
+         "1.1" = {
+           bboxes <- self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox
+           owsbbox <- bboxes[sapply(bboxes, function(x){return(x$attrs$crs == crs)})][[1]]
+           xorder <- 1; yorder <- 2;
+           if(endsWith(crs, "EPSG::4326")){
+             xorder <- 2; yorder <- 1;
+           }
+           GMLEnvelope$new(bbox = OWSUtils$toBBOX(owsbbox$LowerCorner[xorder], owsbbox$UpperCorner[xorder], owsbbox$LowerCorner[yorder], owsbbox$UpperCorner[yorder])) 
+         },
+         "2.0" = {
+           env <- self$getDescription()$boundedBy
+           envattrs <- env$attrs
+           #normalize as Envelope based on bbox matrix
+           if(is(env, "GMLEnvelopeWithTimePeriod")){
+             beginPosition <- env$beginPosition
+             endPosition <- env$endPosition
+             bbox <- matrix(c(
+               env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+               env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+             ),length(env$lowerCorner)+1,2)
+             env <- GMLEnvelope$new(bbox = bbox)
+             env$attrs <- envattrs
+             env <- OWSUtils$checkEnvelopeDatatypes(env)
+           }
+           env
+         },
+         "2.1" = {
+           env <- self$getDescription()$boundedBy
+           envattrs <- env$attrs
+           #normalize as Envelope based on bbox matrix
+           if(is(env, "GMLEnvelopeWithTimePeriod")){
+             beginPosition <- env$beginPosition
+             endPosition <- env$endPosition
+             bbox <- matrix(c(
+               env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
+               env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
+             ),length(env$lowerCorner)+1,2)
+             env <- GMLEnvelope$new(bbox = bbox)
+             env$attrs <- envattrs
+             env <- OWSUtils$checkEnvelopeDatatypes(env)
+           }
+           env
+         }
+      )
+      
+      
       #envelope
       envelope = NULL
-      if(is.null(bbox)){
-        envelope <- switch(substr(private$version,1,3),
-           "1.0" = {
-             owsbbox <- self$getWGS84BoundingBox()[[1]]
-             OWSUtils$toBBOX(owsbbox$LowerCorner[[1]], owsbbox$UpperCorner[[1]], owsbbox$LowerCorner[[2]], owsbbox$UpperCorner[[2]]) 
-           },
-           "1.1" = {
-             bboxes <- self$getDescription()$getDomain()$getSpatialDomain()$BoundingBox
-             owsbbox <- bboxes[sapply(bboxes, function(x){return(x$attrs$crs == crs)})][[1]]
-             xorder <- 1; yorder <- 2;
-             if(endsWith(crs, "EPSG::4326")){
-               xorder <- 2; yorder <- 1;
-             }
-             GMLEnvelope$new(bbox = OWSUtils$toBBOX(owsbbox$LowerCorner[xorder], owsbbox$UpperCorner[xorder], owsbbox$LowerCorner[yorder], owsbbox$UpperCorner[yorder])) 
-           },
-           "2.0" = {
-             env <- self$getDescription()$boundedBy
-             envattrs <- env$attrs
-             #normalize as Envelope based on bbox matrix
-             if(is(env, "GMLEnvelopeWithTimePeriod")){
-               beginPosition <- env$beginPosition
-               endPosition <- env$endPosition
-               bbox <- matrix(c(
-                 env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
-                 env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
-               ),length(env$lowerCorner)+1,2)
-               env <- GMLEnvelope$new(bbox = bbox)
-               env$attrs <- envattrs
-               env <- OWSUtils$checkEnvelopeDatatypes(env)
-             }
-             env
-           },
-           "2.1" = {
-             env <- self$getDescription()$boundedBy
-             envattrs <- env$attrs
-             #normalize as Envelope based on bbox matrix
-             if(is(env, "GMLEnvelopeWithTimePeriod")){
-               beginPosition <- env$beginPosition
-               endPosition <- env$endPosition
-               bbox <- matrix(c(
-                 env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
-                 env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
-               ),length(env$lowerCorner)+1,2)
-               env <- GMLEnvelope$new(bbox = bbox)
-               env$attrs <- envattrs
-               env <- OWSUtils$checkEnvelopeDatatypes(env)
-             }
-             env
-           }
-        )
-      }else{
-        if(substr(private$version,1,3) == "1.0"){
-          envelope <- bbox
-        }else if(substr(private$version,1,3) == "1.1"){
-          envelope <- GMLEnvelope$new(bbox = bbox)
-        }
-        if(substr(private$version,1,1)=="2"){
+      if(substr(private$version,1,3) == "1.0"){
+        envelope <- if(!is.null(bbox)) bbox else max_envelope
+      }else if(substr(private$version,1,3) == "1.1"){
+        envelope <- if(!is.null(bbox)) GMLEnvelope$new(bbox = bbox) else max_envelope
+      }else if(substr(private$version,1,1)=="2"){
+        if(!is.null(bbox)){
           refEnvelope <- self$getDescription()$boundedBy
           axisLabels <- unlist(strsplit(refEnvelope$attrs$axisLabels, " "))
           axisLatIdx <- which(axisLabels %in% c("Lat", "y", "Y", "N"))
@@ -511,10 +512,11 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
             envelope$upperCorner <- upperCorner
           }
           
-          
-          
           envelope$attrs <- self$getDescription()$boundedBy$attrs
           envelope <- OWSUtils$checkEnvelopeDatatypes(envelope)
+          
+        }else{
+          envelope = max_envelope
         }
       }
       
@@ -569,17 +571,69 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
         
       }
       
+      #vendor params processing
+      vendorParams <- list(...)
+      if(length(vendorParams)>0) names(vendorParams) = tolower(names(vendorParams))
+      #height/width (WCS 1)
+      if(startsWith(private$version, "1")){
+        if(is.null(vendorParams$height) & is.null(vendorParams$width)){
+          #if no height/width are provided we fetch it from desc and compute it in case of custom envelope
+          desc = self$getDescription()
+          grid_env = desc$domainSet$spatialDomain$RectifiedGrid$limits$GridEnvelope
+          if(!is.null(grid_env)){
+            low = as.integer(unlist(strsplit(grid_env$low$value, " ")))
+            high = as.integer(unlist(strsplit(grid_env$high$value, " ")))
+            grid_m = matrix(c(low, high), nrow = 2, ncol = 2, byrow = F, dimnames = list(c("x","y"),c("min","max")))
+            x_res = grid_m[1,2]-grid_m[1,1]
+            y_res = grid_m[2,2]-grid_m[2,1]
+            if(is.null(bbox)){
+              #no bbox provided by user
+              vendorParams$width = x_res
+              vendorParams$height = y_res
+              self$WARN(sprintf("WCS 1.x - No HEIGHT/WIDTH specified, inheriting values from coverage description: WIDTH=%s, HEIGHT=%s", x_res, y_res))
+            }else{
+              #bbox provided by user
+              if(substr(private$version,1,3) == "1.0"){
+                #WCS 1.0 - matrix model
+                lon_res = max_envelope[1,2]-max_envelope[1,1]
+                lat_res = max_envelope[2,2]-max_envelope[2,1]
+                lon_usr_res = envelope[1,2]-envelope[1,1]
+                lat_usr_res = envelope[2,2]-envelope[2,1]
+                vendorParams$width = round(x_res * lon_usr_res / lon_res,0)
+                vendorParams$height = round(y_res * lat_usr_res / lat_res,0)
+                
+              }else if(substr(private$version,1,3) == "1.1"){
+                #WCS 1.1 - GMLEnvelope model
+                lon_res = max_envelope$upperCorner[1]-max_envelope$lowerCorner[1]
+                lat_res = max_envelope$upperCorner[2]-max_envelope$lowerCorner[2]
+                lon_usr_res = envelope$upperCorner[1]-envelope$lowerCorner[1]
+                lat_usr_res = envelope$upperCorner[2]-envelope$lowerCorner[2]
+                vendorParams$width = round(x_res * lon_usr_res / lon_res,0)
+                vendorParams$height = round(y_res * lat_usr_res / lat_res,0)
+              }
+              self$WARN(sprintf("WCS 1.x - No HEIGHT/WIDTH specified, computing values based on user bbox: WIDTH=%s, HEIGHT=%s", vendorParams$width, vendorParams$height))
+            }
+          }
+        }
+      }
+      
       #GetCoverage request
-      getCoverageRequest <- WCSGetCoverage$new(capabilities = private$capabilities, op = op, 
-                                               url = private$url, 
-                                               serviceVersion = private$version,
-                                               method = method,
-                                               coverage = self, logger = self$loggerType,
-                                               envelope = envelope, crs = crs, 
-                                               time = time, elevation = elevation,
-                                               format = format, rangesubset = rangesubset, 
-                                               gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
-                                               gridorigin = gridorigin, gridoffsets = gridoffsets, ...)
+      getCoverageRequest <- do.call(WCSGetCoverage$new,
+                                    c(
+                                      list(
+                                        capabilities = private$capabilities, op = op, 
+                                        url = private$url, 
+                                        serviceVersion = private$version,
+                                        method = method,
+                                        coverage = self, logger = self$loggerType,
+                                        envelope = envelope, crs = crs, 
+                                        time = time, elevation = elevation,
+                                        format = format, rangesubset = rangesubset, 
+                                        gridbaseCRS = gridbaseCRS, gridtype = gridtype, gridCS = gridCS, 
+                                        gridorigin = gridorigin, gridoffsets = gridoffsets
+                                      ),
+                                      vendorParams
+                                    ))
       
       #exception handling
       if(getCoverageRequest$hasException()){
