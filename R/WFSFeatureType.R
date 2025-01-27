@@ -283,12 +283,15 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@param parallel whether to get features using parallel multicore strategy. Default is \code{FALSE}
     #'@param parallel_handler Handler function to parallelize the code. eg \link{mclapply}
     #'@param cl optional cluster object for parallel cluster approaches using eg. \code{parallel::makeCluster}
+    #'@param config an additional config from \pkg{httr} package
     #'@return features as object of class \code{sf}
     getFeatures = function(..., 
                            validate = TRUE,
                            outputFormat = NULL,
                            paging = FALSE, paging_length = 1000,
-                           parallel = FALSE, parallel_handler = NULL, cl = NULL){
+                           parallel = FALSE, parallel_handler = NULL, cl = NULL,
+                           config = httr::config()
+                           ){
       
       #getdescription
       if(is.null(self$description)){
@@ -350,7 +353,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         WFSGetFeature$new,
         c(
           capabilities = private$capabilities, op = op, url = private$url, version = private$version, typeName = private$name, outputFormat = outputFormat, 
-          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), config = config,
           logger = self$loggerType,
           vendorParams
         )
