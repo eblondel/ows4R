@@ -190,7 +190,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       client = private$capabilities$getClient()
       ftDescription <- WFSDescribeFeatureType$new(private$capabilities, op = op, private$url, private$version, private$name, 
                                                   user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), 
-                                                  config = self$getConfig(),
+                                                  config = client$getConfig(),
                                                   logger = self$loggerType)
       #exception handling
       if(ftDescription$hasException()){
@@ -350,10 +350,12 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       ftFeatures <- do.call(
         WFSGetFeature$new,
         c(
-          capabilities = private$capabilities, op = op, url = private$url, version = private$version, typeName = private$name, outputFormat = outputFormat, 
-          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), 
-          config = client$getConfig(),
-          logger = self$loggerType,
+          list(
+            capabilities = private$capabilities, op = op, url = private$url, version = private$version, typeName = private$name, outputFormat = outputFormat, 
+            user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), 
+            config = client$getConfig(),
+            logger = self$loggerType
+          ),
           vendorParams
         )
       )
