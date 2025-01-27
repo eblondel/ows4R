@@ -273,8 +273,7 @@ Get features
   paging_length = 1000,
   parallel = FALSE,
   parallel_handler = NULL,
-  cl = NULL,
-  config = httr::config()
+  cl = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -296,8 +295,6 @@ Get features
 \item{\code{parallel_handler}}{Handler function to parallelize the code. eg \link{mclapply}}
 
 \item{\code{cl}}{optional cluster object for parallel cluster approaches using eg. \code{parallel::makeCluster}}
-
-\item{\code{config}}{an additional config from \pkg{httr} package}
 
 \item{\code{typeName}}{the name of the feature type}
 }

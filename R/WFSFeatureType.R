@@ -189,7 +189,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }
       client = private$capabilities$getClient()
       ftDescription <- WFSDescribeFeatureType$new(private$capabilities, op = op, private$url, private$version, private$name, 
-                                                  user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(),
+                                                  user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), 
+                                                  config = self$getConfig(),
                                                   logger = self$loggerType)
       #exception handling
       if(ftDescription$hasException()){
@@ -224,7 +225,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@description Indicates with feature type has a geometry
     #'@return object of class \link{logical}
     hasGeometry = function(){
-      if(is.null(self$description)) self$description = self$getDescription()
+      if(length(self$description)==0) self$description = self$getDescription()
       any(sapply(self$description, function(x){x$isGeometry()}))
     },
     
@@ -283,18 +284,15 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@param parallel whether to get features using parallel multicore strategy. Default is \code{FALSE}
     #'@param parallel_handler Handler function to parallelize the code. eg \link{mclapply}
     #'@param cl optional cluster object for parallel cluster approaches using eg. \code{parallel::makeCluster}
-    #'@param config an additional config from \pkg{httr} package
     #'@return features as object of class \code{sf}
     getFeatures = function(..., 
                            validate = TRUE,
                            outputFormat = NULL,
                            paging = FALSE, paging_length = 1000,
-                           parallel = FALSE, parallel_handler = NULL, cl = NULL,
-                           config = httr::config()
+                           parallel = FALSE, parallel_handler = NULL, cl = NULL
                            ){
-      
       #getdescription
-      if(is.null(self$description)){
+      if(length(self$description)==0){
         self$description = self$getDescription()
       }
       if(is(self$description, "OWSException")){
@@ -353,7 +351,8 @@ WFSFeatureType <- R6Class("WFSFeatureType",
         WFSGetFeature$new,
         c(
           capabilities = private$capabilities, op = op, url = private$url, version = private$version, typeName = private$name, outputFormat = outputFormat, 
-          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), config = config,
+          user = client$getUser(), pwd = client$getPwd(), token = client$getToken(), headers = client$getHeaders(), 
+          config = client$getConfig(),
           logger = self$loggerType,
           vendorParams
         )
