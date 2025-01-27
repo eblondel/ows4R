@@ -303,7 +303,8 @@ WFSFeatureType"></head><body>
 <span>  paging_length <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  parallel_handler <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  cl <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  cl <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -339,6 +340,10 @@ WFSFeatureType"></head><body>
 
 <dt><code>cl</code></dt>
 <dd><p>optional cluster object for parallel cluster approaches using eg. <code><a href="https://rdrr.io/r/parallel/makeCluster.html" class="external-link">parallel::makeCluster</a></code></p></dd>
+
+
+<dt><code>config</code></dt>
+<dd><p>an additional config from <span class="pkg">httr</span> package</p></dd>
 
 
 <dt><code>typeName</code></dt>
