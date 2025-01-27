@@ -231,7 +231,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
     #'@description Get geometry type
     #'@return object of class \link{character} representing the geometry tpe
     getGeometryType = function(){
-      if(is.null(self$description)) self$description = self$getDescription()
+      if(length(self$description)==0) self$description = self$getDescription()
       geomType <- NULL
       if(self$hasGeometry()){
         geomType <- self$description[sapply(self$description, function(x){x$isGeometry()})][[1]]$getType() 
