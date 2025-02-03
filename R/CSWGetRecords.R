@@ -95,7 +95,9 @@ CSWGetRecords <- R6Class("CSWGetRecords",
       #typeNames value to pass to CSWQuery
       typeNames <- switch(self$attrs$outputSchema,
         "http://www.isotc211.org/2005/gmd" = "gmd:MD_Metadata",
+        "http://standards.iso.org/iso/19115/-3/mdb/2.0" = "mdb:MD_Metadata",
         "http://www.isotc211.org/2005/gfc" = "gfc:FC_FeatureCatalogue",
+        "http://standards.iso.org/iso/19110/gfc/1.1" = "gfc:FC_FeatureCatalogue",
         "http://www.opengis.net/cat/csw/2.0.2" = "csw:Record",
         "http://www.opengis.net/cat/csw/3.0" = "csw30:Record",
         "http://www.w3.org/ns/dcat#" = "dcat"
@@ -150,11 +152,39 @@ CSWGetRecords <- R6Class("CSWGetRecords",
           attributes(out) <- searchResultsAttrs
           out
         },
+        "http://standards.iso.org/iso/19115/-3/mdb/2.0" = {
+          out <- NULL
+          xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
+          if(length(xmlObjs)>0){
+            out <- lapply(xmlObjs,function(xmlObj){
+              geometa::setMetadataStandard("19115-3")
+              out.obj <- geometa::ISOMetadata$new()
+              out.obj$decode(xml = xmlObj)
+              return(out.obj)
+            })
+          }
+          attributes(out) <- searchResultsAttrs
+          out
+        },
         "http://www.isotc211.org/2005/gfc" = {
           out <- NULL
           xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
           if(length(xmlObjs)>0){
             out <- lapply(xmlObjs,function(xmlObj){
+              out.obj <- geometa::ISOFeatureCatalogue$new()
+              out.obj$decode(xml = xmlObj)
+              return(out.obj)
+            })
+          }
+          attributes(out) <- searchResultsAttrs
+          out
+        },
+        "http://standards.iso.org/iso/19110/gfc/1.1" = {
+          out <- NULL
+          xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
+          if(length(xmlObjs)>0){
+            out <- lapply(xmlObjs,function(xmlObj){
+              geometa::setMetadataStandard("19115-3")
               out.obj <- geometa::ISOFeatureCatalogue$new()
               out.obj$decode(xml = xmlObj)
               return(out.obj)

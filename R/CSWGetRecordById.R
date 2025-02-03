@@ -79,17 +79,30 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
         #check response in case of ISO
         ns <- getOWSNamespace(private$xmlNamespacePrefix)
         outputSchema <- self$attrs$outputSchema
-        isoSchemas <- c("http://www.isotc211.org/2005/gmd","http://www.isotc211.org/2005/gfc")
+        isoSchemas <- c(
+          "http://www.isotc211.org/2005/gmd",
+          "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+          "http://www.isotc211.org/2005/gfc",
+          "http://standards.iso.org/iso/19110/gfc/1.1"
+        )
         if(outputSchema %in% isoSchemas){
           xmltxt <- as(private$response, "character")
           isMetadata <- regexpr("MD_Metadata", xmltxt)>0
           isFeatureCatalogue <- regexpr("FC_FeatureCatalogue", xmltxt)>0
-          if(isMetadata && outputSchema == isoSchemas[2]){
+          if(isMetadata && outputSchema == isoSchemas[3]){
             outputSchema <- isoSchemas[1]
             message(sprintf("Metadata detected! Switch to schema '%s'!", outputSchema))
           }
-          if(isFeatureCatalogue && outputSchema == isoSchemas[1]){
+          if(isMetadata && outputSchema == isoSchemas[4]){
             outputSchema <- isoSchemas[2]
+            message(sprintf("Metadata detected! Switch to schema '%s'!", outputSchema))
+          }
+          if(isFeatureCatalogue && outputSchema == isoSchemas[1]){
+            outputSchema <- isoSchemas[3]
+            message(sprintf("FeatureCatalogue detected! Switch to schema '%s'!", outputSchema))
+          }
+          if(isFeatureCatalogue && outputSchema == isoSchemas[2]){
+            outputSchema <- isoSchemas[4]
             message(sprintf("FeatureCatalogue detected! Switch to schema '%s'!", outputSchema))
           }
         }
@@ -101,6 +114,18 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
             if(length(xmlObjs)>0){
               xmlObj <- xmlObjs[[1]]
+              geometa::setMetadataStandard("19139")
+              out <- geometa::ISOMetadata$new()
+              out$decode(xml = xmlObj)
+            }
+            out
+          },
+          "http://standards.iso.org/iso/19115/-3/mdb/2.0" = {
+            out <- NULL
+            xmlObjs <- getNodeSet(private$response, "//ns:MD_Metadata", c(ns = outputSchema))
+            if(length(xmlObjs)>0){
+              xmlObj <- xmlObjs[[1]]
+              geometa::setMetadataStandard("19115-3")
               out <- geometa::ISOMetadata$new()
               out$decode(xml = xmlObj)
             }
@@ -111,6 +136,18 @@ CSWGetRecordById <- R6Class("CSWGetRecordById",
             xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
             if(length(xmlObjs)>0){
               xmlObj <- xmlObjs[[1]]
+              geometa::setMetadataStandard("19139")
+              out <- geometa::ISOFeatureCatalogue$new()
+              out$decode(xml = xmlObj)
+            }
+            out
+          },
+          "http://standards.iso.org/iso/19110/gfc/1.1" = {
+            out <- NULL
+            xmlObjs <- getNodeSet(private$response, "//ns:FC_FeatureCatalogue", c(ns = outputSchema))
+            if(length(xmlObjs)>0){
+              xmlObj <- xmlObjs[[1]]
+              geometa::setMetadataStandard("19115-3")
               out <- geometa::ISOFeatureCatalogue$new()
               out$decode(xml = xmlObj)
             }
