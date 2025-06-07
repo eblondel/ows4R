@@ -446,11 +446,11 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
            if(is(env, "GMLEnvelopeWithTimePeriod")){
              beginPosition <- env$beginPosition
              endPosition <- env$endPosition
-             bbox <- matrix(c(
+             max_bbox <- matrix(c(
                env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
                env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
              ),length(env$lowerCorner)+1,2)
-             env <- GMLEnvelope$new(bbox = bbox)
+             env <- GMLEnvelope$new(bbox = max_bbox)
              env$attrs <- envattrs
              env <- OWSUtils$checkEnvelopeDatatypes(env)
            }
@@ -463,11 +463,11 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
            if(is(env, "GMLEnvelopeWithTimePeriod")){
              beginPosition <- env$beginPosition
              endPosition <- env$endPosition
-             bbox <- matrix(c(
+             max_bbox <- matrix(c(
                env$lowerCorner, base::format(env$beginPosition$value,"%Y-%m-%dT%H:%M:%S"), 
                env$upperCorner, base::format(env$endPosition$value,"%Y-%m-%dT%H:%M:%S")
              ),length(env$lowerCorner)+1,2)
-             env <- GMLEnvelope$new(bbox = bbox)
+             env <- GMLEnvelope$new(bbox = max_bbox)
              env$attrs <- envattrs
              env <- OWSUtils$checkEnvelopeDatatypes(env)
            }
