@@ -122,6 +122,7 @@ OWSServiceProvider <-  R6Class("OWSServiceProvider",
      #'@param owsVersion OWS version
      #'@param serviceVersion service version
      initialize = function(xmlObj, owsVersion, serviceVersion){
+       geometa::setMetadataStandard("19139")
        serviceProvider <- private$fetchServiceProvider(xmlObj, owsVersion, serviceVersion)
        private$providerName <- serviceProvider$providerName
        private$providerSite <- serviceProvider$providerSite
