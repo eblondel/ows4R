@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This vignette shows how to use [ows4R](https://github.com/eblondel/ows4R) with a Web Coverage Service (OGC WCS).
 
-An overview of the Web Coverage Service (WCS) can be found on the official OGC webpage: https://www.ogc.org/standard/wcs/
+An overview of the Web Coverage Service (WCS) can be found on the official OGC webpage: https://www.ogc.org/standards/wcs/
 
 <a name="wcs-client"/>
 
