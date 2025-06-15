@@ -3,6 +3,13 @@
 **Corrections**
 
 - [#129](https://github.com/eblondel/ows4R/issues/129) WFS FeatureType missing control to inherit element type
+- [#137](https://github.com/eblondel/ows4R/issues/137) Bug when using a "complex" user-agent
+- [#138](https://github.com/eblondel/ows4R/issues/138) Unexpected geometryType for a feature with geometry
+- [#144](https://github.com/eblondel/ows4R/issues/144) Bbox arg is ignored with WCS 2.x - regression due to #134
+
+**New Features**
+
+- [#140](https://github.com/eblondel/ows4R/issues/140) Support ISO 19115-3 metadata standard (through geometa 0.9)
 
 **Enhancements**
 
