@@ -244,9 +244,9 @@ OWSHttpRequest <- R6Class("OWSHttpRequest",
         exception_tmp_file = tempfile(fileext = ".xml")
         writeBin(req$response, exception_tmp_file)
         txt_resp = paste(readLines(exception_tmp_file, warn = FALSE), collapse="")
-        if(startsWith(txt_resp, "<")) xmlObj = try(XML::xmlParse(exception_tmp_file), silent = TRUE)
+        if(startsWith(txt_resp, "<")) xmlObj = try(XML::xmlParse(txt_resp), silent = TRUE)
       }
-      if(!is(xmlObj, "try-error")) if(is(xmlObj, "XMLInternalNode")) if(!is.null(xmlNamespaces(xmlObj)$ows)){
+      if(!is(xmlObj, "try-error")) if(is(xmlObj, "XMLInternalDocument")) if(!is.null(xmlNamespaces(xmlObj)$ows)){
         exception <- getNodeSet(xmlObj, "//ows:Exception", c(ows = xmlNamespaces(xmlObj)$ows$uri))
         if(length(exception)>0){
           exception <- OWSException$new(xmlObj = exception[[1]])
