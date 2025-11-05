@@ -1,3 +1,4 @@
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/ows4R/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ows4R)](https://cran.r-project.org/package=ows4R)
 [![cran checks](https://badges.cranchecks.info/worst/ows4R.svg)](https://cran.r-project.org/web/checks/check_results_ows4R.html)
