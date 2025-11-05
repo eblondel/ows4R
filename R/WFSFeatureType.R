@@ -229,8 +229,19 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       any(sapply(self$description, function(x){x$isGeometry()}))
     },
     
+    #'@description Get geometry field
+    #'@return object of class \link{character} representing the geometry field
+    getGeometryField = function(){
+      if(length(self$description)==0) self$description = self$getDescription()
+      geomField <- NULL
+      if(self$hasGeometry()){
+        geomField <- self$description[sapply(self$description, function(x){x$isGeometry()})][[1]]$getName()
+      }
+      return(geomField)
+    },
+    
     #'@description Get geometry type
-    #'@return object of class \link{character} representing the geometry tpe
+    #'@return object of class \link{character} representing the geometry type
     getGeometryType = function(){
       if(length(self$description)==0) self$description = self$getDescription()
       geomType <- NULL
@@ -408,7 +419,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
           "csv" = {
             destfile = paste0(tempf,".csv")
             lcolnames = tolower(colnames(obj))
-            if(self$getGeometryType() %in% colnames(obj)){
+            if(self$getGeometryField() %in% colnames(obj)){
               sf::st_write(obj[,!duplicated(lcolnames)], destfile)
             }else{
               readr::write_csv(obj[,!duplicated(lcolnames)], destfile)
@@ -438,7 +449,7 @@ WFSFeatureType <- R6Class("WFSFeatureType",
       }else{
         ftFeatures <- sf::st_read(destfile, quiet = TRUE)
       }
-      if(self$hasGeometry()) if(self$getGeometryType() %in% colnames(ftFeatures)){
+      if(self$hasGeometry()) if(self$getGeometryField() %in% colnames(ftFeatures)){
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getFeaturesCRS(obj)
         if(is.na(st_crs(ftFeatures))) st_crs(ftFeatures) <- self$getDefaultCRS()
       }

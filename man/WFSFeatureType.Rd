@@ -46,6 +46,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-WFSFeatureType-getBoundingBox}{\code{WFSFeatureType$getBoundingBox()}}
 \item \href{#method-WFSFeatureType-getDescription}{\code{WFSFeatureType$getDescription()}}
 \item \href{#method-WFSFeatureType-hasGeometry}{\code{WFSFeatureType$hasGeometry()}}
+\item \href{#method-WFSFeatureType-getGeometryField}{\code{WFSFeatureType$getGeometryField()}}
 \item \href{#method-WFSFeatureType-getGeometryType}{\code{WFSFeatureType$getGeometryType()}}
 \item \href{#method-WFSFeatureType-getFeaturesCRS}{\code{WFSFeatureType$getFeaturesCRS()}}
 \item \href{#method-WFSFeatureType-getFeatures}{\code{WFSFeatureType$getFeatures()}}
@@ -227,6 +228,19 @@ object of class \link{logical}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WFSFeatureType-getGeometryField"></a>}}
+\if{latex}{\out{\hypertarget{method-WFSFeatureType-getGeometryField}{}}}
+\subsection{Method \code{getGeometryField()}}{
+Get geometry field
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WFSFeatureType$getGeometryField()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+object of class \link{character} representing the geometry field
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-WFSFeatureType-getGeometryType"></a>}}
 \if{latex}{\out{\hypertarget{method-WFSFeatureType-getGeometryType}{}}}
 \subsection{Method \code{getGeometryType()}}{
@@ -236,7 +250,7 @@ Get geometry type
 }
 
 \subsection{Returns}{
-object of class \link{character} representing the geometry tpe
+object of class \link{character} representing the geometry type
 }
 }
 \if{html}{\out{<hr>}}
