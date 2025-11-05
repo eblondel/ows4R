@@ -2,6 +2,7 @@
 
 **Corrections**
 
+- [#114](https://github.com/eblondel/ows4R/issues/114) Fix WCS vignette examples
 - [#151](https://github.com/eblondel/ows4R/issues/151) WCS Improve getCoverage exception handling
 - [#152](https://github.com/eblondel/ows4R/issues/152) WFS GetFeatures always return a missing CRS
 
