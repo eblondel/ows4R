@@ -1,0 +1,228 @@
+# Use ows4R with OGC WCS (Web Coverage Service)
+
+This vignette shows how to use
+[ows4R](https://github.com/eblondel/ows4R) with a Web Coverage Service
+(OGC WCS).
+
+An overview of the Web Coverage Service (WCS) can be found on the
+official OGC webpage: <https://www.ogc.org/standards/wcs/>
+
+### Create WCS Client
+
+In order to operate on a Web Coverage Service, you need to create an
+interface in R to this WCS. This is done with the class `WCSClient`, as
+follows:
+
+``` r
+WCS <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.1.0", logger = "INFO")
+```
+
+You can define the level of logger: “INFO” to get ows4R logs, “DEBUG”
+for all internal logs (such as as Curl details). It is also possible to
+define a username and password (`user` and `pwd` parameters) in case
+operations would require an authentication to use the Web Coverage
+Service.
+
+Note: It is also possible to connect ot a WCS by means of a Central
+Authentication System (CAS) with the
+[ows4R](https://github.com/eblondel/ows4R) `CASClient`. To do so, you
+can pass the CAS URL by means of the `cas_url` argument.
+
+### Get Capabilities (`GetCapabilities`)
+
+When create the `WCSClient`, `ows4R` will run a `GetCapabilities`
+request. To access the WCS Capabilities and its sections, you can use
+the following code:
+
+``` r
+caps <- WCS$getCapabilities()
+```
+
+### Get coverage summaries
+
+From the capabilities, it is possible to get all coverage summaries by
+doing `caps$getCoverageSummaries()`. This method will return a list of
+objects of class `WCSCoverageSummary`.
+
+To get/find a specific coverage summary by name, you can run the
+following method:
+
+``` r
+chla <- caps$findCoverageSummaryById("AverageChloroColorScaled", exact = T)
+```
+
+### Describe a coverage (`DescribeCoverage`)
+
+The description of coverage can be fetched either from a coverage
+summary or directly from the WCS client. When invoked the first time, an
+OGC WCS `DescribeCoverage` request will be done.
+
+- *Get description from a coverage summary*
+
+``` r
+chla_des <- chla$getDescription()
+```
+
+- *Get description from the WCS client*
+
+``` r
+chla_des <- WCS$describeCoverage("AverageChloroColorScaled")
+```
+
+A coverage description corresponds to an exhaustive metadata set
+describing the coverage characteristics such as the coverage limits in
+space and time. It is represented by an object of class
+`WCSCoverageDescription` including core GML metadata properties usable
+in R thanks to [geometa](https://github.com/eblondel/geometa).
+
+- *Get list of coverage dimensions*
+
+Associated with the coverage description,
+[ows4R](https://github.com/eblondel/ows4R) defined a convenient method
+to list the dimensions of the coverage:
+
+``` r
+chla_dims <- chla$getDimensions()
+```
+
+This method is particularly useful for spatio-temporal coverage,
+allowing to retrieve the temporal extent (with time instants available
+for the given coverage). In the present example, the coverage is
+available for download for a certain number of time instants:
+
+``` r
+chla_time_instants <- chla_dims[[1]]$coefficients
+```
+
+### Get coverage data (`GetCoverage`)
+
+- *Get single coverage*
+
+Having a coverage well-described and its dimensions well-known, it’s
+then possible to get the coverage data. Similarly to the coverage
+description, coverage data can be get either from the coverage summary,
+or directly through the WCS Client (specifying the coverage name as
+first argument). Note however that because getting data from the WCS,
+data is not DIRECTLY accessed into R through the web-service, data has
+to be downloaded as temporary file within the R session temp directory.
+This is done transparently by ows4R, without any action required by
+user.
+
+The below examples show how to get coverage from the coverage summary
+object.
+
+It is then possible to limit the spatial (or spatial-temporal) extent by
+doing:
+
+- *slicing*: to specify a single value for a specific dimension, eg.
+  elevation, time
+- *trimming*: to specify min-max values range for a specific dimension,
+  eg. lon/lat
+
+``` r
+cov_data <- chla$getCoverage(
+  bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
+  time = chla_dims[[1]]$coefficients[[1]]
+)
+```
+
+The result of the `getCoverage` method will be an object of class
+`SpatRaster` from [terra](https://cran.r-project.org/package=terra)
+package.
+
+- *Get stack of coverages*
+
+[ows4R](https://github.com/eblondel/ows4R) extends on the WCS standard
+and allows users to download a coverage stack by means of the extra
+`getCoverageStack` method (only available from a coverage summary
+object). The below code shows to download a timeseries of coverages for
+the latest five time instants available:
+
+``` r
+cov_stack <- chla$getCoverageStack(
+  bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
+  time = tail(chla_dims[[1]]$coefficients, 5)
+)
+```
+
+### Download coverage data files
+
+The above methods described allow to read coverage data within R with
+[terra](https://cran.r-project.org/package=terra) package without
+persisting data in specific files named by user, but as temporary file
+within the R session temp directory. However it is sometimes required or
+wished to download coverage data files on the file system.
+[ows4R](https://github.com/eblondel/ows4R) allows to download coverage
+data files both in `getCoverage` and `getCoverageStack`.
+
+- *for a single coverage*
+
+The `getCoverage` method provides a `filename` argument that can be used
+to download the data files:
+
+``` r
+cov_data <- chla$getCoverage(
+  bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
+  time = chla_dims[[1]]$coefficients[[1]],
+  filename = "myfile.tif"
+)
+```
+
+- *from a coverage stack*
+
+To download data files for a coverage stack, it is required to provide a
+function, handled with the argument `filename_handler` that will set for
+each coverage the target file name. Such function should have a set of
+mandatory arguments, namely: `identifier` (coverage identifier), `time`
+(time filter), `elevation` (elevation filter), `bbox` (bbox filter),
+`format` (target format); The output of this function will be filename
+to be used for the given coverage. To simplify the download
+[ows4R](https://github.com/eblondel/ows4R) puts at disposal a
+ready-to-use filename handler named `WCSCoverageFilenameHandler` that is
+enough to add to trigger the data files download.
+
+``` r
+cov_stack <- chla$getCoverageStack(
+  bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
+  time = tail(chla_dims[[1]]$coefficients, 5),
+  filename_handler = WCSCoverageFilenameHandler
+)
+```
+
+### Comparing data get from WCS (`GetCoverage`) vs. WMS (`GetFeatureInfo`)
+
+As matter of quality assurance, it is possible to compare raster data
+values get using the WCS/Getcoverage with the data values get from a
+WMS/GetFeatureInfo operation (emulating a map click). The below example
+illustrates this check:
+
+``` r
+require(terra)
+require(testthat)
+
+#Get data using WCS
+vliz <- WCSClient$new(url = "https://geo.vliz.be/geoserver/wcs", serviceVersion = "2.0.1", logger = "DEBUG")
+cov <- vliz$getCapabilities()$findCoverageSummaryById("Emodnetbio__aca_spp_19582016_L1", exact = TRUE)
+cov_des <- cov$getDescription()
+cov_data <- cov$getCoverage(
+  bbox = OWSUtils$toBBOX(8.36,8.41,58.18,58.24),
+  time = cov$getDimensions()[[3]]$coefficients[1]
+)
+cov_data_stack <- cov$getCoverageStack(
+  bbox = OWSUtils$toBBOX(8.36,8.41,58.18,58.24),
+  time = cov$getDimensions()[[3]]$coefficients[1]
+)
+expect_true(terra::compareGeom(cov_data,cov_data_stack))
+  
+#compare with data returned by WMS GetFeatureInfo
+vliz_wms <- WMSClient$new(url = "https://geo.vliz.be/geoserver/wms", service = "1.1.1", logger = "DEBUG")
+gfi <- vliz_wms$getFeatureInfo(
+  layer = "Emodnetbio:aca_spp_19582016_L1", feature_count = 1, 
+  x = 50, y = 50, srs = "EPSG:4326", 
+  width = 101, height = 101, 
+  bbox = OWSUtils$toBBOX(8.12713623046875,8.68194580078125,57.92266845703125,58.47747802734375)
+)
+
+#final check
+expect_equal(terra::values(cov_data)[[1]], gfi$relative_abundance)
+```

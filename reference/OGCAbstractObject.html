@@ -57,6 +57,9 @@ OGCAbstractObject"></head><body>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>abstract class used by <span class="pkg">ows4R</span></p>
+<p>From 2025-05-02, the INSPIRE metadata validation does not require anymore an API Key. Therefore, it is not
+required to specify an <code>geometa_inspireValidator</code>. To send your metadata to INSPIRE, just set <code>geometa_inspire</code>
+to <code>TRUE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -300,9 +303,7 @@ OGCAbstractObject"></head><body>
 <h3 id="method-encode-">Method <code>encode()</code><a class="anchor" aria-label="anchor" href="#method-encode-"></a></h3>
 <p>Encodes as XML. The <code>addNS</code> .
    Extra parameters related to <span class="pkg">geometa</span> objects: <code>geometa_validate</code> (TRUE by default) and <code>geometa_inspire</code>
-   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class
-   <code><a href="https://rdrr.io/pkg/geometa/man/INSPIREMetadataValidator.html" class="external-link">geometa::INSPIREMetadataValidator</a></code>, with a proper user API key, should be specified as <code>geometa_inspireValidator</code>
-   argument.</p><div class="section">
+   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively.</p><div class="section">
 <h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">OGCAbstractObject</span><span class="op">$</span><span class="fu">encode</span><span class="op">(</span></span>
 <span>  addNS <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -327,7 +328,8 @@ OGCAbstractObject"></head><body>
 
 
 <dt><code>geometa_inspireValidator</code></dt>
-<dd><p>Relates to <span class="pkg">geometa</span> object INSPIRE validation. Default is <code>NULL</code></p></dd>
+<dd><p>Relates to <span class="pkg">geometa</span> object INSPIRE validation. Default is <code>NULL</code>. Deprecated, see
+below note.</p></dd>
 
 
 </dl><p></p></div>
@@ -386,7 +388,7 @@ OGCAbstractObject"></head><body>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

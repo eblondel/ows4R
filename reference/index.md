@@ -1,0 +1,197 @@
+# Package index
+
+## All functions
+
+- [`And`](https://eblondel.github.io/ows4R/reference/And.md) : And
+- [`BBOX`](https://eblondel.github.io/ows4R/reference/BBOX.md) : BBOX
+- [`BinaryComparisonOpType`](https://eblondel.github.io/ows4R/reference/BinaryComparisonOpType.md)
+  : BinaryComparisonOpType
+- [`BinaryLogicOpType`](https://eblondel.github.io/ows4R/reference/BinaryLogicOpType.md)
+  : BinaryLogicOpType
+- [`CASClient`](https://eblondel.github.io/ows4R/reference/CASClient.md)
+  : CASClient
+- [`CSWCapabilities`](https://eblondel.github.io/ows4R/reference/CSWCapabilities.md)
+  : CSWCapabilities
+- [`CSWClient`](https://eblondel.github.io/ows4R/reference/CSWClient.md)
+  : CSWClient
+- [`CSWConstraint`](https://eblondel.github.io/ows4R/reference/CSWConstraint.md)
+  : CSWConstraint
+- [`CSWDescribeRecord`](https://eblondel.github.io/ows4R/reference/CSWDescribeRecord.md)
+  : CSWDescribeRecord
+- [`CSWGetRecordById`](https://eblondel.github.io/ows4R/reference/CSWGetRecordById.md)
+  : CSWGetRecordById
+- [`CSWGetRecords`](https://eblondel.github.io/ows4R/reference/CSWGetRecords.md)
+  : CSWGetRecords
+- [`CSWHarvest`](https://eblondel.github.io/ows4R/reference/CSWHarvest.md)
+  : CSWHarvest
+- [`CSWQuery`](https://eblondel.github.io/ows4R/reference/CSWQuery.md) :
+  CSWQuery
+- [`CSWRecordProperty`](https://eblondel.github.io/ows4R/reference/CSWRecordProperty.md)
+  : CSWRecordProperty
+- [`CSWTransaction`](https://eblondel.github.io/ows4R/reference/CSWTransaction.md)
+  : CSWTransaction
+- [`Not`](https://eblondel.github.io/ows4R/reference/Not.md) : Not
+- [`OGCAbstractObject`](https://eblondel.github.io/ows4R/reference/OGCAbstractObject.md)
+  : OGCAbstractObject
+- [`OGCExpression`](https://eblondel.github.io/ows4R/reference/OGCExpression.md)
+  : OGCExpression
+- [`OGCFilter`](https://eblondel.github.io/ows4R/reference/OGCFilter.md)
+  : OGCFilter
+- [`OWSBoundingBox`](https://eblondel.github.io/ows4R/reference/OWSBoundingBox.md)
+  : OWSBoundingBox
+- [`OWSCapabilities`](https://eblondel.github.io/ows4R/reference/OWSCapabilities.md)
+  : OWSGetCapabilities
+- [`OWSClient`](https://eblondel.github.io/ows4R/reference/OWSClient.md)
+  : OWSClient
+- [`OWSCodeType`](https://eblondel.github.io/ows4R/reference/OWSCodeType.md)
+  : OWSCodeType
+- [`OWSException`](https://eblondel.github.io/ows4R/reference/OWSException.md)
+  : OWSException
+- [`OWSGetCapabilities`](https://eblondel.github.io/ows4R/reference/OWSGetCapabilities.md)
+  : OWSGetCapabilities
+- [`OWSHttpRequest`](https://eblondel.github.io/ows4R/reference/OWSHttpRequest.md)
+  : OWSHttpRequest
+- [`OWSNamespace`](https://eblondel.github.io/ows4R/reference/OWSNamespace.md)
+  : OWSNamespace
+- [`OWSOperation`](https://eblondel.github.io/ows4R/reference/OWSOperation.md)
+  : OWSOperation
+- [`OWSOperationsMetadata`](https://eblondel.github.io/ows4R/reference/OWSOperationsMetadata.md)
+  : OWSOperationsMetadata
+- [`OWSRequest`](https://eblondel.github.io/ows4R/reference/OWSRequest.md)
+  : OWSRequest
+- [`OWSServiceIdentification`](https://eblondel.github.io/ows4R/reference/OWSServiceIdentification.md)
+  : OWSServiceIdentification
+- [`OWSServiceProvider`](https://eblondel.github.io/ows4R/reference/OWSServiceProvider.md)
+  : OWSServiceProvider
+- [`OWSUtils`](https://eblondel.github.io/ows4R/reference/OWSUtils.md) :
+  OWSUtils
+- [`OWSWGS84BoundingBox`](https://eblondel.github.io/ows4R/reference/OWSWGS84BoundingBox.md)
+  : OWSWGS84BoundingBox
+- [`Or`](https://eblondel.github.io/ows4R/reference/Or.md) : Or
+- [`PropertyIsBetween`](https://eblondel.github.io/ows4R/reference/PropertyIsBetween.md)
+  : PropertyIsBetween
+- [`PropertyIsEqualTo`](https://eblondel.github.io/ows4R/reference/PropertyIsEqualTo.md)
+  : PropertyIsEqualTo
+- [`PropertyIsGreaterThan`](https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThan.md)
+  : PropertyIsGreaterThan
+- [`PropertyIsGreaterThanOrEqualTo`](https://eblondel.github.io/ows4R/reference/PropertyIsGreaterThanOrEqualTo.md)
+  : PropertyIsGreaterThanOrEqualTo
+- [`PropertyIsLessThan`](https://eblondel.github.io/ows4R/reference/PropertyIsLessThan.md)
+  : PropertyIsLessThan
+- [`PropertyIsLessThanOrEqualTo`](https://eblondel.github.io/ows4R/reference/PropertyIsLessThanOrEqualTo.md)
+  : PropertyIsLesserThanOrEqualTo
+- [`PropertyIsLike`](https://eblondel.github.io/ows4R/reference/PropertyIsLike.md)
+  : PropertyIsLike
+- [`PropertyIsNotEqualTo`](https://eblondel.github.io/ows4R/reference/PropertyIsNotEqualTo.md)
+  : PropertyIsNotEqualTo
+- [`PropertyIsNull`](https://eblondel.github.io/ows4R/reference/PropertyIsNull.md)
+  : PropertyIsNull
+- [`UnaryLogicOpType`](https://eblondel.github.io/ows4R/reference/UnaryLogicOpType.md)
+  : UnaryLogicOpType
+- [`WCSCapabilities`](https://eblondel.github.io/ows4R/reference/WCSCapabilities.md)
+  : WCSCapabilities
+- [`WCSClient`](https://eblondel.github.io/ows4R/reference/WCSClient.md)
+  : WCSClient
+- [`WCSCoverage`](https://eblondel.github.io/ows4R/reference/WCSCoverage.md)
+  : WCSCoverage
+- [`WCSCoverageDescription`](https://eblondel.github.io/ows4R/reference/WCSCoverageDescription.md)
+  : WCSCoverageDescription
+- [`WCSCoverageDomain`](https://eblondel.github.io/ows4R/reference/WCSCoverageDomain.md)
+  : WCSCoverageDomain
+- [`WCSCoverageFilenameHandler()`](https://eblondel.github.io/ows4R/reference/WCSCoverageFilenameHandler.md)
+  : WCSCoverageFilenameHandler
+- [`WCSCoverageSpatialDomain`](https://eblondel.github.io/ows4R/reference/WCSCoverageSpatialDomain.md)
+  : WCSCoverageSpatialDomain
+- [`WCSCoverageSummary`](https://eblondel.github.io/ows4R/reference/WCSCoverageSummary.md)
+  : WCSCoverageSummary
+- [`WCSCoverageTemporalDomain`](https://eblondel.github.io/ows4R/reference/WCSCoverageTemporalDomain.md)
+  : WCSCoverageTemporalDomain
+- [`WCSDescribeCoverage`](https://eblondel.github.io/ows4R/reference/WCSDescribeCoverage.md)
+  : WCSDescribeCoverage
+- [`WCSGSElevationDomain`](https://eblondel.github.io/ows4R/reference/WCSGSElevationDomain.md)
+  : WCSGSElevationDomain
+- [`WCSGSTimeDomain`](https://eblondel.github.io/ows4R/reference/WCSGSTimeDomain.md)
+  : WCSGSTimeDomain
+- [`WCSGetCoverage`](https://eblondel.github.io/ows4R/reference/WCSGetCoverage.md)
+  : WCSGetCoverage
+- [`WCSGridCRS`](https://eblondel.github.io/ows4R/reference/WCSGridCRS.md)
+  : WCSGridCRS
+- [`WFSCapabilities`](https://eblondel.github.io/ows4R/reference/WFSCapabilities.md)
+  : WFSCapabilities
+- [`WFSClient`](https://eblondel.github.io/ows4R/reference/WFSClient.md)
+  : WFSClient
+- [`WFSDescribeFeatureType`](https://eblondel.github.io/ows4R/reference/WFSDescribeFeatureType.md)
+  : WFSDescribeFeatureType
+- [`WFSFeatureType`](https://eblondel.github.io/ows4R/reference/WFSFeatureType.md)
+  : WFSFeatureType
+- [`WFSFeatureTypeElement`](https://eblondel.github.io/ows4R/reference/WFSFeatureTypeElement.md)
+  : WFSFeatureTypeElement
+- [`WFSGetFeature`](https://eblondel.github.io/ows4R/reference/WFSGetFeature.md)
+  : WFSGetFeature
+- [`WMSCapabilities`](https://eblondel.github.io/ows4R/reference/WMSCapabilities.md)
+  : WMSCapabilities
+- [`WMSClient`](https://eblondel.github.io/ows4R/reference/WMSClient.md)
+  : WMSClient
+- [`WMSGetFeatureInfo`](https://eblondel.github.io/ows4R/reference/WMSGetFeatureInfo.md)
+  : WMSGetFeatureInfo
+- [`WMSLayer`](https://eblondel.github.io/ows4R/reference/WMSLayer.md) :
+  WMSLayer
+- [`WPSBoundingBoxData`](https://eblondel.github.io/ows4R/reference/WPSBoundingBoxData.md)
+  : WPSBoundingBoxData
+- [`WPSCapabilities`](https://eblondel.github.io/ows4R/reference/WPSCapabilities.md)
+  : WPSCapabilities
+- [`WPSClient`](https://eblondel.github.io/ows4R/reference/WPSClient.md)
+  : WPSClient
+- [`WPSComplexData`](https://eblondel.github.io/ows4R/reference/WPSComplexData.md)
+  : WPSComplexData
+- [`WPSComplexInputDescription`](https://eblondel.github.io/ows4R/reference/WPSComplexInputDescription.md)
+  : WPSComplexInputDescription
+- [`WPSComplexOutputDescription`](https://eblondel.github.io/ows4R/reference/WPSComplexOutputDescription.md)
+  : WPSComplexOutputDescription
+- [`WPSDescribeProcess`](https://eblondel.github.io/ows4R/reference/WPSDescribeProcess.md)
+  : WPSDescribeProcess
+- [`WPSDescriptionParameter`](https://eblondel.github.io/ows4R/reference/WPSDescriptionParameter.md)
+  : WPSDescriptionParameter
+- [`WPSException`](https://eblondel.github.io/ows4R/reference/WPSException.md)
+  : WPSException
+- [`WPSExecute`](https://eblondel.github.io/ows4R/reference/WPSExecute.md)
+  : WPSExecute
+- [`WPSExecuteResponse`](https://eblondel.github.io/ows4R/reference/WPSExecuteResponse.md)
+  : WPSExecuteResponse
+- [`WPSFormat`](https://eblondel.github.io/ows4R/reference/WPSFormat.md)
+  : WPSFormat
+- [`WPSInput`](https://eblondel.github.io/ows4R/reference/WPSInput.md) :
+  WPSInput
+- [`WPSInputDescription`](https://eblondel.github.io/ows4R/reference/WPSInputDescription.md)
+  : WPSInputDescription
+- [`WPSLiteralData`](https://eblondel.github.io/ows4R/reference/WPSLiteralData.md)
+  : WPSLiteralData
+- [`WPSLiteralInputDescription`](https://eblondel.github.io/ows4R/reference/WPSLiteralInputDescription.md)
+  : WPSLiteralInputDescription
+- [`WPSLiteralOutputDescription`](https://eblondel.github.io/ows4R/reference/WPSLiteralOutputDescription.md)
+  : WPSLiteralOutputDescription
+- [`WPSOutput`](https://eblondel.github.io/ows4R/reference/WPSOutput.md)
+  : WPSOutput
+- [`WPSOutputDescription`](https://eblondel.github.io/ows4R/reference/WPSOutputDescription.md)
+  : WPSOutputDescription
+- [`WPSParameter`](https://eblondel.github.io/ows4R/reference/WPSParameter.md)
+  : WPSParameter
+- [`WPSProcess`](https://eblondel.github.io/ows4R/reference/WPSProcess.md)
+  : WPSProcess
+- [`WPSProcessDescription`](https://eblondel.github.io/ows4R/reference/WPSProcessDescription.md)
+  : WPSProcessDescription
+- [`WPSResponseDocument`](https://eblondel.github.io/ows4R/reference/WPSResponseDocument.md)
+  : WPSResponseDocument
+- [`WPSStatus`](https://eblondel.github.io/ows4R/reference/WPSStatus.md)
+  : WPSStatus
+- [`getOWSNamespace()`](https://eblondel.github.io/ows4R/reference/getOWSNamespace.md)
+  : getOWSNamespace
+- [`getOWSNamespaces()`](https://eblondel.github.io/ows4R/reference/getOWSNamespaces.md)
+  : getOWSNamespaces
+- [`ows4R`](https://eblondel.github.io/ows4R/reference/ows4R.md)
+  [`ows4R-package`](https://eblondel.github.io/ows4R/reference/ows4R.md)
+  : Interface to OGC Web-Services
+- [`registerOWSNamespace()`](https://eblondel.github.io/ows4R/reference/registerOWSNamespace.md)
+  : registerOWSNamespace
+- [`setOWSNamespaces()`](https://eblondel.github.io/ows4R/reference/setOWSNamespaces.md)
+  : setOWSNamespaces
