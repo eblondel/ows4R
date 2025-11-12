@@ -17,6 +17,10 @@ OGCAbstractObject
 }
 \note{
 abstract class used by \pkg{ows4R}
+
+From 2025-05-02, the INSPIRE metadata validation does not require anymore an API Key. Therefore, it is not
+required to specify an \code{geometa_inspireValidator}. To send your metadata to INSPIRE, just set \code{geometa_inspire} 
+to \code{TRUE}.
 }
 \author{
 Emmanuel Blondel <emmanuel.blondel1@gmail.com>
@@ -241,9 +245,7 @@ the namespace definitions as named \code{list}
 \subsection{Method \code{encode()}}{
 Encodes as XML. The \code{addNS} .
    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
-   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
-   \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
-   argument.
+   (FALSE by default) can be used to perform ISO and INSPIRE validation respectively.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{OGCAbstractObject$encode(
   addNS = TRUE,
@@ -262,7 +264,8 @@ Encodes as XML. The \code{addNS} .
 
 \item{\code{geometa_inspire}}{Relates to \pkg{geometa} object INSPIRE validation. Default is \code{FALSE}}
 
-\item{\code{geometa_inspireValidator}}{Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}}
+\item{\code{geometa_inspireValidator}}{Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}. Deprecated, see
+below note.}
 }
 \if{html}{\out{</div>}}
 }

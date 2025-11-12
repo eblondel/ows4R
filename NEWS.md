@@ -6,6 +6,10 @@
 - [#151](https://github.com/eblondel/ows4R/issues/151) WCS Improve getCoverage exception handling
 - [#152](https://github.com/eblondel/ows4R/issues/152) WFS GetFeatures always return a missing CRS
 
+**Enhancements**
+
+- [#154](https://github.com/eblondel/ows4R/issues/154) CSW - INSPIRE metadata validator does not need API key anymore
+
 ## [ows4R 0.5](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
 **Corrections**

@@ -326,14 +326,17 @@ OGCAbstractObject <-  R6Class("OGCAbstractObject",
     
     #'@description Encodes as XML. The \code{addNS} .
     #'    Extra parameters related to \pkg{geometa} objects: \code{geometa_validate} (TRUE by default) and \code{geometa_inspire} 
-    #'    (FALSE by default) can be used to perform ISO and INSPIRE validation respectively. In that case on object of class 
-    #'    \code{geometa::INSPIREMetadataValidator}, with a proper user API key, should be specified as \code{geometa_inspireValidator} 
-    #'    argument.
+    #'    (FALSE by default) can be used to perform ISO and INSPIRE validation respectively.
     #'@param addNS addNS controls the addition of XML namespaces
     #'@param geometa_validate Relates to \pkg{geometa} object ISO validation. Default is \code{TRUE}
     #'@param geometa_inspire Relates to \pkg{geometa} object INSPIRE validation. Default is \code{FALSE}
-    #'@param geometa_inspireValidator Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}
+    #'@param geometa_inspireValidator Relates to \pkg{geometa} object INSPIRE validation. Default is \code{NULL}. Deprecated, see
+    #'below note.
     #'@return an object of class \link[XML]{XMLInternalNode-class} from \pkg{XML}
+    #'
+    #'@note From 2025-05-02, the INSPIRE metadata validation does not require anymore an API Key. Therefore, it is not
+    #'required to specify an \code{geometa_inspireValidator}. To send your metadata to INSPIRE, just set \code{geometa_inspire} 
+    #'to \code{TRUE}.
     encode = function(addNS = TRUE, geometa_validate = TRUE, 
                       geometa_inspire = FALSE, geometa_inspireValidator = NULL){
       
