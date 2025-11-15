@@ -82,7 +82,7 @@ test_that("WCS 2.0.1 - Emodnet Bathymetry",{
   
 })
 
-test_that("WCS 2.0.1 - VLIZ",{
+test_that("WCS 2.0.1 - VLIZ #test 1",{
   testthat::skip_on_cran()
   vliz <- WCSClient$new(url = "https://geo.vliz.be/geoserver/wcs", serviceVersion = "2.0.1", logger = "DEBUG")
   
@@ -106,6 +106,23 @@ test_that("WCS 2.0.1 - VLIZ",{
                                  bbox = OWSUtils$toBBOX(8.12713623046875,8.68194580078125,57.92266845703125,58.47747802734375))
   expect_equal(terra::values(cov_data)[[1]], gfi$relative_abundance)
   
+})
+
+test_that("WCS 2.0.1 - VLIZ #test 2",{
+  testthat::skip_on_cran()
+  vliz <- WCSClient$new(url = "https://geo.vliz.be/geoserver/wcs", serviceVersion = "2.0.1", logger = "DEBUG")
+  cov <- vliz$getCapabilities()$findCoverageSummaryById("Emodnetbio__cal_fin_19582016_L1_err", exact = TRUE)
+  cov_des <- cov$getDescription()
+  cov_data_stack <- cov$getCoverageStack(
+    bbox = OWSUtils$toBBOX(-10,-5,0,1),
+    time = cov$getDimensions()[[3]]$coefficients[c(1,20)]
+  )
+  testthat::expect_null(cov_data_stack)
+  cov_data_stack <- cov$getCoverageStack(
+    bbox = OWSUtils$toBBOX(-10,-5,35,36),
+    time = cov$getDimensions()[[3]]$coefficients[c(1,20)]
+  )
+  testthat::expect_is(cov_data_stack, "SpatRaster")
 })
 
 test_that("WCS 2.0.1 - UN-FAO - ASIS",{
