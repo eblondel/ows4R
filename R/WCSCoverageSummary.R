@@ -778,7 +778,13 @@ WCSCoverageSummary <- R6Class("WCSCoverageSummary",
           )
           return(coverage)
         })
-        out <- terra::rast(coverage_list)
+        exception_list = coverage_list[sapply(coverage_list, is, "OWSException")]
+        coverage_list = coverage_list[sapply(coverage_list, is, "SpatRaster")]
+        if(length(exception_list)>0){
+          exceptions = unique(sapply(exception_list, function(x){x$getText()}))
+          self$WARN(sprintf("At least one request failed with errors [%s]", paste0(exceptions, collapse=",")))
+        }
+        if(length(coverage_list)>0) out <- terra::rast(coverage_list)
       }
       return(out)
     }

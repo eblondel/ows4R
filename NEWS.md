@@ -2,13 +2,14 @@
 
 **Corrections**
 
-- [#114](https://github.com/eblondel/ows4R/issues/114) Fix WCS vignette examples
+- [#114](https://github.com/eblondel/ows4R/issues/114) WCS Fix vignette examples
 - [#151](https://github.com/eblondel/ows4R/issues/151) WCS Improve getCoverage exception handling
 - [#152](https://github.com/eblondel/ows4R/issues/152) WFS GetFeatures always return a missing CRS
 
 **Enhancements**
 
 - [#154](https://github.com/eblondel/ows4R/issues/154) CSW - INSPIRE metadata validator does not need API key anymore
+- [#155](https://github.com/eblondel/ows4R/issues/155) WCS - manage exceptions in getCoverageStack
 
 ## [ows4R 0.5](https://github.com/eblondel/ows4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://github.com/eblondel/ows4R)
 
