@@ -10,6 +10,9 @@
 
 - **Norbert Billet**. Contributor.
 
+- **Maëlle Salmon**. Contributor.
+  [](https://orcid.org/0000-0002-2815-0399)
+
 ## Citation
 
 Source:
