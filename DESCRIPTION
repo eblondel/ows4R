@@ -4,7 +4,8 @@ Date: 2025-11-15
 Title: Interface to OGC Web-Services (OWS)
 Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
              person("Alexandre", "Bennici", role = c("ctb"), comment = c(ORCID = "0000-0003-2160-3487")),
-             person("Norbert", "Billet", role = c("ctb")))
+             person("Norbert", "Billet", role = c("ctb")),
+             person("Maëlle", "Salmon", role = c("ctb"), comment = c(ORCID = "0000-0002-2815-0399")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 3.3.0) 
 Imports: methods, R6, httr, openssl, keyring, XML (>= 3.96-1.1), geometa (>= 0.9), sf, terra, parallel, crayon
