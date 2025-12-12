@@ -4,6 +4,8 @@
 
 **Corrections**
 
+- [\#157](https://github.com/eblondel/ows4R/issues/157) WCS Coverage IDs
+  with spaces fail due to missing URL encoding
 - [\#114](https://github.com/eblondel/ows4R/issues/114) WCS Fix vignette
   examples
 - [\#151](https://github.com/eblondel/ows4R/issues/151) WCS Improve
