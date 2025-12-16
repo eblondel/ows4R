@@ -10,6 +10,9 @@
 
 - **Norbert Billet**. Contributor.
 
+- **Anna Krystalli**. Contributor.
+  [](https://orcid.org/0000-0002-2378-4915)
+
 - **Maëlle Salmon**. Contributor.
   [](https://orcid.org/0000-0002-2815-0399)
 
