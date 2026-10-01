@@ -67,10 +67,11 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         #GET WCS GetCoverage
         namedParams <- list(service = "WCS", version = serviceVersion)
         
-        #coverageId
-        if(startsWith(serviceVersion, "1.0")) namedParams <- c(namedParams, coverage = coverageId)
-        if(startsWith(serviceVersion, "1.1")) namedParams <- c(namedParams, identifier = coverageId)
-        if(startsWith(serviceVersion, "2")) namedParams <- c(namedParams, coverageId = coverageId)
+        #coverageId - URL encode to handle spaces and special characters
+        encodedCoverageId <- URLencode(coverageId, reserved = TRUE)
+        if(startsWith(serviceVersion, "1.0")) namedParams <- c(namedParams, coverage = encodedCoverageId)
+        if(startsWith(serviceVersion, "1.1")) namedParams <- c(namedParams, identifier = encodedCoverageId)
+        if(startsWith(serviceVersion, "2")) namedParams <- c(namedParams, coverageId = encodedCoverageId)
         
         #envelope/boundingbox
         if(startsWith(serviceVersion,"1.0")){

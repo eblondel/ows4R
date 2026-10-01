@@ -133,3 +133,28 @@ test_that("WCS 2.0.1 - UN-FAO - ASIS",{
   #cov_data <- cov$getCoverage(bbox = OWSUtils$toBBOX(-90.3159,12.8091,-87.4539,14.6022), filename = "test_asis.tif")
   #expect_is(cov_data, "SpatRaster")
 })
+
+test_that("WCS 2.0.1 - Coverage ID with spaces is URL encoded",{
+  testthat::skip_on_cran()
+  # Test that coverage IDs containing spaces are properly URL encoded
+  # Uses EMODnet Seabed Habitats service which has coverage IDs with spaces
+  wcs <- WCSClient$new(
+    url = "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wcs",
+    serviceVersion = "2.0.1",
+    logger = "INFO"
+  )
+  expect_is(wcs, "WCSClient")
+
+  # Coverage ID contains a space: "Nursery grounds"
+  cov_id_with_space <- "emodnet_open_maplibrary__DK004013_EFH_Plaice_Nursery grounds"
+  cov <- wcs$getCapabilities()$findCoverageSummaryById(cov_id_with_space, exact = TRUE)
+  expect_is(cov, "WCSCoverageSummary")
+
+  # DescribeCoverage request should succeed (requires URL encoding)
+  cov_des <- cov$getDescription()
+  expect_is(cov_des, "WCSCoverageDescription")
+
+  # GetCoverage request should succeed (requires URL encoding)
+  cov_data <- cov$getCoverage(bbox = OWSUtils$toBBOX(10, 54.5, 13, 57.5))
+  expect_is(cov_data, "SpatRaster")
+})
