@@ -32,7 +32,7 @@ The following projects have contributed to strenghten `ows4R`:
 
 - for core, WFS and CSW support
 
-[![](https://www.fao.org/fileadmin/templates/family-farming-decade/images/FAO-IFAD-Logos/FAO-Logo-EN.svg)](https://www.fao.org/home/en/)
+[![](https://www.fao.org/images/corporatelibraries/fao-logo/fao-logo-archive/fao-logo-blue-3lines-en.svg)](https://www.fao.org/home/en/)
 
 - for WMS and WPS support:
   - Blue-CLoud EC project: *Blue-Cloud has received funding from the
@@ -52,16 +52,19 @@ link
 
 ## OGC standards coverage status
 
-| Standard   | Description                                                      | Supported versions                          | Unsupported versions | Supported R bindings                                                                        | Support                                    |
-|------------|------------------------------------------------------------------|---------------------------------------------|----------------------|---------------------------------------------------------------------------------------------|--------------------------------------------|
-| OGC Filter | [Filter Encoding](https://www.ogc.org/standards/filter/)         | `1.1.0`                                     | `2.0`                |                                                                                             | ongoing                                    |
-| OGC Common | [Web Service Common](https://www.ogc.org/standards/common/)      | `1.1`,`2.0`                                 |                      |                                                                                             | ongoing                                    |
-| OGC CSW    | [Catalogue Service](https://www.ogc.org/standards/cat/)          | `2.0.2`                                     | `3.0.0`              | [geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML)      | ongoing - **seeking sponsors**             |
-| OGC WFS    | [Web Feature Service](https://www.ogc.org/standards/wfs/)        | `1.0.0`,`1.1.0`,`2.0.0`                     |                      | [sf](https://github.com/r-spatial/sf) (OGC Simple Feature)                                  | ongoing                                    |
-| OGC WMS    | [Web Map Service](https://www.ogc.org/standards/wms/)            | `1.1.0`,`1.1.1`,`1.3.0`                     |                      | [sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation) | ongoing                                    |
-| OGC WCS    | [Web Coverage Service](https://www.ogc.org/standards/wcs/)       | `1.0.0`, `1.1.0`, `1.1.1`, `2.0.1`, `2.1.0` |                      | [terra](https://cran.r-project.org/package=terra)                                           | ongoing                                    |
-| OGC WPS    | [Web Processing Service](https://www.ogc.org/standards/wps/)     | `1.0.0`                                     | `2.0`                |                                                                                             | under development (contribs welcome)       |
-| OGC SOS    | [Sensor Observation Service](https://www.ogc.org/standards/sos/) | `1.0`,`2.0`                                 |                      |                                                                                             | under investigation - **seeking sponsors** |
+| Standard | Description | Supported versions | Unsupported versions | Supported R bindings | Support |
+|----|----|----|----|----|----|
+| OGC Filter | [OGC Filter Encoding](https://www.ogc.org/standards/filter/) | `1.1.0` | `2.0` |  | ongoing |
+| OGC Common | [OGC Web Service Common](https://www.ogc.org/standards/common/) | `1.1`,`2.0` |  |  | ongoing |
+| OGC CSW | [OGC Catalogue Service](https://www.ogc.org/standards/cat/) | `2.0.2` | `3.0.0` | [geometa](https://github.com/eblondel/geometa) (ISO 19115 / 19119 / 19110 / 19139 XML) | ongoing - **seeking sponsors** |
+| OGC WFS | [OGC Web Feature Service](https://www.ogc.org/standards/wfs/) | `1.0.0`,`1.1.0`,`2.0.0` |  | [sf](https://github.com/r-spatial/sf) (OGC Simple Feature) | ongoing |
+| OGC WMS | [OGC Web Map Service](https://www.ogc.org/standards/wms/) | `1.1.0`,`1.1.1`,`1.3.0` |  | [sf](https://github.com/r-spatial/sf) (OGC Simple Feature - for `GetFeatureInfo` operation) | ongoing |
+| OGC WCS | [OGC Web Coverage Service](https://www.ogc.org/standards/wcs/) | `1.0.0`, `1.1.0`, `1.1.1`, `2.0.1`, `2.1.0` |  | [terra](https://cran.r-project.org/package=terra) | ongoing |
+| OGC WPS | [OGC Web Processing Service](https://www.ogc.org/standards/wps/) | `1.0.0` | `2.0` |  | ongoing - **seeking sponsors** |
+| OGC SOS | [OGC Sensor Observation Service](https://www.ogc.org/standards/sos/) | `1.0`,`2.0` |  |  | under investigation - **seeking sponsors** |
+| OGC API – Features | [OGC API – Features](https://www.ogc.org/fr/standards/ogcapi-features/) |  | `1.0` |  | under investigation - **seeking sponsors** |
+| OGC API – Processes | [OGC API – Processes](https://www.ogc.org/fr/standards/ogcapi-processes/) |  | `1.0` |  | under investigation - **seeking sponsors** |
+| OGC API – Records | [OGC API – Records](https://www.ogc.org/fr/standards/ogcapi-records/) |  | `1.0` |  | under investigation - **seeking sponsors** |
 
 In case of a missing feature, [create a
 ticket](https://github.com/eblondel/ows4R/issues/new).
@@ -76,7 +79,9 @@ including:
 - Web Feature Service (WFS) `Transaction` operations
 - Catalogue Service (CSW) version `3.0` (including `Transaction` and
   `Harvest` operations)
-- OGC API
+- OGC API – Features
+- OGC API – Processes
+- OGC API – Records
 - …
 
 For more information, or if you are interested in funding this R project

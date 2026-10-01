@@ -14,6 +14,7 @@ interface in R to this CSW. This is done with the class `CSWClient`, as
 follows:
 
 ``` r
+
 CSW <- CSWClient$new("http://localhost:8080/csw", "2.0.2", logger = "INFO")
 ```
 
@@ -33,6 +34,7 @@ request. To access the CSW Capabilities and its sections, you can use
 the following code:
 
 ``` r
+
 caps <- CSW$getCapabilities()
 ```
 
@@ -47,6 +49,7 @@ with [geometa](https://github.com/eblondel/geometa) ISO/OGC metadata
 classes.
 
 ``` r
+
 #supposing a metadata identified as "my-metadata-identifier"
 md <- CSW$getRecordById("my-metadata-identifier", outputSchema = "http://www.isotc211.org/2005/gmd")
 ```
@@ -61,6 +64,7 @@ CSW client.
 A basic `GetRecords` request can be done with the following code:
 
 ``` r
+
 records <- CSW$getRecords()
 ```
 
@@ -74,6 +78,7 @@ To change the maximum number of records to be returned, use the
 `maxRecords` parameter
 
 ``` r
+
 records <- CSW$getRecords(maxRecords = 20L)
 ```
 
@@ -95,6 +100,7 @@ The example below shows you:
 - how to get get metadata records based on the query
 
 ``` r
+
 cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%'")
 query <- CSWQuery$new(constraint = cons)
 records <- CSW$getRecords(query = query)
@@ -106,6 +112,7 @@ Another example of `GetRecords` query with a CQL filter based on two
 properties (title, abstract):
 
 ``` r
+
 cons <- CSWConstraint$new(cqlText = "dc:title like '%ips%' and dct:abstract like '%pharetra%'")
 query <- CSWQuery$new(constraint = cons)
 records <- CSW$getRecords(query = query)
@@ -118,6 +125,7 @@ identifier. In case there is an existing metadata record with such
 identifier, we expect to get a list of length 1.
 
 ``` r
+
 cons <- CSWConstraint$new(cqlText = "dc:identifier = 'my-metadata-identifier'")
 query <- CSWQuery$new(constraint = cons)
 records <- CSW$getRecords(query = query)
@@ -151,6 +159,7 @@ of records for which \_any text is like ‘%Physio%’ (all records for
 which the string ‘Physio’ is included):
 
 ``` r
+
 filter <- OGCFilter$new( PropertyIsLike$new("csw:AnyText", "%Physio%"))
 cons <- CSWConstraint$new(filter = filter)
 query <- CSWQuery$new(constraint = cons)
@@ -160,6 +169,7 @@ records <- csw2$getRecords(query = query)
 **Query with OGC filter - `PropertyIsEqualTo`**
 
 ``` r
+
 filter <- OGCFilter$new( PropertyIsEqualTo$new("csw:AnyText", "species"))
 cons <- CSWConstraint$new(filter = filter)
 query <- CSWQuery$new(constraint = cons)
@@ -175,6 +185,7 @@ examples highlight the different operations available:
 **Insert**
 
 ``` r
+
 mdfile <- system.file("extdata/data", "metadata.xml", package = "ows4R")
 md <- geometa::ISOMetadata$new(xml = XML::xmlParse(mdfile))
 insert <- CSW$insertRecord(record = md)
@@ -184,6 +195,7 @@ insert$getResult() #TRUE if inserted, FALSE otherwise
 **Update (Full)**
 
 ``` r
+
 md$identificationInfo[[1]]$citation$setTitle("a new title")
 update <- CSW$updateRecord(record = md)
 update$getResult() #TRUE if updated, FALSE otherwise
@@ -192,6 +204,7 @@ update$getResult() #TRUE if updated, FALSE otherwise
 **Update (Partial)**
 
 ``` r
+
 recordProperty <- CSWRecordProperty$new("apiso:Title", "NEW_TITLE")
 filter = OGCFilter$new(PropertyIsEqualTo$new("apiso:Identifier", md$fileIdentifier))
 constraint <- CSWConstraint$new(filter = filter)
@@ -202,6 +215,7 @@ update$getResult() #TRUE if updated, FALSE otherwise
 **Delete**
 
 ``` r
+
 delete <- CSW$deleteRecordById(md$fileIdentifier)
 delete$getResult() #TRUE if deleted, FALSE otherwise
 ```

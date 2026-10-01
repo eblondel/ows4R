@@ -14,6 +14,7 @@ interface in R to this WCS. This is done with the class `WCSClient`, as
 follows:
 
 ``` r
+
 WCS <- WCSClient$new("https://ows.rasdaman.org/rasdaman/ows", "2.1.0", logger = "INFO")
 ```
 
@@ -35,6 +36,7 @@ request. To access the WCS Capabilities and its sections, you can use
 the following code:
 
 ``` r
+
 caps <- WCS$getCapabilities()
 ```
 
@@ -48,6 +50,7 @@ To get/find a specific coverage summary by name, you can run the
 following method:
 
 ``` r
+
 chla <- caps$findCoverageSummaryById("AverageChloroColorScaled", exact = T)
 ```
 
@@ -60,12 +63,14 @@ OGC WCS `DescribeCoverage` request will be done.
 - *Get description from a coverage summary*
 
 ``` r
+
 chla_des <- chla$getDescription()
 ```
 
 - *Get description from the WCS client*
 
 ``` r
+
 chla_des <- WCS$describeCoverage("AverageChloroColorScaled")
 ```
 
@@ -82,6 +87,7 @@ Associated with the coverage description,
 to list the dimensions of the coverage:
 
 ``` r
+
 chla_dims <- chla$getDimensions()
 ```
 
@@ -91,6 +97,7 @@ for the given coverage). In the present example, the coverage is
 available for download for a certain number of time instants:
 
 ``` r
+
 chla_time_instants <- chla_dims[[1]]$coefficients
 ```
 
@@ -120,6 +127,7 @@ doing:
   eg. lon/lat
 
 ``` r
+
 cov_data <- chla$getCoverage(
   bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
   time = chla_dims[[1]]$coefficients[[1]]
@@ -139,6 +147,7 @@ object). The below code shows to download a timeseries of coverages for
 the latest five time instants available:
 
 ``` r
+
 cov_stack <- chla$getCoverageStack(
   bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
   time = tail(chla_dims[[1]]$coefficients, 5)
@@ -161,6 +170,7 @@ The `getCoverage` method provides a `filename` argument that can be used
 to download the data files:
 
 ``` r
+
 cov_data <- chla$getCoverage(
   bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
   time = chla_dims[[1]]$coefficients[[1]],
@@ -182,6 +192,7 @@ ready-to-use filename handler named `WCSCoverageFilenameHandler` that is
 enough to add to trigger the data files download.
 
 ``` r
+
 cov_stack <- chla$getCoverageStack(
   bbox = OWSUtils$toBBOX(-10, -9, 40, 42), 
   time = tail(chla_dims[[1]]$coefficients, 5),
@@ -197,6 +208,7 @@ WMS/GetFeatureInfo operation (emulating a map click). The below example
 illustrates this check:
 
 ``` r
+
 require(terra)
 require(testthat)
 

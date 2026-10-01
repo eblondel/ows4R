@@ -21,13 +21,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/eblondel/ows4R/blob/master/DESCRIPTION)
 
-Blondel E (2025). *ows4R: Interface to OGC Web-Services (OWS)*. R
+Blondel E (2026). *ows4R: Interface to OGC Web-Services (OWS)*. R
 package version 0.5-1, <https://github.com/eblondel/ows4R>.
 
     @Manual{,
       title = {ows4R: Interface to OGC Web-Services (OWS)},
       author = {Emmanuel Blondel},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.5-1},
       url = {https://github.com/eblondel/ows4R},
     }
