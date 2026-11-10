@@ -96,7 +96,6 @@ WCSGetCoverage <- R6Class("WCSGetCoverage",
         }
         if(startsWith(serviceVersion, "2")){
           if(!is.null(envelope)){
-            print(envelope)
             dims <- coverage$getDimensions()
             subsetParams <- unlist(strsplit(envelope$attrs$axisLabels, " "))
             subsets <- lapply(subsetParams, function(subset){
